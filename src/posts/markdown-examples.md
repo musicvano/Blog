@@ -6,29 +6,44 @@ This page demonstrates some of the built-in markdown extensions provided by Vite
 
 VitePress provides Syntax Highlighting powered by [Shiki](https://github.com/shikijs/shiki), with additional features like line-highlighting:
 
-**Input**
+```ts
+import { createContext, useContext, useState, useMemo } from "react";
 
-````md
-```js{4}
-export default {
-  data () {
-    return {
-      msg: 'Highlighted!'
-    }
+// This is a simpler example, but you can imagine a more complex object here
+type ComplexObject = {
+  kind: string;
+};
+
+// The context is created with `| null` in the type, to accurately reflect the default value.
+const Context = createContext<ComplexObject | null>(null);
+
+// The `| null` will be removed via the check in the Hook.
+const useGetComplexObject = () => {
+  const object = useContext(Context);
+  if (!object) {
+    throw new Error("useGetComplexObject must be used within a Provider");
   }
+  return object;
+};
+
+export default function MyApp() {
+  const object = useMemo(() => ({ kind: "complex" }), []);
+
+  return (
+    <Context value={object}>
+      <MyComponent />
+    </Context>
+  );
 }
-```
-````
 
-**Output**
+function MyComponent() {
+  const object = useGetComplexObject();
 
-```js{4}
-export default {
-  data () {
-    return {
-      msg: 'Highlighted!'
-    }
-  }
+  return (
+    <div>
+      <p>Current object: {object.kind}</p>
+    </div>
+  );
 }
 ```
 

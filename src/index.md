@@ -8,27 +8,27 @@ hero:
   text: "Ivan Muzyka"
   tagline: Programming in C, C++, Rust, C#, Python, JavaScript, TypeScript
   image:
-    src: /images/image.webp
+    src: /images/avatar.png
     alt: Image
   actions:
     - theme: brand
-      text: Markdown Examples
+      text: Posts
       link: /posts/markdown-examples
     - theme: alt
-      text: API Examples
+      text: Tags
       link: /posts/api-examples
 
 # Features section
 features:
-  - icon: ⚡️
-    title: Feature A
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+  - icon: 💡
+    title: Ideas
+    details: It is a big world around us with a lot of tech
   - icon: 🧩
-    title: Feature B
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
-  - icon: 🚀
-    title: Feature C
-    details: Lorem ipsum dolor sit amet, consectetur adipiscing elit
+    title: Tutorials
+    details: Read solutions of programming tasks
+  - icon: 📚
+    title: Guides
+    details: Let's learn something new together
 
 # Meta property
 head:
@@ -40,7 +40,7 @@ head:
       content: Programming in C, C++, Rust, C#, Python, JavaScript, TypeScript
   - - meta
     - itemprop: image
-      content: https://mvano.com/images/social-wide.jpg
+      content: https://mvano.com/images/social-wide.png
   - - meta
     - property: og:url
       content: https://mvano.com
@@ -55,7 +55,7 @@ head:
       content: Programming in C, C++, Rust, C#, Python, JavaScript, TypeScript
   - - meta
     - property: og:image
-      content: https://mvano.com/images/social-wide.jpg
+      content: https://mvano.com/images/social-wide.png
   - - meta
     - name: twitter:card
       content: summary_large_image
@@ -67,14 +67,20 @@ head:
       content: Programming in C, C++, Rust, C#, Python, JavaScript, TypeScript
   - - meta
     - name: twitter:image
-      content: https://mvano.com/images/social-wide.jpg
+      content: https://mvano.com/images/social-wide.png
   - - link
     - rel: icon
       type: image/svg
       href: logo.svg
 ---
 
-## Ideas and thoughts
+## Posts
+
+### Article 1
+
+### Article 2
+
+---
 
 ::: tip
 🚧 This site are under construction 🏗️.
