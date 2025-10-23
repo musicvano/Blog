@@ -85,7 +85,7 @@ export default defineConfig({
 
     footer: {
       message:
-        'Released under the <a href="https://github.com/rux-lang/Rux/blob/main/LICENSE">MIT License</a>',
+        'Released under the <a href="https://github.com/musicvano/Blog/blob/main/LICENSE">MIT License</a>',
       copyright:
         'Copyright © 2025 <a href="https://github.com/musicvano">Ivan Muzyka</a>',
     },

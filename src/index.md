@@ -4,8 +4,8 @@ layout: home
 
 # Hero section
 hero:
-  name: "Ivan Muzyka"
-  text: "Dev Blog"
+  name: "Dev Blog"
+  text: "Ivan Muzyka"
   tagline: Programming in C, C++, Rust, C#, Python, JavaScript, TypeScript
   image:
     src: /images/image.webp
