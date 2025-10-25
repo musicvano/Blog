@@ -83,5 +83,5 @@ head:
 ---
 
 ::: tip
-🚧 This site are under construction 🏗️.
+🚧 This site is under construction 🏗️.
 :::
