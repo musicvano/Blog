@@ -68,10 +68,6 @@ head:
   - - meta
     - name: twitter:image
       content: https://mvano.com/images/social-wide.png
-  - - link
-    - rel: icon
-      type: image/svg
-      href: logo.svg
 ---
 
 ## Posts
