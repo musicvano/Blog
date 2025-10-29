@@ -42,20 +42,42 @@ export default defineConfig({
     nav: [
       { text: "Home", link: "/" },
       { text: "Blog", link: "/posts/markdown-examples" },
-      { text: "Tags", link: "/posts/markdown-examples" },
+      { text: "Tutorials", link: "/csharp/introduction" },
       { text: "About", link: "/about" },
     ],
 
-    sidebar: [
-      {
-        text: "2025",
-        collapsed: false,
-        items: [
-          { text: "Markdown Examples", link: "/posts/markdown-examples" },
-          { text: "Runtime API Examples", link: "/posts/api-examples" },
-        ],
-      },
-    ],
+    sidebar: {
+      "/posts/": [
+        {
+          text: "2025",
+          collapsed: false,
+          items: [
+            { text: "Markdown Examples", link: "/posts/markdown-examples" },
+            { text: "Runtime API Examples", link: "/posts/api-examples" },
+          ],
+        },
+      ],
+      "/csharp/": [
+        {
+          text: "Fundamentals",
+          collapsed: false,
+          items: [
+            { text: "Introduction", link: "/csharp/introduction" },
+            { text: "Hello World", link: "/csharp/hello-world" },
+            { text: "Float Product", link: "/csharp/float-product" },
+            { text: "Integer Square Sum", link: "/csharp/int-sqr-sum" },
+            { text: "Array Min, Max, Avg", link: "/csharp/array-min-max-avg" },
+            { text: "Array Sort", link: "/csharp/array-sort" },
+            { text: "Matrix Sort", link: "/csharp/matrix-sort" },
+            { text: "Print Sin Wave", link: "/csharp/print-sin" },
+            { text: "Digits Sort", link: "/csharp/digits-sort" },
+            { text: "Common Words", link: "/csharp/common-words" },
+            { text: "Command Calculator", link: "/csharp/command-calc" },
+            { text: "Random Password", link: "/csharp/random-password" },
+          ],
+        },
+      ],
+    },
 
     socialLinks: [
       {

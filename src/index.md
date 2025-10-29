@@ -15,8 +15,8 @@ hero:
       text: Posts
       link: /posts/markdown-examples
     - theme: alt
-      text: Tags
-      link: /posts/api-examples
+      text: Tutorials
+      link: /csharp/introduction
 
 # Features section
 features:
