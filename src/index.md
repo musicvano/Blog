@@ -13,14 +13,14 @@ hero:
   actions:
     - theme: brand
       text: Posts
-      link: /posts/markdown-examples
+      link: /posts/getting-started
     - theme: alt
       text: Tutorials
       link: /csharp/introduction
 
 # Features section
 features:
-  - icon: 
+  - icon:
       src: /icons/code.svg
     title: Ideas
     details: It is a big world around us with a lot of tech
@@ -73,14 +73,10 @@ head:
       content: https://mvano.com/images/social-wide.png
 ---
 
-## Posts
+## Blog
 
-### Article 1
+- [Getting Started](/posts/getting-started) 🎉 — _October 30, 2025_
 
-### Article 2
+## Tutorials
 
----
-
-::: tip
-🚧 This site is under construction 🏗️.
-:::
+- [C# Fundamentals](/csharp/introduction)

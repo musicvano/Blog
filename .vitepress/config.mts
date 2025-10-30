@@ -41,7 +41,7 @@ export default defineConfig({
 
     nav: [
       { text: "Home", link: "/" },
-      { text: "Blog", link: "/posts/markdown-examples" },
+      { text: "Blog", link: "/posts/getting-started" },
       { text: "Tutorials", link: "/csharp/introduction" },
       { text: "About", link: "/about" },
     ],
@@ -51,10 +51,7 @@ export default defineConfig({
         {
           text: "2025",
           collapsed: false,
-          items: [
-            { text: "Markdown Examples", link: "/posts/markdown-examples" },
-            { text: "Runtime API Examples", link: "/posts/api-examples" },
-          ],
+          items: [{ text: "Getting Started", link: "/posts/getting-started" }],
         },
       ],
       "/csharp/": [
@@ -88,7 +85,7 @@ export default defineConfig({
       { icon: "x", link: "https://x.com/musicvano", ariaLabel: "X" },
       {
         icon: "bluesky",
-        link: "https://bsky.app/profile/musicvano.bsky.social",
+        link: "https://musicvano.bsky.social",
         ariaLabel: "Bluesky",
       },
       {
@@ -101,11 +98,6 @@ export default defineConfig({
         link: "https://t.me/musicvano",
         ariaLabel: "Telegram",
       },
-      // {
-      //   icon: "discord",
-      //   link: "https://discord.com/invite/uvSHjtZSVG",
-      //   ariaLabel: "Discord",
-      // },
     ],
 
     externalLinkIcon: true,
