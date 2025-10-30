@@ -20,13 +20,16 @@ hero:
 
 # Features section
 features:
-  - icon: 💡
+  - icon: 
+      src: /icons/code.svg
     title: Ideas
     details: It is a big world around us with a lot of tech
-  - icon: 🧩
+  - icon:
+      src: /icons/tutorial.svg
     title: Tutorials
     details: Read solutions of programming tasks
-  - icon: 📚
+  - icon:
+      src: /icons/guide.svg
     title: Guides
     details: Let's learn something new together
 
