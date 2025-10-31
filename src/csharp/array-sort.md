@@ -1,10 +1,57 @@
 # Array Sort
 
-A C# console application that demonstrates array sorting using the Selection Sort algorithm.
+Create C# console application that demonstrates array sorting using the selection sort algorithm.
 
-## Description
+## Solution
 
-ArraySort is an educational program that generates an array of random integers, sorts them using a manual implementation of the Selection Sort algorithm, and displays both the unsorted and sorted arrays. This project is designed to help understand how sorting algorithms work at a fundamental level.
+The app generates an array of random integers, sorts them using a manual implementation of the [selection sort](https://en.wikipedia.org/wiki/Selection_sort) algorithm, and displays both the unsorted and sorted arrays. This project is designed to help understand how sorting algorithms work at a fundamental level.
+
+```cs
+namespace ArraySort
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            const int count = 10;
+            var m = new int[count];
+            var rnd = new Random();
+
+            // Initializing an array with random numbers
+            for (int i = 0; i < count; i++)
+            {
+                m[i] = rnd.Next(0, 100);
+            }
+
+            // Print an array before sorting
+            Console.WriteLine("m = [" + String.Join(", ", m) + "]");
+
+            // Sorting using a simple selection sort algorithm
+            // Please remember this algorithm!
+            for (int i = 0; i < count; i++)
+            {
+                for (int j = i + 1; j < count; j++)
+                {
+                    if (m[i] > m[j])
+                    {
+                        int temp = m[i];
+                        m[i] = m[j];
+                        m[j] = temp;
+                    }
+                }
+            }
+
+            // Sorting can be done using the built-in Array class method
+            // Array.Sort(m);
+
+            // Print the array after sorting
+            Console.WriteLine("m = [" + String.Join(", ", m) + "]");
+
+        }
+    }
+}
+
+```
 
 ## Features
 
@@ -13,11 +60,6 @@ ArraySort is an educational program that generates an array of random integers, 
 - Displays the array before and after sorting
 - Includes commented alternative using `Array.Sort()` for comparison
 - Clean console output with formatted array display
-
-## Requirements
-
-- .NET Framework or .NET Core/5+
-- C# compiler
 
 ## Usage
 
@@ -100,6 +142,6 @@ This project is excellent for:
 - Comparing custom implementations with built-in methods
 - Practicing algorithm analysis and optimization
 
-## License
+## Source Code
 
-This project is licensed under the MIT license.
+Please refer to the [GitHub repository](https://github.com/musicvano/Tutorials/tree/main/ArraySort).

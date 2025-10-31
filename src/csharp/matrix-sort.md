@@ -1,10 +1,71 @@
 # Matrix Sort
 
-A C# console application that generates a square matrix with random integers and sorts its main diagonal elements in ascending order.
+Create a C# console application that generates a square matrix with random integers and sorts its main diagonal elements in ascending order.
 
-## Description
+## Solution
 
-MatrixSort is an educational program that demonstrates 2D array manipulation and selective sorting. It creates an N×N matrix filled with random integers, displays the original matrix, sorts only the main diagonal elements using Selection Sort, and then displays the modified matrix with the sorted diagonal.
+This program demonstrates 2D array manipulation and selective sorting. It creates an N×N matrix filled with random integers, displays the original matrix, sorts only the main diagonal elements using Selection Sort, and then displays the modified matrix with the sorted diagonal.
+
+```cs
+namespace MatrixSort
+{
+    internal class Program
+    {
+        // Printing the matrix to the console
+        static void Print(int[,] matrix)
+        {
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                {
+                    Console.Write($"{matrix[i, j]}\t");
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+        }
+
+
+        static void Main(string[] args)
+        {
+            Console.Write("N = ");
+            var str = Console.ReadLine();
+            var N = int.Parse(str!);
+            var M = new int[N, N];
+            var rnd = new Random();
+
+            // Generating the matrix
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = 0; j < N; j++)
+                {
+                    M[i, j] = rnd.Next(-10, 10);
+                }
+            }
+
+            // Initial matrix print
+            Print(M);
+
+            // Sorting the diagonal elements
+            for (int i = 0; i < N; i++)
+            {
+                for (int j = i + 1; j < N; j++)
+                {
+                    if (M[i, i] > M[j, j])
+                    {
+                        var tmp = M[i, i];
+                        M[i, i] = M[j, j];
+                        M[j, j] = tmp;
+                    }
+                }
+            }
+
+            // Final matrix print
+            Print(M);
+        }
+    }
+}
+```
 
 ## Features
 
@@ -15,11 +76,6 @@ MatrixSort is an educational program that demonstrates 2D array manipulation and
 - Non-diagonal elements remain unchanged
 - Uses Selection Sort algorithm for diagonal sorting
 - Clean, tab-separated matrix output
-
-## Requirements
-
-- .NET Framework or .NET Core/5+
-- C# compiler
 
 ## Usage
 
@@ -148,6 +204,6 @@ Consider these enhancements:
 - Support rectangular matrices (N×M)
 - Add matrix operations (transpose, sum, product)
 
-## License
+## Source Code
 
-This project is licensed under the MIT license.
+Please refer to the [GitHub repository](https://github.com/musicvano/Tutorials/tree/main/MatrixSort).

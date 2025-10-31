@@ -1,10 +1,67 @@
 # Digits Sort
 
-A C# console application that extracts all digits from a text string and displays them in sorted order.
+Create a C# console application that extracts all digits from a text string and displays them in sorted order.
 
-## Description
+## Solution
 
-DigitsSort is an educational program that demonstrates string parsing, character validation, and sorting. It accepts any text input containing a mix of letters, numbers, and special characters, extracts only the numeric digits, sorts them in ascending order, and displays the result as a continuous sequence.
+This app demonstrates string parsing, character validation, and sorting. It accepts any text input containing a mix of letters, numbers, and special characters, extracts only the numeric digits, sorts them in ascending order, and displays the result as a continuous sequence.
+
+```cs
+namespace DigitsSort
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Input text with digits: ");
+            var str = Console.ReadLine();
+
+            // Counting digits in the text string
+            var count = 0;
+            foreach (var c in str!)
+            {
+                if (char.IsDigit(c))
+                {
+                    count++;
+                }
+            }
+
+            // Creating an array to store digits
+            var m = new int[count];
+            var index = 0;
+            foreach (var c in str)
+            {
+                if (char.IsDigit(c))
+                {
+                    m[index] = Convert.ToInt32(c.ToString());
+                    index++;
+                }
+            }
+
+            // Sorting the array using selection sort
+            for (int i = 0; i < count; i++)
+            {
+                for (int j = i + 1; j < count; j++)
+                {
+                    if (m[i] > m[j])
+                    {
+                        int temp = m[i];
+                        m[i] = m[j];
+                        m[j] = temp;
+                    }
+                }
+            }
+
+            // Displaying the sorted result
+            Console.Write("Sorted result: ");
+            foreach (int item in m)
+            {
+                Console.Write(item);
+            }
+        }
+    }
+}
+```
 
 ## Features
 
@@ -214,6 +271,6 @@ Array.Sort(m);
 
 The manual Selection Sort implementation is provided for educational purposes.
 
-## License
+## Source Code
 
-This project is licensed under the MIT license.
+Please refer to the [GitHub repository](https://github.com/musicvano/Tutorials/tree/main/DigitsSort).

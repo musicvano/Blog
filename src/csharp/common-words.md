@@ -1,10 +1,40 @@
 # Common Words
 
-A C# console application that finds and displays all common words between two input sentences.
+Create a C# console application that finds and displays all common words between two input sentences.
 
 ## Description
 
-CommonWords is an educational program that demonstrates string manipulation, array processing, and set intersection concepts. It accepts two sentences from the user, splits them into individual words, and identifies words that appear in both sentences using case-insensitive comparison.
+The program demonstrates string manipulation, array processing, and set intersection concepts. It accepts two sentences from the user, splits them into individual words, and identifies words that appear in both sentences using case-insensitive comparison.
+
+```cs
+namespace CommonWords
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("The first sentence: ");
+            var str1 = Console.ReadLine();
+            Console.Write("The second sentence: ");
+            var str2 = Console.ReadLine();
+
+            string[] words1 = str1!.Split(' ');
+            string[] words2 = str2!.Split(' ');
+            foreach (var wordFirst in words1)
+            {
+                foreach (var wordSecond in words2)
+                {
+                    if (string.Compare(wordFirst, wordSecond, true) == 0)
+                    {
+                        Console.WriteLine(wordFirst);
+                    }
+                }
+            }
+        }
+    }
+}
+
+```
 
 ## Features
 
@@ -14,11 +44,6 @@ CommonWords is an educational program that demonstrates string manipulation, arr
 - Displays all matching words found in both sentences
 - Handles duplicate matches (shows repeated occurrences)
 - Simple nested loop algorithm
-
-## Requirements
-
-- .NET Framework or .NET Core/5+
-- C# compiler
 
 ## Usage
 
@@ -149,17 +174,6 @@ dotnet run
 - `str1!` and `str2!` tell compiler that `ReadLine()` won't return null
 - Safe in this interactive context
 
-## Educational Value
-
-This project is excellent for learning:
-
-- **String manipulation**: Using `Split()` for tokenization
-- **Array iteration**: Nested foreach loops
-- **Set theory**: Finding intersection of two sets
-- **String comparison**: Case-insensitive matching
-- **Algorithm design**: Brute-force comparison approach
-- **Data structures**: Working with string arrays
-
 ## Limitations & Considerations
 
 ### Current Behavior
@@ -240,6 +254,6 @@ cat      (from third cat matching first cat)
 cat      (from third cat matching second cat)
 ```
 
-## License
+## Source Code
 
-This project is licensed under the MIT license.
+Please refer to the [GitHub repository](https://github.com/musicvano/Tutorials/tree/main/CommonWords).

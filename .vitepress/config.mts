@@ -66,7 +66,7 @@ export default defineConfig({
             { text: "Array Min, Max, Avg", link: "/csharp/array-min-max-avg" },
             { text: "Array Sort", link: "/csharp/array-sort" },
             { text: "Matrix Sort", link: "/csharp/matrix-sort" },
-            { text: "Print Sin Wave", link: "/csharp/print-sin" },
+            { text: "Print Sin Wave", link: "/csharp/print-sin-wave" },
             { text: "Digits Sort", link: "/csharp/digits-sort" },
             { text: "Common Words", link: "/csharp/common-words" },
             { text: "Command Calculator", link: "/csharp/command-calc" },

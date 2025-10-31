@@ -1,6 +1,6 @@
 # Random Password
 
-Write a simple console application that generates random passwords.
+Write a simple C# console application that generates random passwords.
 
 ## Solution
 
@@ -76,6 +76,19 @@ namespace RandomPassword
 - Clean, object-oriented structure
 - Easy to extend or integrate
 
+## Building and Running
+
+### Using Visual Studio
+
+1. Open the project in Visual Studio
+2. Press F5 or click "Start" to build and run
+
+### Using .NET CLI
+
+```bash
+dotnet run
+```
+
 ## Output
 
 ```
@@ -83,6 +96,7 @@ Generated passwords:
 bZ2mRZJC5u6h
 bV7tvdiqZj8s
 DMoXUBnNvMfZ
+
 ```
 
 ## Source Code

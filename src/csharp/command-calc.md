@@ -1,10 +1,67 @@
 # Command Calculator
 
-A C# console-based command-line calculator with an interactive REPL (Read-Eval-Print Loop) interface.
+Create a C# console-based command-line calculator with an interactive REPL (Read-Eval-Print Loop) interface.
 
-## Description
+## Solution
 
-CommandCalc is an educational program that demonstrates command parsing, interactive loop design, and basic arithmetic operations. It provides a simple command-line interface where users can perform calculations using text commands, making it similar to shell-based calculators or basic interpreters.
+The program demonstrates command parsing, interactive loop design, and basic arithmetic operations. It provides a simple command-line interface where users can perform calculations using text commands, making it similar to shell-based calculators or basic interpreters.
+
+```cs
+namespace CommandCalc
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            while (true)
+            {
+                Console.Write("> ");
+                string str = Console.ReadLine()!;
+                string[] words = str.Split([' ', ','], StringSplitOptions.RemoveEmptyEntries);
+                if ((words.Length) < 1)
+                    continue;
+                string command = words[0].ToLower();
+                switch (command)
+                {
+                    case "exit":
+                        return;
+                    case "help":
+                        Console.WriteLine("All commands: Add, Sub, Mul, Div, Clear, Help, Exit.");
+                        continue;
+                    case "clear":
+                        Console.Clear();
+                        continue;
+                    case "add":
+                    case "sub":
+                    case "mul":
+                    case "div":
+                        if (words.Length != 3)
+                        {
+                            Console.WriteLine("Incorrect command format");
+                            continue;
+                        }
+                        int arg1 = Convert.ToInt32(words[1]);
+                        int arg2 = Convert.ToInt32(words[2]);
+                        if (command == "add")
+                            Console.WriteLine(arg1 + arg2);
+                        if (command == "sub")
+                            Console.WriteLine(arg1 - arg2);
+                        if (command == "mul")
+                            Console.WriteLine(arg1 * arg2);
+                        if (command == "div")
+                            Console.WriteLine(arg1 / arg2);
+                        break;
+                    default:
+                        Console.WriteLine("Unknown command :(");
+                        continue;
+                }
+            }
+
+        }
+    }
+}
+
+```
 
 ## Features
 
@@ -16,11 +73,6 @@ CommandCalc is an educational program that demonstrates command parsing, interac
 - **Built-in help system**: Lists all available commands
 - **Console management**: Clear screen functionality
 - **Graceful exit**: Clean termination command
-
-## Requirements
-
-- .NET Framework or .NET Core/5+
-- C# compiler
 
 ## Usage
 
@@ -164,17 +216,6 @@ dotnet run
 - `div 7 2` returns `3`, not `3.5`
 - Division by zero will throw exception (not currently handled)
 
-## Educational Value
-
-This project is excellent for learning:
-
-- **REPL design**: Building interactive command-line interfaces
-- **Command parsing**: Tokenizing and processing user input
-- **Control flow**: Using switch statements and loops effectively
-- **String manipulation**: Splitting, case conversion, validation
-- **User interaction**: Creating responsive console applications
-- **Program structure**: Organizing code with clear command handlers
-
 ## Limitations & Considerations
 
 ### Current Limitations
@@ -270,17 +311,6 @@ Practical applications:
 - **Educational tool**: Teaching arithmetic and programming concepts
 - **Prototyping**: Base for more complex command processors
 
-## Comparison with Similar Tools
+## Source Code
 
-| Feature        | CommandCalc | Windows Calculator | bc (Unix) |
-| -------------- | ----------- | ------------------ | --------- |
-| Interactive    | ✓           | ✓                  | ✓         |
-| Text-based     | ✓           | ✗                  | ✓         |
-| Scriptable     | Potential   | ✗                  | ✓         |
-| Floating-point | ✗           | ✓                  | ✓         |
-| Functions      | ✗           | ✓                  | ✓         |
-| Variables      | ✗           | ✓                  | ✓         |
-
-## License
-
-This project is licensed under the MIT license.
+Please refer to the [GitHub repository](https://github.com/musicvano/Tutorials/tree/main/CommandCalc).

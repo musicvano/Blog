@@ -1,10 +1,61 @@
 # Array Min, Max, Avg
 
-A C# console application that generates an array of random floating-point numbers and calculates statistical metrics: minimum, maximum, and average values.
+Create a C# console application that generates an array of random floating-point numbers and calculates statistical metrics: minimum, maximum, and average values.
 
-## Description
+## Solution
 
-ArrayMinMaxAvg is an educational program that demonstrates array manipulation and statistical calculations. It allows users to specify an array size, populates it with random floating-point numbers, and then calculates and displays the minimum, maximum, and average values using both manual implementations and LINQ methods.
+This is an educational program that demonstrates array manipulation and statistical calculations. It allows users to specify an array size, populates it with random floating-point numbers, and then calculates and displays the minimum, maximum, and average values using both manual implementations and LINQ methods.
+
+```cs
+namespace ArrayMinMaxAvg
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            // Input array size
+            Console.Write("Count = ");
+            var count = Convert.ToInt32(Console.ReadLine());
+            var rnd = new Random();
+            var arr = new float[count];
+            for (int i = 0; i < count; i++)
+            {
+                arr[i] = 10 * rnd.NextSingle();
+            }
+
+            // Print the array
+            Console.WriteLine($"[{string.Join("; ", arr)}]");
+
+            // Find minimum value in the array
+            var min = arr[0];
+            foreach (var val in arr)
+            {
+                if (val < min)
+                {
+                    min = val;
+                }
+            }
+            Console.WriteLine($"Min = {min}");
+
+            // Alternatively, using LINQ
+            Console.WriteLine($"Max = {arr.Max()}");
+
+            // Find average value in the array
+            var sum = 0.0f;
+            foreach (var val in arr)
+            {
+                sum += val;
+            }
+            var avg = sum / arr.Length;
+            Console.WriteLine($"Avg = {avg}");
+
+            // Alternatively, using LINQ
+            // Console.WriteLine($"Avg = {arr.Average()}");
+        }
+    }
+}
+
+```
 
 ## Features
 
@@ -16,11 +67,6 @@ ArrayMinMaxAvg is an educational program that demonstrates array manipulation an
 - Calculates average value using manual summation
 - Includes commented LINQ alternative for average calculation
 - Demonstrates different approaches to array statistics
-
-## Requirements
-
-- .NET Framework or .NET Core/5+
-- C# compiler
 
 ## Usage
 
@@ -101,35 +147,12 @@ LINQ provides a one-line solution for calculating averages.
 dotnet run
 ```
 
-## Educational Value
-
-This project is excellent for learning:
-
-- **Array manipulation**: Creating and iterating through arrays
-- **Random number generation**: Using `Random.NextSingle()` for floating-point values
-- **Algorithm implementation**: Manual calculation of statistical metrics
-- **LINQ vs manual approaches**: Comparing different coding styles
-- **String interpolation**: Using `$""` syntax and `string.Join()`
-- **Type conversions**: Working with `float` data type
-
-## Code Comparison
-
-The project demonstrates two programming approaches:
-
-| Metric  | Manual Implementation | LINQ Method |
-| ------- | --------------------- | ----------- |
-| Minimum | ✓ Used                | Available   |
-| Maximum | Available             | ✓ Used      |
-| Average | ✓ Used                | ✓ Commented |
-
-This mixed approach shows students both fundamental algorithms and modern C# features.
-
 ## Notes
 
 - Array values are generated in the range [0, 10) using `10 * rnd.NextSingle()`
 - The program uses `float` for decimal precision
 - Semicolons (`;`) are used as array value separators in output
 
-## License
+## Source Code
 
-This project is licensed under the MIT license.
+Please refer to the [GitHub repository](https://github.com/musicvano/Tutorials/tree/main/ArrayMinMaxAvg).

@@ -1,10 +1,37 @@
-# Print Sin
+# Print Sin Wave
 
-A C# console application that renders a sine wave graph using ASCII characters directly in the terminal window.
+Crate a C# console application that renders a sine wave graph using ASCII characters directly in the terminal window.
 
-## Description
+## Solution
 
-PrintSin is a creative visualization program that demonstrates mathematical function plotting in a text-based environment. It draws a smooth sine wave across the entire console window using asterisk (`*`) characters, with user-configurable amplitude. The wave automatically adapts to the console window dimensions.
+This is a creative visualization program that demonstrates mathematical function plotting in a text-based environment. It draws a smooth sine wave across the entire console window using asterisk (`*`) characters, with user-configurable amplitude. The wave automatically adapts to the console window dimensions.
+
+```cs
+namespace PrintSin
+{
+    internal class Program
+    {
+        // Display the graph of the function f(x) = A * sin(ω * x)
+        // with stars in text mode on the console
+        static void Main(string[] args)
+        {
+            Console.Write("Amplitude = ");
+            var str = Console.ReadLine();
+            var A = Convert.ToInt32(str);
+
+            var width = Console.WindowWidth;
+            var height = Console.WindowHeight;
+            for (var i = 0; i < width; i++)
+            {
+                var j = (int)(height / 2.0 - A * Math.Sin(2 * Math.PI * i / width));
+                Console.SetCursorPosition(i, j);
+                Console.Write('*');
+            }
+            Console.ReadKey();
+        }
+    }
+}
+```
 
 ## Features
 
@@ -14,12 +41,6 @@ PrintSin is a creative visualization program that demonstrates mathematical func
 - Plots one complete sine wave cycle across the window width
 - Centered vertically in the console window
 - Interactive visualization with cursor positioning
-
-## Requirements
-
-- .NET Framework or .NET Core/5+
-- C# compiler
-- Console/Terminal that supports cursor positioning
 
 ## Usage
 
@@ -98,17 +119,6 @@ dotnet run
 - Windows Command Prompt and PowerShell work well
 - Terminal emulators on Linux/Mac generally supported
 
-## Educational Value
-
-This project is excellent for learning:
-
-- **Trigonometric functions**: Practical application of sine waves
-- **Console manipulation**: Using `SetCursorPosition()` for graphics
-- **Coordinate systems**: Understanding inverted y-axis in console
-- **Mathematical visualization**: Converting formulas to visual output
-- **Frequency and amplitude**: Seeing wave properties in action
-- **Window API**: Accessing console properties programmatically
-
 ## Parameters Explained
 
 ### Amplitude (A)
@@ -149,6 +159,6 @@ Consider these extensions:
 
 **Program crashes**: Check that console window is not minimized
 
-## License
+## Source Code
 
-This project is licensed under the MIT license.
+Please refer to the [GitHub repository](https://github.com/musicvano/Tutorials/tree/main/PrintSin).

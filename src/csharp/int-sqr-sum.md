@@ -1,10 +1,32 @@
 # Integer Sqaure Sum
 
-A simple C# console application that calculates the sum of squares of two integers.
+Create a simple C# console application that calculates the sum of squares of two integers.
 
-## Description
+## Solution
 
-IntSqrSum is a basic mathematical calculator that prompts the user to enter two integer numbers, squares each of them, and displays the sum of the squares (x² + y²).
+This is a basic mathematical calculator that prompts the user to enter two integer numbers, squares each of them, and displays the sum of the squares (x<sup>2</sup> + y<sup>2</sup>).
+
+```cs
+namespace IntSqrSum
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Input X: ");
+            var str = Console.ReadLine();
+            var x = Convert.ToInt32(str);
+
+            Console.Write("Input Y: ");
+            str = Console.ReadLine();
+            var y = Convert.ToInt32(str);
+
+            Console.WriteLine("x^2 + y^2 = {0}", x * x + y * y);
+        }
+    }
+}
+
+```
 
 ## Features
 
@@ -12,11 +34,6 @@ IntSqrSum is a basic mathematical calculator that prompts the user to enter two 
 - Calculates the square of each number
 - Computes and displays the sum of squares
 - Simple console-based user interface
-
-## Requirements
-
-- .NET Framework or .NET Core/5+
-- C# compiler
 
 ## Usage
 
@@ -33,13 +50,13 @@ Input Y: 4
 x^2 + y^2 = 25
 ```
 
-In this example: 3² + 4² = 9 + 16 = 25
+In this example: 3<sup>2</sup> + 4<sup>2</sup> = 9 + 16 = 25
 
 ## Mathematical Background
 
 This program calculates the sum of squares, which is commonly used in:
 
-- **Pythagorean theorem**: Finding the hypotenuse of a right triangle (c² = a² + b²)
+- **Pythagorean theorem**: Finding the hypotenuse of a right triangle (c<sup>2</sup> = a<sup>2</sup> + b<sup>2</sup>)
 - **Distance calculations**: Computing Euclidean distance in 2D space
 - **Statistics**: Calculating variance and standard deviation
 
@@ -65,6 +82,6 @@ The application consists of a single `Program` class with a `Main` method that:
 3. Calculates the sum of squares: x² + y²
 4. Outputs the result to the console
 
-## License
+## Source Code
 
-This project is licensed under the MIT license.
+Please refer to the [GitHub repository](https://github.com/musicvano/Tutorials/tree/main/IntSqrSum).

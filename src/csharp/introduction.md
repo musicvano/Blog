@@ -1,10 +1,10 @@
-# Tutorials
+# Inroduction
 
-Welcome to the Tutorials repository! This collection contains Visual Studio solutions designed to help students learn and practice C# programming through hands-on exercises and examples.
+Welcome to the C# tutorials! This collection contains solutions designed to help students learn and practice C# programming through hands-on exercises and examples.
 
 ## Overview
 
-This repository serves as a centralized learning resource featuring multiple programming tasks, each organized as a separate Visual Studio solution. The tutorials are designed to progressively build your understanding of C# concepts and best practices.
+My [GitHub repository](https://github.com/musicvano/Tutorials) serves as a centralized learning resource featuring multiple programming tasks, each organized as a separate Visual Studio solution. The tutorials are designed to progressively build your understanding of C# concepts and best practices.
 
 ## Repository Structure
 
@@ -75,7 +75,7 @@ Tutorials are organized to support progressive learning. It's recommended to wor
 
 ## Working with Solutions
 
-- **Build:** Press `F6` or `Ctrl+Shift+B`, or use `Build > Build Solution`
+- **Build:** Press `F6`, or use `Build > Build Solution`
 - **Run:** Press `F5` to run with debugging or `Ctrl+F5` to run without debugging
 
 ## Getting Help
@@ -89,21 +89,15 @@ If you encounter difficulties:
 
 ## Best Practices
 
-- **Read carefully:** Understand the requirements before coding
-- **Experiment:** Don't be afraid to modify and test different approaches
-- **Comment your code:** Practice writing clear, helpful comments
-- **Version control:** Consider creating your own branch for solutions
-- **Ask questions:** Learning is a collaborative process
+- Read carefully, understand the requirements before coding
+- Don't be afraid to modify and test different approaches
+- Practice writing clear, helpful comments
+- Consider creating your own branch for solutions
+- Learning is a collaborative process
 
 ## Contributing
 
-If you find issues or have suggestions for improvements, please reach out to your instructor.
-
-## Additional Resources
-
-- [Microsoft C# Documentation](https://learn.microsoft.com/en-us/dotnet/csharp/)
-- [Visual Studio Documentation](https://learn.microsoft.com/en-us/visualstudio/)
-- [.NET API Browser](https://learn.microsoft.com/en-us/dotnet/api/)
+If you find issues or have suggestions for improvements, please reach out to [me](/about) or describe the problem in [GitHub Issues](https://github.com/musicvano/Tutorials/issues).
 
 ## License
 

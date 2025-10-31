@@ -1,10 +1,33 @@
 # Float Product
 
-A simple C# console application that multiplies two floating-point numbers and displays the result.
+Create a simple C# console application that multiplies two floating-point numbers and displays the result.
 
-## Description
+## Solution
 
-FloatProduct is a basic calculator program that prompts the user to enter two numbers, multiplies them together, and displays the product formatted to three decimal places.
+Following snippet of code is a basic calculator program that prompts the user to enter two numbers, multiplies them together, and displays the product formatted to three decimal places.
+
+```cs
+namespace FloatProduct
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("x = ");
+            var str = Console.ReadLine();
+            var x = Convert.ToSingle(str);
+
+            Console.Write("y = ");
+            str = Console.ReadLine();
+            var y = Convert.ToSingle(str);
+
+            var res = x * y;
+            Console.WriteLine("x * y = {0:f3}", res);
+        }
+    }
+}
+
+```
 
 ## Features
 
@@ -12,11 +35,6 @@ FloatProduct is a basic calculator program that prompts the user to enter two nu
 - Performs multiplication operation
 - Displays the result formatted to 3 decimal places
 - Simple and straightforward console interface
-
-## Requirements
-
-- .NET Framework or .NET Core/5+
-- C# compiler
 
 ## Usage
 
@@ -55,6 +73,6 @@ The application consists of a single `Program` class with a `Main` method that:
 3. Multiplies the numbers
 4. Outputs the result with 3 decimal places using string formatting
 
-## License
+## Source Code
 
-This project is licensed under the MIT license.
+Please refer to the [GitHub repository](https://github.com/musicvano/Tutorials/tree/main/FloatProduct).

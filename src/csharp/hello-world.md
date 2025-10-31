@@ -1,17 +1,44 @@
 # Hello World
 
-A simple console application written in C# that prints "Hello World" on the screen.
+Create a simple C# console application that prints "Hello World" on the screen.
 
-## Features
+## Solution
 
-- The first app of every programmer
+The first app of every programmer
 
-## Usage
+```cs
+namespace HelloWorld
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Hello World!");
+        }
+    }
+}
+
+```
+
+## Building and Running
+
+### Using Visual Studio
+
+1. Open the project in Visual Studio
+2. Press F5 or click "Start" to build and run
+
+### Using .NET CLI
 
 ```bash
 dotnet run
 ```
 
-## License
+## Output
 
-This project is licensed under the MIT license.
+```
+Hello World!
+```
+
+## Source Code
+
+Please refer to the [GitHub repository](https://github.com/musicvano/Tutorials/tree/main/HelloWorld).
