@@ -5,6 +5,7 @@ export default defineConfig({
   title: "Dev Blog",
   description:
     "Programming in C, C++, Rust, C#, Python, JavaScript, TypeScript",
+  base: "/",
   srcDir: "./src",
   cleanUrls: true,
   lastUpdated: true,
