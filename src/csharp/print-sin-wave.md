@@ -69,7 +69,7 @@ Where:
 
 ### Vertical Position Calculation
 
-```csharp
+```cs
 j = (int)(height / 2.0 - A * Math.Sin(2 * Math.PI * i / width))
 ```
 

@@ -5,7 +5,6 @@ export default defineConfig({
   title: "Dev Blog",
   description:
     "Programming in C, C++, Rust, C#, Python, JavaScript, TypeScript",
-  base: "/",
   srcDir: "./src",
   cleanUrls: true,
   lastUpdated: true,
@@ -24,7 +23,6 @@ export default defineConfig({
         href: "/apple-touch-icon.png",
       },
     ],
-
     [
       "script",
       {
@@ -36,25 +34,17 @@ export default defineConfig({
   ],
 
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
     logo: "/logo.svg",
     siteTitle: "Dev Blog",
 
     nav: [
       { text: "Home", link: "/" },
-      { text: "Blog", link: "/posts/getting-started" },
       { text: "Tutorials", link: "/csharp/introduction" },
+      { text: "Blog", link: "/blog/getting-started" },
       { text: "About", link: "/about" },
     ],
 
     sidebar: {
-      "/posts/": [
-        {
-          text: "2025",
-          collapsed: false,
-          items: [{ text: "Getting Started", link: "/posts/getting-started" }],
-        },
-      ],
       "/csharp/": [
         {
           text: "Fundamentals",
@@ -75,6 +65,13 @@ export default defineConfig({
           ],
         },
       ],
+      "/blog/": [
+        {
+          text: "2025",
+          collapsed: false,
+          items: [{ text: "Getting Started", link: "/blog/getting-started" }],
+        },
+      ],
     },
 
     socialLinks: [
@@ -83,12 +80,12 @@ export default defineConfig({
         link: "https://github.com/musicvano",
         ariaLabel: "GitHub",
       },
-      { icon: "x", link: "https://x.com/musicvano", ariaLabel: "X" },
       {
         icon: "bluesky",
         link: "https://musicvano.bsky.social",
         ariaLabel: "Bluesky",
       },
+      { icon: "x", link: "https://x.com/musicvano", ariaLabel: "X" },
       {
         icon: "mastodon",
         link: "https://mastodon.social/@musicvano",

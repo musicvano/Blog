@@ -12,16 +12,16 @@ hero:
     alt: Image
   actions:
     - theme: brand
-      text: Posts
-      link: /posts/getting-started
-    - theme: alt
       text: Tutorials
       link: /csharp/introduction
+    - theme: alt
+      text: Blog
+      link: /blog/getting-started
 
 # Features section
 features:
   - icon:
-      src: /icons/code.svg
+      src: /icons/idea.svg
     title: Ideas
     details: It is a big world around us with a lot of tech
   - icon:
@@ -73,10 +73,10 @@ head:
       content: https://mvano.com/images/social-wide.png
 ---
 
-## Blog
-
-- [Getting Started](/posts/getting-started) 🎉 — _October 30, 2025_
-
 ## Tutorials
 
 - [C# Fundamentals](/csharp/introduction)
+
+## Blog
+
+- [Getting Started](/blog/getting-started) 🎉 — _October 30, 2025_

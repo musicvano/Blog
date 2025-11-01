@@ -17,10 +17,10 @@ Tutorials/
 │   ├── HelloWorld.slnx
 │   └── HelloWorld/
 │       └── ...
-├── Arrays/
+├── ArraySort/
 │   ├── README.md
-│   ├── Arrays.slnx
-│   └── Arrays/
+│   ├── ArraySort.slnx
+│   └── ArraySort/
 │       └── ...
 ├── ...
 ├── README.md
