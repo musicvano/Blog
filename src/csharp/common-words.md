@@ -84,7 +84,7 @@ The second sentence: Grape Mango Pineapple
 
 ### Step 1: Input Collection
 
-```csharp
+```cs
 var str1 = Console.ReadLine();
 var str2 = Console.ReadLine();
 ```
@@ -93,7 +93,7 @@ Reads two sentences from user input.
 
 ### Step 2: Word Splitting
 
-```csharp
+```cs
 string[] words1 = str1!.Split(' ');
 string[] words2 = str2!.Split(' ');
 ```
@@ -102,7 +102,7 @@ Splits each sentence into arrays of words using space as delimiter.
 
 ### Step 3: Find Common Words (Nested Loop)
 
-```csharp
+```cs
 foreach (var wordFirst in words1)
 {
     foreach (var wordSecond in words2)
@@ -119,7 +119,7 @@ Compares every word from the first sentence with every word from the second sent
 
 ### Case-Insensitive Comparison
 
-```csharp
+```cs
 string.Compare(wordFirst, wordSecond, true)
 ```
 
@@ -209,7 +209,7 @@ Consider these improvements:
 - Support case-sensitive mode option
 - Compare paragraphs or files
 - Use LINQ for more concise code:
-  ```csharp
+  ```cs
   var common = words1.Intersect(words2, StringComparer.OrdinalIgnoreCase);
   ```
 
@@ -217,7 +217,7 @@ Consider these improvements:
 
 A more efficient approach using LINQ:
 
-```csharp
+```cs
 var common = words1
     .Intersect(words2, StringComparer.OrdinalIgnoreCase)
     .Distinct();

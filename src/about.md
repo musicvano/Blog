@@ -15,8 +15,8 @@ const getMembers = () => [
     title: 'Author',
     links: [
       { icon: "github", link: "https://github.com/musicvano", ariaLabel: "GitHub" },
-      { icon: "x", link: "https://x.com/musicvano", ariaLabel: "X" },
       { icon: "bluesky", link: "https://musicvano.bsky.social", ariaLabel: "Bluesky" },
+      { icon: "x", link: "https://x.com/musicvano", ariaLabel: "X" },
       { icon: "mastodon", link: "https://mastodon.social/@musicvano", ariaLabel: "Mastodon" },
       { icon: "telegram", link: "https://t.me/musicvano", ariaLabel: "Telegram" }
     ]
@@ -56,6 +56,11 @@ Here's a quick peek into what's keeping me busy:
 
 Want to say hi or collaborate on a project? Write to me at musicvano@gmail.com.
 
-To stay up to date with my latest posts and projects, please follow me on [GitHub](https://github.com/musicvano), [X](https://x.com/musicvano), [Bluesky](https://musicvano.bsky.social), and [Mastodon](https://mastodon.social/@musicvano).
+To stay up to date with my latest posts and tutorials please follow me on:
+
+- [GitHub](https://github.com/musicvano)
+- [Bluesky](https://musicvano.bsky.social)
+- [X](https://x.com/musicvano)
+- [Mastodon](https://mastodon.social/@musicvano)
 
 Prefer to chat? You are welcome to reach out on [Telegram](https://t.me/musicvano)

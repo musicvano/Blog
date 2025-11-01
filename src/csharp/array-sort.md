@@ -95,7 +95,7 @@ The program uses **Selection Sort**, a simple comparison-based sorting algorithm
 
 ### Code Snippet
 
-```csharp
+```cs
 for (int i = 0; i < count; i++)
 {
     for (int j = i + 1; j < count; j++)
@@ -127,7 +127,7 @@ dotnet run
 
 The code includes a commented-out alternative using C#'s built-in sorting:
 
-```csharp
+```cs
 Array.Sort(m);
 ```
 

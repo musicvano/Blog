@@ -92,7 +92,7 @@ Avg = 5.578248
 
 ### Minimum Value Calculation (Manual)
 
-```csharp
+```cs
 var min = arr[0];
 foreach (var val in arr)
 {
@@ -107,7 +107,7 @@ Iterates through the array, comparing each element to find the smallest value.
 
 ### Maximum Value Calculation (LINQ)
 
-```csharp
+```cs
 arr.Max()
 ```
 
@@ -115,7 +115,7 @@ Uses LINQ's built-in `Max()` method for concise syntax.
 
 ### Average Value Calculation (Manual)
 
-```csharp
+```cs
 var sum = 0.0f;
 foreach (var val in arr)
 {
@@ -128,7 +128,7 @@ Manually sums all elements and divides by the array length.
 
 ### Alternative: LINQ Average
 
-```csharp
+```cs
 arr.Average()  // Commented in the code
 ```
 

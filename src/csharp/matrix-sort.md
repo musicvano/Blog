@@ -106,7 +106,7 @@ N = 4
 
 ### Matrix Generation
 
-```csharp
+```cs
 for (int i = 0; i < N; i++)
 {
     for (int j = 0; j < N; j++)
@@ -120,7 +120,7 @@ Creates an N×N matrix with random integers from -10 to 9.
 
 ### Diagonal Sorting (Selection Sort)
 
-```csharp
+```cs
 for (int i = 0; i < N; i++)
 {
     for (int j = i + 1; j < N; j++)

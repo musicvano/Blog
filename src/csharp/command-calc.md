@@ -135,7 +135,7 @@ The calculator accepts both spaces and commas as separators:
 
 ### Main Loop Structure
 
-```csharp
+```cs
 while (true)
 {
     // Read command
@@ -147,7 +147,7 @@ while (true)
 
 ### Command Parsing
 
-```csharp
+```cs
 string[] words = str.Split([' ', ','], StringSplitOptions.RemoveEmptyEntries);
 string command = words[0].ToLower();
 ```
@@ -156,7 +156,7 @@ Splits input by spaces or commas, removes empty entries, and converts command to
 
 ### Command Execution (Switch Statement)
 
-```csharp
+```cs
 switch (command)
 {
     case "exit":
@@ -175,7 +175,7 @@ Uses a switch statement to route commands to appropriate handlers.
 
 ### Arithmetic Operations
 
-```csharp
+```cs
 int arg1 = Convert.ToInt32(words[1]);
 int arg2 = Convert.ToInt32(words[2]);
 ```
@@ -238,7 +238,7 @@ dotnet run
 
 ### Basic Improvements
 
-```csharp
+```cs
 // Add error handling
 try
 {
@@ -280,7 +280,7 @@ catch (DivideByZeroException)
 
 More concise arithmetic using dictionary:
 
-```csharp
+```cs
 var operations = new Dictionary<string, Func<int, int, int>>
 {
     ["add"] = (a, b) => a + b,

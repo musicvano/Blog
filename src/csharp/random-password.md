@@ -6,7 +6,7 @@ Write a simple C# console application that generates random passwords.
 
 PasswordGenerator.cs
 
-```csharp
+```cs
 namespace RandomPassword
 {
     internal class PasswordGenerator
@@ -42,7 +42,7 @@ namespace RandomPassword
 
 Program.cs
 
-```csharp
+```cs
 namespace RandomPassword
 {
     internal class Program

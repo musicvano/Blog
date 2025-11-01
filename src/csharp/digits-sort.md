@@ -109,7 +109,7 @@ Sorted result:
 
 ### Step 1: Count Digits
 
-```csharp
+```cs
 var count = 0;
 foreach (var c in str!)
 {
@@ -124,7 +124,7 @@ First pass through the string counts how many digit characters exist.
 
 ### Step 2: Extract Digits
 
-```csharp
+```cs
 var m = new int[count];
 var index = 0;
 foreach (var c in str)
@@ -141,7 +141,7 @@ Second pass extracts digits and stores them as integers in an array.
 
 ### Step 3: Sort Digits (Selection Sort)
 
-```csharp
+```cs
 for (int i = 0; i < count; i++)
 {
     for (int j = i + 1; j < count; j++)
@@ -160,7 +160,7 @@ Sorts the digit array in ascending order using Selection Sort.
 
 ### Step 4: Display Results
 
-```csharp
+```cs
 foreach (int item in m)
 {
     Console.Write(item);
@@ -265,7 +265,7 @@ The program handles:
 
 For production code, consider using built-in sorting:
 
-```csharp
+```cs
 Array.Sort(m);
 ```
 
