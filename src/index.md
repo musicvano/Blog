@@ -8,7 +8,7 @@ hero:
   text: "Ivan Muzyka"
   tagline: Programming in C#, C, C++, Rust, Python, JavaScript, TypeScript
   image:
-    src: /images/avatar.png
+    src: /images/avatar.svg
     alt: Image
   actions:
     - theme: brand
