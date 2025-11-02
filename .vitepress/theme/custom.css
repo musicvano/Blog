@@ -1,15 +1,25 @@
 @font-face {
   font-family: "Inter";
   src: url("/fonts/Inter.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
+  font-weight: 100 900;
+  font-style: normal italic;
+  font-display: swap;
 }
 
 @font-face {
   font-family: "JetBrains Mono";
   src: url("/fonts/JetBrainsMono.woff2") format("woff2");
-  font-weight: normal;
+  font-weight: 100 900;
   font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/fonts/JetBrainsMono-Italic.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
 }
 
 :root {

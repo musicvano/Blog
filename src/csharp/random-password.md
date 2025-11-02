@@ -93,9 +93,9 @@ dotnet run
 
 ```
 Generated passwords:
-bZ2mRZJC5u6h
-bV7tvdiqZj8s
-DMoXUBnNvMfZ
+bNj=R6^XGyAc
+GbBJ6ENjHAt5
+kiQjrxXIEVNg
 
 ```
 

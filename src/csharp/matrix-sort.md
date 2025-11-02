@@ -25,7 +25,6 @@ namespace MatrixSort
             Console.WriteLine();
         }
 
-
         static void Main(string[] args)
         {
             Console.Write("N = ");

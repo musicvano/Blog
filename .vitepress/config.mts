@@ -4,7 +4,7 @@ import { defineConfig } from "vitepress";
 export default defineConfig({
   title: "Dev Blog",
   description:
-    "Programming in C, C++, Rust, C#, Python, JavaScript, TypeScript",
+    "Programming in C#, C, C++, Rust, Python, JavaScript, TypeScript",
   srcDir: "./src",
   cleanUrls: true,
   lastUpdated: true,

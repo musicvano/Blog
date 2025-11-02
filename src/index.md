@@ -6,7 +6,7 @@ layout: home
 hero:
   name: "Dev Blog"
   text: "Ivan Muzyka"
-  tagline: Programming in C, C++, Rust, C#, Python, JavaScript, TypeScript
+  tagline: Programming in C#, C, C++, Rust, Python, JavaScript, TypeScript
   image:
     src: /images/avatar.png
     alt: Image
@@ -40,7 +40,7 @@ head:
       content: Dev Blog
   - - meta
     - itemprop: description
-      content: Programming in C, C++, Rust, C#, Python, JavaScript, TypeScript
+      content: Programming in C#, C, C++, Rust, Python, JavaScript, TypeScript
   - - meta
     - itemprop: image
       content: https://mvano.com/images/social-wide.png
@@ -55,7 +55,7 @@ head:
       content: Dev Blog
   - - meta
     - property: og:description
-      content: Programming in C, C++, Rust, C#, Python, JavaScript, TypeScript
+      content: Programming in C#, C, C++, Rust, Python, JavaScript, TypeScript
   - - meta
     - property: og:image
       content: https://mvano.com/images/social-wide.png
@@ -67,7 +67,7 @@ head:
       content: Dev Blog
   - - meta
     - name: twitter:description
-      content: Programming in C, C++, Rust, C#, Python, JavaScript, TypeScript
+      content: Programming in C#, C, C++, Rust, Python, JavaScript, TypeScript
   - - meta
     - name: twitter:image
       content: https://mvano.com/images/social-wide.png
