@@ -117,6 +117,7 @@ export default defineConfig({
   },
 
   markdown: {
+    math: true,
     theme: {
       light: "github-light",
       dark: "github-dark",
