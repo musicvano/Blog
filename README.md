@@ -13,6 +13,9 @@ Inside of the project, you'll see the following folders and files:
 │   │   ├── custom.css
 │   │   └── index.js
 │   └── config.mts
+├── art/
+│   ├── *.ai
+│   └── ...
 ├── src/
 │   ├── blog/
 │   │   ├── *.md
@@ -30,11 +33,19 @@ Inside of the project, you'll see the following folders and files:
 └── package.json
 ```
 
-VitePress looks for `.md` files in the `src/`, `src/csharp`and `src/blog/` directories. Each file is exposed as a route based on its file name.
+VitePress looks for `.md` files in the `src/`, `src/csharp/` and `src/blog/` directories. Each file is exposed as a route based on its file name.
 
 Images can be added to `src/public/images/` and embedded in Markdown with a relative link.
 
 Static assets, like favicons, can be placed in the `src/public/` directory.
+
+Source files for the logo and avatar are kept in `art/`, outside the published site.
+
+## Features
+
+- Math typesetting via [MathJax](https://www.mathjax.org), enabled with `markdown.math` in `.vitepress/config.mts`
+- Self-hosted Inter and JetBrains Mono fonts, served from `src/public/fonts/` and declared in `.vitepress/theme/custom.css`
+- Privacy-friendly analytics via [Cabin](https://withcabin.com), loaded from `.vitepress/config.mts`
 
 ## Commands
 
@@ -50,3 +61,7 @@ All commands are run from the root of the project, from a terminal:
 ## Want to learn more?
 
 Check out [VitePress Guide](https://vitepress.dev/guide/what-is-vitepress), read [VitePress Reference](https://vitepress.dev/reference/site-config), or jump into the [Getting Started](https://vitepress.dev/guide/getting-started).
+
+## License
+
+Licensed under the [MIT License](LICENSE.md).

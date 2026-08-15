@@ -26,9 +26,8 @@ export default defineConfig({
     [
       "script",
       {
-        defer: "true",
-        src: "https://cloud.umami.is/script.js",
-        "data-website-id": "1c33f2e4-e160-4bea-9a84-1b1763d41748",
+        async: "true",
+        src: "https://scripts.withcabin.com/hello.js",
       },
     ],
   ],
@@ -110,9 +109,9 @@ export default defineConfig({
 
     footer: {
       message:
-        'Released under the <a href="https://github.com/musicvano/Blog/blob/main/LICENSE">MIT License</a>',
+        'Released under the <a href="https://github.com/musicvano/Blog/blob/main/LICENSE.md">MIT License</a>',
       copyright:
-        'Copyright © 2025 <a href="https://github.com/musicvano">Ivan Muzyka</a>',
+        'Copyright © 2026 <a href="https://github.com/musicvano">Ivan Muzyka</a>',
     },
   },
 
