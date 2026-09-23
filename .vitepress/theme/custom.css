@@ -22,6 +22,18 @@
   font-display: swap;
 }
 
+/* Course figures: centered images and captions below figures and above tables */
+.vp-doc p:has(> img:only-child) {
+  text-align: center;
+}
+
+.vp-doc p.caption {
+  margin-top: 8px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--vp-c-text-2);
+}
+
 :root {
   --vp-c-brand-1: var(--vp-c-green-1);
   --vp-c-brand-2: var(--vp-c-green-2);

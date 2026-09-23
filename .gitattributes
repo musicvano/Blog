@@ -1,0 +1,9 @@
+# Text files use LF line endings in the repository and in the working tree.
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.webp binary
+*.ico binary
+*.woff2 binary
+*.ai binary

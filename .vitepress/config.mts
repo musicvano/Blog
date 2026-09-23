@@ -1,7 +1,15 @@
 import { defineConfig } from "vitepress";
+import { mermaidPlugin } from "./markdown/mermaid.mts";
+import { uk } from "./locales/uk.mts";
+import { coursesBases, courseSidebar } from "./courses/sidebar.mts";
+import cppEn from "./courses/en/cpp.mts";
+
+// Courses translated into English (src/courses/<slug>/).
+const coursesEn = [cppEn];
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  lang: "en-US",
   title: "Dev Blog",
   description:
     "Programming in C#, C, C++, Rust, Python, JavaScript, TypeScript",
@@ -32,18 +40,52 @@ export default defineConfig({
     ],
   ],
 
+  locales: {
+    root: { label: "English", lang: "en-US" },
+    uk,
+  },
+
   themeConfig: {
+    // The language switcher opens the same page in the other language when it exists
+    // (home, about, the course catalogue and every page of a course translated into both
+    // languages) and the other locale's home otherwise. VitePress sends this function to
+    // the browser as source code, so it must not use anything from outside its body.
+    i18nRouting(data: any, route: any, targetLocale: string) {
+      const site = data.site.value;
+      const toUk = targetLocale === "uk";
+      const prefix = toUk ? "/uk" : "";
+      const path = route.path.replace(/\.html$/, "");
+      const rel = path.startsWith("/uk/") ? path.slice(3) : path === "/uk" ? "/" : path;
+      const course = rel.match(/^\/courses\/([^/]+)\//);
+      if (course) {
+        const sidebar = (toUk ? site.locales?.uk?.themeConfig?.sidebar : site.themeConfig?.sidebar) ?? {};
+        const exists = Object.keys(sidebar).includes(`${prefix}/courses/${course[1]}/`);
+        return exists ? prefix + rel : `${prefix}/courses/`;
+      }
+      if (["/", "/about", "/courses/"].includes(rel)) return prefix + rel;
+      return toUk ? "/uk/" : "/";
+    },
     logo: "/logo.svg",
     siteTitle: "Dev Blog",
 
     nav: [
       { text: "Home", link: "/" },
+      {
+        text: "Courses",
+        items: [
+          { text: "All courses", link: coursesBases.en },
+          ...coursesEn.map((c) => ({ text: c.title, link: `${coursesBases.en}${c.slug}/` })),
+        ],
+      },
       { text: "Tutorials", link: "/csharp/introduction" },
       { text: "Blog", link: "/blog/getting-started" },
       { text: "About", link: "/about" },
     ],
 
     sidebar: {
+      ...Object.fromEntries(
+        coursesEn.map((c) => [`${coursesBases.en}${c.slug}/`, courseSidebar(c, "en")]),
+      ),
       "/csharp/": [
         {
           text: "Fundamentals",
@@ -117,6 +159,9 @@ export default defineConfig({
 
   markdown: {
     math: true,
+    config: (md) => {
+      md.use(mermaidPlugin);
+    },
     theme: {
       light: "github-light",
       dark: "github-dark",
