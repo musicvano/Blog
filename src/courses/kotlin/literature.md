@@ -16,7 +16,7 @@ sourceHash: "d24d5c37e3d5bd1aba0e9150b0b2e75cdeb9e70a17615feb2009cbcbc9bf2559"
 8. Künneth T. Android UI Development with Jetpack Compose: Bring Declarative and Native UIs to Life Quickly and Easily on Android Using Jetpack Compose. 2nd ed. Birmingham : Packt Publishing, 2023. 278 p. [view](https://www.oreilly.com/library/view/android-ui-development/9781837634255/)
 9. McGregor D., Pryce N. Java to Kotlin: A Refactoring Guidebook. Sebastopol : O’Reilly Media, 2021. 422 p. [view](https://www.oreilly.com/library/view/java-to-kotlin/9781492082262/)
 10. Moskala M., Corti N. Advanced Kotlin. Shroff Publishers & Distributors ; Kt. Academy, 2024. 341 p. [view](https://www.shroffpublishers.com/books/9789355424822/)
-11. Moskała M. Effective Kotlin: Best Practices. Електрон. вид., версія від 12.06.2026. Leanpub, 2026. 391 p. [view](https://leanpub.com/effectivekotlin)
+11. Moskała M. Effective Kotlin: Best Practices. Electronic ed., version of 12.06.2026. Leanpub, 2026. 391 p. [view](https://leanpub.com/effectivekotlin)
 12. Moskała M. Kotlin Coroutines: Deep Dive. 3rd ed. Kt. Academy, 2024. 500 p. [view](https://leanpub.com/coroutines)
 13. Naftalin M., Wadler P. Java Generics and Collections: Fundamentals and Recommended Practices. 2nd ed. Sebastopol : O’Reilly Media, 2025. 368 p. [view](https://www.oreilly.com/library/view/java-generics-and/9781098136710/)
 14. Nagy R. Simplifying Application Development with Kotlin Multiplatform Mobile: Write Robust Native Applications for iOS and Android Efficiently. Birmingham : Packt Publishing, 2022. 184 p. [view](https://www.oreilly.com/library/view/simplifying-application-development/9781801812580/)

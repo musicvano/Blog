@@ -263,4 +263,3 @@ All levels require a UML diagram showing the directions of generalization and in
 6. If equality is needed, check symmetry, transitivity, null, and matching hashes for equal objects.
 7. Provide code, UML, a README, and five checks with results.
 8. During the presentation, demonstrate dynamic dispatch in the debugger and explain how to add a new implementation without rewriting the client.
-

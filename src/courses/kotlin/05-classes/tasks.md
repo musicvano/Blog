@@ -262,4 +262,3 @@ Every level requires a UML class diagram with properties, visibility, constructo
 5. Separate the model into a package and add a console interface.
 6. Submit a README, UML, code, expected and actual results for at least five checks, and build and run commands.
 7. During the presentation, show `init` and a setter in the debugger and explain why computed values are not stored separately.
-

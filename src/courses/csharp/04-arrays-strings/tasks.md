@@ -29,11 +29,11 @@ Complete the task of the chosen difficulty level for your variant number.
 
 ### Variant 3. Battleship {#v3}
 
-**1. Initial level.** Create a console program that places four ships at coordinates specified in the program in a 10×10 `char[,]` array and displays the board with column headings “А”–“К” and row headings 1–10, marking ships with `#` and empty cells with `.`.
+**1. Initial level.** Create a console program that places four ships at coordinates specified in the program in a 10×10 `char[,]` array and displays the board with column headings “A”–“J” and row headings 1–10, marking ships with `#` and empty cells with `.`.
 
-**2. Basic level.** Create a console program that places ships on a 10×10 board according to the rules (ships must not touch, even diagonally), using coordinates entered by the user in the format `Б7 horizontal 3`. Validate each placement and display the board after each successful placement or the reason for rejection.
+**2. Basic level.** Create a console program that places ships on a 10×10 board according to the rules (ships must not touch, even diagonally), using coordinates entered by the user in the format `B7 horizontal 3`. Validate each placement and display the board after each successful placement or the reason for rejection.
 
-**3. Advanced level.** Use the dotnet CLI to create a console application with a `Main` method for playing against the computer: randomly place ships (1 four-cell, 2 three-cell, 3 two-cell, 4 one-cell), checking the rules (`--seed` for reproducibility). The user fires at coordinates such as `Б7`; the computer fires randomly and, after a hit, attacks neighboring cells to finish the ship. Display the player’s board and shot board side by side, automatically marking cells around sunk ships. Display hit statistics at the end. Invalid coordinates do not count as a turn.
+**3. Advanced level.** Use the dotnet CLI to create a console application with a `Main` method for playing against the computer: randomly place ships (1 four-cell, 2 three-cell, 3 two-cell, 4 one-cell), checking the rules (`--seed` for reproducibility). The user fires at coordinates such as `B7`; the computer fires randomly and, after a hit, attacks neighboring cells to finish the ship. Display the player’s board and shot board side by side, automatically marking cells around sunk ships. Display hit statistics at the end. Invalid coordinates do not count as a turn.
 
 ### Variant 4. Monthly sales {#v4}
 

@@ -260,4 +260,3 @@ Complete the task of the chosen difficulty level for your variant number.
 5. Compare the result with a manual calculation.
 6. Check an invalid token, zero, and both boundaries.
 7. Submit source code, a README, and Git history.
-

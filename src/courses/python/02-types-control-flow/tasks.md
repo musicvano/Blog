@@ -7,13 +7,9 @@ sourceHash: "8a4ee5ead5dd702c4bfb3d5d97c82aba7c8ac9d7f0fb39bd69802d37cde48bab"
 
 # Tasks
 
-**Goal:** learn to choose data types, convert console input, build branches and loops, validate data, and justify results using reference examples.
+Complete the task of the chosen difficulty level for your variant number.
 
-Complete your variant at the chosen level: 1 – initial, 2 – basic, 3 – advanced. Each task is independent; you do not need to complete all three levels unless your instructor requires otherwise.
-
-The main interface in this assignment is console input and menus. Use Python 3.14, PyCharm, and the standard library. Create `.venv` as in Assignment 1; no additional packages are needed. Classes, list comprehensions, and your own general-purpose validation functions are optional: they will be covered in later topics.
-
-Define the input format explicitly for each program. For positive integers, check the length, ASCII digits, and allowed limits before `int`. For signed integers, you can separate one leading minus sign; a sign alone is invalid. For real numbers, you may use a contract of “valid numeric notation with a decimal point”, but finiteness and domain checks are required. `try`/`except` is not needed before Topic 4. All prices, rates, and exchange rates below are for learning purposes.
+In this assignment, the main interface is console input and menus. Use Python 3.14, PyCharm, and the standard library. Create `.venv` as in Assignment 1; no additional packages are needed. Classes, list comprehensions, and your own general-purpose validation functions are optional: they will be covered in later topics. Define the input format explicitly for each program. For positive integers, check the length, ASCII digits, and allowed limits before `int`. For signed integers, you can separate one leading minus sign; a string with only a sign is invalid. For real numbers, you may use a contract of “valid numeric notation with a decimal point”, but finiteness and domain checks are required. `try`/`except` is not needed before Topic 4. All prices, rates, and exchange rates below are for learning purposes.
 
 ## Variants
 

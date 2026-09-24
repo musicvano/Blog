@@ -263,4 +263,3 @@ Each solution must include a UML diagram with generalization arrows and member v
 6. Test boundary data, failure without changing state, and equality.
 7. Submit a README, code, and at least five checks.
 8. During the presentation, show dynamic dispatch in the debugger.
-

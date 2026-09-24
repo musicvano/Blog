@@ -57,9 +57,9 @@ Use Kotlin/JVM on JDK 27. Separate reading, calculation, and formatting; define 
 
 **1. Initial level.** Create a Kotlin/JVM console program on JDK 27 that calculates statistics for entered text. Input: a string; a word is a nonempty fragment between spaces; count words and letters. Extract functions with parameter and return types, and separate printing. Print the result or failure cause; test normal, empty, boundary, and invalid cases.
 
-**2. Basic level.** Create a Kotlin/JVM console program on JDK 27 that calculates statistics for entered text. Input: a string; a word is a nonempty fragment between spaces; count words and letters. Add sentences as nonempty fragments between .!? and the frequency of vowels аеиіоуяюєї. Extract functions with parameter and return types, and separate printing. Print the result or failure cause; test normal, empty, boundary, and invalid cases.
+**2. Basic level.** Create a Kotlin/JVM console program on JDK 27 that calculates statistics for entered text. Input: a string; a word is a nonempty fragment between spaces; count words and letters. Add sentences as nonempty fragments between .!? and the frequency of the vowels aeiou. Extract functions with parameter and return types, and separate printing. Print the result or failure cause; test normal, empty, boundary, and invalid cases.
 
-**3. Advanced level.** Create a Kotlin/JVM console program on JDK 27 that calculates statistics for entered text. Input: a string; a word is a nonempty fragment between spaces; count words and letters. Add sentences as nonempty fragments between .!? and the frequency of vowels аеиіоуяюєї; find the most frequent letter ignoring case, breaking ties alphabetically. Extract functions with parameter and return types, and separate printing. Print the result or failure cause; test normal, empty, boundary, and invalid cases. Add CLI arguments in key=value format and `--help`; with no arguments, read the same fields from the keyboard. Print a labeled tabular report with a summary; send errors to stderr. Exit codes: 0 – success or help, 2 – invalid input, 1 – operational failure.
+**3. Advanced level.** Create a Kotlin/JVM console program on JDK 27 that calculates statistics for entered text. Input: a string; a word is a nonempty fragment between spaces; count words and letters. Add sentences as nonempty fragments between .!? and the frequency of the vowels aeiou; find the most frequent letter ignoring case, breaking ties alphabetically. Extract functions with parameter and return types, and separate printing. Print the result or failure cause; test normal, empty, boundary, and invalid cases. Add CLI arguments in key=value format and `--help`; with no arguments, read the same fields from the keyboard. Print a labeled tabular report with a summary; send errors to stderr. Exit codes: 0 – success or help, 2 – invalid input, 1 – operational failure.
 
 ### Variant 7. Email address {#v7}
 
@@ -262,4 +262,3 @@ Use Kotlin/JVM on JDK 27. Separate reading, calculation, and formatting; define 
 5. For recursion, explain the base case and how the problem shrinks.
 6. Submit five actual checks, code, and a README.
 7. Show an extension in IntelliJ IDEA and explain its receiver.
-

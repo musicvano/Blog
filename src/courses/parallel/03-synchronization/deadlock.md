@@ -1,24 +1,24 @@
 ---
-title: "Deadlock and the cost of synchronization"
-description: "Topic 3. Thread synchronization: deadlock and the cost of synchronization"
+title: "Deadlocks and the cost of synchronization"
+description: "Topic 3. Thread synchronization: Deadlocks and the cost of synchronization"
 outline: [2, 3]
-sourceHash: "61b43a27c9785cd74bcffa34f6adb20b64c17fa59a60152651f36e668ef9ff52"
+sourceHash: "dc5f2d9d42cdf790deaa951f0b18cb2571f1209961d283cb9763359dae523847"
 ---
 
-# Deadlock and the cost of synchronization
+# Deadlocks and the cost of synchronization
 
 ## Deadlock
 
 **Deadlock** is a state in which every thread in a group waits for a resource held by another thread in the same group, so none can continue. A classic example is a money transfer: thread 1 transfers from account A to B, locking A first, then B; thread 2 simultaneously transfers from B to A, locking B first, then A. If each acquires its first account, both wait forever (Fig. 3.4). The process does not exit, CPU usage is low, and the log contains no errors.
 
 ```mermaid
-flowchart LR
+flowchart TB
   RA["Account A"] -->|"held by"| TH1(("Thread 1"))
   TH1 -.->|"waits for"| RB["Account B"]
   RB -->|"held by"| TH2(("Thread 2"))
   TH2 -.->|"waits for"| RA
   CYC["cycle<br>= deadlock"]
-  LEG["solid arrow – resource held by a thread<br>dashed arrow – thread waiting for a resource"]
+  LEG["solid arrow –<br>resource held by a thread<br>dashed arrow –<br>thread waiting for a resource"]
   CYC ~~~ LEG
 ```
 
@@ -44,7 +44,7 @@ Deadlock is **prevented** by breaking one of the conditions:
 - **acquiring all resources at once**, or using one shared lock for a group of resources — simple, but reduces parallelism;
 - **do not call external code while holding a lock**, and avoid holding two locks when possible.
 
-Other strategies — **avoidance** (the system grants a resource only if the state remains safe, as in Dijkstra's banker's algorithm) and **detection and recovery** (periodically searching the wait-for graph for a cycle and restarting one thread) — are used in operating systems and database management systems. For example, a database server detects transaction deadlock and aborts one transaction.
+Other strategies — **avoidance** (the system grants a resource only if the state remains safe, as in Dijkstra’s banker’s algorithm) and **detection and recovery** (periodically searching the wait-for graph for a cycle and restarting one thread) — are used in operating systems and database management systems. For example, a database server detects transaction deadlock and aborts one transaction.
 
 ### Diagnosis
 
@@ -84,7 +84,7 @@ Index SyncBlock MonitorHeld Recursion Owning Thread Info  Owner
          1 Program.<<Main>$>g__TransferNaive|0_3(Account, ...)
 ```
 
-The two monitor objects belong to threads 4040 and 6368 (the *Owning Thread Info* column), and the stacks show that both threads are waiting in `Monitor.Enter` inside `TransferNaive`: each is waiting for the other's lock. The `syncblk` command shows only monitors (`lock` on `object`); it does not show locks of type `Lock`, which must be located using the stacks.
+The two monitor objects belong to threads 4040 and 6368 (the *Owning Thread Info* column), and the stacks show that both threads are waiting in `Monitor.Enter` inside `TransferNaive`: each is waiting for the other’s lock. The `syncblk` command shows only monitors (`lock` on `object`); it does not show locks of type `Lock`, which must be located using the stacks.
 
 ::: info Screenshot
 Windows Terminal: `dotnet-dump collect -n Deadlock`, `dotnet-dump analyze <file>`, commands `syncblk` and `clrstack -all` (trimmed); owning thread IDs visible
@@ -134,17 +134,17 @@ The **sleeping barber**: a barber sleeps when there are no customers; a customer
 
 ## The cost of synchronization
 
-Synchronization makes a program correct, but a critical section executes sequentially. By Amdahl's law (Topic 1), it limits speedup, and lock contention adds overhead. The “Visitor counter” example measures 8 000 000 counter increments divided among 1–16 threads (Table 3.3, median of five runs on an Intel Core i9-11900KF; the numbers will differ on another computer).
+Synchronization makes a program correct, but a critical section executes sequentially. By Amdahl’s law (Topic 1), it limits speedup, and lock contention adds overhead. The “Visitor counter” example measures 8,000,000 counter increments divided among 1–16 threads (Table 3.3, median of five runs on an Intel Core i9-11900KF; the numbers will differ on another computer).
 
 Table 3.3. Time for 8 million counter increments by synchronization method {.caption}
 
 | **Method** | **1 thread, ms** | **2 threads, ms** | **8 threads, ms** | **16 threads, ms** |
 | --- | --- | --- | --- | --- |
-| No synchronization (incorrect result) | 2,3 | 5,7 | 4,3 | 3,7 |
-| `Interlocked.Increment` | 33,9 | 66,0 | 77,8 | 79,8 |
-| `lock (object)` | 118,7 | 207,5 | 264,9 | 258,6 |
-| `lock (Lock)` | 106,3 | 213,9 | 519,1 | 560,4 |
-| Local counter + `Interlocked.Add` | 2,4 | 1,4 | 0,8 | 1,0 |
+| No synchronization (incorrect result) | 2.3 | 5.7 | 4.3 | 3.7 |
+| `Interlocked.Increment` | 33.9 | 66.0 | 77.8 | 79.8 |
+| `lock (object)` | 118.7 | 207.5 | 264.9 | 258.6 |
+| `lock (Lock)` | 106.3 | 213.9 | 519.1 | 560.4 |
+| Local counter + `Interlocked.Add` | 2.4 | 1.4 | 0.8 | 1.0 |
 
 Conclusions from the measurements:
 
@@ -159,7 +159,7 @@ This leads to the following rules for **lock granularity**:
 - **fine** granularity (a separate lock for each account or table segment) scales better but complicates the code and introduces deadlock risk;
 - the best approach is to reduce shared data access: calculate locally and hold a lock only while merging results.
 
-The example's terminal output is shown in Fig. 3.8.
+The example’s terminal output is shown in Fig. 3.8.
 
 ::: info Screenshot
 Windows Terminal: `dotnet run -c Release` in the Visitors project (lecture example 1); the table with columns method, threads, result, time ms

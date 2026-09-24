@@ -2,7 +2,7 @@
 title: "Error types and the exception hierarchy"
 description: "Topic 4. Exceptions and debugging: Error types and the exception hierarchy"
 outline: [2, 3]
-sourceHash: "802751de09c2c798396aed648280979f8e3510ddc655752fdfb943008a48ee34"
+sourceHash: "b9d1ca6ad852d086bcaf7f35ae63a7cf717b58e5acc5c94c29bdc5913fe04ac3"
 ---
 
 # Error types and the exception hierarchy
@@ -52,16 +52,16 @@ A syntax error in the file itself usually occurs before its `try` executes, so w
 Exception types form a hierarchy (Fig. 4.2). A handler for a base type also accepts its subclasses. The root is `BaseException`. Ordinary application errors derive from `Exception`; `SystemExit` and `KeyboardInterrupt` belong to another branch. Thus, `except Exception` does not intercept normal termination through `sys.exit` or a user's request to stop the program with Ctrl+C.
 
 ```mermaid
-flowchart LR
-  ROOT["BaseException"] --> SYS["SystemExit<br>KeyboardInterrupt"]
-  ROOT --> EXC["Exception"]
-  EXC --> VAL["ValueError<br>TypeError"]
-  EXC --> AR["ArithmeticError"]
-  EXC --> LK["LookupError"]
-  EXC --> OS["OSError"]
-  AR --> ZERO["ZeroDivisionError"]
-  LK --> IDX["IndexError<br>KeyError"]
-  OS --> FNF["FileNotFoundError"]
+flowchart TB
+  ROOT["<code>BaseException</code>"] --> SYS["<code>SystemExit</code><br><code>KeyboardInterrupt</code>"]
+  ROOT --> EXC["<code>Exception</code>"]
+  EXC --> VAL["<code>ValueError</code><br><code>TypeError</code>"]
+  EXC --> AR["<code>ArithmeticError</code>"]
+  EXC --> LK["<code>LookupError</code>"]
+  EXC --> OS["<code>OSError</code>"]
+  AR --> ZERO["<code>ZeroDivisionError</code>"]
+  LK --> IDX["<code>IndexError</code><br><code>KeyError</code>"]
+  OS --> FNF["<code>FileNotFoundError</code>"]
 ```
 
 Figure 4.2. Part of the hierarchy: arrows lead from a base type to a subclass. {.caption}

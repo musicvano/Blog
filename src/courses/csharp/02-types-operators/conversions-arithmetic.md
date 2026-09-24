@@ -2,7 +2,7 @@
 title: "Conversions and arithmetic"
 description: "Topic 2. Types, variables, and operators: Conversions and arithmetic"
 outline: [2, 3]
-sourceHash: "8c8ce605f062c9768bf9693612ef9bc786818cb9fdb3a8d38406017caf9a39ed"
+sourceHash: "57116192ca84a317b5a6c4124cd3d5b2ec788999f1f3bd96edc6f6be1c7c6dfb"
 ---
 
 # Conversions and arithmetic
@@ -40,7 +40,7 @@ flowchart TD
   T_ulong -.-> T_float
   T_float --> T_double["<code>double</code>"]
   ALL["all integer types"] --> T_decimal["<code>decimal</code>"]
-  N["solid arrow – no data loss<br>dashed arrow – possible loss of precision"]
+  T_double ~~~ N["solid arrow –<br>no data loss<br>dashed – possible<br>loss of precision"]
 ```
 
 Figure 2.7. Implicit numeric type conversions {.caption}

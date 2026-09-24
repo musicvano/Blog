@@ -262,4 +262,3 @@ Provide UML showing abstract members, interface implementations, and which class
 5. Check the contract for ordering, iteration, or state transitions.
 6. Provide complete sample runs and at least five checks.
 7. Explain your choice of a static nested, inner, or anonymous class.
-

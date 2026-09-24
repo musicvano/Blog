@@ -1,8 +1,8 @@
 ---
 title: "Locks and condition variables"
-description: "Topic 3. Thread synchronization: locks and condition variables"
+description: "Topic 3. Thread synchronization: Locks and condition variables"
 outline: [2, 3]
-sourceHash: "33b5e2c1f06307be19133ebc8acedd955816dc3a2519470d93cb02476cb779d1"
+sourceHash: "29fa6c58e9650fc0fb9289f9bb719b165880b74d62da775f2c094d52cf1d76d5"
 ---
 
 # Locks and condition variables
@@ -37,7 +37,7 @@ Both mechanisms are **reentrant**: a thread that already holds the lock can acqu
 
 ### The `Monitor` class
 
-Any reference-type object in .NET can be used as a lock through the `Monitor` class's static `Enter`, `Exit`, and `TryEnter` methods. Explicit calls are needed when `lock` is insufficient, particularly when attempting to enter with a timeout: `Monitor.TryEnter(sync, TimeSpan.FromMilliseconds(100), ref taken)` returns even if the lock could not be acquired, and `taken` indicates the result; call `Monitor.Exit(sync)` in a `finally` block only if `taken` is `true`. Only the owning thread can release the monitor (`Monitor.Exit` in another thread causes `SynchronizationLockException`): the monitor has **thread affinity**.
+Any reference-type object in .NET can be used as a lock through the `Monitor` class’s static `Enter`, `Exit`, and `TryEnter` methods. Explicit calls are needed when `lock` is insufficient, particularly when attempting to enter with a timeout: `Monitor.TryEnter(sync, TimeSpan.FromMilliseconds(100), ref taken)` returns even if the lock could not be acquired, and `taken` indicates the result; call `Monitor.Exit(sync)` in a `finally` block only if `taken` is `true`. Only the owning thread can release the monitor (`Monitor.Exit` in another thread causes `SynchronizationLockException`): the monitor has **thread affinity**.
 
 ### Choosing a lock object
 
@@ -57,7 +57,7 @@ A thread often needs not just to enter a critical section but to **wait for a co
 - `Monitor.PulseAll(obj)` — moves **all** waiting threads.
 
 ```mermaid
-flowchart LR
+flowchart TB
   EN["<code>Enter</code>"] --> EQ
   subgraph M["<b>Monitor of the <code>gate</code> object</b>"]
     subgraph EQ["ready queue"]
@@ -70,7 +70,7 @@ flowchart LR
       direction LR
       T2["T2"] ~~~ T5["T5"]
     end
-    WQ -.->|"<code>Pulse</code>"| EQ
+    EQ <-.-|"<code>Pulse</code>"| WQ
   end
   OWN --> EX["<code>Exit</code>"]
 ```
@@ -118,7 +118,7 @@ finally
 return 0;
 ```
 
-The `Local\` prefix (the default) limits visibility to the user's session; `Global\` makes the mutex visible throughout the system. On Linux, named mutexes are implemented through the file system. If the owning thread exits without releasing the mutex, the next `WaitOne` throws `AbandonedMutexException`: the data protected by the mutex may be inconsistent.
+The `Local\` prefix (the default) limits visibility to the user’s session; `Global\` makes the mutex visible throughout the system. On Linux, named mutexes are implemented through the file system. If the owning thread exits without releasing the mutex, the next `WaitOne` throws `AbandonedMutexException`: the data protected by the mutex may be inconsistent.
 
 A **semaphore** is a permit counter: `Wait` decrements the counter or waits if it is zero, while `Release` increments it and allows a waiting thread through. A semaphore limits the **number** of threads accessing a resource simultaneously: parking spaces, database connections, or concurrent downloads. A semaphore has no thread affinity: another thread can release a permit.
 

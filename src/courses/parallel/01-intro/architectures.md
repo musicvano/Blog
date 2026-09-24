@@ -2,7 +2,7 @@
 title: "Parallel system architectures"
 description: "Topic 1. Fundamentals of parallel computing: Parallel system architectures"
 outline: [2, 3]
-sourceHash: "42b7392f93b540d02cb37f0a673d2ffc0cca3fd3b5ebf4c2639be44a8d00bd18"
+sourceHash: "355458aa36c153101a7aa7dff3473f66e5dee5df1a9e5333fa33f4853691e23f"
 ---
 
 # Parallel system architectures
@@ -12,7 +12,7 @@ sourceHash: "42b7392f93b540d02cb37f0a673d2ffc0cca3fd3b5ebf4c2639be44a8d00bd18"
 In a **shared-memory system** (*shared memory*), all processors access the same RAM, so threads can exchange data through shared variables (Fig. 1.1). These are the systems covered in Module 1.
 
 ```mermaid
-flowchart LR
+flowchart TB
   subgraph SMP["<b>SMP</b>"]
     direction TB
     S1["CPU"] --- SM
@@ -24,12 +24,12 @@ flowchart LR
   subgraph NUMA["<b>NUMA</b>"]
     direction TB
     subgraph N1[" "]
-      direction TB
+      direction LR
       N1A["CPU"] --- N1M["Memory"]
       N1B["CPU"] --- N1M
     end
     subgraph N2[" "]
-      direction TB
+      direction LR
       N2A["CPU"] --- N2M["Memory"]
       N2B["CPU"] --- N2M
     end
@@ -37,7 +37,7 @@ flowchart LR
     N2 ~~~ NN["local memory is closer"]
   end
   subgraph CL["<b>Cluster</b>"]
-    direction TB
+    direction LR
     subgraph C1[" "]
       direction TB
       C1P["CPU"] ~~~ C1M["Mem."]
@@ -53,7 +53,7 @@ flowchart LR
     C1 --- NET["network"]
     C2 --- NET
     C3 --- NET
-    NET ~~~ CN["distributed memory"]
+    C2 ~~~ CN["distributed memory"]
   end
   SMP ~~~ NUMA ~~~ CL
 ```

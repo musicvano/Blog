@@ -2,7 +2,7 @@
 title: "Loops"
 description: "Topic 3. Branching and loops: Loops"
 outline: [2, 3]
-sourceHash: "df3e577be792237ebc49d8119b7d245a3c15ded4c93d66744869b49f8d1dee9b"
+sourceHash: "621d906c656c1d8f4baded8dee7d8e9001396af51b15d83b51d9085e539c8278"
 ---
 
 # Loops
@@ -33,6 +33,8 @@ flowchart TB
     F4 --> F2
     F2 -->|<code>false</code>| F5["exit"]
   end
+  WHILE ~~~ FOR
+  DOWHILE ~~~ FOR
 ```
 
 Figure 3.5. Flowcharts of `while`, `do`/`while`, and `for` loops {.caption}
@@ -105,22 +107,22 @@ A loop can contain another loop. For each **outer** iteration, the **inner** loo
 
 ```mermaid
 flowchart TD
-  TOP["inner loop <code>j</code> (0…3): left to right"]
+  TOP["inner loop <code>j</code> (0…3):<br>left to right"]
   subgraph I0 [" "]
     direction LR
-    A00["<code>i=0, j=0</code>"] --> A01["<code>i=0, j=1</code>"] --> A02["<code>i=0, j=2</code>"] --> A03["<code>i=0, j=3</code>"]
+    A00["<code>i=0,</code><br><code>j=0</code>"] --> A01["<code>i=0,</code><br><code>j=1</code>"] --> A02["<code>i=0,</code><br><code>j=2</code>"] --> A03["<code>i=0,</code><br><code>j=3</code>"]
   end
   subgraph I1 [" "]
     direction LR
-    A10["<code>i=1, j=0</code>"] --> A11["<code>i=1, j=1</code>"] --> A12["<code>i=1, j=2</code>"] --> A13["<code>i=1, j=3</code>"]
+    A10["<code>i=1,</code><br><code>j=0</code>"] --> A11["<code>i=1,</code><br><code>j=1</code>"] --> A12["<code>i=1,</code><br><code>j=2</code>"] --> A13["<code>i=1,</code><br><code>j=3</code>"]
   end
   subgraph I2 [" "]
     direction LR
-    A20["<code>i=2, j=0</code>"] --> A21["<code>i=2, j=1</code>"] --> A22["<code>i=2, j=2</code>"] --> A23["<code>i=2, j=3</code>"]
+    A20["<code>i=2,</code><br><code>j=0</code>"] --> A21["<code>i=2,</code><br><code>j=1</code>"] --> A22["<code>i=2,</code><br><code>j=2</code>"] --> A23["<code>i=2,</code><br><code>j=3</code>"]
   end
   TOP ~~~ I0
   I0 -.-> I1 -.-> I2
-  I2 ~~~ N["outer loop <code>i</code> (0…2)<br>dashed lines – move to the next outer iteration"]
+  I2 ~~~ N["outer loop <code>i</code> (0…2)<br>dashed lines – move to the next<br>iteration of the outer loop"]
 ```
 
 Figure 3.6. Execution order of nested loops {.caption}

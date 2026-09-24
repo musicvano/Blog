@@ -1,8 +1,8 @@
 ---
 title: "Tasks, states, and continuations"
-description: "Topic 5. TPL tasks and async/await: tasks, states, and continuations"
+description: "Topic 5. TPL tasks and async/await: Tasks, states, and continuations"
 outline: [2, 3]
-sourceHash: "335ebb1125426107aa39230c63be5e6fd309598e9b395904c2cc88b1b5bcd464"
+sourceHash: "d0c08ef44e2bc54383cde99ea0948e7a2538d7a542e6dccbfad7bc653f66bde3"
 ---
 
 # Tasks, states, and continuations
@@ -45,18 +45,19 @@ Console.WriteLine(sum);
 
 ### The task scheduler
 
-A **task scheduler**, an object of class `TaskScheduler`, assigns a task to a thread. The default scheduler, `TaskScheduler.Default`, queues tasks in the thread pool. The pool has a global queue and local worker thread queues: a task created inside another task enters the current thread's local queue (LIFO order, better cache locality), while idle threads use **work stealing** to take work from the ends of other threads' queues. Custom schedulers are uncommon (for example, `ConcurrentExclusiveSchedulerPair` limits parallelism); in applications with a user interface, `TaskScheduler.FromCurrentSynchronizationContext()` runs a task on the UI thread.
+A **task scheduler**, an object of class `TaskScheduler`, assigns a task to a thread. The default scheduler, `TaskScheduler.Default`, queues tasks in the thread pool. The pool has a global queue and local worker thread queues: a task created inside another task enters the current thread’s local queue (LIFO order, better cache locality), while idle threads use **work stealing** to take work from the ends of other threads’ queues. Custom schedulers are uncommon (for example, `ConcurrentExclusiveSchedulerPair` limits parallelism); in applications with a user interface, `TaskScheduler.FromCurrentSynchronizationContext()` runs a task on the UI thread.
 
 ## Task states and waiting
 
-The `Status` property of type `TaskStatus` returns a task's current state (Fig. 5.1). A task created with the `new Task(...)` constructor remains in `Created` until `Start()` is called. Tasks created by `Task.Run` are queued immediately (`WaitingToRun`) and then run (`Running`). Continuations and tasks from `async` methods wait in `WaitingForActivation`. There are three final states:
+The `Status` property of type `TaskStatus` returns a task’s current state (Fig. 5.1). A task created with the `new Task(...)` constructor remains in `Created` until `Start()` is called. Tasks created by `Task.Run` are queued immediately (`WaitingToRun`) and then run (`Running`). Continuations and tasks from `async` methods wait in `WaitingForActivation`. There are three final states:
 
 - `RanToCompletion` — successful completion, `IsCompletedSuccessfully == true`;
 - `Faulted` — completion with an unhandled exception, `IsFaulted == true`, with the exception in the `Exception` property;
-- `Canceled` — cancellation through `OperationCanceledException` with the task's token, `IsCanceled == true`.
+- `Canceled` — cancellation through `OperationCanceledException` with the task’s token, `IsCanceled == true`.
 
 ```mermaid
 stateDiagram-v2
+  direction TB
   Created --> WaitingToRun: Start()
   [*] --> WaitingToRun: Task.Run
   WaitingForActivation --> WaitingToRun: after the<br>antecedent
@@ -71,10 +72,13 @@ stateDiagram-v2
     Faulted
     Canceled
   }
-  note right of WaitingForActivation
-    final states: IsCompleted == true;
-    tasks from async methods and TaskCompletionSource
-    transition from WaitingForActivation
+  note left of WaitingForActivation
+    final states:
+    IsCompleted == true;
+    tasks from async methods
+    and TaskCompletionSource
+    transition from
+    WaitingForActivation
     directly to a final state
   end note
 ```

@@ -2,7 +2,7 @@
 title: "JSON and CSV"
 description: "Topic 11. Modules, files, pytest: JSON and CSV"
 outline: [2, 3]
-sourceHash: "7f8d053747f5ee757d2dd2de48a30fffbe6c555c8e1a33b55e06e5bf5ef80d4d"
+sourceHash: "6815fa154379881c884fa0d70881ca051ebb47f308306ba3ab14296edec2ee2b"
 ---
 
 # JSON and CSV
@@ -12,7 +12,7 @@ sourceHash: "7f8d053747f5ee757d2dd2de48a30fffbe6c555c8e1a33b55e06e5bf5ef80d4d"
 JSON describes objects, arrays, strings, numbers, Boolean values, and `null`. In Python, these are mostly `dict`, `list`, `str`, `int`/ `float`, `bool`, and `None`. JSON object keys are strings; a tuple becomes a list after a round trip through JSON. A class is not restored automatically from its name: you must explicitly validate the fields and create an instance. Reference: <https://docs.python.org/3.14/library/json.html>.
 
 ```mermaid
-flowchart LR
+flowchart TB
   subgraph PY["Python"]
     PD["<code>dict</code>, <code>list</code><br>numbers, strings<br><code>True</code>, <code>None</code>"]
   end

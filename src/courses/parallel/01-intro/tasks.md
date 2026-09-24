@@ -7,9 +7,7 @@ sourceHash: "e0019b1dbea5387bd066ca0d5b9155f717369b9b24aad6c06152250bd94c17cd"
 
 # Tasks
 
-**Goal:** become familiar with parallel computing architectures, Flynn’s taxonomy, and parallel program metrics; learn to estimate speedup and efficiency using Amdahl’s law, the Gustafson–Barsis law, and the Karp–Flatt metric; master a method for measuring the execution time of C# programs on .NET 10 in JetBrains Rider.
-
-Complete the task at your chosen difficulty level for your assigned variant. Each variant contains three tasks: 1 — initial level, 2 — basic level, 3 — advanced level.
+Complete the task of the chosen difficulty level for your variant number.
 
 ## Variants
 

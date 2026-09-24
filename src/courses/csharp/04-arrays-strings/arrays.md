@@ -2,7 +2,7 @@
 title: "One-dimensional arrays"
 description: "Topic 4. Arrays and strings: One-dimensional arrays"
 outline: [2, 3]
-sourceHash: "fcb0767019933c55a3e5fa040e97885da270cef4dc1b37fef7a3bd31ec6e2e48"
+sourceHash: "305faa9fb99af084a9190d5281526965221bb9f72aa1459b3b387eb577869924"
 ---
 
 # One-dimensional arrays
@@ -35,11 +35,19 @@ flowchart LR
     A["<code>int[] a</code>  ●"]
   end
   subgraph HEAP ["<b>Managed heap</b>"]
-    C0["10<br>0 · ^5"] ~~~ C1["20<br>1 · ^4"] ~~~ C2["30<br>2 · ^3"] ~~~ C3["40<br>3 · ^2"] ~~~ C4["50<br>4 · ^1"]
+    C0["10<br>0 · ^5"]
+    C1["20<br>1 · ^4"]
+    C2["30<br>2 · ^3"]
+    C3["40<br>3 · ^2"]
+    C4["50<br>4 · ^1"]
   end
   A --> C0
-  C4 ~~~ LEN["<code>a.Length = 5</code>"]
-  L["index · from the end"]
+  L["index · from the end"] ~~~ C0
+  L ~~~ C1
+  L ~~~ C2
+  L ~~~ C3
+  L ~~~ C4
+  L ~~~ LEN["<code>a.Length = 5</code>"]
   R["<code>a[1..4]</code> → [20, 30, 40]"]
 ```
 
@@ -124,6 +132,7 @@ flowchart TB
     RA["<code>a</code>  ●"] --> RX1["1 | 2 | 3"]
     RB["<code>b</code>  ●"] --> RX2["1 | 2 | 3"]
   end
+  SAME ~~~ CLONE
 ```
 
 Figure 4.3. Copying a reference and copying an array {.caption}

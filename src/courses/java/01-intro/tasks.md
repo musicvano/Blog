@@ -260,4 +260,3 @@ Complete the task of the chosen difficulty level for your variant number.
 5. Create three meaningful local commits.
 6. Check that the program runs from a clean directory following the README.
 7. Explain the difference between compilation, execution, and formula errors.
-

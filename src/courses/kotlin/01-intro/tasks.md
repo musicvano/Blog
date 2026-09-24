@@ -262,4 +262,3 @@ Each level contains a complete input and output contract. Simple numerical calcu
 5. Run it from the IDE, through Gradle, and from the installDist distribution.
 6. Prepare a README and a local Git repository with three commits.
 7. Include code, a test table, and a conclusion about limitations in the report.
-

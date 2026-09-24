@@ -259,4 +259,3 @@ Complete the task of the chosen difficulty level for your variant number.
 4. Write down the loop invariant and termination conditions.
 5. Check every branch, boundaries, null, text, and an empty stream.
 6. Save the code and test table in a local repository.
-

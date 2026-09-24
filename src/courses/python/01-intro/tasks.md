@@ -7,11 +7,9 @@ sourceHash: "c75999f43cd2d41936ca744fa9a7e0fd8fbfdba4d24de26543c77f0b5a2b5a76"
 
 # Tasks
 
-**Goal:** learn to create and run Python 3.14 projects in PyCharm and the terminal; verify the interpreter, isolate and reproduce dependencies; keep a meaningful change history in a local Git repository.
+Complete the task of the chosen difficulty level for your variant number.
 
-Complete the task at your chosen difficulty level for your assigned variant. Each variant contains three independent tasks: 1 – initial level, 2 – basic level, 3 – advanced level. You do not need to complete all three unless your instructor requires it.
-
-The main learning path is PyCharm, a `.venv` environment, `venv`, and pip. The advanced level provides practice with uv and command-line arguments. Formulas provide simple reference calculations; this assignment focuses on project organization, execution, dependencies, and change history. You may use the argument validation constructs from Example 3. Use a decimal point for command-line numbers.
+You do not need to complete all three unless your instructor requires it. The main learning path is PyCharm, a `.venv` environment, `venv`, and pip. The advanced level provides practice with uv and command-line arguments. Formulas provide simple reference calculations; this assignment focuses on project organization, execution, dependencies, and change history. You may use the argument validation constructs from Example 3. Use a decimal point for command-line numbers.
 
 ## Variants
 

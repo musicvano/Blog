@@ -260,4 +260,3 @@ Complete the task of the chosen difficulty level for your variant number.
 5. Reproduce one failure and explain the stack and state in the debugger.
 6. Add a check that detects the logic error you found.
 7. Submit code, a scenario table, exit codes, and a conclusion.
-

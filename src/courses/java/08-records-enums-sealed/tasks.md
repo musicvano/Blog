@@ -263,4 +263,3 @@ All basic solutions must compile without preview. Provide UML of the types and, 
 6. Test boundaries, equality, failures, and every state.
 7. Provide code, a README, and at least five checks.
 8. During the presentation, add an alternative and explain the diagnostic.
-

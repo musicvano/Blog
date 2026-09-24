@@ -2,7 +2,7 @@
 title: "The Array class and multidimensional arrays"
 description: "Topic 4. Arrays and strings: The Array class and multidimensional arrays"
 outline: [2, 3]
-sourceHash: "c1fc43df68ec52a23656b8ad3e3a680bc7b6b9e6b2fe066299a2f3394e9c88f2"
+sourceHash: "7f5a541020c715f1b40478f9e5fa35b2dc27ef000bbe8dd98bd001a749bfa0e0"
 ---
 
 # The Array class and multidimensional arrays
@@ -85,6 +85,7 @@ Console.WriteLine(jagged[1][2]);    // 5
 ```mermaid
 flowchart TB
   subgraph RECT ["<code>int[,] m = new int[3, 4];</code>"]
+    direction TB
     M["0 1 2 3<br>0 □ □ □ □<br>1 □ □ □ □<br>2 □ □ □ □"]
     MN["one block: <code>m[1, 2]</code>"]
     M ~~~ MN
@@ -94,8 +95,9 @@ flowchart TB
     J0["0  ●"] --> R0["□ □"]
     J1["1  ●"] --> R1["□ □ □ □"]
     J2["2  ●"] --> R2["□ □ □"]
-    JN["rows of different lengths: <code>j[1][2]</code>"]
+    JN["rows of different lengths:<br><code>j[1][2]</code>"]
   end
+  RECT ~~~ JAG
 ```
 
 Figure 4.4. Rectangular and jagged arrays {.caption}

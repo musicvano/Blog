@@ -2,7 +2,7 @@
 title: "Passing parameters"
 description: "Topic 5. Methods, parameters, recursion: Passing parameters"
 outline: [2, 3]
-sourceHash: "2dee051ca7841c642e4947ff8604c24003380a64d960f4acee13e9f337eef7a6"
+sourceHash: "c929c19c155fab55a2a18f2ea5e3113e76581b508c33b31adf910c999696eff7"
 ---
 
 # Passing parameters
@@ -38,9 +38,9 @@ Parameter modifiers change how arguments are passed (Fig. 5.3):
 - `in` — the parameter is passed by **read-only** reference: it cannot be changed inside the method (error CS8331). It is used for large structures to avoid copying them. The related `ref readonly` modifier also passes a read-only parameter but requires the argument to be a variable.
 
 ```mermaid
-flowchart LR
+flowchart TB
   subgraph CALLER ["<b>Caller</b>"]
-    X1["<b>by value</b><br><code>x = 5</code>"]
+    X1["<b>by<br>value</b><br><code>x = 5</code>"]
     X2["<b><code>ref</code></b><br><code>x = 6</code>"]
     Y3["<b><code>out</code></b><br><code>y = ?</code>"]
   end
@@ -52,9 +52,9 @@ flowchart LR
   X1 -.->|"<code>Inc(x)</code><br>copy"| V1
   X2 <---|"<code>Inc(ref x)</code><br>reference"| V2
   Y3 <---|"<code>Read(out y)</code><br>reference"| V3
-  V1 ~~~ N1["copy of the value; <code>x</code> is unchanged"]
-  V2 ~~~ N2["reference to <code>x</code>; changing <code>v</code> changes <code>x</code>"]
-  V3 ~~~ N3["must be assigned in the method"]
+  V1 ~~~ N1["copy of<br>the value;<br><code>x</code> is<br>unchanged"]
+  V2 ~~~ N2["reference<br>to <code>x</code>; changing<br><code>v</code> changes <code>x</code>"]
+  V3 ~~~ N3["must be<br>assigned<br>in the method"]
 ```
 
 Figure 5.3. Passing parameters by value, `ref`, and `out` {.caption}

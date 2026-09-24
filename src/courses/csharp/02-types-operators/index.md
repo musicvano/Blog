@@ -11,7 +11,7 @@ sourceHash: "fc5141526f905bad36765d793b1a68dc8f8997474674ea6ccf79916270c8ad40"
 ## Lecture contents
 
 1. [The type system and numeric types](./type-system) — The C# type system · Integer types · Floating-point types
-2. [Characters, strings, variables, and null](./variables-null) — Boolean, character, and string types · Variables and constants · Nullable types
+2. [Characters, strings, variables, and null](./variables-null) — Boolean, character, and string types · Variables and constants · Types that allow null
 3. [Conversions and arithmetic](./conversions-arithmetic) — Type conversions · Arithmetic operators · Integer overflow
 4. [Logical operators and the Math class](./logic-math) — Comparison, logical, and bitwise operators · The Math class and random numbers
 5. [Examples and common mistakes](./case-studies) — Program examples · Common mistakes

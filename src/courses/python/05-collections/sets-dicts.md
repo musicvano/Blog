@@ -2,7 +2,7 @@
 title: "Sets and dictionaries"
 description: "Topic 5. Built-in collections: sets and dictionaries"
 outline: [2, 3]
-sourceHash: "82ab2656cb7b4d64945d63e83e8ff4a1263f9986b989dd5c89eabe194dd919de"
+sourceHash: "80e2e0495f66d6f340bbcdc13aa9d0b3aafef3b5579d8c6b583b7389fe7d11b8"
 ---
 
 # Sets and dictionaries
@@ -40,11 +40,11 @@ The comprehension `{word.casefold() for word in words}` normalizes text and remo
 A key is unique: reassigning it replaces the value. In `dict[str, list[int]]`, the key is a string and the value is a list of integers. This is a natural model for a gradebook. A hash table helps find a key without scanning every pair sequentially (Fig. 5.4). Different keys can have identical hashes; the dictionary also checks equality.
 
 ```mermaid
-flowchart LR
-  KEY["Key #quot;pear#quot;"] --> HASH["hash(key)"]
+flowchart TB
+  KEY["Key <code>#quot;pear#quot;</code>"] --> HASH["<code>hash(key)</code>"]
   HASH --> SLOT["Find slot;<br>check key equality"]
-  SLOT --> VAL["Value 12"]
-  N["Learning model: collisions are possible.<br>Average lookup O(1), not a guarantee for every case."]
+  SLOT --> VAL["Value <code>12</code>"]
+  VAL ~~~ N["Learning model: collisions are possible.<br>Average lookup O(1), not a guarantee for every case."]
 ```
 
 Figure 5.4. A simplified model of dictionary lookup {.caption}

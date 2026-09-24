@@ -2,7 +2,7 @@
 title: "OS processes and threads"
 description: "Topic 2. Processes and threads: OS processes and threads"
 outline: [2, 3]
-sourceHash: "f23627f1e4d404265a23327799e388b3076c611c832cebdffa177e1b03aa08c5"
+sourceHash: "f91803179369a8ed6e9e24122726d0adceadcd9b345947ffbbcc4ea19d2bd186"
 ---
 
 # OS processes and threads
@@ -23,23 +23,26 @@ flowchart TB
   subgraph P["<b>Process (address space, PID)</b>"]
     direction TB
     subgraph SH["shared by all threads in the process"]
-      direction LR
-      CODE["Program<br>code"] ~~~ DATA["Data<br>(static)"] ~~~ HEAP["Heap<br>(objects)"] ~~~ HND["Handles<br>(files, sockets)"]
+      direction TB
+      CODE["Program<br>code"] ~~~ HEAP["Heap<br>(objects)"]
+      DATA["Data<br>(static)"] ~~~ HND["Handles<br>(files, sockets)"]
     end
     subgraph OWN["private to each thread"]
-      direction LR
+      direction TB
       subgraph T1["<b>Thread 1</b>"]
         direction TB
-        T1S["Stack<br>(local variables)"] ~~~ T1R["Registers, program<br>counter (context)"]
+        T1S["Stack<br>(local<br>variables)"] ~~~ T1R["Registers,<br>program<br>counter<br>(context)"]
       end
       subgraph T2["<b>Thread 2</b>"]
         direction TB
-        T2S["Stack<br>(local variables)"] ~~~ T2R["Registers, program<br>counter (context)"]
+        T2S["Stack<br>(local<br>variables)"] ~~~ T2R["Registers,<br>program<br>counter<br>(context)"]
       end
       subgraph T3["<b>Thread 3</b>"]
         direction TB
-        T3S["Stack<br>(local variables)"] ~~~ T3R["Registers, program<br>counter (context)"]
+        T3S["Stack<br>(local<br>variables)"] ~~~ T3R["Registers,<br>program<br>counter<br>(context)"]
       end
+      T1 ~~~ T3
+      T2 ~~~ T3
     end
     SH ~~~ OWN
   end

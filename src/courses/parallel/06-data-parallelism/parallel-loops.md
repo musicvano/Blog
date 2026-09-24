@@ -1,11 +1,11 @@
 ---
-title: "Parallel loops in the Parallel class"
-description: "Topic 6. Data parallelism and PLINQ: parallel loops in the Parallel class"
+title: "Parallel loops with the Parallel class"
+description: "Topic 6. Data parallelism and PLINQ: Parallel loops with the Parallel class"
 outline: [2, 3]
-sourceHash: "6307b146a8eb6464733a7f59e5b82eb3e08c02fa6fa6d8a6040ebfad9ccbc357"
+sourceHash: "184a6cbe663df0e671d4cad9a25babe1e1a65dfc10ef8a4f86b9118eb1b6689b"
 ---
 
-# Parallel loops in the Parallel class
+# Parallel loops with the Parallel class
 
 ## Data parallelism and task parallelism
 
@@ -14,33 +14,36 @@ In Topic 5, a program was divided into **tasks**: separate operations that can r
 **Data parallelism** performs **the same operation** on different parts of a large dataset (Fig. 6.1). An array, collection, image, or matrix is divided into parts, and each core processes its own part. Image filters, vector and matrix computations, searches in large arrays, and log statistics all work this way. This parallelism scales well: the more data there is, the more work each core has and the smaller the share of overhead.
 
 ```mermaid
-flowchart LR
+flowchart TB
   subgraph DP["<b>Data parallelism</b>"]
-    direction TB
+    direction LR
     subgraph ARR["array, 4 parts"]
-      direction LR
-      D1["0 1"] ~~~ D2["2 3"] ~~~ D3["4 5"] ~~~ D4["6 7"]
+      direction TB
+      D1["0 1"]
+      D2["2 3"]
+      D3["4 5"]
+      D4["6 7"]
     end
     D1 --> F1["<code>f(x)</code><br>core 1"]
     D2 --> F2["<code>f(x)</code><br>core 2"]
     D3 --> F3["<code>f(x)</code><br>core 3"]
     D4 --> F4["<code>f(x)</code><br>core 4"]
-    F2 ~~~ DN["one operation, different data"]
+    D4 ~~~ DN["one operation, different data"]
   end
   subgraph TP["<b>Task parallelism</b>"]
-    direction TB
+    direction LR
     PRG["program"] --> JA["<b>A</b><br>read<br>core 1"]
     PRG --> JB["<b>B</b><br>compress<br>core 2"]
     PRG --> JC["<b>C</b><br>log<br>core 3"]
     PRG --> JD["<b>D</b><br>report<br>core 4"]
-    JB ~~~ TN["different operations"]
+    PRG ~~~ TN["different operations"]
   end
   DP ~~~ TP
 ```
 
 Figure 6.1. Data parallelism and task parallelism {.caption}
 
-A loop can run in parallel only if its **iterations are independent**. For iterations $i$ and $j$, this means (Bernstein's conditions) that iteration $i$ does not write data read or written by iteration $j$, and vice versa. Shared data may be read concurrently, but not written.
+A loop can run in parallel only if its **iterations are independent**. For iterations $i$ and $j$, this means (Bernstein’s conditions) that iteration $i$ does not write data read or written by iteration $j$, and vice versa. Shared data may be read concurrently, but not written.
 
 ```cs
 // Independent iterations: each writes only to its own element.
@@ -59,7 +62,7 @@ Dividing a problem into parts that can be processed independently is called **da
 
 ## Parallel.For and Parallel.ForEach loops
 
-TPL's `System.Threading.Tasks.Parallel` class provides parallel equivalents of loops <https://learn.microsoft.com/dotnet/api/system.threading.tasks.parallel>. `Parallel.For` replaces a `for` loop, and `Parallel.ForEach` replaces `foreach`. The loop body is passed as a delegate, and the library distributes iterations among pool threads, also using the calling thread. The method returns only after all iterations finish.
+TPL’s `System.Threading.Tasks.Parallel` class provides parallel equivalents of loops <https://learn.microsoft.com/dotnet/api/system.threading.tasks.parallel>. `Parallel.For` replaces a `for` loop, and `Parallel.ForEach` replaces `foreach`. The loop body is passed as a delegate, and the library distributes iterations among pool threads, also using the calling thread. The method returns only after all iterations finish.
 
 ```cs
 Parallel.For(0, input.Length, i =>      // for (int i = 0; …)
@@ -69,7 +72,7 @@ Parallel.For(0, input.Length, i =>      // for (int i = 0; …)
 Parallel.ForEach(files, path => Compress(path));  // foreach
 ```
 
-Iteration order is unspecified: iteration 1000 may finish before iteration 0. Therefore, the body must not depend on order; write results to the element at the iteration's index (the `output` array), or accumulate them using the approaches in “Thread-local state”. A parallel loop loads all logical processors (Fig. 6.2).
+Iteration order is unspecified: iteration 1000 may finish before iteration 0. Therefore, the body must not depend on order; write results to the element at the iteration’s index (the `output` array), or accumulate them using the approaches in “Thread-local state.” A parallel loop loads all logical processors (Fig. 6.2).
 
 ::: info Screenshot
 Task Manager → Performance → CPU, graph “Logical processors”, while the Mandelbrot example runs; all 16 graphs near 100 %
@@ -81,7 +84,7 @@ Figure 6.2. Logical processor utilization during `Parallel.For` {.caption}
 
 Overloads taking `ParallelOptions` let you configure the loop:
 
-- `MaxDegreeOfParallelism` — the maximum number of concurrent iterations; `-1` (the default) means “unlimited”, allowing the scheduler to choose the thread count;
+- `MaxDegreeOfParallelism` — the maximum number of concurrent iterations; `-1` (the default) means “unlimited,” allowing the scheduler to choose the thread count;
 - `CancellationToken` — a cancellation token (Topic 5): after cancellation is requested, no new iterations start, and the method throws `OperationCanceledException`;
 - `TaskScheduler` — the task scheduler (the standard thread pool by default).
 
@@ -119,7 +122,7 @@ if (!result.IsCompleted)
 }
 ```
 
-For an array of 1 000 000 elements with negative values at positions 97 330, 194 661, …, this code always prints index 97 330. With `Stop()`, the index found depends on which iteration encounters a negative value first (194 661 in our run). You cannot call both `Break` and `Stop` in one loop: doing so throws `InvalidOperationException`.
+For an array of 1,000,000 elements with negative values at positions 97,330, 194,661, …, this code always prints index 97,330. With `Stop()`, the index found depends on which iteration encounters a negative value first (194,661 in our run). You cannot call both `Break` and `Stop` in one loop: doing so throws `InvalidOperationException`.
 
 ### Exceptions in parallel loops
 

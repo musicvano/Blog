@@ -2,7 +2,7 @@
 title: "The type system and numeric types"
 description: "Topic 2. Types, variables, and operators: The type system and numeric types"
 outline: [2, 3]
-sourceHash: "c0c246d14ddcd6cd0daab6df264d6cf3987a669fc2dae92109868a09b82857c7"
+sourceHash: "e9ee2d7b575954b984aa9da9e61821a36c73ca512ac136ea10c54d57dbd04fd1"
 ---
 
 # The type system and numeric types
@@ -141,9 +141,14 @@ A literal containing a decimal point or exponent (`12.5`, `1.5e3`) has type `dou
 A `double` occupies 64 bits: sign, exponent, and mantissa (Fig. 2.3). Most decimal fractions, such as 0.1, cannot be represented exactly in binary, just as 1/3 cannot be represented exactly as a decimal fraction. A `double` therefore stores the nearest binary value, introducing small errors during calculations:
 
 ```mermaid
-flowchart LR
-  S["63<br>sign <i>s</i><br>1 bit"] ~~~ E["62…52<br>exponent <i>e</i><br>11 bits"] ~~~ M["51…0<br>mantissa <i>m</i><br>52 bits"]
-  F["value = (−1)<sup><i>s</i></sup> · 1,<i>m</i> · 2<sup><i>e</i> − 1023</sup><br><code>0.1</code> ≈ 0,1000000000000000055511151231…"]
+flowchart TB
+  S["63<br>sign <i>s</i><br>1 bit"]
+  E["62…52<br>exponent <i>e</i><br>11 bits"]
+  M["51…0<br>mantissa <i>m</i><br>52 bits"]
+  F["value = (−1)<sup><i>s</i></sup> · 1.<i>m</i> · 2<sup><i>e</i> − 1023</sup><br><code>0.1</code> ≈ 0.1000000000000000055511151231…"]
+  S ~~~ F
+  E ~~~ F
+  M ~~~ F
 ```
 
 Figure 2.3. IEEE 754 representation of a `double` {.caption}

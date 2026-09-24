@@ -263,4 +263,3 @@ Provide a class UML diagram; for states, also show the allowed transitions. Use 
 6. Test an invalid transition, an unknown name, and numeric boundaries.
 7. Provide code, UML, a README, and at least five checks.
 8. During the presentation, add a new sealed type variant and show which places the compiler asks you to extend.
-

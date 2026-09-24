@@ -260,4 +260,3 @@ Complete the task of the chosen difficulty level for your variant number.
 5. Preserve cause when converting an exception.
 6. Reproduce one error in the debugger.
 7. Submit a test table, a README, and Git history.
-

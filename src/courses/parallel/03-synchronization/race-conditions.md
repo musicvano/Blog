@@ -1,17 +1,17 @@
 ---
 title: "Race conditions and mutual exclusion"
-description: "Topic 3. Thread synchronization: race conditions and mutual exclusion"
+description: "Topic 3. Thread synchronization: Race conditions and mutual exclusion"
 outline: [2, 3]
-sourceHash: "3d59018c39cce0b6f114858b04e653b79b7f2d5ec333ea7aeb64a9dc7f53755b"
+sourceHash: "4cb6c44bb6ded8bcd74698bc0d115aa7bb0a57e0cf3da0706aa22b89bafb3a08"
 ---
 
 # Race conditions and mutual exclusion
 
 ## Shared state and race conditions
 
-In Topic 2, threads processed separate parts of an array without interfering with one another. In practice, threads often need **shared state**: a request counter, account balance, cache, or task queue. Static fields, fields of an object accessible to multiple threads, and local variables captured by a lambda executed by multiple threads are shared. A method's local variables that are not captured by a lambda reside on their thread's stack and are inaccessible to other threads.
+In Topic 2, threads processed separate parts of an array without interfering with one another. In practice, threads often need **shared state**: a request counter, account balance, cache, or task queue. Static fields, fields of an object accessible to multiple threads, and local variables captured by a lambda executed by multiple threads are shared. A method’s local variables that are not captured by a lambda reside on their thread’s stack and are inaccessible to other threads.
 
-A code fragment that accesses shared data and must not execute in multiple threads simultaneously is called a **critical section**. If the critical section is unprotected, the program's result depends on how the OS scheduler interleaves thread instructions. This situation is called a **race condition**.
+A code fragment that accesses shared data and must not execute in multiple threads simultaneously is called a **critical section**. If the critical section is unprotected, the program’s result depends on how the OS scheduler interleaves thread instructions. This situation is called a **race condition**.
 
 The simplest example is four threads incrementing a counter:
 
@@ -30,7 +30,7 @@ foreach (Thread t in threads) t.Join();
 Console.WriteLine(counter);          // expected: 4000000
 ```
 
-Three runs in the *Release* configuration printed `1073918`, `1219211`, and `1304128`: about two-thirds of the increments were lost, with a different number each time. The reason is that `counter++` is not one action but three: **read** the value into a register, **calculate** the new value, and **write** it back. If thread B reads the variable between thread A's read and write, both write the same result, losing one increment (Fig. 3.1).
+Three runs in the *Release* configuration printed `1073918`, `1219211`, and `1304128`: about two-thirds of the increments were lost, with a different number each time. The reason is that `counter++` is not one action but three: **read** the value into a register, **calculate** the new value, and **write** it back. If thread B reads the variable between thread A’s read and write, both write the same result, losing one increment (Fig. 3.1).
 
 ```mermaid
 sequenceDiagram
@@ -59,7 +59,7 @@ Other operations that look like “one line” are also non-atomic:
 - `total += x` for `long`, `double`, or `decimal` is the same read–modify–write sequence; in a 32-bit process, writing a 64-bit `long` takes two machine instructions, so another thread may read a “torn” value (half old, half new);
 - copying a structure with several fields (`Point`, `decimal`, `DateTime`);
 - **check-then-act**: `if (cache == null) cache = Load();` or `if (balance >= sum) balance -= sum;` — another thread may change the condition between the check and the action;
-- operations on ordinary collections: concurrent `List<T>.Add` calls or writes to `Dictionary<TKey,TValue>` can not only lose elements but also corrupt the collection's internal structure (Topic 4).
+- operations on ordinary collections: concurrent `List<T>.Add` calls or writes to `Dictionary<TKey,TValue>` can not only lose elements but also corrupt the collection’s internal structure (Topic 4).
 
 Assigning a reference (`current = newObject;`) is atomic, but the sequence “read the reference, create a modified copy, write it back” is again a race condition.
 
@@ -76,7 +76,7 @@ Race condition bugs are hard to reproduce: a program may work correctly for year
 In addition, the solution must not depend on processor speed or the number of cores, and a thread outside the critical section must not prevent others from entering it. In Fig. 3.2, one thread executes the critical section while the others wait in a queue until it releases the lock.
 
 ```mermaid
-flowchart LR
+flowchart TB
   subgraph Q["waiting queue"]
     direction LR
     T3["Thread 3"] --> T2["Thread 2"]
@@ -84,16 +84,16 @@ flowchart LR
   Q --> LOCK["<code>lock</code>"]
   LOCK --> CS
   subgraph CS["<b>Critical section</b>"]
-    direction TB
+    direction LR
     T1["Thread 1"] ~~~ SD["shared data: <code>balance</code>"]
   end
   CS --> EXIT["exit"]
-  CS ~~~ NOTE["at most one thread in the section; the others wait until the owner releases the lock"]
+  EXIT ~~~ NOTE["at most one thread in the section;<br>the others wait until the owner<br>releases the lock"]
 ```
 
 Figure 3.2. A critical section and mutual exclusion {.caption}
 
-Whether synchronization is needed at all can be checked using **Bernstein's conditions**. Suppose fragment $P_{1}$ reads a set of variables $R_{1}$ and writes a set $W_{1}$, while fragment $P_{2}$ reads $R_{2}$ and writes $W_{2}$. The fragments can execute in parallel without synchronization if $$W_{1} \cap W_{2} = \varnothing , \quad R_{1} \cap W_{2} = \varnothing , \quad W_{1} \cap R_{2} = \varnothing .$$
+Whether synchronization is needed at all can be checked using **Bernstein’s conditions**. Suppose fragment $P_{1}$ reads a set of variables $R_{1}$ and writes a set $W_{1}$, while fragment $P_{2}$ reads $R_{2}$ and writes $W_{2}$. The fragments can execute in parallel without synchronization if $$W_{1} \cap W_{2} = \varnothing , \quad R_{1} \cap W_{2} = \varnothing , \quad W_{1} \cap R_{2} = \varnothing .$$
 
 For example, `a[i] = b[i] * 2` for different values of `i` satisfies the conditions: each iteration writes to its own element. The fragments `sum += a[i]` violate the first condition (both write to `sum`), so they require synchronization or restructuring: each thread calculates a local sum, and the results are added at the end.
 
@@ -141,4 +141,4 @@ A CAS loop does not block threads: if another thread changes `max` first, the cu
 
 ### The `volatile` modifier
 
-The JIT compiler and processor may cache a field's value in a register and reorder reads and writes. For a field that one thread modifies and another only reads (for example, the stop flag `private volatile bool stopRequested;`, checked by a worker thread in a `while (!stopRequested)` loop), the `volatile` modifier prevents these optimizations. The `Volatile.Read(ref x)` and `Volatile.Write(ref x, v)` methods provide the same effect for fields without the modifier (Example 1 in the lab). Important: `volatile` **does not make** compound operations atomic — `volatileCounter++` remains a race condition; it requires `Interlocked` or `lock`.
+The JIT compiler and processor may cache a field’s value in a register and reorder reads and writes. For a field that one thread modifies and another only reads (for example, the stop flag `private volatile bool stopRequested;`, checked by a worker thread in a `while (!stopRequested)` loop), the `volatile` modifier prevents these optimizations. The `Volatile.Read(ref x)` and `Volatile.Write(ref x, v)` methods provide the same effect for fields without the modifier (Example 1 in the lab). Important: `volatile` **does not make** compound operations atomic — `volatileCounter++` remains a race condition; it requires `Interlocked` or `lock`.

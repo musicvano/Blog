@@ -2,7 +2,7 @@
 title: "Comprehensions and tuples"
 description: "Topic 5. Built-in collections: comprehensions and tuples"
 outline: [2, 3]
-sourceHash: "dca225fdb222bbdb67f16f5927337b9ad21dba5150e3760c55ad0158f54df868"
+sourceHash: "3e013f83083d92d0e86ae2c75bd33fb038bba3ca99572e46b4d2df13f4b38d8c"
 ---
 
 # Comprehensions and tuples
@@ -41,19 +41,19 @@ Output: `[[0, 7, 0], [0, 7, 0]]` and `True`. To build a correct matrix, create a
 flowchart TD
   subgraph G1[" "]
     direction LR
-    A1["b = a"] --> B1["Shared outer list"] --> C1["Row"]
+    A1["<code>b = a</code>"] --> B1["Shared<br>outer list"] --> C1["Row"]
   end
   subgraph G2[" "]
     direction LR
-    A2["a"] --> LA2["List A"]
-    B2["b = a.copy()"] --> LB2["List B"]
-    LA2 --> R2["Shared row"]
+    A2["<code>a</code>"] --> LA2["List A"]
+    B2["<code>b =<br>a.copy()</code>"] --> LB2["List B"]
+    LA2 --> R2["Shared<br>row"]
     LB2 --> R2
   end
   subgraph G3[" "]
     direction LR
-    A3["a"] --> LA3["List A"]
-    B3["deepcopy(a)"] --> LB3["List B"]
+    A3["<code>a</code>"] --> LA3["List A"]
+    B3["<code>deepcopy(a)</code>"] --> LB3["List B"]
     LA3 --> RA3["Row A"]
     LB3 --> RB3["Row B"]
   end

@@ -2,7 +2,7 @@
 title: "Models, metrics, and scaling laws"
 description: "Topic 1. Fundamentals of parallel computing: Models, metrics, and scaling laws"
 outline: [2, 3]
-sourceHash: "735b7f4e430d28808b4bb1985e2ccb5367406fec4a5c7348a3c028da96aeca3f"
+sourceHash: "c57a38be6e5c14bde8cc861e8e7af2b886d90c57c1a59e3cc33d256562ecfd02"
 ---
 
 # Models, metrics, and scaling laws
@@ -73,7 +73,7 @@ The two laws do not contradict each other; they correspond to two ways of evalua
 
 ```mermaid
 block-beta
-  columns 2
+  columns 1
   block:S
     columns 6
     ST["<b>Strong: fixed problem size</b>"]:6
@@ -98,7 +98,7 @@ block-beta
     space w4d["<i>T</i>"]:2 space:3
     space wT["time →"]:4 space
   end
-  L["bar – work on one processor; right – problem size"]:2
+  L["bar – work on one processor; right – problem size"]
 ```
 
 Figure 1.7. Strong and weak scaling {.caption}

@@ -2,7 +2,7 @@
 title: "The thread pool and monitoring"
 description: "Topic 2. Processes and threads: The thread pool and monitoring"
 outline: [2, 3]
-sourceHash: "f7a312d08ccf4dbfed5f20223f6cc859a7798833fc41b957a5ada1a971aa82a7"
+sourceHash: "b29ad1f5ca6f6f5f779466059034c5583428fbe766ffbab97a88e8ef9b49e69b"
 ---
 
 # The thread pool and monitoring
@@ -28,7 +28,20 @@ flowchart TB
   QU["<code>QueueUserWorkItem</code><br>from a non-pool thread"] --> G
   subgraph G["Global queue"]
     direction LR
-    G1["W"] ~~~ G2["W"] ~~~ G3["W"] ~~~ G4["W"] ~~~ G5["W"] ~~~ GF["FIFO"]
+    G1["W"] ~~~ G2["W"] ~~~ G3["W"]
+    G4["W"] ~~~ G5["W"] ~~~ GF["FIFO"]
+  end
+  subgraph L1[" "]
+    direction TB
+    L1A["w"] ~~~ L1B["w"]
+  end
+  subgraph L2[" "]
+    direction TB
+    L2A["w"] ~~~ L2B["w"] ~~~ L2C["w"]
+  end
+  subgraph L3[" "]
+    direction TB
+    L3A["w"] ~~~ L3B["w"]
   end
   G --> W1["Worker<br>thread 1"]
   G --> W2["Worker<br>thread 2"]
@@ -38,21 +51,11 @@ flowchart TB
   W2 --- L2
   W3 --- L3
   W4 --- L4
-  subgraph L1[" "]
-    direction LR
-    L1A["w"] ~~~ L1B["w"]
-  end
-  subgraph L2[" "]
-    direction LR
-    L2A["w"] ~~~ L2B["w"] ~~~ L2C["w"]
-  end
-  subgraph L3[" "]
-    direction LR
-    L3A["w"] ~~~ L3B["w"]
-  end
+  L1 ~~~ W4
+  L2 ~~~ W3
   L4["(empty)"]
   L3 -.->|"work stealing"| L4
-  L1 ~~~ NOTE["local queues: the owner takes<br>the most recently added job (LIFO)"]
+  L4 ~~~ NOTE["local queues: the owner takes<br>the most recently added job (LIFO)"]
 ```
 
 Figure 2.7. .NET thread pool queues {.caption}

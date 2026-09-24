@@ -2,7 +2,7 @@
 title: "Strings and formatting"
 description: "Topic 4. Arrays and strings: Strings and formatting"
 outline: [2, 3]
-sourceHash: "43f15ff967a3d693eafc0c6f9ddd4aac04bd63f2dca868040d9e312379899fd5"
+sourceHash: "2d414334290f0b351f6c63dfe8b67198b52e122657a2924537512f993f4f6f60"
 ---
 
 # Strings and formatting
@@ -21,13 +21,14 @@ flowchart TB
   subgraph BEFORE ["<code>string s = #quot;Kyi#quot;;</code>"]
     direction LR
     S1["<code>s</code>  ●"] --> K1["<code>#quot;Kyi#quot;</code>"]
-    N1["the string object does not change"]
+    N1["the string object<br>does not change"]
   end
   subgraph AFTER ["<code>s += #quot;v#quot;;</code>"]
     direction LR
     S2["<code>s</code>  ●"] --> K2["<code>#quot;Kyiv#quot;</code>"]
-    OLD["<code>#quot;Kyi#quot;</code><br>the old object becomes garbage"]
+    OLD["<code>#quot;Kyi#quot;</code><br>the old object<br>becomes garbage"]
   end
+  BEFORE ~~~ AFTER
 ```
 
 Figure 4.6. String immutability {.caption}

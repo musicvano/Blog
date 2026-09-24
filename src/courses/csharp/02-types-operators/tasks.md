@@ -7,9 +7,7 @@ sourceHash: "26716b5c3f0b40b6ac9be910f0de3e85eff7833a8948dcbfb7fa2eeae96d3e78"
 
 # Tasks
 
-**Goal:** become familiar with C# built-in data types, value types, and reference types; learn to declare variables and constants, choose a type for a task, convert types, and validate input; master arithmetic, logical, and bitwise operators, overflow checking, and rounding.
-
-Complete the task at your chosen difficulty level for your assigned variant. Each variant contains three tasks: 1 — initial level, 2 — basic level, 3 — advanced level.
+Complete the task of the chosen difficulty level for your variant number.
 
 ## Variants
 

@@ -1,0 +1,233 @@
+---
+title: "Building and basic parallel patterns"
+description: "Topic 11. GPU computing: building and basic parallel patterns"
+outline: [2, 3]
+sourceHash: "0757767e35d87b46676e480f709c607ada3d48ec4a18f42972c48a22aa67648e"
+---
+
+# Building and basic parallel patterns
+
+## Building a project and handling errors
+
+CMake supports CUDA as a project language. The `CMakeLists.txt` file for the “Vector addition” example:
+
+```cmake
+cmake_minimum_required(VERSION 3.28)
+project(VectorAdd LANGUAGES CXX CUDA)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CUDA_STANDARD 20)
+set(CMAKE_CUDA_ARCHITECTURES 86)      # RTX 3060, CC 8.6
+
+find_package(CUDAToolkit REQUIRED)
+
+add_executable(vector_add vector_add.cu)
+target_link_libraries(vector_add PRIVATE CUDA::cudart)
+```
+
+- `LANGUAGES CXX CUDA` enables the `nvcc` compiler for `.cu` files.
+- `CMAKE_CUDA_ARCHITECTURES` (<https://cmake.org/cmake/help/latest/prop_tgt/CUDA_ARCHITECTURES.html>) sets the CCs for which code is generated: `86` means machine code and PTX for CC 8.6; `native` means the GPU of this computer; a list such as `75;86;89` targets several GPUs.
+- The `FindCUDAToolkit` module (<https://cmake.org/cmake/help/latest/module/FindCUDAToolkit.html>) creates library targets: `CUDA::cudart`, `CUDA::cublas`, `CUDA::cufft`, `CUDA::curand`, and so on.
+
+The project is built the same way as in Topics 9 and 10: `cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release` and `cmake --build build`. During configuration, CMake reports `The CUDA compiler identification is NVIDIA 13.3.73 with host compiler GNU 15.2.0`. Each version of `nvcc` supports a limited range of GCC versions: CUDA 13.3 accepts GCC 15 but refuses to work with GCC 16 (also available in Ubuntu 26.04). On Windows with MSVC, the options `-Xcompiler=/utf-8,/Zc:preprocessor` are added to every `.cu` file: the first is needed for non-ASCII (UTF-8) strings, and the second for the Thrust and CUB libraries.
+
+In CLion (<https://www.jetbrains.com/help/clion/cuda-projects.html>), a CUDA project is created with *File → New Project → CUDA Executable*, or you open an existing folder with a `CMakeLists.txt`. To work with WSL, choose the WSL toolchain (Topic 9), and set the path to `nvcc` with the `PATH` variable in Ubuntu or with the `-DCMAKE_CUDA_COMPILER=/usr/local/cuda/bin/nvcc` option of the CMake profile. CLion highlights kernels and the `<<<…>>>` syntax (Fig. 11.6).
+
+::: info Screenshot
+CLion, WSL toolchain: `vector_add.cu` in the editor (kernel highlighted), `CMakeLists.txt` with `LANGUAGES CXX CUDA` in a second tab, Run tool window with “Max error: 0”
+:::
+
+Figure 11.6. A CUDA project in CLion {.caption}
+
+### CUDA errors
+
+Every CUDA Runtime function returns a `cudaError_t` code; the `CUDA_CHECK` macro checks it. A kernel launch returns nothing, so kernel errors are checked with two calls:
+
+- `cudaGetLastError()` immediately after the launch catches **configuration** errors (too many threads per block, too much shared memory);
+- `cudaDeviceSynchronize()` catches **execution** errors (out-of-bounds access and so on). Such errors are “sticky”: the CUDA context is corrupted, and all subsequent calls return the same error.
+
+A program with two deliberate errors (a block of 2048 threads and a kernel without a bounds check) printed:
+
+```
+1: cudaErrorInvalidValue: invalid argument
+2: launch cudaSuccess
+3: cudaErrorIllegalAddress: an illegal memory access was encountered
+4: cudaErrorIllegalAddress
+```
+
+Line 2 shows that an execution error is not visible at launch time, and line 4 shows that after it even `cudaMalloc` fails. The `compute-sanitizer` utility (<https://docs.nvidia.com/compute-sanitizer/>) finds the location of the error: the command `compute-sanitizer ./errors` prints, among other things, `Invalid __global__ write of size 4 bytes`, the thread and block indices, and the distance from the allocated memory. The `cuda-gdb` debugger for kernels works on Linux; for it, the program is built with the `-G` option.
+
+## Basic parallel patterns
+
+Most GPU programs combine a few simple patterns:
+
+- **element-wise operation** (*map*): SAXPY $y = a x + y$, vector addition, pixel transformations; one thread per element;
+- **two-dimensional grid** for images and matrices: a block of $16 \times 16$ threads, `x` is the column, `y` is the row;
+- **stencil**: each thread reads neighboring elements (blurring, heat conduction);
+- **reduction** and **histogram**: many threads write to one or several values (next section).
+
+If there are more elements than threads in the grid, use a **grid-stride loop**: `for (int i = index; i < n; i += gridDim.x * blockDim.x)`. Then a single fixed-size grid (for example, 8 blocks per SM) processes an array of any length.
+
+### Grayscale: a 2D grid
+
+The program converts a color image (an `Rgb` structure of three bytes) to grayscale using the formula $Y = 0 {,} 299 R + 0 {,} 587 G + 0 {,} 114 B$ and writes the result to `gray.pgm` (the PGM format opens in GIMP and most viewers). The image is generated by the program (color gradients), and its dimensions are set by arguments. The time of each stage is measured separately, and the result is compared with the CPU, both sequential and OpenMP.
+
+```cpp
+// grayscale.cu – grayscale conversion of a color image on a
+// 2D thread grid. Arguments: width height (default 3840 2160).
+#include <omp.h>
+#include <cstdlib>
+#include <fstream>
+#include "common.cuh"
+
+struct Rgb { unsigned char r, g, b; };
+
+// Thread (x, y) computes the luminance of one pixel.
+__global__ void Grayscale(const Rgb* in, unsigned char* out,
+                          int width, int height)
+{
+    int x = blockIdx.x * blockDim.x + threadIdx.x;   // column
+    int y = blockIdx.y * blockDim.y + threadIdx.y;   // row
+    if (x < width && y < height)
+    {
+        Rgb p = in[y * width + x];
+        out[y * width + x] = (unsigned char)(
+            0.299f * p.r + 0.587f * p.g + 0.114f * p.b + 0.5f);
+    }
+}
+
+// The same formula on the CPU: threads = 1 – sequential, else OpenMP.
+void GrayscaleCpu(const std::vector<Rgb>& in,
+                  std::vector<unsigned char>& out, int threads)
+{
+    const long long n = (long long)in.size();
+    #pragma omp parallel for num_threads(threads)
+    for (long long i = 0; i < n; ++i)
+        out[i] = (unsigned char)(0.299f * in[i].r
+            + 0.587f * in[i].g + 0.114f * in[i].b + 0.5f);
+}
+
+int main(int argc, char* argv[])
+{
+    const int w = argc > 1 ? std::atoi(argv[1]) : 3840;
+    const int h = argc > 2 ? std::atoi(argv[2]) : 2160;
+    const size_t n = (size_t)w * h;
+    std::vector<Rgb> image(n);                   // gradients
+    for (int y = 0; y < h; ++y)
+        for (int x = 0; x < w; ++x)
+            image[(size_t)y * w + x] = {(unsigned char)(x * 255 / w),
+                (unsigned char)(y * 255 / h), (unsigned char)(x ^ y)};
+    std::vector<unsigned char> gray(n), check(n);
+
+    Rgb* dIn;
+    unsigned char* dOut;
+    CUDA_CHECK(cudaMalloc(&dIn, n * sizeof(Rgb)));
+    CUDA_CHECK(cudaMalloc(&dOut, n));
+    dim3 block(16, 16);                          // 256 threads
+    dim3 grid((w + block.x - 1) / block.x,
+              (h + block.y - 1) / block.y);
+
+    float h2d = MedianMs([&] { return GpuMs([&] {
+        CUDA_CHECK(cudaMemcpy(dIn, image.data(), n * sizeof(Rgb),
+                              cudaMemcpyHostToDevice)); }); });
+    float kernel = MedianMs([&] { return GpuMs([&] {
+        Grayscale<<<grid, block>>>(dIn, dOut, w, h);
+        CUDA_CHECK(cudaGetLastError()); }); });
+    float d2h = MedianMs([&] { return GpuMs([&] {
+        CUDA_CHECK(cudaMemcpy(gray.data(), dOut, n,
+                              cudaMemcpyDeviceToHost)); }); });
+    float cpu1 = MedianMs([&] {
+        return CpuMs([&] { GrayscaleCpu(image, check, 1); }); });
+    int p = omp_get_num_procs();
+    float cpuP = MedianMs([&] {
+        return CpuMs([&] { GrayscaleCpu(image, check, p); }); });
+
+    int maxDiff = 0;
+    for (size_t i = 0; i < n; ++i)
+        maxDiff = std::max(maxDiff, std::abs(gray[i] - check[i]));
+    std::ofstream file("gray.pgm", std::ios::binary);   // PGM format
+    file << "P5\n" << w << ' ' << h << "\n255\n";
+    file.write((const char*)gray.data(), n);
+
+    float total = h2d + kernel + d2h;
+    std::printf("Image %dx%d, grid %ux%u of 16x16 blocks\n",
+                w, h, grid.x, grid.y);
+    std::printf("GPU: H2D %.2f + kernel %.3f + D2H %.2f = %.2f ms\n",
+                h2d, kernel, d2h, total);
+    std::printf("CPU: 1 thread %.2f ms, OpenMP (%d) %.2f ms\n",
+                cpu1, p, cpuP);
+    std::printf("Speedup over OpenMP: kernel %.1f, "
+                "with copies %.2f\n", cpuP / kernel, cpuP / total);
+    std::printf("Max difference from CPU: %d\n", maxDiff);
+    CUDA_CHECK(cudaFree(dIn));
+    CUDA_CHECK(cudaFree(dOut));
+}
+```
+
+The examples of this lecture are built by a single CMake project: each example has its own target in a `foreach` loop (the lab adds its programs to the list). The `FindOpenMP` module in CMake 3.31 creates the `OpenMP::OpenMP_CUDA` target for OpenMP in the host code of `.cu` files:
+
+```cmake
+cmake_minimum_required(VERSION 3.31)
+project(GpuExamples LANGUAGES CXX CUDA)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CUDA_STANDARD 20)
+set(CMAKE_CUDA_ARCHITECTURES 86)
+
+find_package(CUDAToolkit REQUIRED)
+find_package(OpenMP REQUIRED)      # OpenMP::OpenMP_CUDA: CMake 3.31+
+
+# Windows (MSVC): UTF-8 and the standard preprocessor for CCCL (Thrust).
+set(WIN_FLAGS -Xcompiler=/utf-8,/Zc:preprocessor)
+
+foreach(name grayscale matmul streams thrust_demo reduce histogram
+             managed cublas_demo errors)
+    add_executable(${name} ${name}.cu)
+    target_link_libraries(${name} PRIVATE CUDA::cudart
+                          OpenMP::OpenMP_CUDA)
+    if(MSVC)
+        target_compile_options(${name} PRIVATE
+            $<$<COMPILE_LANGUAGE:CUDA>:${WIN_FLAGS}>)
+    endif()
+endforeach()
+target_link_libraries(cublas_demo PRIVATE CUDA::cublas)
+```
+
+The programs were run in WSL2 with the variables `OMP_PLACES=cores OMP_PROC_BIND=spread` (Topic 10): without binding, short OpenMP loops in WSL2 ran 3–5 times slower. Output for 4K and 8K images (`./grayscale` and `./grayscale 7680 4320`):
+
+```
+Image 3840x2160, grid 240x135 of 16x16 blocks
+GPU: H2D 2.48 + kernel 0.134 + D2H 0.91 = 3.52 ms
+CPU: 1 thread 10.67 ms, OpenMP (16) 1.40 ms
+Speedup over OpenMP: kernel 10.4, with copies 0.40
+Max difference from CPU: 1
+Image 7680x4320, grid 480x270 of 16x16 blocks
+GPU: H2D 8.61 + kernel 0.530 + D2H 3.09 = 12.23 ms
+CPU: 1 thread 42.35 ms, OpenMP (16) 6.44 ms
+Speedup over OpenMP: kernel 12.1, with copies 0.53
+Max difference from CPU: 1
+```
+
+The kernel is 10–12 times faster than OpenMP, but copying takes 96 % of the GPU time, and **including copies, the GPU is 2–2.5 times slower than the CPU**. Grayscale conversion has only a few operations per pixel: such tasks pay off on the GPU only when the image is already there (for example, when the next step is blurring or recognition). A difference of 1 in some pixels is explained by the fact that `nvcc` fuses multiplication and addition into an FMA instruction with a single rounding, while GCC on the CPU does not.
+
+### Matrix multiplication: a naive kernel
+
+In the naive kernel, each thread computes one element $C_{i j} = \sum_{k} A_{i k} B_{k j}$, reading a row of $A$ and a column of $B$ from global memory:
+
+```cpp
+__global__ void MatMulNaive(const float* a, const float* b, float* c,
+                            int n)
+{
+    int row = blockIdx.y * blockDim.y + threadIdx.y;
+    int col = blockIdx.x * blockDim.x + threadIdx.x;
+    if (row < n && col < n)
+    {
+        float sum = 0.0f;
+        for (int k = 0; k < n; ++k)
+            sum += a[row * n + k] * b[k * n + col];
+        c[row * n + col] = sum;
+    }
+}
+```
+
+For $n \times n$ matrices, $2 n^{3}$ operations are performed and $2 n^{3}$ numbers are read: every element of $A$ and $B$ is loaded from global memory $n$ times. Accesses to `b[k * n + col]` are coalesced (neighboring threads read neighboring columns), and `a[row * n + k]` is the same for all threads of a warp and is read once. Still, the computation is memory-bound, and the next section shows how to reduce the number of accesses.

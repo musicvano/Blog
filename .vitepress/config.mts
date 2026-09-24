@@ -3,9 +3,15 @@ import { mermaidPlugin } from "./markdown/mermaid.mts";
 import { uk } from "./locales/uk.mts";
 import { coursesBases, courseSidebar } from "./courses/sidebar.mts";
 import cppEn from "./courses/en/cpp.mts";
+import csharpEn from "./courses/en/csharp.mts";
+import csharpAdvancedEn from "./courses/en/csharp-advanced.mts";
+import javaEn from "./courses/en/java.mts";
+import kotlinEn from "./courses/en/kotlin.mts";
+import pythonEn from "./courses/en/python.mts";
+import parallelEn from "./courses/en/parallel.mts";
 
 // Courses translated into English (src/courses/<slug>/).
-const coursesEn = [cppEn];
+const coursesEn = [cppEn, csharpEn, csharpAdvancedEn, javaEn, kotlinEn, pythonEn, parallelEn];
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({

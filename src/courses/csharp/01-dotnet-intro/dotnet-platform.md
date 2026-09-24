@@ -2,7 +2,7 @@
 title: "C# and the .NET platform"
 description: "Topic 1. .NET and program structure: C# and the .NET platform"
 outline: [2, 3]
-sourceHash: "7891bf763940501574d7f2e8aea23a76a021fd5b7e477ee0f4f81b4be4fe2ca3"
+sourceHash: "8fce93b232fcc55b9509eb55fd30464d9c12869f8754b5fd30c762df743f7116"
 ---
 
 # C# and the .NET platform
@@ -27,17 +27,17 @@ The platform's history can be divided into three stages (Fig. 1.1):
 - **.NET 5 and later** (since 2020) — a unified platform that continues .NET Core. “Core” is no longer part of its name, and version 4 was skipped to avoid confusion with .NET Framework 4.x.
 
 ```mermaid
-flowchart LR
+flowchart TB
   subgraph FW [".NET Framework · Windows only"]
-    direction LR
+    direction TB
     F1["2002"] --> F2["4.8 (2019)"] --> F3["4.8.1 (2022)"]
   end
   C[".NET Core<br>2016"] --> N5
   subgraph NET [".NET 5 and later"]
-    direction LR
+    direction TB
     N5["5<br>2020"] --> N8["8 LTS<br>2023"] --> N10["10 LTS<br>2025"] --> N26["2026"]
   end
-  N["Development milestones; spacing between years is schematic.<br>Lines do not indicate version support periods."]
+  N26 ~~~ N["Development milestones;<br>spacing between years<br>is schematic. Lines do not<br>indicate support periods."]
 ```
 
 Figure 1.1. Stages in the development of .NET {.caption}

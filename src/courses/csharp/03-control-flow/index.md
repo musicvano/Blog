@@ -14,7 +14,7 @@ sourceHash: "b02e2a493da5ddd78c03c60914a980886b0d4497375175a37fa09493c7d79bc8"
 2. [switch and patterns](./switch-patterns) — The switch statement · Patterns · The switch expression
 3. [Loops](./loops) — while and do/while loops · The for loop · The foreach loop
 4. [Jump statements and common algorithms](./jumps-algorithms) — Jump statements · Common loop algorithms
-5. [Examples and common mistakes](./case-studies) — Program examples · Common mistakes
+5. [Examples and common mistakes](./case-studies) — Example programs · Common mistakes
 
 ## Practice and review
 

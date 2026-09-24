@@ -2,7 +2,7 @@
 title: "Debug.Assert and exception handling"
 description: "Topic 6. Debugging and exceptions: Debug.Assert and exception handling"
 outline: [2, 3]
-sourceHash: "1843780e76c665ad5a432f675a7d0735516dd38ac6ab9ff9b896cb32766fd809"
+sourceHash: "d4065c6fcfc040834ff3c2f6f08f73b13d492f798677a0647270e4c0df222a12"
 ---
 
 # Debug.Assert and exception handling
@@ -46,17 +46,17 @@ All exceptions are objects of classes derived from `System.Exception`. Standard 
 
 ```mermaid
 flowchart LR
-  E["<code>Exception</code>"] --- SE["<code>SystemException</code>"]
-  SE --- AE["<code>ArgumentException</code>"]
-  AE --- ANE["<code>ArgumentNullException</code>"]
-  AE --- AOR["<code>ArgumentOutOfRangeException</code>"]
-  SE --- ARE["<code>ArithmeticException</code>"]
-  ARE --- DBZ["<code>DivideByZeroException</code>"]
-  ARE --- OVF["<code>OverflowException</code>"]
-  SE --- FE["<code>FormatException</code>"]
-  SE --- IOR["<code>IndexOutOfRangeException</code>"]
-  SE --- IOE["<code>InvalidOperationException</code>"]
-  SE --- NRE["<code>NullReferenceException</code>"]
+  E["<code>Exception</code>"] --- SE["<code>System</code><br><code>Exception</code>"]
+  SE --- AE["<code>Argument</code><br><code>Exception</code>"]
+  AE --- ANE["<code>Argument</code><br><code>Null</code><br><code>Exception</code>"]
+  AE --- AOR["<code>Argument</code><br><code>OutOfRange</code><br><code>Exception</code>"]
+  SE --- ARE["<code>Arithmetic</code><br><code>Exception</code>"]
+  ARE --- DBZ["<code>DivideBy</code><br><code>Zero</code><br><code>Exception</code>"]
+  ARE --- OVF["<code>Overflow</code><br><code>Exception</code>"]
+  SE --- FE["<code>Format</code><br><code>Exception</code>"]
+  SE --- IOR["<code>Index</code><br><code>OutOfRange</code><br><code>Exception</code>"]
+  SE --- IOE["<code>Invalid</code><br><code>Operation</code><br><code>Exception</code>"]
+  SE --- NRE["<code>Null</code><br><code>Reference</code><br><code>Exception</code>"]
 ```
 
 Figure 6.7. Hierarchy of standard .NET exceptions {.caption}

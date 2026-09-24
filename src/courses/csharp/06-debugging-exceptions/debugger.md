@@ -2,7 +2,7 @@
 title: "Errors and the debugger"
 description: "Topic 6. Debugging and exceptions: Errors and the debugger"
 outline: [2, 3]
-sourceHash: "d1986d7937632ebd360b7cbaecfb0dc7ad5f0b5db30757d2e3ba95c14cf64beb"
+sourceHash: "52ae52e06a413b128973afe755c4c35462db5b7e5635dfb92f49a9a6cd62326b"
 ---
 
 # Errors and the debugger
@@ -17,9 +17,9 @@ Program errors fall into three categories (Fig. 6.1):
 
 ```mermaid
 flowchart TD
-  S1["<b>Syntax</b>"] --> S2["<code>WriteLine(#quot;a#quot;)</code><br>without <code>;</code>"] --> S3["detected by the compiler:<br>error CS1002"]
-  R1["<b>Runtime</b><br>(exceptions)"] --> R2["<code>int.Parse(#quot;12a#quot;)</code>"] --> R3["detected by the CLR:<br><code>FormatException</code>"]
-  L1["<b>Logic</b>"] --> L2["<code>sum / count</code><br>for integers"] --> L3["incorrect result:<br>tests, debugger"]
+  S1["<b>Syntax</b>"] --> S2["<code>WriteLine(#quot;a#quot;)</code><br>without <code>;</code>"] --> S3["detected by<br>the compiler:<br>error CS1002"]
+  R1["<b>Runtime</b><br>(exceptions)"] --> R2["<code>int.Parse(</code><br><code>#quot;12a#quot;)</code>"] --> R3["detected by the CLR:<br><code>FormatException</code>"]
+  L1["<b>Logic</b>"] --> L2["<code>sum / count</code><br>for integers"] --> L3["incorrect<br>result:<br>tests,<br>debugger"]
 ```
 
 Figure 6.1. Types of errors and how they are detected {.caption}

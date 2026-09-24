@@ -2,7 +2,7 @@
 title: "Parallel.Invoke and data partitioning"
 description: "Topic 6. Data parallelism and PLINQ: Parallel.Invoke and data partitioning"
 outline: [2, 3]
-sourceHash: "ed86382b6b6639d45eba3ad63141ec306493d628705e5284c7c26fb8747705ff"
+sourceHash: "fcf854546a34753bad75e1b711a44e3893b067e7ed9f257e5bda631b6fb2ba9c"
 ---
 
 # Parallel.Invoke and data partitioning
@@ -21,7 +21,7 @@ Parallel.Invoke(
 
 Each action writes to its own variable, so there is no race condition. Action exceptions are also collected into `AggregateException`.
 
-`Parallel.For` and `Parallel.ForEach` are intended for computation: a pool thread is occupied throughout the body's execution. If the body mostly **waits** (network, disk, `Task.Delay`), blocking pool threads is inefficient. For asynchronous bodies, use `Parallel.ForEachAsync` (since .NET 6) or `Parallel.ForAsync` (since .NET 8). The body is an asynchronous delegate that receives an element and a cancellation token and returns `ValueTask`:
+`Parallel.For` and `Parallel.ForEach` are intended for computation: a pool thread is occupied throughout the body’s execution. If the body mostly **waits** (network, disk, `Task.Delay`), blocking pool threads is inefficient. For asynchronous bodies, use `Parallel.ForEachAsync` (since .NET 6) or `Parallel.ForAsync` (since .NET 8). The body is an asynchronous delegate that receives an element and a cancellation token and returns `ValueTask`:
 
 ```cs
 string[] files = ["a.txt", "b.txt", "c.txt", "d.txt"];
@@ -42,11 +42,17 @@ For multiple threads to process one collection, it must be divided into **partit
 
 ```mermaid
 block-beta
-  columns 18
-  r1["Range"] r1a["0 1 2 3<br>W1"]:4 r1b["4 5 6 7<br>W2"]:4 r1c["8 9 10 11<br>W3"]:4 r1d["12 13 14 15<br>W4"]:4 r1n["in advance,<br>equally"]
-  r2["Chunk"] r2a["0 1<br>W1"]:2 r2b["2 3<br>W2"]:2 r2c["4 5<br>W3"]:2 r2d["6 7<br>W4"]:2 r2e["8 9<br>W1"]:2 r2f["10 11<br>W2"]:2 r2g["12 13<br>W3"]:2 r2h["14 15<br>W4"]:2 r2n["on demand,<br>fixed chunk"]
-  r3["Dynamic"] r3a["0<br>W1"] r3b["1<br>W2"] r3c["2<br>W3"] r3d["3<br>W4"] r3e["4 5<br>W1"]:2 r3f["6 7<br>W2"]:2 r3g["8 9<br>W3"]:2 r3h["10 11<br>W4"]:2 r3i["12 13 14 15<br>W1"]:4 r3n["on demand,<br>growing chunk"]
-  L["box — a partition; below it — the worker assigned to it"]:18
+  columns 8
+  r1["Range"]:4 r1n["in advance,<br>equally"]:4
+  r1a["0 1 2 3<br>W1"]:4 r1b["4 5 6 7<br>W2"]:4
+  r1c["8 9 10 11<br>W3"]:4 r1d["12 13 14 15<br>W4"]:4
+  r2["Chunk"]:4 r2n["on demand,<br>fixed chunk"]:4
+  r2a["0 1<br>W1"]:2 r2b["2 3<br>W2"]:2 r2c["4 5<br>W3"]:2 r2d["6 7<br>W4"]:2
+  r2e["8 9<br>W1"]:2 r2f["10 11<br>W2"]:2 r2g["12 13<br>W3"]:2 r2h["14 15<br>W4"]:2
+  r3["Dynamic"]:4 r3n["on demand,<br>growing chunk"]:4
+  r3a["0<br>W1"] r3b["1<br>W2"] r3c["2<br>W3"] r3d["3<br>W4"] r3e["4 5<br>W1"]:2 r3f["6 7<br>W2"]:2
+  r3g["8 9<br>W3"]:2 r3h["10 11<br>W4"]:2 r3i["12 13 14 15<br>W1"]:4
+  L["box – a partition (chunk);<br>below it – the worker that received it"]:8
 ```
 
 Figure 6.3. Data partitioning strategies {.caption}
@@ -80,14 +86,14 @@ Table 6.2. Sum of squares of 50 million numbers on an i9-11900KF {.caption}
 
 | **Method** | **Time, ms** | **Result** |
 | --- | --- | --- |
-| sequential `for` loop | 30,9 | correct |
-| `Parallel.For`, shared variable `sum +=` | 582,2 | incorrect, different every time |
-| `Parallel.For` with `lock` on every iteration | 5802,5 | correct |
-| `Parallel.For` with local state | 19,8 | correct |
-| `Partitioner.Create` with ranges of $2^{20}$ elements | 5,0 | correct |
+| sequential `for` loop | 30.9 | correct |
+| `Parallel.For`, shared variable `sum +=` | 582.2 | incorrect, different every time |
+| `Parallel.For` with `lock` on every iteration | 5802.5 | correct |
+| `Parallel.For` with local state | 19.8 | correct |
+| `Partitioner.Create` with ranges of $2^{20}$ elements | 5.0 | correct |
 
 The race condition not only corrupts the result but also makes the loop almost 19 times slower because of constant processor cache conflicts. Locking fixes the result, but 50 million lock acquisitions make the loop 190 times slower. Local state removes synchronization, but calling a delegate for every multiplication is still costly; only the range partitioner achieves a sixfold speedup.
 
-Without `rangeSize`, the library chooses the range size: in the current implementation on a PC with 16 logical processors, an array of 1 000 000 elements is divided into 49 ranges of 20 833 elements (approximately $n / (3 p)$). Range size is the task's **granularity**: ranges that are too small increase overhead, while excessively large ranges hurt load balancing.
+Without `rangeSize`, the library chooses the range size: in the current implementation on a PC with 16 logical processors, an array of 1,000,000 elements is divided into 49 ranges of 20,833 elements (approximately $n / (3 p)$). Range size is the task’s **granularity**: ranges that are too small increase overhead, while excessively large ranges hurt load balancing.
 
-Create a custom partitioner when the data structure can be divided better than the standard partitioner allows (a tree or a file of records), or when elements have different “weights”. Derive from `Partitioner<TSource>` (or `OrderablePartitioner<TSource>` if ordering is needed) and override `GetPartitions`; for `Parallel.ForEach`, also override `SupportsDynamicPartitions` and `GetDynamicPartitions`. The partitioner must enumerate every element exactly once, without omissions or duplicates.
+Create a custom partitioner when the data structure can be divided better than the standard partitioner allows (a tree or a file of records), or when elements have different “weights.” Derive from `Partitioner<TSource>` (or `OrderablePartitioner<TSource>` if ordering is needed) and override `GetPartitions`; for `Parallel.ForEach`, also override `SupportsDynamicPartitions` and `GetDynamicPartitions`. The partitioner must enumerate every element exactly once, without omissions or duplicates.

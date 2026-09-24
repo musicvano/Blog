@@ -262,4 +262,3 @@ For all levels, submit a UML class diagram showing field visibility, constructor
 5. Separate model/app packages and build an executable JAR.
 6. Submit code, UML, a README, and at least five checks.
 7. During the presentation, show this, static, and private fields in the debugger.
-

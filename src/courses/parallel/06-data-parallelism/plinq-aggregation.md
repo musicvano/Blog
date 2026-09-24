@@ -2,7 +2,7 @@
 title: "PLINQ and aggregation"
 description: "Topic 6. Data parallelism and PLINQ: PLINQ and aggregation"
 outline: [2, 3]
-sourceHash: "9fccf4717effb0975c2d4caea14423611c243471fc9ba4eae473340056e795fe"
+sourceHash: "8584438153638116a748d8adef2563ee9d405b2b72b4984236f268ce182707b6"
 ---
 
 # PLINQ and aggregation
@@ -21,7 +21,7 @@ long count = numbers.AsParallel()
 Figure 6.4 shows PLINQ query execution: the source is partitioned, each partition is processed by its own thread, and results are **merged** for the consumer: a `foreach` loop, `ToList()`, or an aggregation operation.
 
 ```mermaid
-flowchart LR
+flowchart TB
   SRC["source<br><code>lines</code>"] --> PART["Partitioning"]
   subgraph LANES["pool threads process partitions"]
     direction TB
@@ -29,6 +29,8 @@ flowchart LR
     W2["<code>Where</code>"] --> S2["<code>Select</code>"]
     W3["<code>Where</code>"] --> S3["<code>Select</code>"]
     W4["<code>Where</code>"] --> S4["<code>Select</code>"]
+    S1 ~~~ W3
+    S2 ~~~ W4
   end
   PART --> W1
   PART --> W2
@@ -78,7 +80,7 @@ The mode is only a hint: `OrderBy` and `Reverse` always buffer all results, whil
 
 PLINQ has overhead: partitioning, task startup, merging, and, for `AsOrdered`, ordering. A query becomes slower than its sequential counterpart when:
 
-- the source is small or operations are cheap: in our measurement, 10 000 `Where(x => x % 3 == 0).Sum()` queries on a 100-element array took 62 ms with LINQ and 126 ms with PLINQ;
+- the source is small or operations are cheap: in our measurement, 10,000 `Where(x => x % 3 == 0).Sum()` queries on a 100-element array took 62 ms with LINQ and 126 ms with PLINQ;
 - most work is done by an operator that parallelizes poorly, such as `GroupBy` with millions of small elements (see the “Text analysis” example);
 - delegates access a shared resource with locking (`lock`, `Console.WriteLine`) or allocate large amounts of memory;
 - order is required (`AsOrdered`, `Take`, `Skip`), and much of the work goes into ordering.
@@ -110,11 +112,11 @@ For a non-associative operation, PLINQ does not report an error; it simply retur
 
 ```cs
 int[] numbers = Enumerable.Range(1, 1000).ToArray();
-int sequential = numbers.Aggregate((a, x) => a - x);   // -500 498
+int sequential = numbers.Aggregate((a, x) => a - x);   // -500,498
 int parallel = numbers.AsParallel()
-    .Aggregate((a, x) => a - x);                       //  481 376
+    .Aggregate((a, x) => a - x);                       //  481,376
 ```
 
-The value `481 376` was obtained on a PC with 16 logical processors; on another PC it differs, but is equally incorrect.
+The value `481,376` was obtained on a PC with 16 logical processors; on another PC it differs, but is equally incorrect.
 
 PLINQ collects exceptions thrown by query delegates into `AggregateException`, just like parallel loops. The query `numbers.AsParallel().Select(x => 100 / (x % 500)).ToArray()` on numbers 1…1000 produced an `AggregateException` with two `DivideByZeroException` instances (for 500 and 1000). A query canceled through `WithCancellation` throws `OperationCanceledException`.

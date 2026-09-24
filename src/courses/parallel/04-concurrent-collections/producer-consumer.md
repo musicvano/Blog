@@ -1,13 +1,13 @@
 ---
 title: "The producer–consumer pattern and channels"
-description: "Topic 4. Thread-safe collections: the producer–consumer pattern and channels"
+description: "Topic 4. Thread-safe collections: The producer–consumer pattern and channels"
 outline: [2, 3]
-sourceHash: "9d15de4dfe50a3047e7a38788f7d2bb9d47fd394291dbf7cffe84b066c5bcb58"
+sourceHash: "9128219d7d63bf0a825852679a9f3793a41f8bc2113ca5217b3546988e936d06"
 ---
 
 # The producer–consumer pattern and channels
 
-## BlockingCollection
+## The BlockingCollection class
 
 **`BlockingCollection<T>`** wraps any collection implementing `IProducerConsumerCollection<T>` (`ConcurrentQueue<T>` by default), adding **blocking** and **bounded capacity**:
 
@@ -29,7 +29,7 @@ The **producer–consumer pattern** separates a program into parts that create w
 - the queue smooths out short bursts of load.
 
 ```mermaid
-flowchart LR
+flowchart TB
   P1["Producer 1"] -->|"<code>Add</code>"| Q
   P2["Producer 2"] --> Q
   P3["Producer 3"] --> Q
@@ -37,8 +37,8 @@ flowchart LR
   Q -->|"<code>Take</code>"| C1["Consumer 1"]
   Q --> C2["Consumer 2"]
   Q --> C3["Consumer 3"]
-  Q -.->|"backpressure: queue full – <code>Add</code> waits"| P1
-  Q ~~~ NOTE["empty queue – <code>Take</code> waits; <code>CompleteAdding</code> stops consumers"]
+  Q -.->|"backpressure:<br>queue full – <code>Add</code> waits"| P1
+  C2 ~~~ NOTE["empty queue – <code>Take</code> waits;<br><code>CompleteAdding</code> stops consumers"]
 ```
 
 Figure 4.3. The producer–consumer pattern {.caption}
@@ -58,7 +58,7 @@ A completion signal is more reliable: there is no need to agree on a special val
 
 ### A pipeline of stages
 
-A **pipeline** is a chain of stages where one stage's consumer is the next stage's producer: “read files → parse lines → aggregate → report.” Each stage has its own queue and worker count: slow parsing can run in multiple threads, while aggregation runs in one thread without locks (Fig. 4.4). When a stage finishes, close its output queue, letting the completion signal propagate through the entire pipeline.
+A **pipeline** is a chain of stages where one stage’s consumer is the next stage’s producer: “read files → parse lines → aggregate → report.” Each stage has its own queue and worker count: slow parsing can run in multiple threads, while aggregation runs in one thread without locks (Fig. 4.4). When a stage finishes, close its output queue, letting the completion signal propagate through the entire pipeline.
 
 ## System.Threading.Channels
 

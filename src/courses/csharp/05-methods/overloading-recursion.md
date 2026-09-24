@@ -2,7 +2,7 @@
 title: "Overloading and recursion"
 description: "Topic 5. Methods, parameters, recursion: Overloading and recursion"
 outline: [2, 3]
-sourceHash: "e2b883975ac9271e9d97555002a3008646e1eac2c9fecd7d9bfd066e2cc9e4e0"
+sourceHash: "25686c847313f5c6740925e71495721996c778d34dc03a4d3d479ea83280319d"
 ---
 
 # Overloading and recursion
@@ -144,7 +144,7 @@ Some recursive algorithms compute the same values repeatedly. The method `Fib(n)
 of calls grows exponentially, and `Fib(40)` requires over 331 million calls. **Memoization** stores previously computed results, for example in an array: before computing, the method checks whether the result is already known. The “Fibonacci numbers” example compares three approaches.
 
 ```mermaid
-flowchart TD
+flowchart LR
   n1["F(5)"] --- n2["F(4)"]
   n1 --- n11[["F(3)"]]
   n2 --- n3["F(3)"]
@@ -159,7 +159,7 @@ flowchart TD
   n11 --- n15["F(1)"]
   n12 --- n13["F(1)"]
   n12 --- n14["F(0)"]
-  N["gray nodes — recomputing known values → memoization"]
+  N["gray<br>nodes –<br>recomputing<br>already<br>known<br>values →<br>memoization"]
 ```
 
 Figure 5.7. Recursive call tree for `Fib(5)` {.caption}

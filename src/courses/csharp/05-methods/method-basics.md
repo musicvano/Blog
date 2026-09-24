@@ -2,7 +2,7 @@
 title: "Declaring methods"
 description: "Topic 5. Methods, parameters, recursion: Declaring methods"
 outline: [2, 3]
-sourceHash: "d09803e6f7d770ab0c8f15dd1eaebb48c3e6501b19166c900df3b3ecc5d81bdc"
+sourceHash: "22f20b0f7667fc3664eae29a77fac272a6fa2113e4fceb219d408b849005ee6e"
 ---
 
 # Declaring methods
@@ -29,15 +29,15 @@ Figure 5.1. Extracting a method with *Extract method* {.caption}
 A method declaration consists of a **header** and **body** (Fig. 5.2): modifiers (such as `static`), a **return type**, **name**, a parenthesized **parameter** list, and a body in braces. If the method returns nothing, its return type is `void`. The `return` statement ends the method and, when the return type is not `void`, returns a value of that type. The name together with the list of parameter types is called the method’s **signature**.
 
 ```mermaid
-flowchart TD
-  SIG["<code>static double Average(int[] values, int from = 0)</code>"]
+flowchart LR
+  SIG["<code>static double</code><br><code>Average(int[] values,</code><br><code>int from = 0)</code>"]
   SIG -->|<code>static</code>| MOD["modifier"]
   SIG -->|<code>double</code>| RET["return type"]
   SIG -->|<code>Average</code>| NAME["name"]
-  SIG -->|"<code>(int[] values, int from = 0)</code>"| PAR["parameters"]
-  SIG -->|"<code>= 0</code>"| DEF["default value"]
+  SIG -->|"<code>(int[] values,</code><br><code>int from = 0)</code>"| PAR["parameters"]
+  SIG -->|"<code>= 0</code>"| DEF["default<br>value"]
   SIG --- BODY["<code>{</code><br>…<br><code>return result;</code><br><code>}</code>"]
-  BODY --- BN["method body:<br><code>return</code> returns <code>double</code>"]
+  BN["method body:<br><code>return</code> returns<br><code>double</code>"] --- BODY
 ```
 
 Figure 5.2. Parts of a method declaration {.caption}

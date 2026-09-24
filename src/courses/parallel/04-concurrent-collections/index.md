@@ -10,9 +10,9 @@ sourceHash: "bde2c458132bcfc44d2439bbbd588b532f86b8aca54d98ee7de65517000ceede"
 
 ## Lecture contents
 
-1. [Collections and lock-free algorithms](./lock-free) — Ordinary collections in a multithreaded program · Lock-free algorithms
+1. [Collections and nonblocking algorithms](./lock-free) — Ordinary collections in a multithreaded program · Nonblocking algorithms
 2. [Concurrent and immutable collections](./concurrent-collections) — Concurrent collections · ConcurrentDictionary · Immutable and frozen collections
-3. [The producer–consumer pattern and channels](./producer-consumer) — BlockingCollection · The producer–consumer pattern · System.Threading.Channels
+3. [The producer–consumer pattern and channels](./producer-consumer) — The BlockingCollection class · The producer–consumer pattern · System.Threading.Channels
 4. [Caches, false sharing, and profiling](./false-sharing) — CPU caches and data locality · False sharing · Choosing a data structure · Measurement and profiling
 5. [Examples and common mistakes](./case-studies) — Program examples · Common mistakes
 

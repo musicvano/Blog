@@ -2,7 +2,7 @@
 title: "dotnet CLI and program structure"
 description: "Topic 1. .NET and program structure: dotnet CLI and program structure"
 outline: [2, 3]
-sourceHash: "f5825999c883d514dc3c84705d123be0f1c9654165e77a399a98d502750a9933"
+sourceHash: "701856975d51acf60bbbaae1788a6823c31591a7e96d91232d6d610b368faf00"
 ---
 
 # dotnet CLI and program structure
@@ -61,16 +61,16 @@ Labs/
 ```
 
 ```mermaid
-flowchart TD
+flowchart LR
   S["<b>Solution</b><br><code>Labs.slnx</code>"] --- H["<b>Hello project</b><br>console<br><code>Hello.csproj</code>"]
   S --- L["<b>Library project</b><br>library<br><code>Library.csproj</code>"]
   S --- T["<b>Tests project</b><br>tests<br><code>Tests.csproj</code>"]
   H --- P["<code>Program.cs</code><br>source code"]
-  H --- B["<code>bin/</code><br>build output"]
-  H --- O["<code>obj/</code><br>intermediate files"]
+  H --- B["<code>bin/</code><br>build<br>output"]
+  H --- O["<code>obj/</code><br>intermediate<br>files"]
   H -.-> L
   T -.-> L
-  N["Dashed arrows indicate<br>project references.<br><br>The typical output of building<br>a C# project is a <code>.dll</code> assembly;<br>an application may also have<br>an <code>.exe</code> executable launcher."]
+  T ~~~ N["Dashed arrows<br>indicate<br>project references.<br><br>The typical<br>output of building<br>a C# project<br>is a <code>.dll</code> assembly;<br>an application<br>may also have<br>an <code>.exe</code><br>executable<br>launcher."]
 ```
 
 Figure 1.25. Solution and project structure {.caption}
