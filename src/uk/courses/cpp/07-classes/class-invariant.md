@@ -49,26 +49,32 @@ flowchart LR
 #include <cassert>
 #include <print>
 #include <stdexcept>
+
 class BankAccount {
     int balance_;
 public:
     static constexpr int limit = 1'000'000;
+
     explicit BankAccount(int value) : balance_(value) {
         if (value < 0 || value > limit)
             throw std::invalid_argument("balance");
     }
+
     int balance() const { return balance_; }
+
     void deposit(int value) {
         if (value <= 0 || value > limit - balance_)
             throw std::invalid_argument("deposit");
         balance_ += value;
     }
+
     void withdraw(int value) {
         if (value <= 0 || value > balance_)
             throw std::invalid_argument("withdraw");
         balance_ -= value;
     }
 };
+
 int main() {
     BankAccount account{100};
     account.deposit(50);
@@ -144,21 +150,26 @@ flowchart TB
 #include <cassert>
 #include <print>
 #include <stdexcept>
+
 class ClockTime {
     int minutes_;
 public:
     ClockTime() : ClockTime(0) {}
+
     explicit ClockTime(int total) : minutes_(total % 1440) {
         if (total < 0) throw std::invalid_argument("time");
     }
+
     ClockTime(int hour, int minute) : ClockTime(0) {
         if (hour < 0 || hour > 23 || minute < 0 || minute > 59)
             throw std::invalid_argument("clock fields");
         minutes_ = hour * 60 + minute;
     }
+
     int hour() const { return minutes_ / 60; }
     int minute() const { return minutes_ % 60; }
 };
+
 int main() {
     const ClockTime t{1501};
     std::println("{:02}:{:02}", t.hour(), t.minute());

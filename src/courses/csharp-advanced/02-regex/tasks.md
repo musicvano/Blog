@@ -2,7 +2,7 @@
 title: "Tasks"
 description: "Topic 2. Regular expressions: task variants"
 outline: [2, 3]
-sourceHash: "a29f3c0911d22ea6f876a4c7d3eede0fa624910a1f1c6f5d4036e8fa908b8db4"
+sourceHash: "a039563e7754a64252bc68e8ad5d65c935e9793434bdfac0ddf8c1bf33b7f64c"
 ---
 
 # Tasks
@@ -101,11 +101,11 @@ Complete the task of the chosen difficulty level for your variant number.
 
 ### Variant 12. GPS coordinates {#v12}
 
-**1. Initial level.** Create a console program that finds pairs of decimal coordinates `48.9226, 24.7111` in a text defined in the program and displays the latitude and longitude of each pair.
+**1. Initial level.** Create a console program that finds pairs of decimal coordinates `48.2082, 16.3738` in a text defined in the program and displays the latitude and longitude of each pair.
 
-**2. Basic level.** Create a console program that asks for coordinates in the degrees, minutes, and seconds format `48°54'21.4"N 24°42'40.0"E`, parses them with a pattern with named groups, checks the ranges (minutes and seconds less than 60, latitude up to 90°, longitude up to 180°), and displays decimal coordinates with six decimal places.
+**2. Basic level.** Create a console program that asks for coordinates in the degrees, minutes, and seconds format `48°12'29.5"N 16°22'25.7"E`, parses them with a pattern with named groups, checks the ranges (minutes and seconds less than 60, latitude up to 90°, longitude up to 180°), and displays decimal coordinates with six decimal places.
 
-**3. Advanced level.** Use the dotnet CLI to create a console application that reads a route file with points in different formats (decimal, DMS, and `N48 54.357 E24 42.667`), converts them to decimal coordinates, and calculates the distance between adjacent points with the haversine formula and the total route length. The `--units km|mi` option; a table of points and distances; unrecognized lines to the error stream; exit codes 0, 1, 2; `--help`; xUnit tests for format parsing.
+**3. Advanced level.** Use the dotnet CLI to create a console application that reads a route file with points in different formats (decimal, DMS, and `N48 12.492 E16 22.428`), converts them to decimal coordinates, and calculates the distance between adjacent points with the haversine formula and the total route length. The `--units km|mi` option; a table of points and distances; unrecognized lines to the error stream; exit codes 0, 1, 2; `--help`; xUnit tests for format parsing.
 
 ### Variant 13. INI files {#v13}
 
@@ -161,7 +161,7 @@ Complete the task of the chosen difficulty level for your variant number.
 
 **2. Basic level.** Create a console program that reads a letter template from a file, asks the user for the value of each field, substitutes them with the `Replace` method and a `MatchEvaluator` (fields without a value remain, and a warning is displayed for them), and displays the finished letter.
 
-**3. Advanced level.** Use the dotnet CLI to create a console application that generates letters from a template (`--template`) and a CSV data file (`--data`, the first line contains field names), supports the formats <code v-pre>&#123;&#123;Sum:N2}}</code>, <code v-pre>&#123;&#123;Date:dd.MM.yyyy}}</code>, and default values <code v-pre>&#123;&#123;City|Kyiv}}</code>, and writes each letter to a separate file in the `--out` folder. Missing fields are reported to the error stream; exit codes 0, 1, 2; `--help`; xUnit tests.
+**3. Advanced level.** Use the dotnet CLI to create a console application that generates letters from a template (`--template`) and a CSV data file (`--data`, the first line contains field names), supports the formats <code v-pre>&#123;&#123;Sum:N2}}</code>, <code v-pre>&#123;&#123;Date:dd.MM.yyyy}}</code>, and default values <code v-pre>&#123;&#123;City|London}}</code>, and writes each letter to a separate file in the `--out` folder. Missing fields are reported to the error stream; exit codes 0, 1, 2; `--help`; xUnit tests.
 
 ### Variant 20. Temperatures in text {#v20}
 
@@ -213,7 +213,7 @@ Complete the task of the chosen difficulty level for your variant number.
 
 ### Variant 26. Delivery addresses {#v26}
 
-**1. Initial level.** Create a console program that finds the city, street, building, and apartment in address lines `Poltava, Sadova St., 12, apt. 5` defined in the program and displays them as separate fields.
+**1. Initial level.** Create a console program that finds the city, street, building, and apartment in address lines `Prague, Sadova St., 12, apt. 5` defined in the program and displays them as separate fields.
 
 **2. Basic level.** Create a console program that reads addresses from a file, recognizes abbreviations (`St.`, `Ave.`, `Ln.`, `Blvd.`, `Sq.`), buildings with a letter or a fraction (`12-A`, `5/2`), and an optional apartment, converts the entries to a uniform form, and displays a table of addresses and unrecognized lines.
 

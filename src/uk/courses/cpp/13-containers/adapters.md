@@ -37,6 +37,7 @@ empty є частиною алгоритму, а не необов’язков�
 #include <vector>
 
 struct Job { std::string name; int priority, arrival; };
+
 struct Later {
     bool operator()(const Job& a, const Job& b) const {
         if (a.priority != b.priority)
@@ -44,6 +45,7 @@ struct Later {
         return a.arrival > b.arrival;
     }
 };
+
 int main()
 {
     std::queue<std::string> fifo;

@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 7. Abstract classes, interfaces: worked examples"
 outline: [2, 3]
-sourceHash: "4fe0dcf38bd013748874ef421abde2d11760b2bd6bf5c37622c0b44cd59ca54d"
+sourceHash: "33bdf6e9080bb90146c158b70e9450eaa942b9ce965f7e7fd3e94df28e69ab73"
 ---
 
 # Practice
@@ -14,25 +14,30 @@ The abstract instrument validates the name and fixes the structure of a performa
 ```java
 abstract class Instrument {
     private final String name;
+
     Instrument(String name) {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("Empty name");
         }
         this.name = name.strip();
     }
+
     protected abstract String sound();
     public final String play() { return name + ": " + sound(); }
 }
+
 final class Guitar extends Instrument {
     Guitar(String name) { super(name); }
     @Override
     protected String sound() { return "strings"; }
 }
+
 final class Piano extends Instrument {
     Piano(String name) { super(name); }
     @Override
     protected String sound() { return "keys"; }
 }
+
 public class Main {
     public static void main(String[] args) {
         Instrument[] band = {new Guitar("G1"), new Piano("P1")};
@@ -64,18 +69,22 @@ interface Switchable {
     void setOn(boolean on);
     default void toggle() { setOn(!isOn()); }
 }
+
 interface Chargeable {
     int charge();
     void chargeTo(int percent);
+
     static boolean valid(int value) {
         return value >= 0 && value <= 100;
     }
 }
+
 final class Device implements Switchable, Chargeable {
     private boolean on;
     private int charge;
     @Override
     public boolean isOn() { return on; }
+
     @Override
     public void setOn(boolean on) {
         if (on && charge == 0) {
@@ -83,8 +92,10 @@ final class Device implements Switchable, Chargeable {
         }
         this.on = on;
     }
+
     @Override
     public int charge() { return charge; }
+
     @Override
     public void chargeTo(int percent) {
         if (!Chargeable.valid(percent) || percent < charge) {
@@ -93,6 +104,7 @@ final class Device implements Switchable, Chargeable {
         charge = percent;
     }
 }
+
 public class Main {
     public static void main(String[] args) {
         Device device = new Device();
@@ -134,27 +146,33 @@ final class IntStack implements Iterable<Integer> {
     private static final class Node {
         final int value;
         final Node next;
+
         Node(int value, Node next) {
             this.value = value;
             this.next = next;
         }
     }
+
     private Node head;
     public void push(int value) { head = new Node(value, head); }
+
     public int pop() {
         if (head == null) { throw new NoSuchElementException(); }
         int result = head.value;
         head = head.next;
         return result;
     }
+
     @Override
     public Iterator<Integer> iterator() {
         return new StackIterator();
     }
+
     private final class StackIterator implements Iterator<Integer> {
         private Node cursor = head;
         @Override
         public boolean hasNext() { return cursor != null; }
+
         @Override
         public Integer next() {
             if (!hasNext()) { throw new NoSuchElementException(); }
@@ -164,6 +182,7 @@ final class IntStack implements Iterable<Integer> {
         }
     }
 }
+
 public class Main {
     public static void main(String[] args) {
         IntStack stack = new IntStack();

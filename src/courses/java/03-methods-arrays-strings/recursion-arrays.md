@@ -2,7 +2,7 @@
 title: "Recursion and arrays"
 description: "Topic 3. Methods, arrays, and strings: Recursion and arrays"
 outline: [2, 3]
-sourceHash: "a0c3a374e868bc13aeedd3f5d1611d6212b85e941007fdff8e110d799c78e97e"
+sourceHash: "ff3f82962840b4b809cd09f213eee74b075b8600fa1c19c249e15f7f493785c8"
 ---
 
 # Recursion and arrays
@@ -32,6 +32,7 @@ public class Main {
         if (n <= 1) { return 1; }
         return n * factorial(n - 1);
     }
+
     static int sum(int... values) {
         int result = 0;
         for (int value : values) {
@@ -39,6 +40,7 @@ public class Main {
         }
         return result;
     }
+
     public static void main(String[] args) {
         System.out.println(factorial(0));
         System.out.println(factorial(3));

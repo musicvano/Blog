@@ -156,7 +156,7 @@ public class ContactTemplateSelector : DataTemplateSelector
 }
 ```
 
-Конструктор вікна після `InitializeComponent()` присвоює `DataContext` список `List<Contact>` з п’яти контактів, наприклад `new("Petro Bondar", "+380 67 111 2233", null)` і `new("Iryna Melnyk", "+380 50 444 5566", "Kryvbas Soft")`. Розмітка вікна:
+Конструктор вікна після `InitializeComponent()` присвоює `DataContext` список `List<Contact>` з п’яти контактів, наприклад `new("Petro Bondar", "+380 67 111 2233", null)` і `new("Iryna Melnyk", "+380 50 444 5566", "Brussels Soft")`. Розмітка вікна:
 
 ```xml
 <Window x:Class="Cards.MainWindow"
@@ -221,7 +221,7 @@ public class ContactTemplateSelector : DataTemplateSelector
 
 Ресурси оголошено в порядку використання: `StaticResource` не бачить ресурсів, оголошених нижче в тому самому словнику. `SortDescription` належить збірці `WindowsBase`, тому для неї оголошено простір імен `scm`; довге значення атрибута перенесено після знака `=`, що допускає XML. Вимкнена горизонтальна прокрутка змушує `WrapPanel` переносити картки на новий рядок. Шаблон обирається під час створення контейнера елемента: якщо в контакту змінити компанію, вигляд картки не зміниться, доки список не оновиться.
 
-Вікно показує картки в порядку Andrii Koval, Denys Shevchuk, Iryna Melnyk (*Kryvbas Soft*), Oksana Lysenko (*Rudna Trans*), Petro Bondar: дві робочі картки мають товсту рамку й сірий фон (рис. 13.14). Після зменшення ширини вікна картки переносяться в нові рядки.
+Вікно показує картки в порядку Andrii Koval, Denys Shevchuk, Iryna Melnyk (*Brussels Soft*), Oksana Lysenko (*Rudna Trans*), Petro Bondar: дві робочі картки мають товсту рамку й сірий фон (рис. 13.14). Після зменшення ширини вікна картки переносяться в нові рядки.
 
 ![Застосунок «Картки контактів»](./images/14-app-contact-cards.png)
 
@@ -324,11 +324,13 @@ public partial class App : Application
     {
         base.OnStartup(e);
         var services = new ServiceCollection();
+
         services.AddSingleton(new HttpClient
         {
             BaseAddress = new Uri("http://localhost:5080/"),
             Timeout = TimeSpan.FromSeconds(10)
         });
+
         services.AddTransient<BookSearchViewModel>();
         services.AddTransient<MainWindow>();
         services.BuildServiceProvider()

@@ -16,6 +16,7 @@ outline: [2, 3]
 import unicodedata
 from collections import Counter
 
+
 def words_of(text: str) -> list[str]:
     normal = unicodedata.normalize("NFC", text.casefold())
     words = []
@@ -25,6 +26,7 @@ def words_of(text: str) -> list[str]:
             words.append(word)
     return words
 
+
 def main() -> None:
     text = "Кіт, кіт і їжак. Їжак!"
     words = words_of(text)
@@ -32,6 +34,7 @@ def main() -> None:
         print(f"{word}: {count}")
     longest = max(words, key=len, default="")
     print(f"Найдовше: {longest or 'немає слів'}")
+
 
 if __name__ == "__main__":
     main()
@@ -64,6 +67,7 @@ def main() -> None:
               f"{subtotal / 100:>8.2f} {share:>7.1%}")
     print(f"Разом: {total / 100:.2f} грн")
 
+
 if __name__ == "__main__":
     main()
 ```
@@ -87,6 +91,7 @@ if __name__ == "__main__":
 from html import escape
 from string.templatelib import Template
 
+
 def html_text(template: Template) -> str:
     pieces = [template.strings[0]]
     for index, field in enumerate(template.interpolations):
@@ -96,9 +101,11 @@ def html_text(template: Template) -> str:
         pieces.append(template.strings[index + 1])
     return "".join(pieces)
 
+
 def main() -> None:
     name = "<b>Оля & Іван</b>"
     print(html_text(t"<p>Вітаємо, {name}!</p>"))
+
 
 if __name__ == "__main__":
     main()

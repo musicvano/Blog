@@ -52,7 +52,9 @@ class Lamp : Switchable, Chargeable {
         check(charge > 0) { "Empty battery" }
         isOn = true
     }
+
     override fun switchOff() { isOn = false }
+
     override fun recharge(points: Int) {
         require(points in 1..100 - charge)
         charge += points

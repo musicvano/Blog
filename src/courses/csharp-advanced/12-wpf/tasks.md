@@ -2,7 +2,7 @@
 title: "Tasks"
 description: "Topic 12. WPF fundamentals: task variants"
 outline: [2, 3]
-sourceHash: "8c14c4993fef91058bb3fba3169a449f01ed2e6cc6a8dc4fd64306af31915e58"
+sourceHash: "3095b47833a7a6061a74e7de95306f4b440113421e7b27e0fe173a2ee2cba1ac"
 ---
 
 # Tasks
@@ -37,7 +37,7 @@ Complete the task of the chosen difficulty level for your variant number.
 
 ### Variant 4. World clock {#v4}
 
-**1. Initial level.** Create a WPF application that shows the current time in Kyiv, London, and New York in three `Grid` rows and updates it every second with a `DispatcherTimer`.
+**1. Initial level.** Create a WPF application that shows the current time in Madrid, London, and New York in three `Grid` rows and updates it every second with a `DispatcherTimer`.
 
 **2. Basic level.** Create a WPF `CityClock` user control with a `TimeZoneId` dependency property that shows the city name and the time and date in that time zone. The main window contains six such elements on a `UniformGrid` and a `ComboBox` list for adding a city; an invalid time zone ID shows the label *Unknown time zone*.
 
@@ -221,7 +221,7 @@ Complete the task of the chosen difficulty level for your variant number.
 
 ### Variant 27. Time zone converter {#v27}
 
-**1. Initial level.** Create a WPF application in which the user chooses a city in a `ComboBox` and enters a time, and the program shows the corresponding time in Kyiv.
+**1. Initial level.** Create a WPF application in which the user chooses a city in a `ComboBox` and enters a time, and the program shows the corresponding time in London.
 
 **2. Basic level.** Create a WPF "Time zone converter" application with a choice of meeting date and time and several cities, a table of local time for each city with a working-hours mark (9:00–18:00), and daylight saving time handled through `TimeZoneInfo`.
 

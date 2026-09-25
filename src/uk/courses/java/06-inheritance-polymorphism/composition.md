@@ -30,24 +30,28 @@ flowchart TD
 final class IntStack {
     private final int[] items;
     private int size;
+
     IntStack(int capacity) {
         if (capacity < 1 || capacity > 1000) {
             throw new IllegalArgumentException("Invalid capacity");
         }
         items = new int[capacity];
     }
+
     public void push(int value) {
         if (size == items.length) {
             throw new IllegalStateException("Full stack");
         }
         items[size++] = value;
     }
+
     public int pop() {
         if (size == 0) {
             throw new IllegalStateException("Empty stack");
         }
         return items[--size];
     }
+
     public int size() { return size; }
 }
 
@@ -89,21 +93,15 @@ Empty stack
 
 Позначки біля перевизначених методів у полі редактора ведуть до базового оголошення або реалізацій. Вікно ієрархії допомагає знайти непрямі підкласи, які можуть залежати від змінюваного методу. Документація: <https://www.jetbrains.com/help/idea/viewing-structure-and-hierarchy-of-the-source-code.html>.
 
-::: info Знімок екрана
-Open Employee and HourlyEmployee. Show the gutter override icon beside salary and its navigation popup.
-:::
+![Перехід між базовим і перевизначеним методом](./images/03-idea-override-gutter.png)
 
 Рис. 6.6. Перехід між базовим і перевизначеним методом {.caption}
 
-::: info Знімок екрана
-Select HourlyEmployee. Open Navigate &gt; Type Hierarchy. Expand Employee and Object; keep source visible.
-:::
+![Ієрархія типів працівників](./images/07-idea-type-hierarchy.png)
 
 Рис. 6.7. Ієрархія типів працівників {.caption}
 
-::: info Знімок екрана
-In Point use Code &gt; Generate &gt; equals() and hashCode(). Show selected x and y fields; review generated source afterwards.
-:::
+![Генерування методів рівності](./images/08-idea-generate-equals.png)
 
 Рис. 6.8. Генерування методів рівності {.caption}
 

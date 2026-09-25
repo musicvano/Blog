@@ -2,7 +2,7 @@
 title: "Abstract classes and the template method"
 description: "Topic 7. Abstract classes, interfaces: abstract classes and the template method"
 outline: [2, 3]
-sourceHash: "6340b3cff8277652227384675e32bf833771af9e945e25849309aa613d6ce93f"
+sourceHash: "f8c8b95165d4060e99b72734e91526fc206d6415090db26ad518b8386e8f2601"
 ---
 
 # Abstract classes and the template method
@@ -46,19 +46,24 @@ import java.util.Arrays;
 
 abstract class Report {
     private final String title;
+
     Report(String title) {
         if (title == null || title.isBlank()) {
             throw new IllegalArgumentException("Empty title");
         }
         this.title = title.strip();
     }
+
     protected abstract String body();
+
     public final String render() {
         return "[" + title + "]\n" + body() + "\nEND";
     }
 }
+
 final class ScoreReport extends Report {
     private final int[] scores;
+
     ScoreReport(String title, int[] scores) {
         super(title);
         if (scores == null || scores.length == 0
@@ -72,6 +77,7 @@ final class ScoreReport extends Report {
             }
         }
     }
+
     @Override
     protected String body() {
         int total = 0;
@@ -79,6 +85,7 @@ final class ScoreReport extends Report {
         return Arrays.toString(scores) + "\nTotal: " + total;
     }
 }
+
 public class Main {
     public static void main(String[] args) {
         int[] source = {80, 90, 100};

@@ -2,7 +2,7 @@
 title: "Abstract classes"
 description: "Topic 6. Inheritance and polymorphism: abstract classes"
 outline: [2, 3]
-sourceHash: "105ce191b0c6f4afa764d356e2790f3ba5f95ba28ea2d911db6e3d805510a440"
+sourceHash: "86f55d02af8934fc657b94fd16156e86b712b4d8ada22b5fb285938f78fe7d1d"
 ---
 
 # Abstract classes
@@ -80,10 +80,13 @@ class Triangle(a: Double, b: Double, c: Double) : Shape() {
     private val a = positive(a)
     private val b = positive(b)
     private val c = positive(c)
+
     init {
         require(a + b > c && a + c > b && b + c > a)
     }
+
     override fun perimeter(): Double = a + b + c
+
     override fun area(): Double {
         val s = perimeter() / 2
         return sqrt(s * (s - a) * (s - b) * (s - c))

@@ -2,7 +2,7 @@
 title: "Models, metrics, and scaling laws"
 description: "Topic 1. Fundamentals of parallel computing: Models, metrics, and scaling laws"
 outline: [2, 3]
-sourceHash: "c57a38be6e5c14bde8cc861e8e7af2b886d90c57c1a59e3cc33d256562ecfd02"
+sourceHash: "d3e82c64e7d0846087218ea8cc6bac6834b574ad2ed53ffd41371752affc2be5"
 ---
 
 # Models, metrics, and scaling laws
@@ -37,9 +37,25 @@ For example, if $T_{1} = 120$ s and $T_{8} = 20$ s on 8 cores, then $S_{8} = 6$,
 
 ## Amdahl’s law
 
-Suppose a fraction $f$ of a sequential program’s execution time is spent on code that can be parallelized, and a fraction $1 - f$ on sequential code (reading input, initialization, writing the result). On $p$ processors, the parallel part becomes $p$ times faster while the sequential part stays the same: $$T_{p} = (1 - f) T_{1} + \frac{f T_{1}}{p} .$$ This gives the speedup under **Amdahl’s law** (*Amdahl’s law*, 1967): $$S_{p} = \frac{T_{1}}{T_{p}} = \frac{1}{(1 - f) + f / p} .$$
+Suppose a fraction $f$ of a sequential program’s execution time is spent on code that can be parallelized, and a fraction $1 - f$ on sequential code (reading input, initialization, writing the result). On $p$ processors, the parallel part becomes $p$ times faster while the sequential part stays the same:
 
-As $p \to \infty$, the term $f / p$ approaches zero, and speedup cannot exceed $$S_{\infty} = \frac{1}{1 - f} .$$ If the parallel part accounts for 95%, the program can never become more than 20 times faster, regardless of the number of processors; at $f = 90$%, the limit is 10 (Fig. 1.6). With 64 processors and $f = 90$%, speedup is only 8.8 and efficiency is 14%: most processors sit idle while the sequential part runs.
+$$
+T_{p} = (1 - f) T_{1} + \frac{f T_{1}}{p} .
+$$
+
+This gives the speedup under **Amdahl’s law** (*Amdahl’s law*, 1967):
+
+$$
+S_{p} = \frac{T_{1}}{T_{p}} = \frac{1}{(1 - f) + f / p} .
+$$
+
+As $p \to \infty$, the term $f / p$ approaches zero, and speedup cannot exceed
+
+$$
+S_{\infty} = \frac{1}{1 - f} .
+$$
+
+If the parallel part accounts for 95%, the program can never become more than 20 times faster, regardless of the number of processors; at $f = 90$%, the limit is 10 (Fig. 1.6). With 64 processors and $f = 90$%, speedup is only 8.8 and efficiency is 14%: most processors sit idle while the sequential part runs.
 
 ```mermaid
 xychart-beta
@@ -64,7 +80,13 @@ Conclusions from Amdahl’s law:
 
 Amdahl’s law considers a **fixed-size problem**. In 1988, John Gustafson (*John Gustafson*) and Edwin Barsis (*Edwin Barsis*) pointed out that more processors are usually used to solve a **larger** problem: a finer weather-forecasting grid, more pixels, or more particles. The sequential part (reading parameters, collecting the result) grows only slightly.
 
-Let $s$ be the sequential fraction measured **on a parallel system** with $p$ processors. The same amount of work would take $s + p (1 - s)$ on one processor, giving the **scaled speedup** under the Gustafson–Barsis law: $$S_{p} = s + p (1 - s) = p - s (p - 1) .$$ At $s = 5$% on 64 processors, $S = 60 {,} 85$ — speedup grows almost linearly.
+Let $s$ be the sequential fraction measured **on a parallel system** with $p$ processors. The same amount of work would take $s + p (1 - s)$ on one processor, giving the **scaled speedup** under the Gustafson–Barsis law:
+
+$$
+S_{p} = s + p (1 - s) = p - s (p - 1) .
+$$
+
+At $s = 5$% on 64 processors, $S = 60 {,} 85$ — speedup grows almost linearly.
 
 The two laws do not contradict each other; they correspond to two ways of evaluating a program’s **scalability** (*scalability*) (Fig. 1.7):
 
@@ -105,4 +127,10 @@ Figure 1.7. Strong and weak scaling {.caption}
 
 ### The Karp–Flatt metric
 
-Measured speedup can estimate the fraction of a program that effectively behaves sequentially. The **experimentally determined serial fraction** (*experimentally determined serial fraction*), or **Karp–Flatt metric** (*Karp–Flatt metric*, 1990), is: $$e = \frac{1 / S_{p} - 1 / p}{1 - 1 / p} .$$ If $e$ barely changes as $p$ increases, sequential code is limiting speedup. If $e$ increases, the main cause is overhead (synchronization, data exchange, competition for cache and memory) that grows with the number of threads. For example, for $S_{8} = 6$, we get $e = (1 / 6 - 1 / 8) / (1 - 1 / 8) \approx 0 {,} 048$.
+Measured speedup can estimate the fraction of a program that effectively behaves sequentially. The **experimentally determined serial fraction** (*experimentally determined serial fraction*), or **Karp–Flatt metric** (*Karp–Flatt metric*, 1990), is:
+
+$$
+e = \frac{1 / S_{p} - 1 / p}{1 - 1 / p} .
+$$
+
+If $e$ barely changes as $p$ increases, sequential code is limiting speedup. If $e$ increases, the main cause is overhead (synchronization, data exchange, competition for cache and memory) that grows with the number of threads. For example, for $S_{8} = 6$, we get $e = (1 / 6 - 1 / 8) / (1 - 1 / 8) \approx 0 {,} 048$.

@@ -16,9 +16,7 @@ Reverse зберігає коректні сурогатні пари, але н
 
 StringJoiner корисний для послідовності з роздільником і рамками. Він дозволяє не додавати кому після останнього елемента й не обрізати її вручну. String.join достатній, коли всі частини вже є в масиві. Вибирайте інструмент відповідно до того, як надходять частини.
 
-::: info Знімок екрана
-In IntelliJ IDEA enable the string-concatenation-in-loop inspection. Show result += part inside a loop and Alt+Enter Replace with StringBuilder intention.
-:::
+![Підказка для конкатенації в циклі](./images/06-idea-stringbuilder-quickfix.png)
 
 Рис. 3.6. Підказка для конкатенації в циклі {.caption}
 
@@ -47,6 +45,7 @@ public class Main {
         return text.replace("&", "&amp;")
                 .replace("<", "&lt;").replace(">", "&gt;");
     }
+
     static String report(String[] names, int[] marks) {
         if (names == null || marks == null
                 || names.length != marks.length) {
@@ -66,6 +65,7 @@ public class Main {
                 %s</table>
                 """.formatted(rows);
     }
+
     public static void main(String[] args) {
         System.out.print(report(new String[]{"A&B", "<Olena>"},
                 new int[]{80, 95}));

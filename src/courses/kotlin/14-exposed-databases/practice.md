@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 14. Databases with Exposed: worked examples"
 outline: [2, 3]
-sourceHash: "da149660dd43b8f08a584bf99adf883b2126f210f560e4fe7e255a6328bb8354"
+sourceHash: "00fa84dde7d096c1b136678259feaa86bf006efea2b91a1597d8ffce24f9f658"
 ---
 
 # Practice
@@ -69,6 +69,7 @@ object Goods : Table("goods") {
     val name = varchar("name", 80)
     override val primaryKey = PrimaryKey(id)
 }
+
 object Sales : Table("sales") {
     val id = integer("id").autoIncrement()
     val good = integer("good_id").references(Goods.id)

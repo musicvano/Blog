@@ -83,6 +83,7 @@ List тут використано як простий буфер: mutableListOf
 interface Repository {
     fun save(text: String)
     fun all(): List<String>
+
     fun saveTwice(text: String) {
         save(text)
         save(text)
@@ -91,10 +92,12 @@ interface Repository {
 
 class MemoryRepository : Repository {
     private val rows = mutableListOf<String>()
+
     override fun save(text: String) {
         require(text.isNotBlank())
         rows.add(text)
     }
+
     override fun all(): List<String> = rows.toList()
 }
 

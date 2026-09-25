@@ -107,8 +107,10 @@ print(re.split(r"[;,]\s*", "один, два;три"))
 ```py
 import re
 
+
 def double(match: re.Match[str]) -> str:
     return str(int(match.group()) * 2)
+
 
 print(re.sub(r"[0-9]+", double, "Шафа 12, стіл 3"))
 print(re.sub(r"([A-Z])([0-9]+)", r"\g<2>-\g<1>", "A12"))

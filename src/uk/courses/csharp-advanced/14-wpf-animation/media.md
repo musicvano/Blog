@@ -240,8 +240,6 @@ private void Media_MediaFailed(object? sender,
 
 У рядку формату `mm\:ss` двокрапку екрановано, бо в спеціальному форматі `TimeSpan` вона не є роздільником за замовчуванням. Під час перевірки до списку додано два системні звуки Windows: після `MediaOpened` повзунок отримав максимум 1,09 (тривалість першого файлу), після `MediaEnded` плеєр сам перейшов до другого файлу (5,57 с), перехід `Position` на 1 с показав «00:01 / 00:05», а *Stop* – «00:00 / 00:05».
 
-::: info Знімок екрана
-Running Player with an own recorded video: video frame, playlist on the right with 3 files, position slider, "01:23 / 04:10", volume slider, Pause button
-:::
+![Застосунок «Медіаплеєр»](./images/04-app-media-player.png)
 
 Рис. 14.9. Застосунок «Медіаплеєр» {.caption}

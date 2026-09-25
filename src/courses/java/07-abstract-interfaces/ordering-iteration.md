@@ -2,7 +2,7 @@
 title: "Comparison and iteration"
 description: "Topic 7. Abstract classes, interfaces: comparison and iteration"
 outline: [2, 3]
-sourceHash: "ff000079184568eddecbf09fc4db4c110d284ded9d99eeeeba7274d482acfd13"
+sourceHash: "90c5fca2548f87de3b763a7cae92f9158510e258ff7633264a7d09d17f47745d"
 ---
 
 # Comparison and iteration
@@ -21,6 +21,7 @@ import java.util.Objects;
 final class Product implements Comparable<Product> {
     private final String name;
     private final long price;
+
     Product(String name, long price) {
         if (name == null || name.isBlank()
                 || price < 0 || price > 1_000_000) {
@@ -29,24 +30,29 @@ final class Product implements Comparable<Product> {
         this.name = name.strip();
         this.price = price;
     }
+
     public String name() { return name; }
     public long price() { return price; }
+
     @Override
     public int compareTo(Product other) {
         int byName = name.compareTo(other.name);
         return byName != 0 ? byName
                 : Long.compare(price, other.price);
     }
+
     @Override
     public boolean equals(Object other) {
         return other instanceof Product p
                 && name.equals(p.name) && price == p.price;
     }
+
     @Override
     public int hashCode() { return Objects.hash(name, price); }
     @Override
     public String toString() { return name + ":" + price; }
 }
+
 public class Main {
     public static void main(String[] args) {
         Product[] items = {
@@ -99,6 +105,7 @@ import java.util.NoSuchElementException;
 final class Range implements Iterable<Integer> {
     private final int start;
     private final int end;
+
     Range(int start, int end) {
         if (start < -1_000_000 || end > 1_000_000 || start > end) {
             throw new IllegalArgumentException("Invalid range");
@@ -106,14 +113,17 @@ final class Range implements Iterable<Integer> {
         this.start = start;
         this.end = end;
     }
+
     @Override
     public Iterator<Integer> iterator() {
         return new RangeIterator();
     }
+
     private class RangeIterator implements Iterator<Integer> {
         private int next = Range.this.start;
         @Override
         public boolean hasNext() { return next < Range.this.end; }
+
         @Override
         public Integer next() {
             if (!hasNext()) { throw new NoSuchElementException(); }
@@ -121,6 +131,7 @@ final class Range implements Iterable<Integer> {
         }
     }
 }
+
 public class Main {
     public static void main(String[] args) {
         Range range = new Range(2, 5);

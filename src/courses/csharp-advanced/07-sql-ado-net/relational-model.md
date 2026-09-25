@@ -2,7 +2,7 @@
 title: "The relational model and PostgreSQL"
 description: "Topic 7. SQL and ADO.NET: The relational model and PostgreSQL"
 outline: [2, 3]
-sourceHash: "e7a558f8fae2f21b97f4ba01dfd9c5e227239061e64780f5ceda62964d78c364"
+sourceHash: "a2cb76cfa17b35610c0837611a8d131a1052691e0e0dae92f1e615b4636b89fb"
 ---
 
 # The relational model and PostgreSQL
@@ -180,11 +180,9 @@ SQL commands in `psql` end with a semicolon. Service **meta-commands** start wit
 
 **pgAdmin 4** (<https://www.pgadmin.org/docs/>) is installed together with the server—a web client for administration: a tree of servers and databases, the *Query Tool* query editor, backups. In this course, the main tool is **JetBrains DataGrip** (<https://www.jetbrains.com/datagrip/>)—an environment for working with various DBMSs with SQL autocompletion, query checking, and diagram generation. Since October 2025, DataGrip has been free for non-commercial use, including learning (<https://blog.jetbrains.com/datagrip/2025/10/01/datagrip-is-now-free-for-non-commercial-use/>): the license is activated through a JetBrains Account, and sending anonymous usage statistics cannot be turned off under this license. Students can also get the free JetBrains Student Pack (<https://www.jetbrains.com/community/education/>).
 
-A database connection is created in the *Database Explorer* window: *+ → Data Source → PostgreSQL*; enter the parameters in the *Host*, *Port*, *User*, *Password*, and *Database* fields; on the first connection, DataGrip offers to download the driver, and the *Test Connection* button checks the connection (Fig. 7.4). Queries are written in a console (*New → Query Console*) and executed with **Ctrl+Enter** (<https://www.jetbrains.com/help/datagrip/postgresql.html>).
+A database connection is created in the *Database Explorer* window: *+ → Data Source → PostgreSQL*; enter the parameters in the *Host*, *Port*, *User*, *Password*, and *Database* fields (instead of a password, you can choose *Authentication: pgpass*—then DataGrip takes the password from the `%APPDATA%\postgresql\pgpass.conf` file, just like `psql`); on the first connection, DataGrip offers to download the driver, and the *Test Connection* button checks the connection (Fig. 7.4). Queries are written in a console (*New → Query Console*) and executed with **Ctrl+Enter** (<https://www.jetbrains.com/help/datagrip/postgresql.html>).
 
-::: info Screenshot
-DataGrip: Database Explorer → + → Data Source → PostgreSQL; Host localhost, Port 5432, User library\_app, Database library, password masked, "Succeeded" after Test Connection
-:::
+![Connecting to PostgreSQL in DataGrip](./images/01-datagrip-new-datasource.png)
 
 Figure 7.4. Connecting to PostgreSQL in DataGrip {.caption}
 

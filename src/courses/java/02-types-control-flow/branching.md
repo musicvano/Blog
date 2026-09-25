@@ -2,7 +2,7 @@
 title: "Branching: if and switch"
 description: "Topic 2. Types, operations, and control flow: Branching: if and switch"
 outline: [2, 3]
-sourceHash: "37fe28b84ac9f5465351148c4fdff097be97b861e6f770370f2e9d6d71a9b804"
+sourceHash: "2dfa9b1bdbe18dd63982a4804992928947ea0e1919a276fd99ab3d0d33f94dbe"
 ---
 
 # Branching: if and switch
@@ -72,6 +72,7 @@ public class Calculator {
                 System.out.println("Invalid operands");
                 continue;
             }
+
             double result = switch (operation) {
                 case "+" -> a + b;
                 case "-" -> a - b;

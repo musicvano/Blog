@@ -71,6 +71,7 @@ public class Main {
                         || info.arrayLength() > 1000) {
                     return ObjectInputFilter.Status.REJECTED;
                 }
+
                 Class<?> type = info.serialClass();
                 if (type == null) {
                     return ObjectInputFilter.Status.UNDECIDED;
@@ -97,6 +98,7 @@ public class Main {
                     Files.newOutputStream(path))) {
                 output.writeObject(source);
             }
+
             State restored = load(path);
             System.out.println(restored.name + ": " + restored.level);
             System.out.println("token: " + restored.token);

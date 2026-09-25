@@ -40,11 +40,13 @@ public:
     FixedStack() = default;
     explicit FixedStack(const std::array<T, N>& source)
         : data(source), used(N) {}
+
     void push(const T& value) {
         if (used == N) throw std::length_error("full");
         data[used] = value;
         ++used;
     }
+
     T pop() {
         if (used == 0) throw std::out_of_range("empty");
         T result = data[used - 1];
@@ -146,12 +148,14 @@ struct Serializer {
         return std::format("{}", value);
     }
 };
+
 template<>
 struct Serializer<bool> {
     static std::string text(bool value) {
         return value ? "yes" : "no";
     }
 };
+
 template<>
 struct Serializer<std::string> {
     static std::string text(const std::string& value) {

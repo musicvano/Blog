@@ -2,7 +2,7 @@
 title: "Abstract classes and NVI"
 description: "Topic 11. Abstract Classes, Interfaces: Abstract Classes and NVI"
 outline: [2, 3]
-sourceHash: "da2ca75e1688a8506ea8541080c5fc6091fddaaa3103c9d6de36a523e5bfe821"
+sourceHash: "87706ffc807ded1f94dfb9c7267a86eb4c04e71eb410566788a805209b6eaff6"
 ---
 
 # Abstract classes and NVI
@@ -48,17 +48,21 @@ Figure 11.1. Separate roles for drawing and resizing {.caption}
 #include <print>
 #include <stdexcept>
 #include <string>
+
 struct Drawable {
     virtual ~Drawable() = default;
     virtual std::string draw() const = 0;
 };
+
 struct Resizable {
     virtual ~Resizable() = default;
     virtual void resize(double factor) = 0;
 };
+
 struct Shape : Drawable {
     virtual double area() const = 0;
 };
+
 class Circle final : public Shape, public Resizable {
     double radius_;
 public:
@@ -66,17 +70,21 @@ public:
         if (!std::isfinite(r) || r <= 0 || r > 1000)
             throw std::invalid_argument("radius");
     }
+
     void resize(double k) override {
         if (!std::isfinite(k) || k <= 0 ||
             k > 1000 / radius_ || radius_ * k == 0)
             throw std::invalid_argument("factor");
         radius_ *= k;
     }
+
     double area() const override {
         return std::numbers::pi * radius_ * radius_;
     }
+
     std::string draw() const override { return "Circle"; }
 };
+
 int main() {
     Circle c{1};
     Resizable& sizing = c; sizing.resize(2);
@@ -130,16 +138,19 @@ Figure 11.3. The difference in the number of subobjects in a diamond {.caption}
 #include <stdexcept>
 #include <string>
 #include <vector>
+
 class Report {
     virtual std::string body(const std::vector<int>& x) const = 0;
 public:
     virtual ~Report() = default;
+
     std::string generate(const std::vector<int>& values) const {
         if (values.size() > 100)
             throw std::invalid_argument("too many rows");
         return "Report\n" + body(values) + "End\n";
     }
 };
+
 struct ListReport final : Report {
 private:
     std::string body(const std::vector<int>& x) const override {
@@ -148,6 +159,7 @@ private:
         return result;
     }
 };
+
 int main() {
     ListReport report;
     const Report& view = report;

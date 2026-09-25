@@ -2,7 +2,7 @@
 title: "Examples and common mistakes"
 description: "Topic 13. Generics and collections: Examples and common mistakes"
 outline: [2, 3]
-sourceHash: "59c5933a1b13d1f08fa29996cfc08faeafee8b16b7fa7ffad25cfe965a5eacf3"
+sourceHash: "42d3b06562decbb7142532158da731ed4028dfda8e72cb1db1de2098f9b0b954"
 ---
 
 # Examples and common mistakes
@@ -17,7 +17,7 @@ The generic method `FindMax<T>` with an `IComparable<T>` constraint finds the la
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 
 int[] scores = [72, 95, 88, 61];
-string[] cities = ["Lviv", "Zhytomyr", "Odesa", "Vinnytsia"];
+string[] cities = ["Madrid", "Brussels", "Paris", "Vienna"];
 DateOnly[] deadlines =
 [
     new(2026, 10, 1), new(2026, 12, 20), new(2026, 11, 5),
@@ -54,11 +54,11 @@ static T FindMax<T>(T[] items) where T : IComparable<T>
 static void Swap<T>(ref T a, ref T b) => (a, b) = (b, a);
 ```
 
-For each call, the compiler infers the type argument from the array type: `int`, `string`, or `DateOnly`. In the call `FindMax<double>([2.5, 7])`, the type is specified explicitly, so the integer 7 is converted to `double`. Strings are compared using the culture, so “Zhytomyr” comes last in alphabetical order. Output:
+For each call, the compiler infers the type argument from the array type: `int`, `string`, or `DateOnly`. In the call `FindMax<double>([2.5, 7])`, the type is specified explicitly, so the integer 7 is converted to `double`. Strings are compared using the culture, so “Vienna” comes last in alphabetical order. Output:
 
 ```
 Highest score: 95
-Last city alphabetically: Zhytomyr
+Last city alphabetically: Vienna
 Latest deadline: 20.12.2026
 Type specified explicitly: 7
 After swapping: right, left

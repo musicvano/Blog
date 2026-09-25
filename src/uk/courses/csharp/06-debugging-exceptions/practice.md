@@ -103,6 +103,7 @@ static (long, long) ParseFraction(string text)
     {
         throw new FormatException($"«{text}» не є дробом a/b.");
     }
+
     if (b == 0)
     {
         throw new DivideByZeroException();

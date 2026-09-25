@@ -95,20 +95,26 @@ struct Fibonacci : std::ranges::view_interface<Fibonacci> {
         using iterator_concept = std::input_iterator_tag;
         value_type a = 0, b = 1;
         value_type operator*() const { return a; }
+
         Iterator& operator++() {
             auto next = a + b;
             a = b; b = next;
             return *this;
         }
+
         void operator++(int) { ++*this; }
+
         bool operator==(std::unreachable_sentinel_t) const {
             return false;
         }
     };
+
     Iterator begin() const { return {}; }
     std::unreachable_sentinel_t end() const { return {}; }
 };
+
 static_assert(std::ranges::input_range<Fibonacci>);
+
 int main()
 {
     for (auto value : Fibonacci{} | std::views::take(8))

@@ -2,7 +2,7 @@
 title: Practice
 description: "Topic 13. Containers: worked examples"
 outline: [2, 3]
-sourceHash: "42d37deedaac02305ed7023bd727d921f0e2e17b056fba11681f084c5c751f99"
+sourceHash: "5fba930f6ba88ddd2558c3b322322e78bd177c02af68d6d5297a272edc26e490"
 ---
 
 # Practice
@@ -65,6 +65,7 @@ bool balanced(std::string_view text)
     }
     return opened.empty();
 }
+
 int main()
 {
     for (auto text : {"([])", "([)]", "]", ""})

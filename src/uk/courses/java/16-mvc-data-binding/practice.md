@@ -76,7 +76,7 @@ import javafx.stage.Stage;
 public class CitiesMain extends Application {
     @Override public void start(Stage stage) {
         var source = FXCollections.observableArrayList(
-            "Kyiv", "Lviv", "Odesa", "Kryvyi Rih");
+            "London", "Madrid", "Paris", "Prague");
         var filtered = new FilteredList<>(source, city -> true);
         TextField search = new TextField();
         ListView<String> list = new ListView<>(filtered);
@@ -98,7 +98,7 @@ public class CitiesMain extends Application {
 }
 ```
 
-Початковий лічильник – 4, запит `k` дає Kyiv і Kryvyi Rih та лічильник 2. Запит, якого немає, дає 0, очищення повертає
+Початковий лічильник – 4, запит `p` дає Paris і Prague та лічильник 2. Запит, якого немає, дає 0, очищення повертає
 
 1. Не змінюйте вихідний список лише для приховування рядків:
 
@@ -168,6 +168,7 @@ public class AttendanceMain extends Application {
             return person + " / " + day;
         }
     }
+
     static final class Dao {
         Connection connect() throws SQLException {
             String url = System.getenv("COURSE_DB_URL");
@@ -176,6 +177,7 @@ public class AttendanceMain extends Application {
                 System.getenv("COURSE_DB_USER"),
                 System.getenv("COURSE_DB_PASSWORD"));
         }
+
         List<Entry> all() throws SQLException {
             List<Entry> rows = new ArrayList<>();
             try (Connection c = connect();
@@ -191,11 +193,13 @@ public class AttendanceMain extends Application {
             }
             return rows;
         }
+
         void add(String person, LocalDate day) throws SQLException {
             if (person == null || person.isBlank()
                     || person.length() > 80 || day == null) {
                 throw new IllegalArgumentException("Invalid entry");
             }
+
             try (Connection c = connect();
                  PreparedStatement p = c.prepareStatement(
                     "INSERT INTO j16_attendance(person,day) "
@@ -219,12 +223,14 @@ public class AttendanceMain extends Application {
             fxml.getBytes(StandardCharsets.UTF_8)));
         stage.setScene(new Scene(root, 420, 360));
     }
+
     void home() {
         try { show(HOME, new HomeController(this)); }
         catch (Exception error) {
             throw new IllegalStateException(error);
         }
     }
+
     <T> void background(Callable<T> action, Label status,
             Consumer<T> success) {
         if (busy) return;
@@ -265,6 +271,7 @@ public class AttendanceMain extends Application {
         home();
         stage.show();
     }
+
     public static void main(String[] args) { launch(args); }
 
     public static final class HomeController {
@@ -272,12 +279,14 @@ public class AttendanceMain extends Application {
         @FXML private ListView<Entry> list;
         @FXML private Label status;
         HomeController(AttendanceMain app) { this.app = app; }
+
         @FXML private void reload() {
             app.background(app.dao::all, status, rows -> {
                 list.getItems().setAll(rows);
                 status.setText("Loaded: " + rows.size());
             });
         }
+
         @FXML private void open() throws Exception {
             Entry selected = list.getSelectionModel()
                 .getSelectedItem();
@@ -285,9 +294,11 @@ public class AttendanceMain extends Application {
             app.show(EDIT, new EditController(app, name));
         }
     }
+
     public static final class EditController {
         private final AttendanceMain app;
         private final String initialName;
+
         @FXML private TextField name;
         @FXML private TextField day;
         @FXML private Label status;
@@ -295,6 +306,7 @@ public class AttendanceMain extends Application {
             this.app = app;
             initialName = name;
         }
+
         @FXML private void initialize() { name.setText(initialName); }
         @FXML private void cancel() { app.home(); }
         @FXML private void save() {

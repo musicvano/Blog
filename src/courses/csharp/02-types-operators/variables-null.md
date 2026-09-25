@@ -2,7 +2,7 @@
 title: "Characters, strings, variables, and null"
 description: "Topic 2. Types, variables, and operators: Characters, strings, variables, and null"
 outline: [2, 3]
-sourceHash: "cd8d22bf84ebdd817995a6d4d76d6970fc6ea5e5be42104da91d991374a14249"
+sourceHash: "71aa3f077d8c01b890ab83da960505fbf87075821addae99bd6cd6d865e3ee77"
 ---
 
 # Characters, strings, variables, and null
@@ -54,7 +54,7 @@ A **variable** is a named memory location that stores a value of a particular ty
 int count = 10;
 double price = 12.5, discount = 0.1;   // two variables of the same type
 string city;                           // declaration without a value
-city = "Kryvyi Rih";                   // assignment
+city = "Madrid";                       // assignment
 ```
 
 A local variable cannot be used until it has been assigned a value: the compiler reports CS0165, *Use of unassigned local variable*. You can change a variable, but only to values of its type.

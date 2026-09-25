@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 14. WPF animation and multimedia: worked examples"
 outline: [2, 3]
-sourceHash: "4b69ebb21d8df59021da7deee627c94703150c7d214bff6785d07ebcacb5b62c"
+sourceHash: "0438200c61fd184e449302edb35f3f2c5df8cf194938cb526ff0b1dd4c9d3e7c"
 ---
 
 # Practice
@@ -101,11 +101,13 @@ public partial class MainWindow : Window
             };
             column.Children.Add(counter);
             column.Children.Add(bar);
+
             column.Children.Add(new TextBlock
             {
                 Text = year,
                 HorizontalAlignment = HorizontalAlignment.Center
             });
+
             chart.Children.Add(column);
             columns.Add((bar, counter));
         }

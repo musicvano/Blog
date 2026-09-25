@@ -138,6 +138,7 @@ sealed class FibClient : IAsyncDisposable
             waiter.TrySetResult(new(ea.BasicProperties.Type,
                 Encoding.UTF8.GetString(ea.Body.Span)));
         }
+
         return Task.CompletedTask;
     }
 

@@ -2,7 +2,7 @@
 title: "Managing books in PostgreSQL"
 description: "Topic 16. MVC and data binding: Managing books in PostgreSQL"
 outline: [2, 3]
-sourceHash: "98eb5c0f65e8d1dbf2bf419ec3bd8a9302be8d8e799a6215d3e9b035d89c2d97"
+sourceHash: "c61c995c42a1a5c7a8b3e166c94326c21acdfd2584740237e7ace42e5be60233"
 ---
 
 # Managing books in PostgreSQL
@@ -112,12 +112,15 @@ public class BookMain extends Application {
 
     static final class Service {
         private final Repository repository;
+
         Service(Repository repository) {
             this.repository = repository;
         }
+
         List<Book> all() throws SQLException {
             return repository.all();
         }
+
         void save(long id, String title, int year)
                 throws SQLException {
             if (id < 0 || title == null || title.isBlank()
@@ -127,6 +130,7 @@ public class BookMain extends Application {
             }
             repository.save(id, title.strip(), year);
         }
+
         void delete(long id) throws SQLException {
             if (id <= 0) {
                 throw new IllegalArgumentException("Select book");

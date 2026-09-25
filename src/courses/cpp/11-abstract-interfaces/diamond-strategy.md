@@ -2,7 +2,7 @@
 title: "Virtual base and Strategy"
 description: "Topic 11. Abstract Classes, Interfaces: Virtual Base and Strategy"
 outline: [2, 3]
-sourceHash: "2c1545cf7e22c5d07694fe922967f362313d34879c6eca89a9d54ef3819d477e"
+sourceHash: "865aecc624e1cdfcf7c087b76be650ebfd58a412e72f54bf61fb2973523e9b86"
 ---
 
 # Virtual base and Strategy
@@ -38,20 +38,25 @@ Figure 11.5. Role subobjects of a single device {.caption}
 #include <print>
 #include <string>
 #include <utility>
+
 struct Person {
     std::string name;
     explicit Person(std::string value) : name(std::move(value)) {}
 };
+
 struct Student : virtual Person {
     Student() : Person("student") {}
 };
+
 struct Employee : virtual Person {
     Employee() : Person("employee") {}
 };
+
 struct TeachingAssistant final : Student, Employee {
     explicit TeachingAssistant(std::string name)
         : Person(std::move(name)), Student(), Employee() {}
 };
+
 int main() {
     TeachingAssistant assistant{"Olena"};
     Person* viaStudent = static_cast<Student*>(&assistant);
@@ -116,25 +121,30 @@ Figure 11.7. The context owns the variable algorithm {.caption}
 #include <print>
 #include <stdexcept>
 #include <utility>
+
 struct DiscountPolicy {
     virtual ~DiscountPolicy() = default;
     virtual long long apply(long long cents) const = 0;
 };
+
 struct NoDiscount final : DiscountPolicy {
     long long apply(long long cents) const override {
         return cents;
     }
 };
+
 class PercentDiscount final : public DiscountPolicy {
     int percent_;
 public:
     explicit PercentDiscount(int n) : percent_(n) {
         if (n < 0 || n > 100) throw std::invalid_argument("rate");
     }
+
     long long apply(long long cents) const override {
         return cents * (100 - percent_) / 100;
     }
 };
+
 class Order {
     std::unique_ptr<DiscountPolicy> policy_;
 public:
@@ -142,12 +152,14 @@ public:
         : policy_(std::move(policy)) {
         if (!policy_) throw std::invalid_argument("policy");
     }
+
     long long total(long long cents) const {
         if (cents < 0 || cents > 1'000'000'000)
             throw std::invalid_argument("sum");
         return policy_->apply(cents);
     }
 };
+
 int main() {
     Order plain{std::make_unique<NoDiscount>()};
     Order sale{std::make_unique<PercentDiscount>(10)};

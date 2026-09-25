@@ -96,9 +96,7 @@ mvn javafx:run
 
 Перевірте JDK у першій команді: налаштування Project SDK в IDE не завжди збігається з JAVA\_HOME термінала. Помилка `JavaFX runtime components are missing` означає, що шлях запуску не налаштував модулі JavaFX. Запуск Maven-плагіна допомагає відтворити правильний module path.
 
-::: info Знімок екрана
-Show pom.xml JavaFX 27 and Maven dependency tree.
-:::
+![JavaFX 27 у залежностях Maven-проєкту](./images/01-maven-javafx.png)
 
 Рис. 15.2. JavaFX 27 у залежностях Maven-проєкту {.caption}
 

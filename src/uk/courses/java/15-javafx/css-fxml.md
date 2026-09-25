@@ -123,15 +123,11 @@ public final class GreetingMain extends Application {
 
 Scene Builder редагує FXML візуально. У Library обирають контроли, Hierarchy показує дерево, Inspector – Layout, Properties і Code. У Code задайте fx:id і назву обробника без початкового решітки; у збереженому FXML onAction має `#`. Версія Scene Builder має підтримувати використані контроли. Код контролера і залежності проєкту редактор не генерує.
 
-::: info Знімок екрана
-Open greeting.fxml; show Hierarchy and Code fx:id.
-:::
+![Дерево та властивості FXML у Scene Builder](./images/04-scene-builder.png)
 
 Рис. 15.9. Дерево та властивості FXML у Scene Builder {.caption}
 
-::: info Знімок екрана
-Run GreetingMain, enter Olena and activate greeting.
-:::
+![FXML-форма після застосування CSS](./images/05-greeting-css.png)
 
 Рис. 15.10. FXML-форма після застосування CSS {.caption}
 

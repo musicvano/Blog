@@ -2,7 +2,7 @@
 title: "Replacement, options, and lookarounds"
 description: "Topic 2. Regular expressions: Replacement, options, and lookarounds"
 outline: [2, 3]
-sourceHash: "48347529a1592e8bdf6a2517f5fcec7c919799e689a037bb7990c28a5fcfc833"
+sourceHash: "0979e89627332986d3e4c022be5bc0d9b81b68b750df9ba6c047e61f05ce12da"
 ---
 
 # Replacement, options, and lookarounds
@@ -153,7 +153,7 @@ Regex.IsMatch(comment, @"/\*.*\*/");                          // False
 Regex.IsMatch(comment, @"/\*.*\*/", RegexOptions.Singleline);  // True
 
 Regex.IsMatch("HEDGEHOG", "(?i)hedgehog");        // True
-Regex.IsMatch("Kyiv CITY", "Kyiv (?i:city)");     // True
+Regex.IsMatch("Rome CITY", "Rome (?i:city)");     // True
 ```
 
 The names of the `Multiline` and `Singleline` options are not opposites, as they may seem: the first changes how `^`/`$` work, the second changes the period, and they can be enabled together. `IgnorePatternWhitespace` lets you split a complex pattern into lines with comments after `#`, as in Example 2.
@@ -193,8 +193,8 @@ Several lookaheads at the start of a pattern check **several independent conditi
 
 ```cs
 var password = new Regex(@"^(?=.*\d)(?=.*\p{Ll})(?=.*\p{Lu}).{8,}$");
-password.IsMatch("Kyiv2026");   // True
-password.IsMatch("kyiv2026");   // False – no uppercase letter
+password.IsMatch("Rome2026");   // True
+password.IsMatch("rome2026");   // False – no uppercase letter
 ```
 
 Each lookahead `(?=.*…)` scans the string from the beginning and "consumes" nothing, so the next condition is again checked from position 0. To tell the user **which** condition was violated, each rule is checked with a separate pattern.

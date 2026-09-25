@@ -2,7 +2,7 @@
 title: "Controllers, tables, and background tasks"
 description: "Topic 16. MVC and data binding: Controllers, tables, and background tasks"
 outline: [2, 3]
-sourceHash: "18dcc9504bd915f330b434887213a6e9f691b25108cd4462cec51e119c4b15c2"
+sourceHash: "01a38a6083a49ec2e8e30ccae0bc8de781e24170cd2cd47642bfff4d56528721"
 ---
 
 # Controllers, tables, and background tasks
@@ -24,9 +24,7 @@ The `setControllerFactory` factory lets you pass a service through the controlle
 
 For a second scene, data is passed as an immutable id, a DTO, or a draft through a controller method. A static global "current user" field hides the dependency and makes testing harder. A modal window must have an owner and a defined cancellation result; closing it with the close button does not mean an automatic Save.
 
-::: info Screenshot
-In a real FXML file, show the Controller class, the fx:id of the selected TextField, and the button's onAction; they must match the published controller.
-:::
+![Identifiers and handlers in Scene Builder](./images/05-scene-builder-controller-panel.png)
 
 Figure 16.6. Identifiers and handlers in Scene Builder {.caption}
 
@@ -101,9 +99,7 @@ public class TableMain extends Application {
 
 Initially, Java, SQL, and JavaFX are visible. The query `java` leaves Java and JavaFX; the Title header changes their order. Row selection is a separate state: after filtering, a previously selected row may disappear, so Save/Delete must check the current selection and not use an old index into the source.
 
-::: info Screenshot
-Show a real table with TableColumns and their fx:id values. Match them against the fields of the training project's controller.
-:::
+![The structure of a TableView in Scene Builder](./images/09-scene-builder-tableview.png)
 
 Figure 16.8. The structure of a TableView in Scene Builder {.caption}
 

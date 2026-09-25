@@ -70,23 +70,17 @@ Invalid temperature
 
 Згенерувати документацію можна командою javadoc із -encoding UTF-8 та -d docs або через відповідну дію IDE. У IntelliJ IDEA шукайте *Tools → Generate JavaDoc…*; доступність дії залежить від конфігурації проєкту. <https://docs.oracle.com/en/java/javase/27/docs/specs/man/javadoc.html>.
 
-::: info Знімок екрана
-Generate Javadoc for Temperatures; open its HTML page and show parameter, return and exception contract.
-:::
+![Документація відкритого методу](./images/08-javadoc-html-page.png)
 
 Рис. 5.7. Документація відкритого методу {.caption}
 
 Меню *Generate* (**Alt+Insert**) допомагає створити конструктор, getter або toString, але не знає інваріантів. Перевірте згенерований код, особливо setter і поля в toString. *Rename* (**Shift+F6**) змінює пов’язані використання, а перенесення класу між пакетами потребує оновлення package та import. Користуйтеся рефакторингом, а не випадковою глобальною заміною рядка.
 
-::: info Знімок екрана
-Project &gt; src &gt; New &gt; Package, ua.edu.study.model; show model/app directories with compact middle packages disabled.
-:::
+![Організація моделі та точки входу](./images/06-idea-new-package.png)
 
 Рис. 5.8. Організація моделі та точки входу {.caption}
 
-::: info Знімок екрана
-Alt+Insert in BankAccount; show Constructor, Getter and toString actions, avoiding a public balance setter.
-:::
+![Генерування членів класу](./images/09-idea-generate-menu.png)
 
 Рис. 5.9. Генерування членів класу {.caption}
 

@@ -2,7 +2,7 @@
 title: "Object serialization"
 description: "Topic 12. Files, NIO.2, and serialization: Object serialization"
 outline: [2, 3]
-sourceHash: "194eed628b880bd2c8a39a8f689791dc1c1848a9df2caaaee27b34781bf7d34a"
+sourceHash: "3c635938af2ead90e78ff8e3f006dd2bcedf28205681442b1d0baa78438adcfb"
 ---
 
 # Object serialization
@@ -72,6 +72,7 @@ public class Main {
                         || info.arrayLength() > 1000) {
                     return ObjectInputFilter.Status.REJECTED;
                 }
+
                 Class<?> type = info.serialClass();
                 if (type == null) {
                     return ObjectInputFilter.Status.UNDECIDED;
@@ -98,6 +99,7 @@ public class Main {
                     Files.newOutputStream(path))) {
                 output.writeObject(source);
             }
+
             State restored = load(path);
             System.out.println(restored.name + ": " + restored.level);
             System.out.println("token: " + restored.token);

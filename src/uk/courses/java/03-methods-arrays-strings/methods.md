@@ -32,6 +32,7 @@ public class Main {
         values = new int[]{7, 8};
         values[1] = 0;
     }
+
     public static void main(String[] args) {
         int number = 5;
         int[] values = {1, 2, 3};
@@ -80,6 +81,7 @@ public class Main {
             throw new IllegalArgumentException("Empty data");
         }
     }
+
     /** Returns the smallest element of a nonempty array.
      * @param values input; not modified
      * @return minimum value
@@ -92,6 +94,7 @@ public class Main {
         }
         return result;
     }
+
     static int max(int[] values) {
         requireData(values);
         int result = values[0];
@@ -100,6 +103,7 @@ public class Main {
         }
         return result;
     }
+
     /// Returns the arithmetic mean without changing the array.
     /// @param values a nonempty array
     /// @return sum divided by element count
@@ -109,6 +113,7 @@ public class Main {
         for (int value : values) { total += value; }
         return (double) total / values.length;
     }
+
     static double average(double[] values) {
         if (values == null || values.length == 0) {
             throw new IllegalArgumentException("Empty data");
@@ -122,6 +127,7 @@ public class Main {
         }
         return total / values.length;
     }
+
     public static void main(String[] args) {
         int[] marks = {70, 90, 80, 100};
         System.out.println(Arrays.toString(marks));

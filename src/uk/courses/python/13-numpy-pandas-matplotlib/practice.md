@@ -14,6 +14,7 @@ outline: [2, 3]
 import numpy as np
 from numpy.typing import NDArray
 
+
 def errors(data: NDArray[np.float64],
            reference: NDArray[np.float64]) -> NDArray[np.float64]:
     if data.ndim != 2 or data.size == 0:
@@ -26,12 +27,14 @@ def errors(data: NDArray[np.float64],
         raise ValueError("Некоректний еталон")
     return data - reference[:, None]
 
+
 def main() -> None:
     data = np.array([[1., -1., 0.], [11., 9., 10.],
                      [21., 19., 20.]])
     delta = errors(data, np.array([0., 10., 20.]))
     print("Середні похибки:", delta.mean(axis=0).tolist())
     print(f"Найбільше відхилення: {np.abs(delta).max():.1f}")
+
 
 if __name__ == "__main__":
     main()
@@ -54,6 +57,7 @@ if __name__ == "__main__":
 from io import StringIO
 import pandas as pd
 
+
 def attendance(source: str) -> pd.DataFrame:
     frame = pd.read_csv(StringIO(source), dtype="string")
     required = {"group", "present", "total"}
@@ -74,10 +78,12 @@ def attendance(source: str) -> pd.DataFrame:
     report["share"] = report["present"] / report["total"]
     return report
 
+
 def main() -> None:
     source = "group,present,total\nA,18,20\nA,8,10\nB,9,10\n"
     for row in attendance(source).itertuples(index=False):
         print(f"{row.group}: {row.share:.1%}")
+
 
 if __name__ == "__main__":
     main()
@@ -100,6 +106,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from numpy.typing import NDArray
 
+
 def read_values(path: Path) -> NDArray[np.float64]:
     frame = pd.read_csv(path)
     if "value" not in frame or not 1 <= len(frame) <= 10000:
@@ -109,6 +116,7 @@ def read_values(path: Path) -> NDArray[np.float64]:
     if not np.isfinite(data).all() or (np.abs(data) > 1e6).any():
         raise ValueError("Недопустимі значення")
     return data
+
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Звіт експерименту")
@@ -135,6 +143,7 @@ def main() -> int:
     print(f"Графік: {args.plot.name}")
     return 0
 
+
 if __name__ == "__main__":
     raise SystemExit(main())
 ```
@@ -149,10 +158,12 @@ import pytest
 from pathlib import Path
 from experiment import read_values
 
+
 def test_three_values(tmp_path: Path) -> None:
     source = tmp_path / "values.csv"
     source.write_text("value\n1\n2\n3\n", encoding="utf-8")
     np.testing.assert_allclose(read_values(source), [1, 2, 3])
+
 
 @pytest.mark.parametrize("text", ["value\n", "value\ninf\n",
                                  "other\n1\n", "value\nbad\n"])

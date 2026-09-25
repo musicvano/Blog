@@ -26,6 +26,7 @@ outline: [2, 3]
 **`units.ixx`:**
 ```cpp
 export module units;
+
 export namespace units {
     double celsius_to_kelvin(double value);
 }
@@ -36,7 +37,9 @@ export namespace units {
 module;
 #include <cmath>
 #include <stdexcept>
+
 module units;
+
 double units::celsius_to_kelvin(double value)
 {
     if (!std::isfinite(value) || value < -273.15) {
@@ -56,6 +59,7 @@ double units::celsius_to_kelvin(double value)
 #include <exception>
 #include <print>
 import units;
+
 int main()
 {
     for (double value : {0.0, -273.15, -300.0}) {
@@ -120,6 +124,7 @@ namespace fees {
 ```cpp
 #include "fees.h"
 #include <stdexcept>
+
 int fees::delivery(int grams)
 {
     if (grams <= 0 || grams > 5000) {
@@ -137,6 +142,7 @@ int fees::delivery(int grams)
 ```cpp
 #include "fees.h"
 #include <print>
+
 int main()
 {
     std::println("1500 g: {} UAH", fees::delivery(1500));
@@ -148,6 +154,7 @@ int main()
 #include "fees.h"
 #include <print>
 #include <stdexcept>
+
 int main()
 {
     int failed = 0;
@@ -214,6 +221,7 @@ Failed: 0
 **`score.ixx`:**
 ```cpp
 export module score;
+
 export int limit_score(int value)
 {
     if (value < 0) return 0;
@@ -226,6 +234,7 @@ export int limit_score(int value)
 ```cpp
 #include <print>
 import score;
+
 int main()
 {
     for (int value : {-5, 70, 120}) {
@@ -237,6 +246,7 @@ int main()
 **`tests.cpp`:**
 ```cpp
 import score;
+
 int main()
 {
     return limit_score(-1) == 0 && limit_score(0) == 0

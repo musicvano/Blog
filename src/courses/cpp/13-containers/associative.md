@@ -2,7 +2,7 @@
 title: "Associative and hash containers"
 description: "Topic 13. Containers: Associative and Hash Containers"
 outline: [2, 3]
-sourceHash: "af6506465e9b30b165ee3503161dbda6ecad43174089656c3d76770d8477326d"
+sourceHash: "bc16304d928df41dd0f1b5cf2fab9909f16ae0189987d92fd7608a1d9d8c5959"
 ---
 
 # Associative and hash containers
@@ -198,6 +198,7 @@ struct Point {
     int x, y;
     bool operator==(const Point&) const = default;
 };
+
 struct PointHash {
     std::size_t operator()(const Point& p) const noexcept {
         auto hx = std::hash<int>{}(p.x);
@@ -206,6 +207,7 @@ struct PointHash {
             + (hx >> 2));
     }
 };
+
 int main()
 {
     std::unordered_set<Point, PointHash> points;

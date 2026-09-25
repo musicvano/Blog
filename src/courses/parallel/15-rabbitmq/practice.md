@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 15. The RabbitMQ broker: worked examples"
 outline: [2, 3]
-sourceHash: "de3cf2e2b57dc6a9f4cc63dc2a1a49f060e0a7eaac1daf34d33e71b2bd6757ff"
+sourceHash: "4d79589bf3ec7b63fa9a93bd00ca16a454f249a1d2caf0d03e05a0fa25d5cc76"
 ---
 
 # Practice
@@ -139,6 +139,7 @@ sealed class FibClient : IAsyncDisposable
             waiter.TrySetResult(new(ea.BasicProperties.Type,
                 Encoding.UTF8.GetString(ea.Body.Span)));
         }
+
         return Task.CompletedTask;
     }
 

@@ -2,7 +2,7 @@
 title: "Packages, classpath, and JAR"
 description: "Topic 5. Classes and objects: packages, classpath, and JAR"
 outline: [2, 3]
-sourceHash: "a2546fb827a68778da28e8689945d15e03cd7ef9f6b69496adc33e922f5dcdae"
+sourceHash: "873503ea52489c8f4533c7eccdf27f9ac97a8ea27f8f71a9f9fee28cfbccc64f"
 ---
 
 # Packages, classpath, and JAR
@@ -113,8 +113,6 @@ java -jar library.jar
 
 A JAR packages class files and resources. Main-Class in the manifest defines the entry point for java -jar. The JAR itself does not automatically include an installed JVM; application distribution will be covered in more detail later. An empty classpath or an incorrect fully qualified name does not indicate a constructor error.
 
-::: info Screenshot
-Run the shown javac, java -cp, jar and java -jar commands in a disposable project; both runs print the same library.
-:::
+![Compiling packages and running a JAR](./images/07-terminal-javac-classpath-jar.png)
 
 Figure 5.6. Compiling packages and running a JAR {.caption}

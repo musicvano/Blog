@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 11. Lambdas and the Stream API: worked examples"
 outline: [2, 3]
-sourceHash: "aea88921d3a54b1c61abd35e198c1f910937c0c3533acd564cbd08e79419949c"
+sourceHash: "8ce6983531c54993901058963ed5d6c05e34543766f58f843cb14826dc04ed82"
 ---
 
 # Practice
@@ -113,6 +113,7 @@ public class Main {
                 || end.getYear() > 2100) {
             throw new IllegalArgumentException("reversed dates");
         }
+
         return Stream.iterate(start, day -> day.plusDays(1))
             .takeWhile(day -> !day.isAfter(end))
             .filter(day -> day.getDayOfWeek() != DayOfWeek.SATURDAY)

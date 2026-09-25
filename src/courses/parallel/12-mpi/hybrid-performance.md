@@ -2,7 +2,7 @@
 title: "Hybrid programs and performance"
 description: "Topic 12. MPI message passing: hybrid programs and performance"
 outline: [2, 3]
-sourceHash: "c44de04d127f4b1bb93b28e9999078ae50a39b31438de5f3d077066a5b450b85"
+sourceHash: "bd9a7a3105cb4f9e45f6cbf40ee882d500626cbdf13f86a732b1237a704b9775"
 ---
 
 # Hybrid programs and performance
@@ -173,7 +173,13 @@ On a cluster with a job scheduler, `mpirun` takes nodes and slots from the sched
 
 ### The α–β model
 
-The time to transfer a message of $m$ bytes is estimated with the **α–β model** (Hockney’s model): $$T (m) = \alpha + \beta m ,$$ where $\alpha$ is the **latency**, the time for a message without data (library calls, the network stack), and $\beta$ is the time to transfer one byte, the inverse of the **bandwidth** $B = 1 / \beta$. For small messages $\alpha$ dominates, and for large ones $\beta m$ does. The parameters are measured with a “ping-pong” program: rank 0 sends a message to rank 1, which returns it, and half of the round-trip time equals $T (m)$.
+The time to transfer a message of $m$ bytes is estimated with the **α–β model** (Hockney’s model):
+
+$$
+T (m) = \alpha + \beta m ,
+$$
+
+where $\alpha$ is the **latency**, the time for a message without data (library calls, the network stack), and $\beta$ is the time to transfer one byte, the inverse of the **bandwidth** $B = 1 / \beta$. For small messages $\alpha$ dominates, and for large ones $\beta m$ does. The parameters are measured with a “ping-pong” program: rank 0 sends a message to rank 1, which returns it, and half of the round-trip time equals $T (m)$.
 
 ```cpp
 for (int r = 0; r < reps; ++r)

@@ -46,6 +46,7 @@ class User private constructor(
 ) {
     companion object {
         const val MAX_NAME = 40
+
         fun create(id: UserId, rawName: String): User {
             val name = rawName.trim()
             require(name.isNotEmpty() && name.length <= MAX_NAME)

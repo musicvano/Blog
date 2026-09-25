@@ -2,7 +2,7 @@
 title: "RAII and the rules of zero, three, and five"
 description: "Topic 8. Copy, Move, RAII: RAII and the Rules of Zero, Three, and Five"
 outline: [2, 3]
-sourceHash: "d876c2cd5a8587469e1ebdf23c5fc6dba5d11311247e8d202f2ef8ba6e7a7495"
+sourceHash: "5ba3d9bd16b47bd4740c410ab4b3a404e1f548647230bab5e234a68e62e003d6"
 ---
 
 # RAII and the rules of zero, three, and five
@@ -50,6 +50,7 @@ Figure 8.5. Transferring a resource without duplicating the owner {.caption}
 #include <chrono>
 #include <print>
 #include <stdexcept>
+
 class ScopeTimer {
     using Clock = std::chrono::steady_clock;
     Clock::time_point start_ = Clock::now();
@@ -58,11 +59,13 @@ public:
     explicit ScopeTimer(double& result) : result_(result) {}
     ScopeTimer(const ScopeTimer&) = delete;
     ScopeTimer& operator=(const ScopeTimer&) = delete;
+
     ~ScopeTimer() noexcept {
         result_ = std::chrono::duration<double>(
             Clock::now() - start_).count();
     }
 };
+
 int main() {
     double elapsed = -1;
     try {
@@ -127,13 +130,16 @@ Figure 8.6. Choosing an ownership rule {.caption}
 #include <string>
 #include <utility>
 #include <vector>
+
 struct Document {
     std::string title;
     std::vector<int> pages;
 };
+
 Document makeDocument() {
     return Document{"Report", {10, 20}};
 }
+
 int main() {
     Document a = makeDocument();
     Document b = a;

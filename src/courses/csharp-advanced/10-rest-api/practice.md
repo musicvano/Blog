@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 10. REST web services: worked examples"
 outline: [2, 3]
-sourceHash: "1c46f425050a5a93eda26d7cd14ac916a632f15f6158b2cd54ba1ceba44585a2"
+sourceHash: "a0fb46b7efdb34ee0ad9a5c9a7e07c8c88be39a71b65c8bd413805a030234604"
 ---
 
 # Practice
@@ -238,11 +238,13 @@ using Microsoft.AspNetCore.Http.HttpResults;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddProblemDetails();
 var app = builder.Build();
+
 app.UseExceptionHandler(new ExceptionHandlerOptions
 {
     StatusCodeSelector = ex => ex is BadHttpRequestException bad
         ? bad.StatusCode : StatusCodes.Status500InternalServerError
 });
+
 app.UseStatusCodePages();
 
 // Sample rates: how many hryvnias one unit of the currency costs.

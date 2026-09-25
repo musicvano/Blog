@@ -65,6 +65,7 @@ auto makeCounter(int start)
 {
     return [value = start]() mutable { return value++; };
 }
+
 int main()
 {
     auto count = makeCounter(10);

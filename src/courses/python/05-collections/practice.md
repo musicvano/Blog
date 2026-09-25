@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 5. Built-in collections: worked examples"
 outline: [2, 3]
-sourceHash: "94d624316988add48107a055b4ed7005596d87747ed990ade97979113c7adb9e"
+sourceHash: "6d8ea97483ecffab20a05c0bd9b35afaa7a42a8fb4cb747fa6a14daca917b04b"
 ---
 
 # Practice
@@ -21,6 +21,7 @@ def transpose(matrix: list[list[int]]) -> list[list[int]]:
     return [[row[column] for row in matrix]
             for column in range(width)]
 
+
 def main() -> None:
     matrix = [[1, 2, 3], [4, 5, 6]]
     transposed = transpose(matrix)
@@ -29,6 +30,7 @@ def main() -> None:
     print("Transposed:")
     for row in transposed:
         print(*row)
+
 
 if __name__ == "__main__":
     main()
@@ -54,6 +56,7 @@ The `--help` command prints help. Write errors to the error stream and exit with
 ```py
 import sys
 
+
 def parse_contacts(records: list[str]) -> dict[str, str]:
     contacts: dict[str, str] = {}
     phones: set[str] = set()
@@ -70,6 +73,7 @@ def parse_contacts(records: list[str]) -> dict[str, str]:
         contacts[name] = phone
         phones.add(phone)
     return contacts
+
 
 def main() -> int:
     args = sys.argv[1:]
@@ -92,6 +96,7 @@ def main() -> int:
         first_phone = contacts[sorted(contacts)[0]]
         print("By number:", reverse[first_phone])
     return 0
+
 
 if __name__ == "__main__":
     raise SystemExit(main())
@@ -118,6 +123,7 @@ Given visit lists for two days, a name may repeat if a visitor came several time
 ```py
 from collections import Counter
 
+
 def visit_report(days: list[list[str]]) -> None:
     if len(days) != 2:
         raise ValueError("Exactly two days are required")
@@ -135,6 +141,7 @@ def visit_report(days: list[list[str]]) -> None:
     for name, count in ordered:
         print(f"{name}: {count}")
     print("Visits:", sum(counts.values()))
+
 
 days = [["Anna", "Oleh", "Anna"], ["Oleh", "Ira"]]
 visit_report(days)

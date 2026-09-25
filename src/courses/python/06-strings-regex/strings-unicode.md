@@ -2,7 +2,7 @@
 title: "Strings and Unicode"
 description: "Topic 6. Strings and regular expressions: strings and Unicode"
 outline: [2, 3]
-sourceHash: "7d8456398176de4389c9600772c8e4e71219a2aa0bbe09d91a6f0a08849ed908"
+sourceHash: "e8f57a703d66d0dd8904832a3be98230d517091f8f4e748cc52930120b14ab50"
 ---
 
 # Strings and Unicode
@@ -14,21 +14,21 @@ The `str` type represents a **string**: an immutable sequence of Unicode code po
 The official description of string operations is at <https://docs.python.org/3.14/library/stdtypes.html#text-sequence-type-str>. Use single or double quotes for text. Triple quotes allow multiple lines; line breaks and indentation inside such a literal become part of its value.
 
 ```py
-city = "Kryvyi Rih"
+city = "London"
 message = 'The word "Python" uses Latin letters.'
 lines = "First line\nSecond line"
 print(city[0], city[-1], len(city))
 print(lines)
 ```
 
-The program prints `K h 10`, followed by two separate lines. Indices start at zero; negative indices count from the end. Accessing `city[100]` raises `IndexError`. The slice `city[100:]` returns an empty string: slices allow bounds beyond the end of the sequence.
+The program prints `L n 6`, followed by two separate lines. Indices start at zero; negative indices count from the end. Accessing `city[100]` raises `IndexError`. The slice `city[100:]` returns an empty string: slices allow bounds beyond the end of the sequence.
 
 ### Immutability and building a new string
 
 Assignment such as `text[0] = "A"` is prohibited: strings are immutable. The methods `replace`, `upper`, and `strip` return a new value. If you need the result later, store it: `text = text.strip()`. Calling `text.strip()` without using the result does not clean the variable.
 
 ```py
-text = "  Kyiv  "
+text = "  Rome  "
 clean = text.strip()
 changed = "L" + clean[1:]
 print(repr(text), repr(clean), changed)
@@ -36,7 +36,7 @@ parts = ["Python", "3.14", "and", "Unicode"]
 print(" ".join(parts))
 ```
 
-The first print produces `'  Kyiv  ' 'Kyiv' Lyiv`. The second joins the list elements into `Python 3.14 and Unicode`. Call `join` on the separator, with a sequence of strings as its argument. If the list contains a number, explicitly convert it using `str`. For many fragments, collecting them in a list and calling `join` once expresses the intent better than repeatedly adding to a string in a loop.
+The first print produces `'  Rome  ' 'Rome' Lome`. The second joins the list elements into `Python 3.14 and Unicode`. Call `join` on the separator, with a sequence of strings as its argument. If the list contains a number, explicitly convert it using `str`. For many fragments, collecting them in a list and calling `join` once expresses the intent better than repeatedly adding to a string in a loop.
 
 ### Escape sequences and raw literals
 
@@ -80,11 +80,11 @@ print(name.removesuffix(".txt"))
 key, separator, value = "mode = fast".partition("=")
 if separator:
     print(key.strip(), value.strip())
-text = "Kam'ianets, m’iata"
+text = "P'iemont, m’iata"
 print(text.replace("'", "’"))
 ```
 
-Output: `report`, then `mode fast`, then `Kam’ianets, m’iata`. Unifying apostrophes is a separate application rule. Unicode normalization is not required to convert a straight apostrophe to a typographic one. Do not unconditionally remove punctuation if it is meaningful in the data.
+Output: `report`, then `mode fast`, then `P’iemont, m’iata`. Unifying apostrophes is a separate application rule. Unicode normalization is not required to convert a straight apostrophe to a typographic one. Do not unconditionally remove punctuation if it is meaningful in the data.
 
 The methods `find` and `index` find a substring's position. Without a match, `find` returns −1, while `index` raises `ValueError`. The check `if text.find(word):` is incorrect: a match at position zero is false, while −1 is a true value. To check for presence, write `if word in text:`; for a position, compare the result with −1.
 

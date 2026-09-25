@@ -2,7 +2,7 @@
 title: "Enums"
 description: "Topic 8. Records, enum, and sealed classes: enums"
 outline: [2, 3]
-sourceHash: "7941113b005b7ac5c8f93af1727febd764d7e21e4838cfc95bb9403eb0cc6fdc"
+sourceHash: "1f6e0ccbbf876eadef9425a70d5a1ace8dfb0626df357f9d7a27d40f7d4d554f"
 ---
 
 # Enums
@@ -39,11 +39,14 @@ enum Planet {
     private static final double G = 6.67430e-11;
     private final double mass;
     private final double radius;
+
     Planet(double mass, double radius) {
         this.mass = mass;
         this.radius = radius;
     }
+
     double gravity() { return G * mass / (radius * radius); }
+
     double weight(double bodyMass) {
         if (!Double.isFinite(bodyMass) || bodyMass < 0
                 || bodyMass > 1_000_000) {
@@ -52,6 +55,7 @@ enum Planet {
         return bodyMass * gravity();
     }
 }
+
 public class Main {
     public static void main(String[] args) {
         for (Planet planet : Planet.values()) {

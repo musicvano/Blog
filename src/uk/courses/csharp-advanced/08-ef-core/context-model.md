@@ -91,9 +91,7 @@ dotnet tool install --global dotnet-ef   # або update
 dotnet ef --version                      # 10.0.12
 ```
 
-::: info Знімок екрана
-Visual Studio 2026: Solution Explorer → Dependencies → Packages expanded (Npgsql.EntityFrameworkCore.PostgreSQL, Microsoft.EntityFrameworkCore.Design), the .csproj open beside it
-:::
+![Пакети EF Core у проєкті](./images/01-vs-efcore-packages.png)
 
 Рис. 8.3. Пакети EF Core у проєкті {.caption}
 

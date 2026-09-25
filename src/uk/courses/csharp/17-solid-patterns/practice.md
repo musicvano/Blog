@@ -149,6 +149,7 @@ class LegacyRatesService
         {
             return -1;
         }
+
         return value * from / to;
     }
 }

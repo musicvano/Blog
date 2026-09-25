@@ -2,7 +2,7 @@
 title: "Your first JavaFX application"
 description: "Topic 15. JavaFX graphical applications: Your first JavaFX application"
 outline: [2, 3]
-sourceHash: "a4ec01c45c2395deb2553f05b2f5839cef765a29eb2f9c7f2cac6b1cdd92e7fd"
+sourceHash: "27157922c4ffbae9fef5275b682d2bfa5e80322c272060349ba09999dd865a5d"
 ---
 
 # Your first JavaFX application
@@ -97,9 +97,7 @@ mvn javafx:run
 
 Check the JDK in the first command: the Project SDK setting in the IDE does not always match the terminal's JAVA\_HOME. The error `JavaFX runtime components are missing` means that the launch path did not configure the JavaFX modules. Running through the Maven plugin helps reproduce the correct module path.
 
-::: info Screenshot
-Show pom.xml JavaFX 27 and Maven dependency tree.
-:::
+![JavaFX 27 among the Maven project's dependencies](./images/01-maven-javafx.png)
 
 Figure 15.2. JavaFX 27 among the Maven project's dependencies {.caption}
 

@@ -2,7 +2,7 @@
 title: "SQL: tables and queries"
 description: "Topic 7. SQL and ADO.NET: SQL: tables and queries"
 outline: [2, 3]
-sourceHash: "f8e44b64ef2ee4596b0ae73dced63dfe8faa77e6217c53bfdc3a5cd7e29e1be3"
+sourceHash: "07587dbac6997514b6e9a218e53db8ea919d290484522778e5b9708b147512e1"
 ---
 
 # SQL: tables and queries
@@ -88,9 +88,7 @@ An **index** is an auxiliary structure (usually a B-tree) that lets you find row
 
 After the script runs, DataGrip builds a schema diagram from the foreign keys: the context menu of the `public` schema in *Database Explorer*—*Diagrams → Show Diagram* (Fig. 7.5).
 
-::: info Screenshot
-DataGrip: right-click schema public → Diagrams → Show Diagram; tables authors, books, book\_authors, readers, loans with foreign-key links
-:::
+![A database schema diagram in DataGrip](./images/02-datagrip-diagram.png)
 
 Figure 7.5. A database schema diagram in DataGrip {.caption}
 
@@ -249,9 +247,7 @@ ORDER BY loans DESC, r.name;
 (3 rows)
 ```
 
-::: info Screenshot
-DataGrip query console with the SELECT … LEFT JOIN … GROUP BY query above, result grid with 3 rows below, database tree on the left
-:::
+![Running a query in the DataGrip console](./images/03-datagrip-query-console.png)
 
 Figure 7.7. Running a query in the DataGrip console {.caption}
 

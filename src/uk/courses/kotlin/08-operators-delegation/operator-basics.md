@@ -52,6 +52,7 @@ data class Vector(val x: Double, val y: Double) :
         require(x.isFinite() && y.isFinite())
         require(x in -1e6..1e6 && y in -1e6..1e6)
     }
+
     val length: Double get() = hypot(x, y)
 
     operator fun plus(other: Vector): Vector =

@@ -2,7 +2,7 @@
 title: "IntelliJ IDEA, JShell, and errors"
 description: "Topic 1. Java and your first program: IntelliJ IDEA, JShell, and errors"
 outline: [2, 3]
-sourceHash: "ce70d8a10761889cada2ad9409c62b9b1dbaf32158b10ad18e8ef189cf9e146e"
+sourceHash: "60f7678e77f6acc6b96722da3f5e12734ce596612f9a6cbb030e0375f850c2bc"
 ---
 
 # IntelliJ IDEA, JShell, and errors
@@ -15,9 +15,7 @@ Download the IDE from an official source. Choose the correct OS and architecture
 
 In *New Project*, set the name to `Hello`, the language to *Java*, the build system to *IntelliJ*, and the JDK to 27. The wizard may offer to download a JDK; choosing a *Project SDK* does not automatically change `JAVA_HOME` in every external terminal.
 
-::: info Screenshot
-IntelliJ New Project: Java, IntelliJ build system, SDK27, Hello.
-:::
+![Creating a Java project with JDK 27](./images/02-new-project.png)
 
 Figure 1.4. Creating a Java project with JDK 27 {.caption}
 
@@ -39,9 +37,7 @@ Figure 1.5. Source files, settings, and compilation output {.caption}
 
 Set arguments in the *Program arguments* field under *Run → Edit Configurations…*. JVM options have their own *VM options* field. The working directory determines the base for relative paths; it does not necessarily match the directory containing a particular `Main.java` file.
 
-::: info Screenshot
-Application configuration: Main class, Program arguments Olena, JDK27, working directory.
-:::
+![Arguments and working directory for a run](./images/03-run-arguments.png)
 
 Figure 1.6. Arguments and working directory for a run {.caption}
 
@@ -143,9 +139,7 @@ git log --oneline
 
 After the first working version, add a second small step, such as a name argument, and document how to run it in the README in a third commit. Do not create three commits with arbitrary spaces just to meet a count. The history should show the program's development.
 
-::: info Screenshot
-IntelliJ Git Log with three meaningful commits and changed source files; no private identity.
-:::
+![Meaningful history of a local project](./images/04-git-log.png)
 
 Figure 1.8. Meaningful history of a local project {.caption}
 

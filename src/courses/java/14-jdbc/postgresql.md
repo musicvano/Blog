@@ -2,7 +2,7 @@
 title: "The relational model and PostgreSQL"
 description: "Topic 14. Databases and JDBC: The relational model and PostgreSQL"
 outline: [2, 3]
-sourceHash: "644eef56b5cb2898244e2a65e79bd7d5d7fdacd3d6f1903607484978561ca3f1"
+sourceHash: "d8847112827dfd0550f161c36b2f6cbfc5202fcf86b447ecadf8a5b56de6bca1"
 ---
 
 # The relational model and PostgreSQL
@@ -67,9 +67,7 @@ PostgreSQL 18 installer: server and command line tools; no secrets.
 
 Figure 14.2. Choosing the components of a local PostgreSQL {.caption}
 
-::: info Screenshot
-psql: CREATE ROLE, password prompt hidden, CREATE DATABASE, connection.
-:::
+![A separate role and database for the lab](./images/03-terminal-psql-create-db.png)
 
 Figure 14.3. A separate role and database for the lab {.caption}
 
@@ -77,9 +75,7 @@ In DataGrip or the Database window of IntelliJ IDEA, create a PostgreSQL data so
 
 Check the IDE licensing terms for your type of use on the product's official page; the fact that this is coursework is not a technical requirement of JDBC. For all the examples, the free psql and a command-line Maven build are sufficient.
 
-::: info Screenshot
-DataGrip PostgreSQL library/lab, Test Connection; hide credentials.
-:::
+![Connecting to the training database](./images/04-datagrip-new-data-source.png)
 
 Figure 14.4. Connecting to the training database {.caption}
 

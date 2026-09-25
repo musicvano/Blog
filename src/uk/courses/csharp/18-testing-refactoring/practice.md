@@ -52,7 +52,7 @@ namespace Shop.Tests;
 public sealed class PasswordValidatorTests
 {
     [TestMethod]
-    [DataRow("Kyiv#2026")]
+    [DataRow("Rome#2026")]
     [DataRow("Пароль_12")]                  // кирилиця теж літери
     [DataRow("Aa1!aaaa")]                   // рівно 8 символів
     public void Validate_StrongPassword_NoErrors(string password)
@@ -64,10 +64,10 @@ public sealed class PasswordValidatorTests
     // Кожен рядок порушує рівно одне правило.
     [TestMethod]
     [DataRow("Aa1!aaa", "менше 8 символів")]
-    [DataRow("kyiv#2026", "немає великої літери")]
-    [DataRow("Kyiv#Lviv", "немає цифри")]
-    [DataRow("Kyiv2026", "немає спеціального символу")]
-    [DataRow("Kyiv 2026", "містить пробіл")]
+    [DataRow("rome#2026", "немає великої літери")]
+    [DataRow("Rome#Oslo", "немає цифри")]
+    [DataRow("Rome2026", "немає спеціального символу")]
+    [DataRow("Rome 2026", "містить пробіл")]
     public void Validate_OneRuleBroken_OneError(
         string password, string expected)
     {

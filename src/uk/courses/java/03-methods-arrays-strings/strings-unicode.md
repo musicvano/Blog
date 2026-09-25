@@ -62,6 +62,7 @@ public class Main {
         }
         return String.join(" ", words);
     }
+
     public static void main(String[] args) {
         System.out.println(normalize("  оЛЕНА\tпЕТРЕНКО  "));
         System.out.println("[" + normalize(" \n\t ") + "]");

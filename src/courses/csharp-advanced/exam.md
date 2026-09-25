@@ -1,7 +1,7 @@
 ---
 title: "Review tasks"
-description: "C# and .NET programming technologies: practical tasks by course topic"
-sourceHash: "d92b78f0d09b0af07188982c7ab4a2a4600edae5f2de0d2f2c29ed599345e0c1"
+description: "Object-oriented programming in C# II: practical tasks by course topic"
+sourceHash: "5113ae8d695743ef0a66f491776bc056d53e41f32c96cdccec454eb5b6f75f06"
 ---
 
 # Review tasks
@@ -198,7 +198,7 @@ Practical tasks by course topic to check your knowledge. Each task is a separate
 144. Create a .NET MAUI "Counter" application with a ViewModel on CommunityToolkit.Mvvm (`[ObservableProperty]`, `[RelayCommand]`), *+1*, *−1*, and *Reset* buttons, and compiled `x:DataType` bindings; the *−1* button is unavailable when the value is zero.
 145. Create a .NET MAUI application with two Shell pages: a list of cities and a city details page. The details page route is registered in `AppShell`, the city name is passed as a string query parameter, and the details page receives it through `IQueryAttributable`.
 146. Create a .NET MAUI "Notes" application in which the note text is stored in a file in `FileSystem.AppDataDirectory`, loaded when the page appears, and the *Save* and *Delete* buttons save and delete the file with a `DisplayAlertAsync` message.
-147. Create a .NET MAUI application that, after a button is clicked, checks and requests the `Permissions.LocationWhenInUse` permission, gets the device coordinates through `Geolocation`, and shows them with the distance to Kyiv; a denied permission and disabled location services are explained to the user.
+147. Create a .NET MAUI application that, after a button is clicked, checks and requests the `Permissions.LocationWhenInUse` permission, gets the device coordinates through `Geolocation`, and shows them with the distance to London; a denied permission and disabled location services are explained to the user.
 148. Create a .NET MAUI application in which the *Pick photo* button opens `MediaPicker`, the selected photo is shown in an `Image` and copied to the application data folder, and the *Take photo* button is available only when `IsCaptureSupported` is `true`.
 149. Create a simple ASP.NET Core Minimal API web service `GET /api/products` (name, price) and a .NET MAUI application that gets the list of products in JSON format through `HttpClient`, shows it in a `CollectionView` inside a `RefreshView`, and reports an error if the service is unavailable.
 150. Create a .NET MAUI application in which a task list page and its ViewModel are registered in `MauiProgram` together with an `ITaskStore` storage service, the ViewModel receives the service through its constructor, and tasks are added, marked as done, and stored in a JSON file.

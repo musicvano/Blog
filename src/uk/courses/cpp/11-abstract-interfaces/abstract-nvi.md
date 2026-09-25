@@ -64,17 +64,21 @@ classDiagram
 #include <print>
 #include <stdexcept>
 #include <string>
+
 struct Drawable {
     virtual ~Drawable() = default;
     virtual std::string draw() const = 0;
 };
+
 struct Resizable {
     virtual ~Resizable() = default;
     virtual void resize(double factor) = 0;
 };
+
 struct Shape : Drawable {
     virtual double area() const = 0;
 };
+
 class Circle final : public Shape, public Resizable {
     double radius_;
 public:
@@ -82,17 +86,21 @@ public:
         if (!std::isfinite(r) || r <= 0 || r > 1000)
             throw std::invalid_argument("radius");
     }
+
     void resize(double k) override {
         if (!std::isfinite(k) || k <= 0 ||
             k > 1000 / radius_ || radius_ * k == 0)
             throw std::invalid_argument("factor");
         radius_ *= k;
     }
+
     double area() const override {
         return std::numbers::pi * radius_ * radius_;
     }
+
     std::string draw() const override { return "Circle"; }
 };
+
 int main() {
     Circle c{1};
     Resizable& sizing = c; sizing.resize(2);
@@ -161,16 +169,19 @@ flowchart BT
 #include <stdexcept>
 #include <string>
 #include <vector>
+
 class Report {
     virtual std::string body(const std::vector<int>& x) const = 0;
 public:
     virtual ~Report() = default;
+
     std::string generate(const std::vector<int>& values) const {
         if (values.size() > 100)
             throw std::invalid_argument("too many rows");
         return "Report\n" + body(values) + "End\n";
     }
 };
+
 struct ListReport final : Report {
 private:
     std::string body(const std::vector<int>& x) const override {
@@ -179,6 +190,7 @@ private:
         return result;
     }
 };
+
 int main() {
     ListReport report;
     const Report& view = report;

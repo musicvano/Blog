@@ -53,7 +53,7 @@ flowchart TB
 
 ### Приклад «Де я?»
 
-Сторінка показує зміни стану мережі, визначає координати пристрою, відстань до Києва й ділиться посиланням на карту. Розмітка складається з `VerticalStackLayout` з написами `networkLabel`, `coordinatesLabel`, `distanceLabel`, кнопками *Find my location* (подія `OnLocateClicked`), `shareButton` (*Share*, `IsEnabled="False"`, подія `OnShareClicked`) та індикатором `busyIndicator` (`ActivityIndicator`). Код сторінки:
+Сторінка показує зміни стану мережі, визначає координати пристрою, відстань до Лондона й ділиться посиланням на карту. Розмітка складається з `VerticalStackLayout` з написами `networkLabel`, `coordinatesLabel`, `distanceLabel`, кнопками *Find my location* (подія `OnLocateClicked`), `shareButton` (*Share*, `IsEnabled="False"`, подія `OnShareClicked`) та індикатором `busyIndicator` (`ActivityIndicator`). Код сторінки:
 
 ```cs
 using System.Globalization;
@@ -62,7 +62,7 @@ namespace WhereAmI;
 
 public partial class MainPage : ContentPage
 {
-    private static readonly Location Kyiv = new(50.4501, 30.5234);
+    private static readonly Location London = new(51.5074, -0.1278);
     private Location? current;
 
     public MainPage() => InitializeComponent();
@@ -114,8 +114,8 @@ public partial class MainPage : ContentPage
             coordinatesLabel.Text =
                 $"{current.Latitude:F5}; {current.Longitude:F5}";
             double km = Location.CalculateDistance(
-                current, Kyiv, DistanceUnits.Kilometers);
-            distanceLabel.Text = $"Distance to Kyiv: {km:F1} km";
+                current, London, DistanceUnits.Kilometers);
+            distanceLabel.Text = $"Distance to London: {km:F1} km";
             shareButton.IsEnabled = true;
         }
         catch (FeatureNotEnabledException)
@@ -144,15 +144,13 @@ public partial class MainPage : ContentPage
 }
 ```
 
-Під час першого натискання *Find my location* на Android з’являється системний запит дозволу (рис. 15.12). Координати в емуляторі задають у *Extended controls* (кнопка «…» на панелі емулятора → *Location*) (рис. 15.13). Для точки 47,9105; 33,3918 (Кривий Ріг) напис показує `47,91050; 33,39180` і `Distance to Kyiv: 351,0 km` – це відстань по поверхні Землі, яку обчислює `Location.CalculateDistance`. Число з комою в посиланні зламало б адресу карти, тому для URL координати форматуються з `CultureInfo.InvariantCulture` (`47.91050`). Якщо в дозволі відмовлено, повідомлення радить увімкнути його в налаштуваннях (їх відкриває `AppInfo.Current.ShowSettingsUI()`).
+Під час першого натискання *Find my location* на Android з’являється системний запит дозволу (рис. 15.12). Координати в емуляторі задають у *Extended controls* (кнопка «…» на панелі емулятора → *Location*) (рис. 15.13). Для умовної точки 50,8467; 4,3525 (Брюссель, Гран-Плас) напис показує `50.84670; 4.35250` і `Distance to London: 320.8 km` – це відстань по поверхні Землі, яку обчислює `Location.CalculateDistance` (емулятор з англійською мовою форматує числа з крапкою, з українською – з комою). Число з комою в посиланні зламало б адресу карти, тому для URL координати форматуються з `CultureInfo.InvariantCulture` (`50.84670`). Якщо в дозволі відмовлено, повідомлення радить увімкнути його в налаштуваннях (їх відкриває `AppInfo.Current.ShowSettingsUI()`).
 
 ![Системний запит дозволу на геолокацію](./images/07-emulator-permission-dialog.png)
 
 Рис. 15.12. Системний запит дозволу на геолокацію {.caption}
 
-::: info Знімок екрана
-Emulator Extended controls → Location with point 47.9105, 33.3918 set; the app shows coordinates and «Distance to Kyiv: 351,0 km»
-:::
+![Імітація координат у розширених налаштуваннях емулятора](./images/08-emulator-extended-location.png)
 
 Рис. 15.13. Імітація координат у розширених налаштуваннях емулятора {.caption}
 

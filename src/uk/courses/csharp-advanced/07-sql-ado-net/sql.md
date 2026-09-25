@@ -87,9 +87,7 @@ DROP TABLE loans;               -- таблицю з даними, назавж�
 
 Після виконання скрипту DataGrip будує діаграму схеми за зовнішніми ключами: контекстне меню схеми `public` у *Database Explorer* – *Diagrams → Show Diagram* (рис. 7.5).
 
-::: info Знімок екрана
-DataGrip: right-click schema public → Diagrams → Show Diagram; tables authors, books, book\_authors, readers, loans with foreign-key links
-:::
+![Діаграма схеми бази даних у DataGrip](./images/02-datagrip-diagram.png)
 
 Рис. 7.5. Діаграма схеми бази даних у DataGrip {.caption}
 
@@ -248,9 +246,7 @@ ORDER BY loans DESC, r.name;
 (3 rows)
 ```
 
-::: info Знімок екрана
-DataGrip query console with the SELECT … LEFT JOIN … GROUP BY query above, result grid with 3 rows below, database tree on the left
-:::
+![Виконання запиту в консолі DataGrip](./images/03-datagrip-query-console.png)
 
 Рис. 7.7. Виконання запиту в консолі DataGrip {.caption}
 

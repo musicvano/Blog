@@ -2,7 +2,7 @@
 title: Practice
 description: "Topic 15. Streams and Files: worked examples"
 outline: [2, 3]
-sourceHash: "691a0074f0dd9b7c48ea8f0211c8c10c2b7b7fc1df5b370f3fe2c44f5c254211"
+sourceHash: "787737f10cbf8ed297c47fc187f568aa31bd9880124cb05c8de2f7d39c2ec72b"
 ---
 
 # Practice
@@ -111,6 +111,7 @@ The last read requests four bytes but gets one. The condition with gcount lets y
 #include <system_error>
 
 namespace fs = std::filesystem;
+
 int main()
 {
     fs::create_directories("backup-demo/source");

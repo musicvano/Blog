@@ -228,9 +228,7 @@ stateDiagram-v2
 
 `SaveChangesAsync` викликає `ChangeTracker.DetectChanges()`, порівнює поточні значення зі знімками, виконує команди **в одній транзакції** і переводить записи в стан `Unchanged` (видалені – у `Detached`). Метод `Update(entity)` позначає як `Modified` **усі** властивості об’єкта, створеного поза контекстом (наприклад, отриманого з форми), а `Attach(entity)` – додає його як `Unchanged`. Стан запису можна прочитати і змінити: `db.Entry(product).State`, початкове значення властивості – `db.Entry(product).Property(p => p.Price).OriginalValue`. Текстовий опис усіх записів дає властивість `db.ChangeTracker.DebugView.LongView`, її зручно переглядати в налагоджувачі (рис. 8.10).
 
-::: info Знімок екрана
-Visual Studio 2026: breakpoint before SaveChangesAsync in the States example; Watch window with db.ChangeTracker.DebugView.LongView opened in the Text Visualizer showing Added, Modified and Deleted entries
-:::
+![Стан відстеження змін у налагоджувачі](./images/05-vs-changetracker-debugview.png)
 
 Рис. 8.10. Стан відстеження змін у налагоджувачі {.caption}
 

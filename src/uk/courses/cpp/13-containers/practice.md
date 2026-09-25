@@ -64,6 +64,7 @@ bool balanced(std::string_view text)
     }
     return opened.empty();
 }
+
 int main()
 {
     for (auto text : {"([])", "([)]", "]", ""})

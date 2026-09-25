@@ -2,7 +2,7 @@
 title: "The “is-a” relationship and a hierarchy"
 description: "Topic 10. Inheritance and Polymorphism: The “Is-a” Relationship and a Hierarchy"
 outline: [2, 3]
-sourceHash: "d32cd3d366cc35ff6ac4039c840a2b76259d53aa89a946daee58a956f7895847"
+sourceHash: "b928df44690e7a9bb173385bb9308ff13f2a879b453b4bb12c37b6f818280fe0"
 ---
 
 # The “is-a” relationship and a hierarchy
@@ -66,11 +66,13 @@ Figure 10.1. A common area contract and different implementations {.caption}
 #include <print>
 #include <stdexcept>
 #include <vector>
+
 class Shape {
 public:
     virtual ~Shape() = default;
     virtual double area() const { return 0; }
 };
+
 class Circle final : public Shape {
     double radius_;
 public:
@@ -78,10 +80,12 @@ public:
         if (!std::isfinite(r) || r <= 0 || r > 1000)
             throw std::invalid_argument("radius");
     }
+
     double area() const override {
         return std::numbers::pi * radius_ * radius_;
     }
 };
+
 class Rectangle final : public Shape {
     double width_, height_;
 public:
@@ -90,8 +94,10 @@ public:
             w <= 0 || h <= 0 || w > 1000 || h > 1000)
             throw std::invalid_argument("sides");
     }
+
     double area() const override { return width_ * height_; }
 };
+
 int main() {
     std::vector<std::unique_ptr<Shape>> figures;
     figures.push_back(std::make_unique<Circle>(1));
@@ -164,21 +170,25 @@ Figure 10.3. A conceptual model of a derived object {.caption}
 
 ```cpp
 #include <print>
+
 struct A {
     A() { std::println("A()"); who(); }
     virtual ~A() { std::println("~A()"); }
     virtual void who() const { std::println("A::who"); }
 };
+
 struct B : A {
     B() { std::println("B()"); }
     ~B() override { std::println("~B()"); }
     void who() const override { std::println("B::who"); }
 };
+
 struct C final : B {
     C() { std::println("C()"); }
     ~C() override { std::println("~C()"); }
     void who() const override { std::println("C::who"); }
 };
+
 int main() {
     C value;
     const A& base = value;

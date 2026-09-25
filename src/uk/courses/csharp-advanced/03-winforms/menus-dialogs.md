@@ -64,6 +64,7 @@ public partial class MainForm : Form
         {
             return;
         }
+
         string path = openFileDialog.FileName;
         editorTextBox.Text = File.ReadAllText(path);
         filePath = path;

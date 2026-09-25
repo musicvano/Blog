@@ -106,6 +106,7 @@ UTF-8 у `std::u8string`, тобто з `char8_t`, і це не
 #include <system_error>
 
 namespace fs = std::filesystem;
+
 int main()
 {
     const fs::path root = "directory-demo";
@@ -182,6 +183,7 @@ int main()
 #include <system_error>
 
 namespace fs = std::filesystem;
+
 int main()
 {
     const fs::path target = "published-demo.txt";

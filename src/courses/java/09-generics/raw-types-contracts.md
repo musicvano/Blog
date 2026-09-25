@@ -2,7 +2,7 @@
 title: "Raw types and standard contracts"
 description: "Topic 9. Generics: Raw types and standard contracts"
 outline: [2, 3]
-sourceHash: "8d6cb227779c6399b4465e35189ae19a457dd4243ccb1ef565cc249f0da92338"
+sourceHash: "31ca74dbc824f0ec1c84e8752e7593ee12b7a5d58b1186c13c3f8ce1fd39a10e"
 ---
 
 # Raw types and standard contracts
@@ -11,9 +11,7 @@ sourceHash: "8d6cb227779c6399b4465e35189ae19a457dd4243ccb1ef565cc249f0da92338"
 
 The raw type `List` instead of `List<String>` is kept for compatibility with old code. It disables some checks and produces unchecked warnings. Using a raw reference to write a number into a list of strings may cause an error much later, when other code reads the element as a String.
 
-::: info Screenshot
-IntelliJ IDEA: isolated raw List example, raw/unchecked inspection and suggested parameterized type. Do not leave raw code in production examples.
-:::
+![A raw type warning points to a lost contract.](./images/06-idea-raw-type-warning.png)
 
 Figure 9.6. A raw type warning points to a lost contract. {.caption}
 

@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 8. Records, enum, and sealed classes: worked examples"
 outline: [2, 3]
-sourceHash: "c9e5e02f2a3d0c756768bd1ca41a29394ff29f475eb24b5fc0bb71412f9b7d5f"
+sourceHash: "5b46fe608933579058c4dac2f0c758c1ca02ba49f0b6115ab0271b6118f45809"
 ---
 
 # Practice
@@ -15,23 +15,27 @@ Suit and rank are not arbitrary strings. Card requires non-null components, and 
 import java.util.Objects;
 
 enum Suit { CLUBS, DIAMONDS, HEARTS, SPADES }
+
 enum Rank {
     TWO(2), TEN(10), JACK(11), QUEEN(12), KING(13), ACE(14);
     private final int power;
     Rank(int power) { this.power = power; }
     int power() { return power; }
 }
+
 record Card(Suit suit, Rank rank) {
     Card {
         Objects.requireNonNull(suit);
         Objects.requireNonNull(rank);
     }
+
     boolean beats(Card other) {
         Objects.requireNonNull(other);
         return suit == other.suit
                 && rank.power() > other.rank.power();
     }
 }
+
 public class Main {
     public static void main(String[] args) {
         Card ace = new Card(Suit.HEARTS, Rank.ACE);
@@ -70,6 +74,7 @@ import java.util.Objects;
 
 enum Status {
     NEW, PAID, SENT, DONE, CANCELLED;
+
     boolean canMoveTo(Status target) {
         Objects.requireNonNull(target);
         return switch (this) {
@@ -80,6 +85,7 @@ enum Status {
         };
     }
 }
+
 record Order(String id, Status status) {
     Order {
         if (id == null || id.isBlank()) {
@@ -88,6 +94,7 @@ record Order(String id, Status status) {
         id = id.strip();
         Objects.requireNonNull(status);
     }
+
     Order moveTo(Status target) {
         if (!status.canMoveTo(target)) {
             throw new IllegalStateException("Forbidden transition");
@@ -95,6 +102,7 @@ record Order(String id, Status status) {
         return new Order(id, target);
     }
 }
+
 public class Main {
     public static void main(String[] args) {
         Order original = new Order("A1", Status.NEW);
@@ -127,6 +135,7 @@ A message is either text or an image with a name and dimensions. No files are op
 
 ```java
 sealed interface Message permits TextMessage, ImageMessage { }
+
 record TextMessage(String text) implements Message {
     TextMessage {
         if (text == null || text.isBlank() || text.length() > 200) {
@@ -135,6 +144,7 @@ record TextMessage(String text) implements Message {
         text = text.strip();
     }
 }
+
 record ImageMessage(String name, int width, int height)
         implements Message {
     ImageMessage {
@@ -145,6 +155,7 @@ record ImageMessage(String name, int width, int height)
         name = name.strip();
     }
 }
+
 public class Main {
     static String preview(Message message) {
         return switch (message) {
@@ -153,6 +164,7 @@ public class Main {
             case ImageMessage(_, int w, int h) -> w + "x" + h;
         };
     }
+
     public static void main(String[] args) {
         Message[] messages = {
             new TextMessage(" Hello "),

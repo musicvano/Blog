@@ -1,7 +1,7 @@
 ---
 title: "Object-oriented programming in Java"
 description: "This course explores the Java programming language on JDK 27 in IntelliJ IDEA, from basic language constructs to object-oriented and generic programming, collections and the Stream API, file handling, the module system, Maven and Gradle build systems, and unit testing. In the final stage, you learn to work with databases through JDBC and create graphical applications with JavaFX. Each topic combines a lecture with a lab assignment."
-sourceHash: "dcc3a7466eac4c0daa0c93152d9a1d451591d99a362e594c4c017a0c0ceec3e6"
+sourceHash: "eba72decd466fca689dc83a84983b66a8de4b791fbcffee3be644598784eb535"
 ---
 
 # Object-oriented programming in Java
@@ -40,12 +40,21 @@ This course explores the Java programming language on JDK 27 in IntelliJ IDEA, f
 15. [Creating graphical applications with JavaFX: scenes, controls, layout, and events](./15-javafx/)
 16. [MVC architecture, data binding, and database access in JavaFX applications](./16-mvc-data-binding/)
 
-## How to work through a topic
+## Required software {#software}
 
-1. Read the lecture sections in order and run the examples in IntelliJ IDEA.
-2. Study the examples on the **Practice** page: first try solving the problem yourself.
-3. Select your variant on the **Tasks** page and a difficulty level: initial, basic, or advanced.
-4. Test yourself with the questions on the **Summary** page.
+| Software | Purpose | Topic |
+| --- | --- | :-: |
+| [OpenJDK 27](https://jdk.java.net/27/) | Java compiler and virtual machine | 1 |
+| [IntelliJ IDEA](https://www.jetbrains.com/idea/download/) | Development environment | 1 |
+| [Git](https://git-scm.com/downloads) | Version control | 1 |
+| [Apache Maven 3.9](https://maven.apache.org/download.cgi) | Build tool | 13 |
+| [Gradle 9.7](https://gradle.org/install/) and JDK 25 for the Gradle process | Second build tool | 13 |
+| [PostgreSQL 18](https://www.postgresql.org/download/) with psql | Database management system | 14 |
+| [Scene Builder](https://gluonhq.com/products/scene-builder/) | Visual FXML editor | 15 |
+
+Maven downloads JUnit, the pgJDBC driver and JavaFX as project dependencies. For SQL queries you can use DataGrip or the *Database* window in IntelliJ IDEA.
+
+<!--@include: ../_shared/introduction.md-->
 
 ## Course materials
 

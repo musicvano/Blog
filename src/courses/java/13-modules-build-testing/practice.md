@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 13. Modules, builds, and testing: worked examples"
 outline: [2, 3]
-sourceHash: "8661bb6c886b0184975fbcc3432fb8f2bc2587cd11b86754dbfc9abebd7f59ff"
+sourceHash: "99be506e7abb75942f1d033f46c717fbaf63596f003e474a25d0326ee0c5f923"
 ---
 
 # Practice
@@ -105,6 +105,7 @@ module format.api {
 
 ```java
 package format.api;
+
 public interface Formatter {
     String format(String text);
 }
@@ -127,6 +128,7 @@ import java.util.Locale;
 
 public final class UpperFormatter implements Formatter {
     public UpperFormatter() {}
+
     @Override
     public String format(String text) {
         return text.toUpperCase(Locale.ROOT);
@@ -213,6 +215,7 @@ package ua.knu.shop;
 
 public final class Price {
     private Price() {}
+
     public static long total(long cents, int count) {
         if (cents < 0 || count < 0) {
             throw new IllegalArgumentException("Negative input");
@@ -226,6 +229,7 @@ public final class Price {
 
 ```java
 package ua.knu.shop;
+
 public final class Main {
     public static void main(String[] args) {
         System.out.println(Price.total(1250, 3));
@@ -246,6 +250,7 @@ class PriceTest {
         assertEquals(3750, Price.total(1250, 3));
         assertEquals(0, Price.total(1250, 0));
     }
+
     @Test void rejectsInvalidAndOverflow() {
         assertThrows(IllegalArgumentException.class,
             () -> Price.total(-1, 3));

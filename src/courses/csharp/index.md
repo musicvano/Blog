@@ -1,10 +1,10 @@
 ---
-title: "Object-oriented programming in C#"
+title: "Object-oriented programming in C# I"
 description: "This course explores the object-oriented programming language C#, a powerful, popular, and versatile tool for developing software: desktop and mobile applications, website backends, computer games, and the Internet of Things (IoT). The knowledge gained in this course will help you learn similar programming languages and technologies (Java, JavaScript, Kotlin, C++, and others)."
-sourceHash: "eaf52cfc529bb1bacb68705f5cdd5dca0caabd02c204ba869ba7aff31ebb0c93"
+sourceHash: "f8b088431707fa42e05d9fcdb981c9e2216a257834cfd5a0e16f84bed211dcaa"
 ---
 
-# Object-oriented programming in C#
+# Object-oriented programming in C# I
 
 Object-oriented programming is the main approach to developing modern software. This course develops an object-oriented way of thinking through C# and the .NET platform: from your first program to structured, understandable, tested code. These skills provide a foundation for learning other programming languages and technologies.
 
@@ -39,12 +39,16 @@ This course explores the object-oriented programming language C#, a powerful, po
 17. [SOLID principles and design patterns](./17-solid-patterns/)
 18. [Unit testing and code refactoring](./18-testing-refactoring/)
 
-## How to work through a topic
+## Required software {#software}
 
-1. Read the lecture sections in order and run the examples in Visual Studio 2026.
-2. Study the examples on the **Practice** page: first try to solve each problem yourself.
-3. Select your variant on the **Tasks** page and a difficulty level: initial, basic, or advanced.
-4. Test yourself with the questions on the **Summary** page.
+| Software | Purpose | Topic |
+| --- | --- | :-: |
+| [Visual Studio 2026](https://visualstudio.microsoft.com/downloads/) Community with the *.NET desktop development* workload (installs the .NET 10 SDK) | Development environment and the .NET platform | 1 |
+| Alternative: the [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0) with [Visual Studio Code](https://code.visualstudio.com/download) and the C# Dev Kit extension, or [JetBrains Rider](https://www.jetbrains.com/rider/download/) | Another development environment | 1 |
+
+NuGet libraries (for example, MSTest in topic 18) are added to projects as you go and need no separate install.
+
+<!--@include: ../_shared/introduction.md-->
 
 ## Course materials
 

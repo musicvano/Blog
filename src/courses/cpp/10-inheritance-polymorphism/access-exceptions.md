@@ -2,7 +2,7 @@
 title: "protected and the exception hierarchy"
 description: "Topic 10. Inheritance and Polymorphism: protected and the Exception Hierarchy"
 outline: [2, 3]
-sourceHash: "f64a75b93d37dddc5ce554428dff4127ce2ee314d0cd7d8dfe11de73319e7912"
+sourceHash: "2d45d2f6fd6531f9a40bb7bc002c966da43745054cd39c3be3ceb4f2bc1625ce"
 ---
 
 # protected and the exception hierarchy
@@ -50,6 +50,7 @@ Figure 10.5. Static and dynamic choice of a function {.caption}
 #include <cassert>
 #include <print>
 #include <stdexcept>
+
 class Employee {
     int salary_;
 protected:
@@ -59,9 +60,11 @@ public:
         if (n < 0 || n > 1'000'000)
             throw std::invalid_argument("salary");
     }
+
     virtual ~Employee() = default;
     virtual int pay() const { return basePay(); }
 };
+
 class BonusEmployee final : public Employee {
     int bonus_;
 public:
@@ -70,8 +73,10 @@ public:
         if (bonus < 0 || bonus > 100'000)
             throw std::invalid_argument("bonus");
     }
+
     int pay() const override { return Employee::pay() + bonus_; }
 };
+
 int main() {
     BonusEmployee worker{1000, 200};
     const Employee& view = worker;
@@ -137,15 +142,19 @@ Figure 10.7. A copy of a base value loses the derived part {.caption}
 #include <cassert>
 #include <print>
 #include <stdexcept>
+
 struct AppError : std::runtime_error {
     using std::runtime_error::runtime_error;
 };
+
 struct ValidationError : AppError { using AppError::AppError; };
 struct NotFoundError : AppError { using AppError::AppError; };
+
 void findRecord(int id) {
     if (id <= 0) throw ValidationError("positive id required");
     if (id != 7) throw NotFoundError("record missing");
 }
+
 int main() {
     int validation = 0, missing = 0;
     for (int id : {0, 3, 7}) {

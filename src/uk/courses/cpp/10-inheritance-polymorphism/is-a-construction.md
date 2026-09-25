@@ -65,11 +65,13 @@ classDiagram
 #include <print>
 #include <stdexcept>
 #include <vector>
+
 class Shape {
 public:
     virtual ~Shape() = default;
     virtual double area() const { return 0; }
 };
+
 class Circle final : public Shape {
     double radius_;
 public:
@@ -77,10 +79,12 @@ public:
         if (!std::isfinite(r) || r <= 0 || r > 1000)
             throw std::invalid_argument("radius");
     }
+
     double area() const override {
         return std::numbers::pi * radius_ * radius_;
     }
 };
+
 class Rectangle final : public Shape {
     double width_, height_;
 public:
@@ -89,8 +93,10 @@ public:
             w <= 0 || h <= 0 || w > 1000 || h > 1000)
             throw std::invalid_argument("sides");
     }
+
     double area() const override { return width_ * height_; }
 };
+
 int main() {
     std::vector<std::unique_ptr<Shape>> figures;
     figures.push_back(std::make_unique<Circle>(1));
@@ -163,21 +169,25 @@ flowchart LR
 
 ```cpp
 #include <print>
+
 struct A {
     A() { std::println("A()"); who(); }
     virtual ~A() { std::println("~A()"); }
     virtual void who() const { std::println("A::who"); }
 };
+
 struct B : A {
     B() { std::println("B()"); }
     ~B() override { std::println("~B()"); }
     void who() const override { std::println("B::who"); }
 };
+
 struct C final : B {
     C() { std::println("C()"); }
     ~C() override { std::println("~C()"); }
     void who() const override { std::println("C::who"); }
 };
+
 int main() {
     C value;
     const A& base = value;

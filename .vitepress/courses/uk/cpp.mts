@@ -2,7 +2,7 @@ import type { Course } from "../sidebar.mts";
 
 export default {
   slug: "cpp",
-  title: "ООП мовою C++",
+  title: "Об’єктно-орієнтоване програмування C++",
   modules: [
     {
       title: "Основи мови C++",

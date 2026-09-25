@@ -2,7 +2,7 @@
 title: "Examples and common mistakes"
 description: "Topic 15. The RabbitMQ broker: examples and common mistakes"
 outline: [2, 3]
-sourceHash: "35805ef2d916e0e0e15b3830104cf57f00585d8b2d2a824f6295d0cd5ac972b0"
+sourceHash: "348d94dc580060d4bfaf6cb84e93651c303a5d7581db9e555ab6de5e5d053339"
 ---
 
 # Examples and common mistakes
@@ -382,6 +382,7 @@ static long Rejections(IReadOnlyBasicProperties props, string queue)
             return (long)death["count"]!;
         }
     }
+
     return 0;
 }
 

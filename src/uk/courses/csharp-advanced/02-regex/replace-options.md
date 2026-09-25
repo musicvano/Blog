@@ -152,7 +152,7 @@ Regex.IsMatch(comment, @"/\*.*\*/");                          // False
 Regex.IsMatch(comment, @"/\*.*\*/", RegexOptions.Singleline);  // True
 
 Regex.IsMatch("ЇЖАК", "(?i)їжак");                // True
-Regex.IsMatch("Kyiv CITY", "Kyiv (?i:city)");     // True
+Regex.IsMatch("Rome CITY", "Rome (?i:city)");     // True
 ```
 
 Назви параметрів `Multiline` і `Singleline` не протилежні, як здається: перший змінює роботу `^`/`$`, другий – крапки, і їх можна вмикати разом. `IgnorePatternWhitespace` дозволяє розбити складний шаблон на рядки з коментарями після `#`, як у прикладі 2.
@@ -192,8 +192,8 @@ Regex.Replace("1234567", @"(?<=\d)(?=(?:\d{3})+\b)", " ");
 
 ```cs
 var password = new Regex(@"^(?=.*\d)(?=.*\p{Ll})(?=.*\p{Lu}).{8,}$");
-password.IsMatch("Kyiv2026");   // True
-password.IsMatch("kyiv2026");   // False – немає великої літери
+password.IsMatch("Rome2026");   // True
+password.IsMatch("rome2026");   // False – немає великої літери
 ```
 
 Кожен перегляд `(?=.*…)` проходить рядок від початку і нічого не «витрачає», тому наступна умова знову перевіряється з позиції 0. Щоб повідомити користувачеві, **яку саме** умову порушено, кожне правило перевіряють окремим шаблоном.

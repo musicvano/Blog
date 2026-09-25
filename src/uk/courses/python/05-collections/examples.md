@@ -24,6 +24,7 @@ def ranking(
             result.append((name, sum(marks) / len(marks)))
     return sorted(result, key=lambda item: (-item[1], item[0]))
 
+
 journal = {"Олег": [80, 90], "Анна": [90, 80], "Іра": []}
 for number, (name, average) in enumerate(ranking(journal), 1):
     print(f"{number}. {name:<8} {average:6.2f}")
@@ -54,6 +55,7 @@ print("Без оцінок:", ", ".join(missing))
 from collections import deque
 from heapq import heappop, heappush
 
+
 def service_order(
     regular: list[str], urgent: list[tuple[int, str]],
 ) -> list[str]:
@@ -72,6 +74,7 @@ def service_order(
         served.append(name)
     return served
 
+
 regular = ["Анна", "Олег"]
 urgent = [(2, "Іра"), (1, "Юрій"), (1, "Богдан")]
 print(" → ".join(service_order(regular, urgent)))
@@ -87,6 +90,7 @@ print(" → ".join(service_order(regular, urgent)))
 def normalize(values: list[str]) -> set[str]:
     return {value.strip().casefold() for value in values
             if value.strip()}
+
 
 first = normalize([" Python ", "Музика", "python", ""])
 second = normalize(["PYTHON", "Шахи"])
@@ -113,6 +117,7 @@ print("Для зустрічі:", sorted(first & second & available))
 ```py
 from collections import Counter, defaultdict
 
+
 def balances(
     deliveries: list[tuple[str, int]], sold: list[str],
 ) -> dict[str, int]:
@@ -127,6 +132,7 @@ def balances(
             raise ValueError(f"Недостатній запас: {name}")
     return {name: quantity - counts[name]
             for name, quantity in stock.items()}
+
 
 deliveries = [("зошит", 5), ("ручка", 4), ("зошит", 2)]
 sold = ["ручка", "зошит", "ручка"]

@@ -2,7 +2,7 @@
 title: "Examples and common mistakes"
 description: "Topic 12. MPI message passing: examples and common mistakes"
 outline: [2, 3]
-sourceHash: "f3dd889fe5d9d246b23c66163398ff3c9b758874327e588b3430fb0d4e086134"
+sourceHash: "d54c298d467433bee8ea37794541b5f0e772db3eec64710796ff90a65efaa687"
 ---
 
 # Examples and common mistakes
@@ -216,7 +216,13 @@ With `MPI_Send`, the program works for 500 numbers (4000 bytes) and hangs alread
 
 ### The Jacobi method: domain decomposition and a hybrid version
 
-The Jacobi method solves a diagonally dominant system of linear equations $(2 + \sigma) u_{i} - u_{i - 1} - u_{i + 1} = b_{i}$, $i = 0 \dots n - 1$, $u_{- 1} = u_{n} = 0$; such a system is solved at each step of an implicit scheme for the heat equation. The iteration $$u_{i}^{k + 1} = (u_{i - 1}^{k} + u_{i + 1}^{k} + b_{i}) / (2 + \sigma)$$ uses only neighboring nodes for each $i$, so the vector is divided into $p$ contiguous blocks. Each rank stores its block and two **halo cells** with the neighbors’ boundary nodes and exchanges them before every iteration (`MPI_Sendrecv` to the left and to the right). The right-hand side $b$ is chosen so that the exact solution is $u_{i} = \sin (\pi x_{i})$, so the program prints the maximum error. The program is hybrid: iterations within a block are run by OpenMP threads, and exchanges by the main thread between parallel regions (`MPI_THREAD_FUNNELED`). With `OMP_NUM_THREADS=1`, it is a “pure” MPI program.
+The Jacobi method solves a diagonally dominant system of linear equations $(2 + \sigma) u_{i} - u_{i - 1} - u_{i + 1} = b_{i}$, $i = 0 \dots n - 1$, $u_{- 1} = u_{n} = 0$; such a system is solved at each step of an implicit scheme for the heat equation. The iteration
+
+$$
+u_{i}^{k + 1} = (u_{i - 1}^{k} + u_{i + 1}^{k} + b_{i}) / (2 + \sigma)
+$$
+
+uses only neighboring nodes for each $i$, so the vector is divided into $p$ contiguous blocks. Each rank stores its block and two **halo cells** with the neighbors’ boundary nodes and exchanges them before every iteration (`MPI_Sendrecv` to the left and to the right). The right-hand side $b$ is chosen so that the exact solution is $u_{i} = \sin (\pi x_{i})$, so the program prints the maximum error. The program is hybrid: iterations within a block are run by OpenMP threads, and exchanges by the main thread between parallel regions (`MPI_THREAD_FUNNELED`). With `OMP_NUM_THREADS=1`, it is a “pure” MPI program.
 
 ```cpp
 #include <mpi.h>

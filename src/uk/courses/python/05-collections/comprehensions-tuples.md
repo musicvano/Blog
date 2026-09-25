@@ -92,6 +92,7 @@ def bounds(values: list[int]) -> tuple[int, int]:
         raise ValueError("Порожній список")
     return min(values), max(values)
 
+
 first, *middle, last = (2, 4, 6, 8)
 low, high = bounds([7, 2, 9])
 low, high = high, low
@@ -113,9 +114,11 @@ from typing import NamedTuple
 
 Point = namedtuple("Point", "x y")
 
+
 class Product(NamedTuple):
     name: str
     price: int
+
 
 point = Point(3, 4)
 product = Product("pen", 20)

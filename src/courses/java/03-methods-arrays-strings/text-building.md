@@ -2,7 +2,7 @@
 title: "Building text and regular expressions"
 description: "Topic 3. Methods, arrays, and strings: Building text and regular expressions"
 outline: [2, 3]
-sourceHash: "28ee072f791bdde9d61ad966e136b9fb2d3bc59f6d7fcd02968518de4ae3e0b6"
+sourceHash: "9ad6dc5284a9efdaa5bf755a2776e4acd1cf416fad85c0a50cb842a238f304b0"
 ---
 
 # Building text and regular expressions
@@ -17,9 +17,7 @@ Reverse preserves valid surrogate pairs but does not guarantee reversal of compl
 
 StringJoiner is useful for a sequence with a delimiter and surrounding text. It avoids adding a comma after the last element and then removing it manually. String.join is sufficient when all parts are already in an array. Choose the tool according to how the parts arrive.
 
-::: info Screenshot
-In IntelliJ IDEA enable the string-concatenation-in-loop inspection. Show result += part inside a loop and Alt+Enter Replace with StringBuilder intention.
-:::
+![Suggestion for concatenation in a loop](./images/06-idea-stringbuilder-quickfix.png)
 
 Figure 3.6. Suggestion for concatenation in a loop {.caption}
 
@@ -48,6 +46,7 @@ public class Main {
         return text.replace("&", "&amp;")
                 .replace("<", "&lt;").replace(">", "&gt;");
     }
+
     static String report(String[] names, int[] marks) {
         if (names == null || marks == null
                 || names.length != marks.length) {
@@ -67,6 +66,7 @@ public class Main {
                 %s</table>
                 """.formatted(rows);
     }
+
     public static void main(String[] args) {
         System.out.print(report(new String[]{"A&B", "<Olena>"},
                 new int[]{80, 95}));

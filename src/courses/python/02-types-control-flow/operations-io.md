@@ -2,7 +2,7 @@
 title: "Operations, input, and output"
 description: "Topic 2. Types, operations, and control flow: Operations, input, and output"
 outline: [2, 3]
-sourceHash: "8736da634b51dd0c07adaf1133c2294f4c144f4aca56d10fa9565aeb5df90cf0"
+sourceHash: "48808489d17c55cd9f2687cd61b225793f4e0932e15edfdfc7dc79388cfe719a"
 ---
 
 # Operations, input, and output
@@ -90,13 +90,13 @@ The rounding rule is part of the problem: rounding each line item and rounding t
 ```py
 import sys
 
-print("Kyiv", "Lviv", sep=" -> ")
+print("London", "Madrid", sep=" -> ")
 print("Sum", end=": ")
 print(f"{12.5:.2f}")
 print("Example message", file=sys.stderr)
 ```
 
-The first lines of standard output are `Kyiv -> Lviv` and `Sum: 12.50`. The last message goes to a separate stream; the order in which streams are interleaved may differ between terminals.
+The first lines of standard output are `London -> Madrid` and `Sum: 12.50`. The last message goes to a separate stream; the order in which streams are interleaved may differ between terminals.
 
 In an **f-string** (*formatted string literal*), an expression in braces is evaluated at runtime. The `.2f` format prints two decimal places, `>10` aligns right in a field at least 10 characters wide, and `<10` aligns left. The width does not truncate longer text.
 

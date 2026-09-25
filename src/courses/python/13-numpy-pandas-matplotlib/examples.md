@@ -2,7 +2,7 @@
 title: "Program examples and common mistakes"
 description: "Topic 13. NumPy, pandas, Matplotlib: Program examples and common mistakes"
 outline: [2, 3]
-sourceHash: "20c4afa4e30ab92818697cce3ab4ddf4904803cafbb79562a9178fa0ecffc2cf"
+sourceHash: "0af50aade5e16c0fe036b11c3d583ffec886c60606392f58b4bc8cfad0b37785"
 ---
 
 # Program examples and common mistakes
@@ -17,6 +17,7 @@ Three sensors took two measurements. Add individual offsets, reject nonnumeric o
 import numpy as np
 from numpy.typing import NDArray
 
+
 def calibrate(data: NDArray[np.float64],
               offsets: NDArray[np.float64]) -> NDArray[np.float64]:
     if data.ndim != 2 or data.shape[0] == 0:
@@ -27,12 +28,14 @@ def calibrate(data: NDArray[np.float64],
         raise ValueError("Values must be finite")
     return data + offsets
 
+
 def main() -> None:
     data = np.array([[10., 20., 30.], [12., 22., 32.]])
     fixed = calibrate(data, np.array([1., -1., 2.]))
     for index, value in enumerate(fixed.mean(axis=0), start=1):
         print(f"Sensor {index}: {value:.1f}")
     print(f"Overall maximum: {fixed.max():.1f}")
+
 
 if __name__ == "__main__":
     main()
@@ -57,6 +60,7 @@ The CSV contains a category, quantity, and price in kopiykas. Integer quantities
 from io import StringIO
 import pandas as pd
 
+
 def main() -> None:
     source = ("category,qty,price\n"
               "paper,2,2500\npen,3,1000\npaper,bad,1200\n")
@@ -75,6 +79,7 @@ def main() -> None:
         print(f"{category}: {cents // 100},{cents % 100:02d}")
     print(f"Rejected: {int((~valid).sum())}")
 
+
 if __name__ == "__main__":
     main()
 ```
@@ -87,6 +92,7 @@ Each record contains energy for a separate interval, not a cumulative reading. V
 
 ```py
 import pandas as pd
+
 
 def main() -> None:
     frame = pd.DataFrame({
@@ -103,6 +109,7 @@ def main() -> None:
         shown = "no data" if pd.isna(value) else f"{value:.1f}"
         print(f"{day:%d.%m}: {shown}")
 
+
 if __name__ == "__main__":
     main()
 ```
@@ -118,6 +125,7 @@ import numpy as np
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+
 
 def main() -> None:
     hours = np.array([8, 10, 12, 14])
@@ -137,6 +145,7 @@ def main() -> None:
     fig.savefig("sensor-report.png", dpi=200)
     plt.close(fig)
     print("Saved sensor-report.png")
+
 
 if __name__ == "__main__":
     main()

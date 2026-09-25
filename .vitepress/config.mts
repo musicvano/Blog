@@ -20,6 +20,8 @@ export default defineConfig({
   description:
     "Programming in C#, C, C++, Rust, Python, JavaScript, TypeScript",
   srcDir: "./src",
+  // Partials included into several pages (<!--@include: ...-->), not pages themselves.
+  srcExclude: ["**/_shared/**"],
   cleanUrls: true,
   lastUpdated: true,
   sitemap: {
@@ -53,8 +55,8 @@ export default defineConfig({
 
   themeConfig: {
     // The language switcher opens the same page in the other language when it exists
-    // (home, about, the course catalogue and every page of a course translated into both
-    // languages) and the other locale's home otherwise. VitePress sends this function to
+    // (home, about, the course catalogue, the blog and every page of a course translated into
+    // both languages) and the other locale's home otherwise. VitePress sends this function to
     // the browser as source code, so it must not use anything from outside its body.
     i18nRouting(data: any, route: any, targetLocale: string) {
       const site = data.site.value;
@@ -68,7 +70,7 @@ export default defineConfig({
         const exists = Object.keys(sidebar).includes(`${prefix}/courses/${course[1]}/`);
         return exists ? prefix + rel : `${prefix}/courses/`;
       }
-      if (["/", "/about", "/courses/"].includes(rel)) return prefix + rel;
+      if (["/", "/about", "/courses/"].includes(rel) || rel.startsWith("/blog/")) return prefix + rel;
       return toUk ? "/uk/" : "/";
     },
     logo: "/logo.svg",
@@ -79,12 +81,11 @@ export default defineConfig({
       {
         text: "Courses",
         items: [
-          { text: "All courses", link: coursesBases.en },
           ...coursesEn.map((c) => ({ text: c.title, link: `${coursesBases.en}${c.slug}/` })),
         ],
       },
       { text: "Tutorials", link: "/csharp/introduction" },
-      { text: "Blog", link: "/blog/getting-started" },
+      { text: "Blog", link: "/blog/courses" },
       { text: "About", link: "/about" },
     ],
 
@@ -113,6 +114,11 @@ export default defineConfig({
         },
       ],
       "/blog/": [
+        {
+          text: "2026",
+          collapsed: false,
+          items: [{ text: "Seven programming courses", link: "/blog/courses" }],
+        },
         {
           text: "2025",
           collapsed: false,

@@ -2,7 +2,7 @@
 title: "Parameterized decorators"
 description: "Topic 7. Generators and decorators: parameterized decorators"
 outline: [2, 3]
-sourceHash: "68396b94a8280c4c10379b51b17e4a9cfa5927a0e44aa7d77a2a3901b90d8417"
+sourceHash: "887079a7af69d704c13bfd5680f9fee62556f6d89ee5abcdb8fde8d3ab18af84"
 ---
 
 # Parameterized decorators
@@ -26,6 +26,7 @@ R = TypeVar("R")
 def retry(times: int) -> Callable[[Callable[P, R]], Callable[P, R]]:
     if times < 1:
         raise ValueError("At least one attempt is required")
+
     def decorate(func: Callable[P, R]) -> Callable[P, R]:
         @wraps(func)
         def wrapper(*args: P.args, **kwargs: P.kwargs) -> R:

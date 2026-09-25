@@ -40,6 +40,7 @@ package ua.knu.loan;
 
 public final class NameValidator {
     private NameValidator() {}
+
     public static String normalize(String value) {
         if (value == null) {
             throw new IllegalArgumentException("Missing name");
@@ -76,6 +77,7 @@ class NameValidatorTest {
             assertThrows(IllegalArgumentException.class,
                 () -> NameValidator.normalize(null));
         }
+
         @Test
         void rejectsShort() {
             assertThrows(IllegalArgumentException.class,
@@ -91,41 +93,29 @@ class NameValidatorTest {
 
 В IntelliJ IDEA відкрийте POM або Gradle-проєкт і дочекайтеся синхронізації. Інструментальне вікно Maven показує Lifecycle, Plugins і Dependencies; Gradle – дерево задач. Після зміни залежності виконайте Reload. Ручне додавання JAR через Project Structure не робить командне збирання відтворюваним.
 
-::: info Знімок екрана
-New Project, Maven, JDK 27, groupId and artifactId.
-:::
+![Вибір Maven та JDK під час створення проєкту](./images/08-idea-new-project-build-system.png)
 
 Рис. 13.9. Вибір Maven та JDK під час створення проєкту {.caption}
 
-::: info Знімок екрана
-Maven tool window; expand Lifecycle and JUnit dependency.
-:::
+![Фази, плагіни та залежності Maven](./images/09-idea-maven-tool-window.png)
 
 Рис. 13.10. Фази, плагіни та залежності Maven {.caption}
 
-::: info Знімок екрана
-Gradle Tasks verification/test and application/run.
-:::
+![Завдання перевірки Gradle](./images/10-idea-gradle-tool-window.png)
 
 Рис. 13.11. Завдання перевірки Gradle {.caption}
 
-::: info Знімок екрана
-Build file, Add dependency; search junit-jupiter.
-:::
+![Пошук бібліотеки в середовищі розробки](./images/11-idea-add-dependency.png)
 
 Рис. 13.12. Пошук бібліотеки в середовищі розробки {.caption}
 
 Запуск зеленою піктограмою біля тесту зручний для одного сценарію. Перед здачею запустіть wrapper із термінала: IDE може використовувати інший JDK або власний runner. Звіти Surefire лежать у `target/surefire-reports`, Gradle – у `build/reports/tests/test`. Нуль знайдених тестів не є підтвердженням правильності програми.
 
-::: info Знімок екрана
-Run real tests; temporarily change expected value, show diff.
-:::
+![Результати тестів і діагностика невідповідності](./images/13-idea-test-results.png)
 
 Рис. 13.13. Результати тестів і діагностика невідповідності {.caption}
 
-::: info Знімок екрана
-Run with Coverage; show Loan/NameValidator classes.
-:::
+![Покриття виконаних рядків у тестах](./images/14-idea-coverage.png)
 
 Рис. 13.14. Покриття виконаних рядків у тестах {.caption}
 

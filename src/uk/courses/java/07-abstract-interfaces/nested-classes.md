@@ -37,25 +37,30 @@ final class Order {
     private final String customer;
     private final int quantity;
     private final String note;
+
     private Order(Builder builder) {
         customer = builder.customer;
         quantity = builder.quantity;
         note = builder.note;
     }
+
     @Override
     public String toString() {
         return customer + ": " + quantity + " [" + note + "]";
     }
+
     public static final class Builder {
         private final String customer;
         private int quantity = 1;
         private String note = "";
+
         public Builder(String customer) {
             if (customer == null || customer.isBlank()) {
                 throw new IllegalArgumentException("Empty customer");
             }
             this.customer = customer.strip();
         }
+
         public Builder quantity(int quantity) {
             if (quantity < 1 || quantity > 100) {
                 throw new IllegalArgumentException(
@@ -64,6 +69,7 @@ final class Order {
             this.quantity = quantity;
             return this;
         }
+
         public Builder note(String note) {
             if (note == null || note.length() > 100) {
                 throw new IllegalArgumentException("Invalid note");
@@ -71,9 +77,11 @@ final class Order {
             this.note = note.strip();
             return this;
         }
+
         public Order build() { return new Order(this); }
     }
 }
+
 public class Main {
     public static void main(String[] args) {
         Order.Builder builder = new Order.Builder("Olena");
@@ -116,15 +124,11 @@ Olena: 5 [pickup]
 
 Команда *Code → Implement Methods* або **Ctrl+I** показує обов’язкові методи. Перевірте створену видимість і типи; автоматичне тіло з нульовим результатом є заготовкою, а не готовою реалізацією. Перехід до реалізацій через **Ctrl+Alt+B** допомагає знайти всі класи, що виконують роль.
 
-::: info Знімок екрана
-In IntelliJ IDEA declare Product implements Comparable. Use Ctrl+I and show the compareTo method selection dialog.
-:::
+![Вибір методів для реалізації](./images/03-idea-implement-methods.png)
 
 Рис. 7.6. Вибір методів для реалізації {.caption}
 
-::: info Знімок екрана
-Select a service class. Open Refactor &gt; Extract &gt; Interface. Show the new interface name and selected public operations.
-:::
+![Виділення вузького інтерфейсу](./images/07-idea-extract-interface.png)
 
 Рис. 7.7. Виділення вузького інтерфейсу {.caption}
 

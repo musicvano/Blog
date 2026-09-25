@@ -2,7 +2,7 @@
 title: "Object, equality, and copying"
 description: "Topic 6. Inheritance and polymorphism: Object, equality, and copying"
 outline: [2, 3]
-sourceHash: "c24ad61743ac64a6405dfa597a46b4c73a23826e163d3b7779da4d030949184b"
+sourceHash: "9dd02ccfb7ac9b79760bffcec80fdc582656f8d54dd29547e52d519bad7b7ac8"
 ---
 
 # Object, equality, and copying
@@ -34,19 +34,23 @@ import java.util.Objects;
 final class Point {
     private final int x;
     private final int y;
+
     Point(int x, int y) {
         this.x = x;
         this.y = y;
     }
+
     Point(Point other) {
         this(Objects.requireNonNull(other).x, other.y);
     }
+
     @Override
     public boolean equals(Object other) {
         if (this == other) { return true; }
         return other instanceof Point point
                 && x == point.x && y == point.y;
     }
+
     @Override
     public int hashCode() { return Objects.hash(x, y); }
     @Override

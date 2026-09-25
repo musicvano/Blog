@@ -2,7 +2,7 @@
 title: "Atomic operations and asynchronous results"
 description: "Topic 9. Multithreading in C++: Atomic operations and asynchronous results"
 outline: [2, 3]
-sourceHash: "126001d761844c56ec705991425a0212e3764186555d85202faff9719cda033c"
+sourceHash: "a43b3b020234e84ae7abe86da2297ea40af4c08470e9b2e1ab75e73127e36f9a"
 ---
 
 # Atomic operations and asynchronous results
@@ -34,6 +34,7 @@ struct Counter {
     alignas(std::hardware_destructive_interference_size)
     std::atomic<long> value = 0;          // sizeof(Counter) == 64
 };
+
 Counter counters[16];                     // each in its own cache line
 ```
 

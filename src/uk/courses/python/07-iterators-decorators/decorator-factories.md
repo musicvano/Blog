@@ -25,6 +25,7 @@ R = TypeVar("R")
 def retry(times: int) -> Callable[[Callable[P, R]], Callable[P, R]]:
     if times < 1:
         raise ValueError("Потрібна хоча б одна спроба")
+
     def decorate(func: Callable[P, R]) -> Callable[P, R]:
         @wraps(func)
         def wrapper(*args: P.args, **kwargs: P.kwargs) -> R:

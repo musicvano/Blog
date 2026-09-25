@@ -2,7 +2,7 @@
 title: "ILGPU, comparisons, and common mistakes"
 description: "Topic 11. GPU computing: ILGPU, comparisons, and common mistakes"
 outline: [2, 3]
-sourceHash: "3c1ee57b878eb5da4ff892e09f6e8cb23edbbd38376e1677f0bdddb8258df059"
+sourceHash: "cf9a79db442a6fb53eb2ab4b7d4aa9e961a3db02905eb271c57392ced0882b6e"
 ---
 
 # ILGPU, comparisons, and common mistakes
@@ -163,6 +163,7 @@ static void BlurCpu(float[] src, float[] dst, int w, int h, int r,
             dst[y * w + x] = sum / count;
         }
     }
+
     if (parallel) Parallel.For(0, h, RowBlur);
     else for (int y = 0; y < h; y++) RowBlur(y);
 }

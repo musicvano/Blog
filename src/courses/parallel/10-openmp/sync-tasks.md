@@ -2,7 +2,7 @@
 title: "Synchronization, tasks, and simd"
 description: "Topic 10. OpenMP: Synchronization, tasks, and simd"
 outline: [2, 3]
-sourceHash: "54e91407463e0eae1825b531b243fbc9c436d8eab348c6ccb69b43dea47aa8f1"
+sourceHash: "86317aaf73e1f8db21fab97463b29ef46a8eb695754cbae8608efd71f4fa5aee"
 ---
 
 # Synchronization, tasks, and simd
@@ -57,6 +57,7 @@ long Fib(int n)
     #pragma omp taskwait                   // wait for both tasks
     return a + b;
 }
+
 // Call:
 #pragma omp parallel
 #pragma omp single

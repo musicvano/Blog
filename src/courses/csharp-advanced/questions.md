@@ -1,7 +1,7 @@
 ---
 title: "Review questions"
-description: "C# and .NET programming technologies: review questions on the course topics"
-sourceHash: "eaae145665f1c57f4b3aa20b5497dab0336699ff7ca14268df803239d62c5efd"
+description: "Object-oriented programming in C# II: review questions on the course topics"
+sourceHash: "0d56c41e6f81d9ec5945bc28029336a0c3edfad17c23267c86960fe74e6fdf5d"
 ---
 
 # Review questions

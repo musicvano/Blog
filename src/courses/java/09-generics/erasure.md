@@ -2,7 +2,7 @@
 title: "Type erasure and its consequences"
 description: "Topic 9. Generics: Type erasure and its consequences"
 outline: [2, 3]
-sourceHash: "d069ced28f3c06d1f71f4cd195faf3e471c6bd58a79fe34f8291613b1208a450"
+sourceHash: "cc59c3e847b0927a4d2b51dc396023cc68b2a7b5b32b39a1ef052a495fd937ab"
 ---
 
 # Type erasure and its consequences
@@ -24,9 +24,7 @@ Information about the generic signature can remain in the class file metadata fo
 
 Bridge methods support polymorphic overriding after erasure. For example, a class with `Comparable<Student>` implements `compareTo(Student)`, and the compiler may add a bridge `compareTo(Object)` that performs a cast and calls the typed method. This is a detail of generated code that you do not need to duplicate manually in an ordinary class.
 
-::: info Screenshot
-Terminal: javac -encoding UTF-8 Main.java; javap -c -p Main and generic nested class; show checkcast and erased Object signatures.
-:::
+![Javap shows erased signatures and inserted casts.](./images/05-terminal-javap-erasure.png)
 
 Figure 9.5. Javap shows erased signatures and inserted casts. {.caption}
 

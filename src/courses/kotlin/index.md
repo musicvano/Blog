@@ -1,7 +1,7 @@
 ---
 title: "Object-oriented programming in Kotlin"
 description: "This course explores Kotlin 2.4 on the JVM in IntelliJ IDEA, from basic language constructs and null safety to object-oriented and functional programming, collections, file handling, data serialization, and unit testing. In the final stage, you learn asynchronous programming with coroutines and Flow, database access using the Exposed library, and graphical application development with Compose Multiplatform. Each topic combines a lecture with a lab assignment."
-sourceHash: "28b23f33b2c2d51f5c53e4ebb7c1aa665d41b9d3e329f17fed4ce8075ce96041"
+sourceHash: "7804db00faf9626a8705470e5a3a8b2f8c524fbfb91d3719d3ccf32c4337ffad"
 ---
 
 # Object-oriented programming in Kotlin
@@ -40,12 +40,18 @@ This course explores Kotlin 2.4 on the JVM in IntelliJ IDEA, from basic language
 15. [Creating graphical applications with Compose Multiplatform: components, state, and layout](./15-compose/)
 16. [MVVM architecture, navigation, and database access in Compose Multiplatform applications](./16-mvvm-navigation/)
 
-## How to work through a topic
+## Required software {#software}
 
-1. Read the lecture sections in order and run the examples in IntelliJ IDEA.
-2. Study the examples on the **Practice** page: first try solving the problem yourself.
-3. Select your variant on the **Tasks** page and a difficulty level: initial, basic, or advanced.
-4. Test yourself with the questions on the **Summary** page.
+| Software | Purpose | Topic |
+| --- | --- | :-: |
+| [OpenJDK 27](https://jdk.java.net/27/) | Runtime for the programs | 1 |
+| JDK 25 | The Gradle build process | 1 |
+| [IntelliJ IDEA](https://www.jetbrains.com/idea/download/) 2025.3 or later | Development environment | 1 |
+| [Git](https://git-scm.com/downloads) | Version control | 1 |
+
+The IntelliJ IDEA wizard creates the Gradle Wrapper, and Gradle downloads the libraries (kotlinx.coroutines, kotlinx.serialization, Exposed, the SQLite driver, Compose Multiplatform) as dependencies. Topic 14 uses DataGrip and a PostgreSQL server as optional tools.
+
+<!--@include: ../_shared/introduction.md-->
 
 ## Course materials
 

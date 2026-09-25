@@ -4,7 +4,7 @@ import type { Course } from "../sidebar.mts";
 
 export default {
   slug: "python",
-  title: "Python OOP",
+  title: "Object-oriented programming in Python",
   modules: [
     {
       title: "Python language fundamentals",

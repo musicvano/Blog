@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 16. MVC and data binding: worked examples"
 outline: [2, 3]
-sourceHash: "51d0c1cbe9e056cb4287a139dbd6e59e9a0e30bc938a4e37714217e0c58247c2"
+sourceHash: "676a2a770e3fc30dfe49c06fd9e0aeb59751931cc21a1a5f8e27d4cd9178fcf6"
 ---
 
 # Practice
@@ -77,7 +77,7 @@ import javafx.stage.Stage;
 public class CitiesMain extends Application {
     @Override public void start(Stage stage) {
         var source = FXCollections.observableArrayList(
-            "Kyiv", "Lviv", "Odesa", "Kryvyi Rih");
+            "London", "Madrid", "Paris", "Prague");
         var filtered = new FilteredList<>(source, city -> true);
         TextField search = new TextField();
         ListView<String> list = new ListView<>(filtered);
@@ -99,7 +99,7 @@ public class CitiesMain extends Application {
 }
 ```
 
-The initial counter is 4; the query `k` gives Kyiv and Kryvyi Rih and a counter of 2. A query with no matches gives 0, and clearing returns
+The initial counter is 4; the query `p` gives Paris and Prague and a counter of 2. A query with no matches gives 0, and clearing returns
 
 1. Do not modify the source list just to hide rows:
 
@@ -169,6 +169,7 @@ public class AttendanceMain extends Application {
             return person + " / " + day;
         }
     }
+
     static final class Dao {
         Connection connect() throws SQLException {
             String url = System.getenv("COURSE_DB_URL");
@@ -177,6 +178,7 @@ public class AttendanceMain extends Application {
                 System.getenv("COURSE_DB_USER"),
                 System.getenv("COURSE_DB_PASSWORD"));
         }
+
         List<Entry> all() throws SQLException {
             List<Entry> rows = new ArrayList<>();
             try (Connection c = connect();
@@ -192,11 +194,13 @@ public class AttendanceMain extends Application {
             }
             return rows;
         }
+
         void add(String person, LocalDate day) throws SQLException {
             if (person == null || person.isBlank()
                     || person.length() > 80 || day == null) {
                 throw new IllegalArgumentException("Invalid entry");
             }
+
             try (Connection c = connect();
                  PreparedStatement p = c.prepareStatement(
                     "INSERT INTO j16_attendance(person,day) "
@@ -220,12 +224,14 @@ public class AttendanceMain extends Application {
             fxml.getBytes(StandardCharsets.UTF_8)));
         stage.setScene(new Scene(root, 420, 360));
     }
+
     void home() {
         try { show(HOME, new HomeController(this)); }
         catch (Exception error) {
             throw new IllegalStateException(error);
         }
     }
+
     <T> void background(Callable<T> action, Label status,
             Consumer<T> success) {
         if (busy) return;
@@ -266,6 +272,7 @@ public class AttendanceMain extends Application {
         home();
         stage.show();
     }
+
     public static void main(String[] args) { launch(args); }
 
     public static final class HomeController {
@@ -273,12 +280,14 @@ public class AttendanceMain extends Application {
         @FXML private ListView<Entry> list;
         @FXML private Label status;
         HomeController(AttendanceMain app) { this.app = app; }
+
         @FXML private void reload() {
             app.background(app.dao::all, status, rows -> {
                 list.getItems().setAll(rows);
                 status.setText("Loaded: " + rows.size());
             });
         }
+
         @FXML private void open() throws Exception {
             Entry selected = list.getSelectionModel()
                 .getSelectedItem();
@@ -286,9 +295,11 @@ public class AttendanceMain extends Application {
             app.show(EDIT, new EditController(app, name));
         }
     }
+
     public static final class EditController {
         private final AttendanceMain app;
         private final String initialName;
+
         @FXML private TextField name;
         @FXML private TextField day;
         @FXML private Label status;
@@ -296,6 +307,7 @@ public class AttendanceMain extends Application {
             this.app = app;
             initialName = name;
         }
+
         @FXML private void initialize() { name.setText(initialName); }
         @FXML private void cancel() { app.home(); }
         @FXML private void save() {

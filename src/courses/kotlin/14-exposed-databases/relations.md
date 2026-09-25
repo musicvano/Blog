@@ -2,7 +2,7 @@
 title: "Relationships and joins"
 description: "Topic 14. Databases with Exposed: Relationships and joins"
 outline: [2, 3]
-sourceHash: "0bc65a08626b2fe8ad1ca0344aeb57ac10f2d513ffd5f5e355ba258a76b2299b"
+sourceHash: "b2592e083b987eaaf731244fa73e42af033d55cfd8277a7d7209a5874b593be1"
 ---
 
 # Relationships and joins
@@ -51,6 +51,7 @@ object Authors : Table("authors") {
     val name = varchar("name", 100)
     override val primaryKey = PrimaryKey(id)
 }
+
 object Books : Table("books") {
     val id = integer("id").autoIncrement()
     val title = varchar("title", 120)

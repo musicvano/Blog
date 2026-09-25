@@ -2,7 +2,7 @@
 title: "Overriding and type casts"
 description: "Topic 6. Inheritance and polymorphism: overriding and type casts"
 outline: [2, 3]
-sourceHash: "26fffc0cb399b07f8d939b5df86f050ad7f345467564f177843b16fb67ed798c"
+sourceHash: "671829b7d1a415f0a5a2be068eaaeb7dbacdbbd3f133ea1da68ecb9fa70c56d2"
 ---
 
 # Overriding and type casts
@@ -51,6 +51,7 @@ class Shape {
 
 final class Circle extends Shape {
     private final double radius;
+
     Circle(double radius) {
         if (!Double.isFinite(radius) || radius <= 0
                 || radius > 10_000) {
@@ -58,6 +59,7 @@ final class Circle extends Shape {
         }
         this.radius = radius;
     }
+
     public double radius() { return radius; }
     @Override
     public double area() { return Math.PI * radius * radius; }
@@ -68,6 +70,7 @@ final class Circle extends Shape {
 final class Rectangle extends Shape {
     private final double width;
     private final double height;
+
     Rectangle(double width, double height) {
         if (!Double.isFinite(width) || !Double.isFinite(height)
                 || width <= 0 || height <= 0
@@ -77,6 +80,7 @@ final class Rectangle extends Shape {
         this.width = width;
         this.height = height;
     }
+
     @Override
     public double area() { return width * height; }
 }

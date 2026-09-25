@@ -4,7 +4,7 @@ import type { Course } from "../sidebar.mts";
 
 export default {
   slug: "csharp-advanced",
-  title: "C# and .NET technologies",
+  title: "Object-oriented programming in C# II",
   modules: [
     {
       title: "Developer tools and Windows Forms",

@@ -2,7 +2,7 @@
 title: Practice
 description: "Topic 12. Templates and Concepts: worked examples"
 outline: [2, 3]
-sourceHash: "9379fc60b683de723c0432aff10819adea2c8e5a1c4459204e631fbb9c904068"
+sourceHash: "93384918f463a5a6714fe70c1575b54d00c4d4ac1b281c6d5ed7b3ffeb77533a"
 ---
 
 # Practice
@@ -22,6 +22,7 @@ struct Pair {
     T first, second;
     auto operator<=>(const Pair&) const = default;
 };
+
 template<class T>
 Pair(T, T) -> Pair<T>;
 
@@ -30,6 +31,7 @@ struct Triple {
     T first, second, third;
     auto operator<=>(const Triple&) const = default;
 };
+
 template<class T>
 Triple(T, T, T) -> Triple<T>;
 
@@ -61,9 +63,11 @@ The comparison starts with the first field that differs. It is not a comparison 
 
 struct Metres {};
 struct Seconds {};
+
 template<class Unit, std::floating_point T = double>
 struct Quantity {
     T value;
+
     Quantity operator+(Quantity rhs) const {
         return {value + rhs.value};
     }
@@ -100,14 +104,17 @@ template<class T>
 concept Shape = requires(const T& shape) {
     { shape.area() } -> std::convertible_to<double>;
 };
+
 struct Rectangle {
     double width, height;
     double area() const { return width * height; }
 };
+
 struct Square {
     double side;
     double area() const { return side * side; }
 };
+
 double total(Shape auto a, Shape auto b)
 {
     return a.area() + b.area();

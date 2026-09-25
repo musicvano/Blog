@@ -2,7 +2,7 @@
 title: "Layout and controls"
 description: "Topic 15. JavaFX graphical applications: Layout and controls"
 outline: [2, 3]
-sourceHash: "e37da7b8b8aca5ecc85fa22da2d6b5894a10264a2ebbc4ef465c5e791d812737"
+sourceHash: "c985864688063286ae9f608be20ae9ac3eba225edbc6e95ca57c48c4c613ba16"
 ---
 
 # Layout and controls
@@ -97,9 +97,7 @@ public final class TemperatureMain extends Application {
 
 The reference input `20` gives `68.00 °F`, and `0` gives `32.00 °F`. The string `NaN` is technically parsed by Double.parseDouble, so the finiteness check is a necessary part of the contract. The upper bound is an explicit limitation of the training tool. For exact financial calculations, choose BigDecimal rather than carrying over double from the temperature example.
 
-::: info Screenshot
-Run TemperatureMain, enter NaN, press Calculate.
-:::
+![The state of the form after invalid input](./images/02-temperature-validation.png)
 
 Figure 15.5. The state of the form after invalid input {.caption}
 

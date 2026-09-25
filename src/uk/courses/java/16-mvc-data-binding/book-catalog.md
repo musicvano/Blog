@@ -111,12 +111,15 @@ public class BookMain extends Application {
 
     static final class Service {
         private final Repository repository;
+
         Service(Repository repository) {
             this.repository = repository;
         }
+
         List<Book> all() throws SQLException {
             return repository.all();
         }
+
         void save(long id, String title, int year)
                 throws SQLException {
             if (id < 0 || title == null || title.isBlank()
@@ -126,6 +129,7 @@ public class BookMain extends Application {
             }
             repository.save(id, title.strip(), year);
         }
+
         void delete(long id) throws SQLException {
             if (id <= 0) {
                 throw new IllegalArgumentException("Select book");

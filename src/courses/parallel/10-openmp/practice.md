@@ -2,14 +2,20 @@
 title: "Practice"
 description: "Topic 10. OpenMP: worked examples"
 outline: [2, 3]
-sourceHash: "cc6c1dd7ae5bd7cba2dfa0a1a4f66d5bc32577ed25e7312bd4e32ff550f70676"
+sourceHash: "e5272f7c9190f69ba02ee19a661aa8d9ca526a0b21a5412da67f8590e9fc2712"
 ---
 
 # Practice
 
 ## Example 1. Heat conduction in a plate and thread affinity
 
-A square plate of $n \times n$ grid nodes has a top edge at a temperature of 100 °C, and the rest at 0 °C. Simulate the spread of heat with an explicit scheme for the heat equation $$u_{i , j}^{k + 1} = u_{i , j}^{k} + r (u_{i - 1 , j}^{k} + u_{i + 1 , j}^{k} + u_{i , j - 1}^{k} + u_{i , j + 1}^{k} - 4 u_{i , j}^{k}) ,$$ where $r = 0 {,} 2$. The grid size, the number of steps, and the initialization method (`parallel` – according to the first-touch policy, `serial` – by the primary thread) are given as arguments. Compare the time for different values of `OMP_PLACES` and `OMP_PROC_BIND` and check that the result (the total heat) does not change.
+A square plate of $n \times n$ grid nodes has a top edge at a temperature of 100 °C, and the rest at 0 °C. Simulate the spread of heat with an explicit scheme for the heat equation
+
+$$
+u_{i , j}^{k + 1} = u_{i , j}^{k} + r (u_{i - 1 , j}^{k} + u_{i + 1 , j}^{k} + u_{i , j - 1}^{k} + u_{i , j + 1}^{k} - 4 u_{i , j}^{k}) ,
+$$
+
+where $r = 0 {,} 2$. The grid size, the number of steps, and the initialization method (`parallel` – according to the first-touch policy, `serial` – by the primary thread) are given as arguments. Compare the time for different values of `OMP_PLACES` and `OMP_PROC_BIND` and check that the result (the total heat) does not change.
 
 ```cpp
 #include <omp.h>

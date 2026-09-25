@@ -1,7 +1,7 @@
 ---
 title: "Object-oriented programming in C++"
 description: "The course is designed for students with no prior C++ programming experience. It covers the C++ language according to the C++26 standard in Microsoft Visual Studio 2026: from basic language constructs, functions and memory management to object-oriented programming, templates, concepts, the C++ standard library, file handling and modules. Each topic of the course combines a lecture with a lab assignment."
-sourceHash: "b9c69c3cd3fab918d52fda36b74141fbddd759f353a8f9453b0b4a37d91c0039"
+sourceHash: "f148f0a7225060e479448a5db8f94af0d58a592bcc8fce81d1810105fa2b1358"
 ---
 
 # Object-oriented programming in C++
@@ -37,12 +37,17 @@ The course is designed for students with no prior C++ programming experience. It
 15. [Input/output streams, working with text and binary files, the std::filesystem library](./15-io-files/)
 16. [C++ modules, organizing multi-file projects and new features of the C++26 standard](./16-modules-cpp26/)
 
-## How to work through a topic
+## Required software {#software}
 
-1. Read the lecture sections in order and run the examples in Visual Studio 2026.
-2. Work through the examples on the **Practice** page: first try to solve each problem on your own.
-3. Choose your variant on the **Tasks** page and a difficulty level: initial, basic or advanced.
-4. Test yourself with the questions on the **Summary** page.
+| Software | Purpose | Topic |
+| --- | --- | :-: |
+| [Visual Studio 2026](https://visualstudio.microsoft.com/downloads/) Community with the *Desktop development with C++* workload (MSVC, Windows SDK, CMake tools, AddressSanitizer) | Development environment, compiler and debugger | 1 |
+| [Git for Windows](https://git-scm.com/downloads/win) | Version control | 1 |
+| [CMake](https://cmake.org/download/) 4.2 or later (CMake tools from Visual Studio or a separate install) | Building projects with C++26 modules | 16 |
+
+A GitHub account is needed only for the optional publishing of your repository.
+
+<!--@include: ../_shared/introduction.md-->
 
 ## Course materials
 

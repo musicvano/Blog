@@ -46,9 +46,7 @@ flowchart TB
 dotnet add package Npgsql
 ```
 
-::: info Знімок екрана
-Visual Studio 2026: project context menu → Manage NuGet Packages… → Browse → "Npgsql"; package selected, version 10.0.3, Install button
-:::
+![Встановлення пакета Npgsql у Visual Studio](./images/04-vs-nuget-npgsql.png)
 
 Рис. 7.9. Встановлення пакета Npgsql у Visual Studio {.caption}
 

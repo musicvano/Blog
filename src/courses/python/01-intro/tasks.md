@@ -2,7 +2,7 @@
 title: "Tasks"
 description: "Topic 1. Python, PyCharm, and Git: task variants"
 outline: [2, 3]
-sourceHash: "c75999f43cd2d41936ca744fa9a7e0fd8fbfdba4d24de26543c77f0b5a2b5a76"
+sourceHash: "a93031f0b8d3f609eb9668bc3e3cd0d904afc46e92328403b83a84bffc1776e7"
 ---
 
 # Tasks
@@ -183,11 +183,11 @@ You do not need to complete all three unless your instructor requires it. The ma
 
 ### Variant 22. Time zones {#v22}
 
-**1. Initial level.** Create a Python 3.14 program in PyCharm with the instant 2026-09-16T12:00:00+00:00 and zone Europe/Kyiv specified in the code. Calculate and print the local time using `datetime.fromisoformat` and `ZoneInfo`; install tzdata on Windows. Run the file in the project environment, show the result units, and save the code and `.gitignore` in one local commit.
+**1. Initial level.** Create a Python 3.14 program in PyCharm with the instant 2026-09-16T12:00:00+00:00 and zone Europe/Madrid specified in the code. Calculate and print the local time using `datetime.fromisoformat` and `ZoneInfo`; install tzdata on Windows. Run the file in the project environment, show the result units, and save the code and `.gitignore` in one local commit.
 
 **2. Basic level.** Create a separate project with `.venv` that accepts an ISO instant with a UTC offset and an IANA time zone name from command-line arguments and calculates and prints the local time using `datetime.fromisoformat` and `ZoneInfo`; install tzdata on Windows. Check the argument count, numeric format, and validity of the values. Describe how to run the program and the reference result in the README, show the interpreter path, and make two meaningful commits. Record external dependencies, if needed, in `requirements.txt`.
 
-**3. Advanced level.** Create a uv project with the `tzdata` package that accepts an ISO instant with a UTC offset as the first argument, followed by several IANA zones, for example `Europe/Kyiv Europe/London Asia/Tokyo`. For each zone, print the local date, time, and UTC offset. Reject an instant without an offset and unknown zones with an explanation. Add `--help`, test crossing into another date; commit `pyproject.toml`, `uv.lock`, and the README in three meaningful commits. Confirm reproducibility with `uv sync --locked`.
+**3. Advanced level.** Create a uv project with the `tzdata` package that accepts an ISO instant with a UTC offset as the first argument, followed by several IANA zones, for example `Europe/Madrid Europe/London Asia/Tokyo`. For each zone, print the local date, time, and UTC offset. Reject an instant without an offset and unknown zones with an explanation. Add `--help`, test crossing into another date; commit `pyproject.toml`, `uv.lock`, and the README in three meaningful commits. Confirm reproducibility with `uv sync --locked`.
 
 ### Variant 23. Buoyant force {#v23}
 

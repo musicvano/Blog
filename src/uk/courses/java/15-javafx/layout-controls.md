@@ -96,9 +96,7 @@ public final class TemperatureMain extends Application {
 
 Контрольний приклад `20` дає `68.00 °F`, `0` – `32.00 °F`. Рядок `NaN` технічно розбирається Double.parseDouble, тому перевірка скінченності є необхідною частиною контракту. Верхня межа – явне обмеження навчального інструмента. У точних фінансових обчисленнях слід обрати BigDecimal, а не переносити double із температурного прикладу.
 
-::: info Знімок екрана
-Run TemperatureMain, enter NaN, press Calculate.
-:::
+![Стан форми після некоректного введення](./images/02-temperature-validation.png)
 
 Рис. 15.5. Стан форми після некоректного введення {.caption}
 

@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 8. Encapsulation, static members: worked examples"
 outline: [2, 3]
-sourceHash: "0661a53f8850cdf4bc137180899d5a56b3acd7ea2e62fb97b37e8f44af2d6f85"
+sourceHash: "1c2e65f426c4bdd1db67436efaf6969048bd9416be60fda724957ea4fdb5055b"
 ---
 
 # Practice
@@ -66,6 +66,7 @@ class Temperature
         {
             return false;
         }
+
         double c = char.ToUpper(text[^1]) switch
         {
             'C' => value,

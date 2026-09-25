@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 9. Multithreading in C++: worked examples"
 outline: [2, 3]
-sourceHash: "30f5fb0afea8a500509542c219dbc7cf7fa6a0644722385238de4806fadbd630"
+sourceHash: "c8d1036776625cfc6d1a3de4e19d63f622aa6a89304f02dd1ecf88e8c211a9f1"
 ---
 
 # Practice
@@ -143,6 +143,7 @@ public:
             ++count_;
             max_count_ = std::max(max_count_, count_);
         }
+
         used_.release();                   // an element has appeared
     }
 

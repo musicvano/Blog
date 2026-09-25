@@ -33,6 +33,7 @@ Ranges-алгоритм може приймати контейнер без ру
 #include <vector>
 
 struct Student { std::string name; int grade; };
+
 int main()
 {
     std::vector<Student> students{

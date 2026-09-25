@@ -283,6 +283,7 @@ app.UseExceptionHandler(new ExceptionHandlerOptions
     StatusCodeSelector = ex => ex is BadHttpRequestException bad
         ? bad.StatusCode : StatusCodes.Status500InternalServerError
 });
+
 app.UseStatusCodePages();     // порожні 404, 405 -> ProblemDetails
 if (app.Environment.IsDevelopment())
 {

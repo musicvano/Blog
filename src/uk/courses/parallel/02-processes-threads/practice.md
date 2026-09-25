@@ -27,6 +27,7 @@ if (args is ["--worker", var fromText, var toText])
             $"Хибний діапазон: {fromText}..{toText}");
         return 2;
     }
+
     Console.WriteLine(CountPrimes(from, to));
     return 0;
 }

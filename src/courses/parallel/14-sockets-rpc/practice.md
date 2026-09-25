@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 14. Sockets, RPC, and gRPC: worked examples"
 outline: [2, 3]
-sourceHash: "bb6ddb1dca205720da1e4f9ec74358274e3c072f8d4215daf7784c628167a864"
+sourceHash: "c21ffc24272e29b79a1ebe947263410492c5b859bff7f3cb1e9a8a3d05b9283c"
 ---
 
 # Practice
@@ -144,6 +144,7 @@ static void CreateFile(string path, int sizeMb)
     {
         return;
     }
+
     byte[] block = new byte[1 << 20];
     Random random = new(13);
     using FileStream file = File.Create(path);

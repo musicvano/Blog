@@ -2,7 +2,7 @@
 title: "Program examples and common mistakes"
 description: "Topic 5. Built-in collections: program examples and common mistakes"
 outline: [2, 3]
-sourceHash: "5d2eeb09d81e9d762203b2dbf71a5eea84a0f404bca5dfc04a76940ae7d03ccf"
+sourceHash: "498d2f3929945590fbcd218e0a22c6f0a8da72100a3b93203fe571e1e1b45782"
 ---
 
 # Program examples and common mistakes
@@ -24,6 +24,7 @@ def ranking(
         if marks:
             result.append((name, sum(marks) / len(marks)))
     return sorted(result, key=lambda item: (-item[1], item[0]))
+
 
 journal = {"Oleh": [80, 90], "Anna": [90, 80], "Ira": []}
 for number, (name, average) in enumerate(ranking(journal), 1):
@@ -55,6 +56,7 @@ In this learning model, regular visitors are served in arrival order, with urgen
 from collections import deque
 from heapq import heappop, heappush
 
+
 def service_order(
     regular: list[str], urgent: list[tuple[int, str]],
 ) -> list[str]:
@@ -73,6 +75,7 @@ def service_order(
         served.append(name)
     return served
 
+
 regular = ["Anna", "Oleh"]
 urgent = [(2, "Ira"), (1, "Yurii"), (1, "Bohdan")]
 print(" → ".join(service_order(regular, urgent)))
@@ -88,6 +91,7 @@ Given the tags of two participants and a set of topics for upcoming meetings, fi
 def normalize(values: list[str]) -> set[str]:
     return {value.strip().casefold() for value in values
             if value.strip()}
+
 
 first = normalize([" Python ", "Music", "python", ""])
 second = normalize(["PYTHON", "Chess"])
@@ -114,6 +118,7 @@ Deliveries are given as “name–quantity” pairs, and sales as a list of the 
 ```py
 from collections import Counter, defaultdict
 
+
 def balances(
     deliveries: list[tuple[str, int]], sold: list[str],
 ) -> dict[str, int]:
@@ -128,6 +133,7 @@ def balances(
             raise ValueError(f"Insufficient stock: {name}")
     return {name: quantity - counts[name]
             for name, quantity in stock.items()}
+
 
 deliveries = [("notebook", 5), ("pen", 4), ("notebook", 2)]
 sold = ["pen", "notebook", "pen"]

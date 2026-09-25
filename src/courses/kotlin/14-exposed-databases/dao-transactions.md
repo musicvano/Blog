@@ -2,7 +2,7 @@
 title: "DAO and transactions"
 description: "Topic 14. Databases with Exposed: DAO and transactions"
 outline: [2, 3]
-sourceHash: "8e9f80f8338dbafce2e6c4c538b34c6717eb51c16d3ca3c7e3c139742b2e95fe"
+sourceHash: "16419b4389be20aa13f54522d9a7b95d651b1200c9f01bf85e23811a41de4816"
 ---
 
 # DAO and transactions
@@ -33,6 +33,7 @@ import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 object Editions : IntIdTable("editions") {
     val title = varchar("title", 120)
 }
+
 class Edition(id: EntityID<Int>) : IntEntity(id) {
     companion object : IntEntityClass<Edition>(Editions)
     var title by Editions.title

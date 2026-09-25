@@ -2,7 +2,7 @@
 title: "Text and binary files"
 description: "Topic 15. Streams and Files: Text and Binary Files"
 outline: [2, 3]
-sourceHash: "7dd82f64bbbe3e02a8bf1557327ec564132fe6aa9f9aeb26116e8d4feea31e1d"
+sourceHash: "4385457ae1a7e2de9ae24d48cba1c810a523b5ef4689cfdb5910dbc85f8accae"
 ---
 
 # Text and binary files
@@ -196,6 +196,7 @@ The gcount method lets you find out the number of bytes actually read.
 
 struct Record { std::uint32_t id; std::int64_t cents; };
 static_assert(std::is_trivially_copyable_v<Record>);
+
 int main()
 {
     Record rows[]{{1, 1000}, {2, 2500}};

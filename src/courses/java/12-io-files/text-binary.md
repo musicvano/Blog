@@ -2,7 +2,7 @@
 title: "Text and binary data"
 description: "Topic 12. Files, NIO.2, and serialization: Text and binary data"
 outline: [2, 3]
-sourceHash: "a16c58f284a69efa679666e215ecca266f65954dd2575e584567b4e14e72e902"
+sourceHash: "652d9a0cceb6278ced6d940b19390baaeda9f0c561eb0b4b33c3bfad6aeeed5e"
 ---
 
 # Text and binary data
@@ -44,6 +44,7 @@ public class Main {
                             || !fields[0].matches("[A-Za-z]+")) {
                         throw new IllegalArgumentException();
                     }
+
                     int count = Integer.parseInt(fields[1]);
                     if (count < 0) {
                         throw new IllegalArgumentException();

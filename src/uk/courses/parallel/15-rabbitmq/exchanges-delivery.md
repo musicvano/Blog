@@ -12,7 +12,7 @@ outline: [2, 3]
 
 - **direct** – у черги, ключ прив’язки яких **точно збігається** з ключем повідомлення (маршрутизація за рівнем журналу: `error`, `warning`, `info`);
 - **fanout** – у **всі** прив’язані черги, ключ ігнорується (розсилка подій кільком незалежним сервісам);
-- **topic** – ключ складається зі слів через крапку (`sensor.kyiv.temp`), прив’язка – шаблон, де `*` замінює рівно одне слово, а `#` – нуль або більше слів (`sensor.*.temp`, `sensor.kyiv.#`);
+- **topic** – ключ складається зі слів через крапку (`sensor.rome.temp`), прив’язка – шаблон, де `*` замінює рівно одне слово, а `#` – нуль або більше слів (`sensor.*.temp`, `sensor.rome.#`);
 - **headers** – маршрутизація за заголовками замість ключа: аргумент прив’язки `x-match` зі значенням `all` (збігаються всі вказані заголовки) або `any` (хоча б один);
 - **типовий** обмінник `""` (різновид direct) – доставка в чергу з іменем, що дорівнює ключу.
 
@@ -33,10 +33,10 @@ flowchart TB
   end
   subgraph T["<b><code>topic</code></b>"]
     direction TB
-    TK["<code>sensor.kyiv.temp</code>"] --> TX("<code>topic</code>")
+    TK["<code>sensor.rome.temp</code>"] --> TX("<code>topic</code>")
     TX -->|"<code>sensor.*.temp</code>"| TQ1["<b><code>temps</code></b>"]
-    TX -->|"<code>sensor.kyiv.#35;</code>"| TQ2["<b><code>kyiv</code></b>"]
-    TX -.->|"<code>*.lviv.*</code>"| TQ3["<code>lviv</code>"]
+    TX -->|"<code>sensor.rome.#35;</code>"| TQ2["<b><code>rome</code></b>"]
+    TX -.->|"<code>*.oslo.*</code>"| TQ3["<code>oslo</code>"]
   end
   D ~~~ F ~~~ T
   T ~~~ N["поруч зі стрілками – ключі прив’язок;<br>жирні черги (суцільні стрілки)<br>отримують повідомлення, звичайні (пунктир) – ні"]

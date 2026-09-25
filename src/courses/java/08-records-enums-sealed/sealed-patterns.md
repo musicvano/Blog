@@ -2,7 +2,7 @@
 title: "Sealed types and patterns"
 description: "Topic 8. Records, enum, and sealed classes: sealed types and patterns"
 outline: [2, 3]
-sourceHash: "3196da541ae4233ba20e863e784383f07b8eb81e37a608d85240770d502a376f"
+sourceHash: "ec423365c52eeef9dcafcc646869f2f1c965eceeba2c5ab780b295ad8912667f"
 ---
 
 # Sealed types and patterns
@@ -61,23 +61,28 @@ Shape has only Circle and Rectangle. Each record checks that dimensions are fini
 
 ```java
 sealed interface Shape permits Circle, Rectangle { }
+
 record Circle(double radius) implements Shape {
     Circle { Dimensions.check(radius); }
 }
+
 record Rectangle(double width, double height) implements Shape {
     Rectangle {
         Dimensions.check(width);
         Dimensions.check(height);
     }
 }
+
 final class Dimensions {
     private Dimensions() { }
+
     static void check(double value) {
         if (!Double.isFinite(value) || value <= 0 || value > 10_000) {
             throw new IllegalArgumentException("Invalid dimension");
         }
     }
 }
+
 public class Main {
     static double area(Shape shape) {
         return switch (shape) {
@@ -87,6 +92,7 @@ public class Main {
             case Rectangle(double w, double h) -> w * h;
         };
     }
+
     static String kind(Shape shape) {
         return switch (shape) {
             case null -> "absent";
@@ -95,6 +101,7 @@ public class Main {
             case Rectangle _ -> "rectangle";
         };
     }
+
     public static void main(String[] args) {
         Shape[] shapes = {new Circle(0.5), new Rectangle(3, 4)};
         for (Shape shape : shapes) {

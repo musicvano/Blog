@@ -2,7 +2,7 @@
 title: "Comparison and compound assignment"
 description: "Topic 8. Operations and delegation: Comparison and compound assignment"
 outline: [2, 3]
-sourceHash: "3bb762a08b589dd0d04b945e04d5839dc63cb2475115da8e6f039b07b89c7b9f"
+sourceHash: "e3a3699511876240cbcbd25e24c1e8262cbfbc39fc7c123b1dcd03221f666980"
 ---
 
 # Comparison and compound assignment
@@ -53,6 +53,7 @@ data class Vector(val x: Double, val y: Double) :
         require(x.isFinite() && y.isFinite())
         require(x in -1e6..1e6 && y in -1e6..1e6)
     }
+
     val length: Double get() = hypot(x, y)
 
     operator fun plus(other: Vector): Vector =

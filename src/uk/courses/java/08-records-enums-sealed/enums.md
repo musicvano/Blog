@@ -38,11 +38,14 @@ enum Planet {
     private static final double G = 6.67430e-11;
     private final double mass;
     private final double radius;
+
     Planet(double mass, double radius) {
         this.mass = mass;
         this.radius = radius;
     }
+
     double gravity() { return G * mass / (radius * radius); }
+
     double weight(double bodyMass) {
         if (!Double.isFinite(bodyMass) || bodyMass < 0
                 || bodyMass > 1_000_000) {
@@ -51,6 +54,7 @@ enum Planet {
         return bodyMass * gravity();
     }
 }
+
 public class Main {
     public static void main(String[] args) {
         for (Planet planet : Planet.values()) {

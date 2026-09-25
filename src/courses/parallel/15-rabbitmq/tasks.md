@@ -2,7 +2,7 @@
 title: "Tasks"
 description: "Topic 15. The RabbitMQ broker: task variants"
 outline: [2, 3]
-sourceHash: "1bd8300e3ed1ae69006f152d5eacef890a7ae2e654ccd8e0bb089bd3500f9823"
+sourceHash: "121e9b3e393c6efe6ced51b305398a444a38d4a2ef7ec2bb2a770a2cf83675d9"
 ---
 
 # Tasks
@@ -21,7 +21,7 @@ Complete the task of the chosen difficulty level for your variant number.
 
 ### Variant 2. Weather notifications {#v2}
 
-**1. Initial level.** Create a publisher program that publishes forecasts to the `weather` topic exchange with keys of the form `<region>.<type>` (for example, `kyiv.rain`), and a subscriber program that takes a binding pattern from the keyboard and prints the matching forecasts.
+**1. Initial level.** Create a publisher program that publishes forecasts to the `weather` topic exchange with keys of the form `<region>.<type>` (for example, `london.rain`), and a subscriber program that takes a binding pattern from the keyboard and prints the matching forecasts.
 
 **2. Basic level.** Create a weather notification system: the publisher publishes random events for 5 regions and 3 types (`rain`, `storm`, `heat`) every second, and each user has a durable queue with several patterns from a subscription file. The subscriber validates the patterns (only words, `*`, `#`) and prints a table of the number of events received by type.
 
@@ -101,7 +101,7 @@ Complete the task of the chosen difficulty level for your variant number.
 
 ### Variant 12. Food delivery {#v12}
 
-**1. Initial level.** Create a program that publishes order events to a topic exchange with keys of the form `<city>.<status>` (for example, `lviv.delivered`), and a subscriber that takes a pattern from the keyboard and prints the matching events.
+**1. Initial level.** Create a program that publishes order events to a topic exchange with keys of the form `<city>.<status>` (for example, `madrid.delivered`), and a subscriber that takes a pattern from the keyboard and prints the matching events.
 
 **2. Basic level.** Create a delivery event system: a city’s courier service receives `<city>.ready`, analytics receives `*.delivered`, and customer support receives `#.cancelled`. Each subscriber has a durable queue and prints the number of events by city after the event stream ends.
 

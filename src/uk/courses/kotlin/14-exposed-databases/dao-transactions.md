@@ -32,6 +32,7 @@ import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 object Editions : IntIdTable("editions") {
     val title = varchar("title", 120)
 }
+
 class Edition(id: EntityID<Int>) : IntEntity(id) {
     companion object : IntEntityClass<Edition>(Editions)
     var title by Editions.title

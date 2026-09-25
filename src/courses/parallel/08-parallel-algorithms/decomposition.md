@@ -2,7 +2,7 @@
 title: "Data decomposition and integration"
 description: "Topic 8. Parallel algorithms: Data decomposition and integration"
 outline: [2, 3]
-sourceHash: "9af415cf7ee6b090cd7c00d0f4fbeee1cb06b1975a33338b08a1c06153727352"
+sourceHash: "e68c73be26bec043d3892ccdec3a79f668518f7f5bbf95a506d7c3b542da59e0"
 ---
 
 # Data decomposition and integration
@@ -166,7 +166,13 @@ A definite integral $I = \int_{a}^{b} f (x) d x$ is approximated by **quadrature
 
 Each formula is a weighted sum of values of $f$, that is, data parallelism with a reduction: the nodes are divided among threads, each thread computes a partial sum, and the partial sums are added. On a cluster, each process gets its own segment $[ a_{t} ; b_{t} ]$ and computes the integral over it, and process 0 collects the sum (`MPI_Reduce`, Topic 12) – exchanging just one number.
 
-**Runge’s rule** estimates the error without the exact value. If a formula has order $k$ (for Simpson, $k = 4$), and $I_{n}$ and $I_{2 n}$ are the results with step $h$ and $h / 2$, then $$I - I_{2 n} \approx \frac{I_{2 n} - I_{n}}{2^{k} - 1} .$$ The computation is repeated, doubling $n$, until this estimate becomes smaller than the specified tolerance; adding the estimate to $I_{2 n}$ gives an even more accurate value (Richardson extrapolation). The parallel composite Simpson’s rule:
+**Runge’s rule** estimates the error without the exact value. If a formula has order $k$ (for Simpson, $k = 4$), and $I_{n}$ and $I_{2 n}$ are the results with step $h$ and $h / 2$, then
+
+$$
+I - I_{2 n} \approx \frac{I_{2 n} - I_{n}}{2^{k} - 1} .
+$$
+
+The computation is repeated, doubling $n$, until this estimate becomes smaller than the specified tolerance; adding the estimate to $I_{2 n}$ gives an even more accurate value (Richardson extrapolation). The parallel composite Simpson’s rule:
 
 ```cs
 static double Simpson(Func<double, double> f, double a, double b,

@@ -2,7 +2,7 @@
 title: "Linear algebra and performance"
 description: "Topic 7. SIMD vectorization: Linear algebra and performance"
 outline: [2, 3]
-sourceHash: "77c4b899fb8dbd4d5d8c047f8836ccb1d1c9a28d04abc252e1f97798bd86a0eb"
+sourceHash: "0a7f2873c912716f001df378ed3c525bbaada2a10c0b672d7d69698c1bf9849d"
 ---
 
 # Linear algebra and performance
@@ -70,7 +70,13 @@ Three $64 \times 64$ tiles of `double` occupy $3 \cdot 64^{2} \cdot 8 \approx 98
 - **SIMD**: the inner loop over `j` (an `axpy` operation on a tile row) is vectorized with `Vector256`;
 - **threads**: the rows of tiles of matrix `C` are independent, so the outer loop runs through `Parallel.For`; each thread writes only to its own rows of `C`, and no synchronization is needed.
 
-Computational performance is measured in **FLOPS** (*floating-point operations per second*); **GFLOPS** means billions of them. Multiplying $n \times n$ matrices takes approximately $n^{3}$ multiplications and $n^{3}$ additions, so $$\text{GFLOPS} = \frac{2 n^{3}}{t \cdot 10^{9}} ,$$ where $t$ is the time in seconds. The results for $n = 2048$ are shown in Table 7.6.
+Computational performance is measured in **FLOPS** (*floating-point operations per second*); **GFLOPS** means billions of them. Multiplying $n \times n$ matrices takes approximately $n^{3}$ multiplications and $n^{3}$ additions, so
+
+$$
+\text{GFLOPS} = \frac{2 n^{3}}{t \cdot 10^{9}} ,
+$$
+
+where $t$ is the time in seconds. The results for $n = 2048$ are shown in Table 7.6.
 
 Table 7.6. Multiplying $2048 \times 2048$ matrices on the i9-11900KF {.caption}
 
@@ -110,7 +116,13 @@ Pivot selection and row swapping remain sequential, and the steps $k$ are depend
 
 ### The Jacobi method
 
-The Jacobi method computes the new approximation only from the old one: $$x_{i}^{(t + 1)} = \frac{1}{a_{i i}} (b_{i} - \sum_{j \ne i} a_{i j} x_{j}^{(t)}) .$$ All $n$ equations of an iteration are independent – ideal data parallelism: the sum for a row is a dot product (SIMD), and the rows run in `Parallel.For`. Iterations are repeated until $\max_{i} | x_{i}^{(t + 1)} - x_{i}^{(t)} |$ becomes smaller than the specified tolerance. The method is guaranteed to converge for **diagonally dominant** matrices: $| a_{i i} | \gt \sum_{j \ne i} | a_{i j} |$ for every row. An implementation with measurements is given in the lab (Example 2).
+The Jacobi method computes the new approximation only from the old one:
+
+$$
+x_{i}^{(t + 1)} = \frac{1}{a_{i i}} \left(b_{i} - \sum_{j \ne i} a_{i j} x_{j}^{(t)}\right) .
+$$
+
+All $n$ equations of an iteration are independent – ideal data parallelism: the sum for a row is a dot product (SIMD), and the rows run in `Parallel.For`. Iterations are repeated until $\max_{i} | x_{i}^{(t + 1)} - x_{i}^{(t)} |$ becomes smaller than the specified tolerance. The method is guaranteed to converge for **diagonally dominant** matrices: $| a_{i i} | \gt \sum_{j \ne i} | a_{i j} |$ for every row. An implementation with measurements is given in the lab (Example 2).
 
 ### Red–black Gauss–Seidel method
 

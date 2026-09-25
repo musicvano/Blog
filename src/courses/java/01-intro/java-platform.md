@@ -2,7 +2,7 @@
 title: "The Java platform and JDK"
 description: "Topic 1. Java and your first program: The Java platform and JDK"
 outline: [2, 3]
-sourceHash: "80bb3b79319cce8322b4463bf5ca655b7fa8676327833774102695a431f864cc"
+sourceHash: "628d8a12a2a313d8737e85a3791245593fb79a2d6430ed7ba9cfbe0266268031"
 ---
 
 # The Java platform and JDK
@@ -65,9 +65,7 @@ After extracting the archive, run the commands using their full paths:
 
 The path `C:/Tools/jdk-27` is an example: substitute your actual path. The commands should report version 27. Record the full build number and vendor in your report, not just the word Java. The same language version does not imply the same license or the same additional distribution components.
 
-::: info Screenshot
-PowerShell: absolute java and javac paths, both version27; hide user home.
-:::
+![Tool versions from the selected JDK](./images/01-jdk-version.png)
 
 Figure 1.2. Tool versions from the selected JDK {.caption}
 

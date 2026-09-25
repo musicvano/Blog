@@ -162,6 +162,7 @@ static void BlurCpu(float[] src, float[] dst, int w, int h, int r,
             dst[y * w + x] = sum / count;
         }
     }
+
     if (parallel) Parallel.For(0, h, RowBlur);
     else for (int y = 0; y < h; y++) RowBlur(y);
 }

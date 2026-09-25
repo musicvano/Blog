@@ -2,7 +2,7 @@
 title: "Routes, results, and validation"
 description: "Topic 10. REST web services: Routes, results, and validation"
 outline: [2, 3]
-sourceHash: "d3e90d38211244d933dfbb587457d6ba97e40b0d0509c021b6289f443308ce20"
+sourceHash: "a81d82cf52c98d72680641a06c5b6a7cd9c23b8dac62bc2b39ecfa3c4bc67b5f"
 ---
 
 # Routes, results, and validation
@@ -284,6 +284,7 @@ app.UseExceptionHandler(new ExceptionHandlerOptions
     StatusCodeSelector = ex => ex is BadHttpRequestException bad
         ? bad.StatusCode : StatusCodes.Status500InternalServerError
 });
+
 app.UseStatusCodePages();     // empty 404, 405 -> ProblemDetails
 if (app.Environment.IsDevelopment())
 {

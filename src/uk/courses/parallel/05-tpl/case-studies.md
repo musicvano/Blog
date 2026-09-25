@@ -208,6 +208,7 @@ static async Task WatchEscapeAsync(CancellationTokenSource cts)
             await cts.CancelAsync();
             return;
         }
+
         await Task.Delay(50);
     }
 }

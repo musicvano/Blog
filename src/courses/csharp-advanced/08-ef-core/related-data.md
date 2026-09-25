@@ -2,7 +2,7 @@
 title: "Related data and change tracking"
 description: "Topic 8. Entity Framework Core: Related data and change tracking"
 outline: [2, 3]
-sourceHash: "0b21577976bb3e4224eb499ffb2393610270693b628f5228c45e9213cab32644"
+sourceHash: "7ee6fe700fa5bcb2bd502cdc457487358d54b96fe81d9262a06650a6f5285d86"
 ---
 
 # Related data and change tracking
@@ -229,9 +229,7 @@ Figure 8.9. Entity states in `ChangeTracker` {.caption}
 
 `SaveChangesAsync` calls `ChangeTracker.DetectChanges()`, compares the current values with the snapshots, executes the commands **in one transaction**, and moves the entries to the `Unchanged` state (deleted ones to `Detached`). The `Update(entity)` method marks **all** properties of an object created outside the context (for example, obtained from a form) as `Modified`, and `Attach(entity)` adds it as `Unchanged`. An entry's state can be read and changed: `db.Entry(product).State`; a property's original value is `db.Entry(product).Property(p => p.Price).OriginalValue`. A text description of all entries is given by the `db.ChangeTracker.DebugView.LongView` property, which is convenient to view in the debugger (Fig. 8.10).
 
-::: info Screenshot
-Visual Studio 2026: breakpoint before SaveChangesAsync in the States example; Watch window with db.ChangeTracker.DebugView.LongView opened in the Text Visualizer showing Added, Modified and Deleted entries
-:::
+![The change tracking state in the debugger](./images/05-vs-changetracker-debugview.png)
 
 Figure 8.10. The change tracking state in the debugger {.caption}
 

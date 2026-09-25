@@ -26,17 +26,28 @@ export const uk: LocaleSpecificConfig<DefaultTheme.Config> & {
       {
         text: "Курси",
         items: [
-          { text: "Усі курси", link: coursesBase },
           ...courses.map((c) => ({ text: c.title, link: `${coursesBase}${c.slug}/` })),
         ],
       },
-      { text: "Блог (EN)", link: "/blog/getting-started" },
+      { text: "Блог", link: "/uk/blog/courses" },
       { text: "Про автора", link: "/uk/about" },
     ],
 
-    sidebar: Object.fromEntries(
-      courses.map((c) => [`${coursesBase}${c.slug}/`, courseSidebar(c)]),
-    ),
+    sidebar: {
+      ...Object.fromEntries(courses.map((c) => [`${coursesBase}${c.slug}/`, courseSidebar(c)])),
+      "/uk/blog/": [
+        {
+          text: "2026",
+          collapsed: false,
+          items: [{ text: "Сім курсів з програмування", link: "/uk/blog/courses" }],
+        },
+        {
+          text: "2025",
+          collapsed: false,
+          items: [{ text: "Початок", link: "/uk/blog/getting-started" }],
+        },
+      ],
+    },
 
     outline: { label: "На цій сторінці" },
     docFooter: { prev: "Попередня сторінка", next: "Наступна сторінка" },

@@ -100,11 +100,13 @@ public partial class MainWindow : Window
             };
             column.Children.Add(counter);
             column.Children.Add(bar);
+
             column.Children.Add(new TextBlock
             {
                 Text = year,
                 HorizontalAlignment = HorizontalAlignment.Center
             });
+
             chart.Children.Add(column);
             columns.Add((bar, counter));
         }

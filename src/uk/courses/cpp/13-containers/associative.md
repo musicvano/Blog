@@ -197,6 +197,7 @@ struct Point {
     int x, y;
     bool operator==(const Point&) const = default;
 };
+
 struct PointHash {
     std::size_t operator()(const Point& p) const noexcept {
         auto hx = std::hash<int>{}(p.x);
@@ -205,6 +206,7 @@ struct PointHash {
             + (hx >> 2));
     }
 };
+
 int main()
 {
     std::unordered_set<Point, PointHash> points;

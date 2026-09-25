@@ -2,7 +2,7 @@
 title: "Device services, data, and publishing"
 description: "Topic 15. Cross-platform .NET MAUI: Device services, data, and publishing"
 outline: [2, 3]
-sourceHash: "d4c58ec9f875b96e640988d0ecab3b60971f108d153fa10c90ae4334bbf52775"
+sourceHash: "9e8e354337689c3f29b037028735cada8023d516f8695f5c71bbd194f2716b18"
 ---
 
 # Device services, data, and publishing
@@ -54,7 +54,7 @@ The permissions an application requests must be declared on each platform. On Wi
 
 ### Example: where am I?
 
-The page shows network state changes, determines the device coordinates and the distance to Kyiv, and shares a map link. The markup consists of a `VerticalStackLayout` with the labels `networkLabel`, `coordinatesLabel`, `distanceLabel`, the buttons *Find my location* (the `OnLocateClicked` event) and `shareButton` (*Share*, `IsEnabled="False"`, the `OnShareClicked` event), and a `busyIndicator` (`ActivityIndicator`). The page code:
+The page shows network state changes, determines the device coordinates and the distance to London, and shares a map link. The markup consists of a `VerticalStackLayout` with the labels `networkLabel`, `coordinatesLabel`, `distanceLabel`, the buttons *Find my location* (the `OnLocateClicked` event) and `shareButton` (*Share*, `IsEnabled="False"`, the `OnShareClicked` event), and a `busyIndicator` (`ActivityIndicator`). The page code:
 
 ```cs
 using System.Globalization;
@@ -63,7 +63,7 @@ namespace WhereAmI;
 
 public partial class MainPage : ContentPage
 {
-    private static readonly Location Kyiv = new(50.4501, 30.5234);
+    private static readonly Location London = new(51.5074, -0.1278);
     private Location? current;
 
     public MainPage() => InitializeComponent();
@@ -115,8 +115,8 @@ public partial class MainPage : ContentPage
             coordinatesLabel.Text =
                 $"{current.Latitude:F5}; {current.Longitude:F5}";
             double km = Location.CalculateDistance(
-                current, Kyiv, DistanceUnits.Kilometers);
-            distanceLabel.Text = $"Distance to Kyiv: {km:F1} km";
+                current, London, DistanceUnits.Kilometers);
+            distanceLabel.Text = $"Distance to London: {km:F1} km";
             shareButton.IsEnabled = true;
         }
         catch (FeatureNotEnabledException)
@@ -145,15 +145,13 @@ public partial class MainPage : ContentPage
 }
 ```
 
-The first time *Find my location* is clicked on Android, the system permission prompt appears (Fig. 15.12). Coordinates in the emulator are set in *Extended controls* (the "…" button on the emulator panel → *Location*) (Fig. 15.13). For the point 47.9105, 33.3918 (Kryvyi Rih), with US regional settings the labels show `47.91050; 33.39180` and `Distance to Kyiv: 351.0 km` – this is the distance along the Earth's surface calculated by `Location.CalculateDistance`. Under regional settings with a decimal comma (for example, Ukrainian), a number with a comma in the link would break the map address, so for the URL the coordinates are formatted with `CultureInfo.InvariantCulture` (`47.91050`). If the permission is denied, the message advises turning it on in the settings (they are opened by `AppInfo.Current.ShowSettingsUI()`).
+The first time *Find my location* is clicked on Android, the system permission prompt appears (Fig. 15.12). Coordinates in the emulator are set in *Extended controls* (the "…" button on the emulator panel → *Location*) (Fig. 15.13). For the sample point 50.8467, 4.3525 (Brussels, Grand-Place), the labels show `50.84670; 4.35250` and `Distance to London: 320.8 km` – this is the distance along the Earth's surface calculated by `Location.CalculateDistance` (an emulator with the English language formats numbers with a decimal point, one with Ukrainian uses a comma). Under regional settings with a decimal comma, a number with a comma in the link would break the map address, so for the URL the coordinates are formatted with `CultureInfo.InvariantCulture` (`50.84670`). If the permission is denied, the message advises turning it on in the settings (they are opened by `AppInfo.Current.ShowSettingsUI()`).
 
 ![The system location permission prompt](./images/07-emulator-permission-dialog.png)
 
 Fig. 15.12. The system location permission prompt {.caption}
 
-::: info Screenshot
-Emulator Extended controls → Location with point 47.9105, 33.3918 set; the app shows coordinates and "Distance to Kyiv: 351.0 km"
-:::
+![Simulating coordinates in the emulator's extended controls](./images/08-emulator-extended-location.png)
 
 Fig. 15.13. Simulating coordinates in the emulator's extended controls {.caption}
 

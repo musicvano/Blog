@@ -66,9 +66,7 @@ PostgreSQL 18 installer: server and command line tools; no secrets.
 
 Рис. 14.2. Вибір компонентів локального PostgreSQL {.caption}
 
-::: info Знімок екрана
-psql: CREATE ROLE, password prompt hidden, CREATE DATABASE, connection.
-:::
+![Окрема роль і база для лабораторної](./images/03-terminal-psql-create-db.png)
 
 Рис. 14.3. Окрема роль і база для лабораторної {.caption}
 
@@ -76,9 +74,7 @@ psql: CREATE ROLE, password prompt hidden, CREATE DATABASE, connection.
 
 Умови ліцензування IDE перевіряйте на офіційній сторінці продукту для свого способу використання; сам факт навчальної роботи не є технічною вимогою JDBC. Для всіх прикладів достатньо безкоштовного psql і термінального Maven-збирання.
 
-::: info Знімок екрана
-DataGrip PostgreSQL library/lab, Test Connection; hide credentials.
-:::
+![Підключення до навчальної бази](./images/04-datagrip-new-data-source.png)
 
 Рис. 14.4. Підключення до навчальної бази {.caption}
 

@@ -2,7 +2,7 @@
 title: "ADO.NET architecture and commands"
 description: "Topic 7. SQL and ADO.NET: ADO.NET architecture and commands"
 outline: [2, 3]
-sourceHash: "3c14bfd991f14a45497c503b8c60e9b37794d51b08f9734e4a4bc05fc86830b0"
+sourceHash: "220268c3ee76384cde63a7b8eb2b3c889eb618924018b74da4d4665dcebc9590"
 ---
 
 # ADO.NET architecture and commands
@@ -47,9 +47,7 @@ Figure 7.8. ADO.NET architecture with the Npgsql provider {.caption}
 dotnet add package Npgsql
 ```
 
-::: info Screenshot
-Visual Studio 2026: project context menu → Manage NuGet Packages… → Browse → "Npgsql"; package selected, version 10.0.3, Install button
-:::
+![Installing the Npgsql package in Visual Studio](./images/04-vs-nuget-npgsql.png)
 
 Figure 7.9. Installing the Npgsql package in Visual Studio {.caption}
 

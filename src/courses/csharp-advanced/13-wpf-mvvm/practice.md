@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 13. Data binding and MVVM: worked examples"
 outline: [2, 3]
-sourceHash: "452211df168e99a578c22e376fe4e3be8718041df71413318aafbf270e0b784a"
+sourceHash: "4a16d716d325de6e902972ac346f4402900f4c8ddf2d44ae1d4bf26da2e71a38"
 ---
 
 # Practice
@@ -157,7 +157,7 @@ public class ContactTemplateSelector : DataTemplateSelector
 }
 ```
 
-After `InitializeComponent()`, the window constructor assigns to `DataContext` a `List<Contact>` of five contacts, for example `new("Petro Bondar", "+380 67 111 2233", null)` and `new("Iryna Melnyk", "+380 50 444 5566", "Kryvbas Soft")`. The window markup:
+After `InitializeComponent()`, the window constructor assigns to `DataContext` a `List<Contact>` of five contacts, for example `new("Petro Bondar", "+380 67 111 2233", null)` and `new("Iryna Melnyk", "+380 50 444 5566", "Brussels Soft")`. The window markup:
 
 ```xml
 <Window x:Class="Cards.MainWindow"
@@ -222,7 +222,7 @@ After `InitializeComponent()`, the window constructor assigns to `DataContext` a
 
 The resources are declared in order of use: `StaticResource` does not see resources declared further down in the same dictionary. `SortDescription` belongs to the `WindowsBase` assembly, so the `scm` namespace is declared for it; the long attribute value is wrapped after the `=` sign, which XML allows. Disabling horizontal scrolling makes the `WrapPanel` wrap the cards to a new row. The template is chosen when the item container is created: if a contact's company changes, the card's look does not change until the list is refreshed.
 
-The window shows the cards in the order Andrii Koval, Denys Shevchuk, Iryna Melnyk (*Kryvbas Soft*), Oksana Lysenko (*Rudna Trans*), Petro Bondar: the two work cards have a thick border and a gray background (Fig. 13.14). After the window is made narrower, the cards wrap to new rows.
+The window shows the cards in the order Andrii Koval, Denys Shevchuk, Iryna Melnyk (*Brussels Soft*), Oksana Lysenko (*Rudna Trans*), Petro Bondar: the two work cards have a thick border and a gray background (Fig. 13.14). After the window is made narrower, the cards wrap to new rows.
 
 ![The "Contact cards" application](./images/14-app-contact-cards.png)
 
@@ -325,11 +325,13 @@ public partial class App : Application
     {
         base.OnStartup(e);
         var services = new ServiceCollection();
+
         services.AddSingleton(new HttpClient
         {
             BaseAddress = new Uri("http://localhost:5080/"),
             Timeout = TimeSpan.FromSeconds(10)
         });
+
         services.AddTransient<BookSearchViewModel>();
         services.AddTransient<MainWindow>();
         services.BuildServiceProvider()

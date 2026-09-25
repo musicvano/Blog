@@ -53,10 +53,10 @@ fun totals(orders: List<Order>): List<Pair<String, Long>> {
 
 fun main() {
     val orders = listOf(
-        Order(1, "Kyiv", 500, true),
-        Order(2, "Lviv", 700, true),
-        Order(3, "Kyiv", 200, true),
-        Order(4, "Odesa", 900, false)
+        Order(1, "London", 500, true),
+        Order(2, "Madrid", 700, true),
+        Order(3, "London", 200, true),
+        Order(4, "Paris", 900, false)
     )
     println(totals(orders))
     println(totals(emptyList()))
@@ -66,7 +66,7 @@ fun main() {
 ```
 
 ```text
-[(Kyiv, 700), (Lviv, 700)]
+[(London, 700), (Madrid, 700)]
 []
 {true=3, false=1}
 2300

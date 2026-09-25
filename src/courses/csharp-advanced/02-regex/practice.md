@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 2. Regular expressions: worked examples"
 outline: [2, 3]
-sourceHash: "62d7d7ee15eead78c1126669095eb5277a2ab882473cc43afcb21d726ac8b0ac"
+sourceHash: "2a5b8e339418a5a4bce3e7e5c0b297061999f098da9101184e497bfdc714f468"
 ---
 
 # Practice
@@ -162,7 +162,7 @@ Password: OLENA_2026!!!
 Rules satisfied: 5 of 8, password is weak
 ```
 
-For the login `ivan.k` and the password `Kvitka_2026#Lviv`, all rules are satisfied, and the program displays `Rules satisfied: 8 of 8, password is strong`.
+For the login `ivan.k` and the password `Kvitka_2026#Rome`, all rules are satisfied, and the program displays `Rules satisfied: 8 of 8, password is strong`.
 
 ## Example 3. Masking card numbers in a file
 

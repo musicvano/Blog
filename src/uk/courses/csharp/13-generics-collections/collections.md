@@ -61,12 +61,12 @@ classDiagram
 `List<T>` – найуживаніша колекція: динамічний масив, який збільшує внутрішній масив удвічі, коли місця не вистачає. Поточний розмір внутрішнього масиву повертає властивість `Capacity`, кількість елементів – `Count`.
 
 ```cs
-List<string> cities = ["Київ", "Львів"];   // вираз колекції
-cities.Add("Одеса");
-cities.Insert(0, "Ужгород");               // зсуває решту: O(n)
-cities.Remove("Львів");                    // перший збіг
-bool hasKyiv = cities.Contains("Київ");     // лінійний пошук
-int index = cities.IndexOf("Одеса");        // 2 або -1
+List<string> cities = ["Лондон", "Мадрид"]; // вираз колекції
+cities.Add("Париж");
+cities.Insert(0, "Відень");                // зсуває решту: O(n)
+cities.Remove("Мадрид");                   // перший збіг
+bool hasLondon = cities.Contains("Лондон"); // лінійний пошук
+int index = cities.IndexOf("Париж");        // 2 або -1
 cities.Sort();                              // IComparable<string>
 cities.Sort(new ByLength());                // власний IComparer<T>
 List<string> copy = [.. cities];            // копія

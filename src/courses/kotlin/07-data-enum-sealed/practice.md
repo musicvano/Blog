@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 7. Data classes, enums, sealed: worked examples"
 outline: [2, 3]
-sourceHash: "8fb65834cd7a797b55fe95fce03b2933f1f9f50a7b069a222017c7f2eea9911e"
+sourceHash: "a249ab013afee628157fde8cc0f235265c5c3f149acf5f2e6106968c3c2996ab"
 ---
 
 # Practice
@@ -97,6 +97,7 @@ value class TicketId(val value: Long)
 
 object IdSource {
     private var last = 0L
+
     fun next(): TicketId {
         check(last < Long.MAX_VALUE)
         last++
@@ -115,6 +116,7 @@ class Ticket private constructor(
             return Ticket(IdSource.next(), title)
         }
     }
+
     override fun toString(): String = "${id.value}: $title"
 }
 

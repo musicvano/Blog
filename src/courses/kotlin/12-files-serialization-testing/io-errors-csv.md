@@ -2,7 +2,7 @@
 title: "Safe writing and CSV format"
 description: "Topic 12. Files, serialization, and tests: Safe writing and CSV format"
 outline: [2, 3]
-sourceHash: "7ffaa43416b1dfc36ec182caaa3c6a72fa26f7710889039584888f4d53665c98"
+sourceHash: "d08c90638071dcf1ed3c7ecefab0bd8e49d535461a637b7a9fcc67d1f2a2385f"
 ---
 
 # Safe writing and CSV format
@@ -83,6 +83,7 @@ fun parseGrades(text: String): List<Grade> {
         }
         result.add(Grade(name, score))
     }
+
     return result
 }
 

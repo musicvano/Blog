@@ -49,6 +49,7 @@ public class Main {
         }
         return result;
     }
+
     public static void main(String[] args) {
         int[][] source = {{1, 2, 3}, {4, 5, 6}};
         int[][] rotated = rotate(source);

@@ -58,9 +58,11 @@ record Money(String currency, long cents) {
             throw new IllegalArgumentException("Invalid amount");
         }
     }
+
     static Money ofUnits(String currency, long units) {
         return new Money(currency, Math.multiplyExact(units, 100));
     }
+
     Money plus(Money other) {
         Objects.requireNonNull(other);
         if (!currency.equals(other.currency)) {
@@ -70,6 +72,7 @@ record Money(String currency, long cents) {
         return new Money(currency, Math.addExact(cents, other.cents));
     }
 }
+
 public class Main {
     public static void main(String[] args) {
         Money first = new Money(" uah ", 1250);
@@ -124,18 +127,22 @@ record Scores(int[] values) {
             }
         }
     }
+
     @Override
     public int[] values() { return values.clone(); }
+
     @Override
     public boolean equals(Object other) {
         return other instanceof Scores scores
                 && Arrays.equals(values, scores.values);
     }
+
     @Override
     public int hashCode() { return Arrays.hashCode(values); }
     @Override
     public String toString() { return Arrays.toString(values); }
 }
+
 public class Main {
     public static void main(String[] args) {
         int[] input = {80, 90};

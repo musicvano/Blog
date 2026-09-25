@@ -2,7 +2,7 @@
 title: "The data context and model"
 description: "Topic 8. Entity Framework Core: The data context and model"
 outline: [2, 3]
-sourceHash: "9d08770c1451c9a4cf988915c62eb3c3e4b76d7982a6efadb0336e01361f12dc"
+sourceHash: "1edb7a3ee8de765527853e3ae2969e64d428f45fbb3f13458de2617f24d13f38"
 ---
 
 # The data context and model
@@ -92,9 +92,7 @@ dotnet tool install --global dotnet-ef   # or update
 dotnet ef --version                      # 10.0.12
 ```
 
-::: info Screenshot
-Visual Studio 2026: Solution Explorer → Dependencies → Packages expanded (Npgsql.EntityFrameworkCore.PostgreSQL, Microsoft.EntityFrameworkCore.Design), the .csproj open beside it
-:::
+![EF Core packages in a project](./images/01-vs-efcore-packages.png)
 
 Figure 8.3. EF Core packages in a project {.caption}
 

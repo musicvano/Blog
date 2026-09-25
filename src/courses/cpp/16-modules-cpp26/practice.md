@@ -2,7 +2,7 @@
 title: Practice
 description: "Topic 16. Modules and C++26: worked examples"
 outline: [2, 3]
-sourceHash: "0b0b4e05ea791941d48b7051860d744c51208e593e058458fcf303ac0b93b940"
+sourceHash: "8e743979823f6798c66107478ce85acc56ec16b0eaccb19f51bf705bf32337b6"
 ---
 
 # Practice
@@ -27,6 +27,7 @@ in a separate module unit. A console client prints the results for
 **`units.ixx`:**
 ```cpp
 export module units;
+
 export namespace units {
     double celsius_to_kelvin(double value);
 }
@@ -37,7 +38,9 @@ export namespace units {
 module;
 #include <cmath>
 #include <stdexcept>
+
 module units;
+
 double units::celsius_to_kelvin(double value)
 {
     if (!std::isfinite(value) || value < -273.15) {
@@ -57,6 +60,7 @@ just to use the conversion.
 #include <exception>
 #include <print>
 import units;
+
 int main()
 {
     for (double value : {0.0, -273.15, -300.0}) {
@@ -121,6 +125,7 @@ namespace fees {
 ```cpp
 #include "fees.h"
 #include <stdexcept>
+
 int fees::delivery(int grams)
 {
     if (grams <= 0 || grams > 5000) {
@@ -138,6 +143,7 @@ It is important to check 1000 and 1001, not just a random value from the middle 
 ```cpp
 #include "fees.h"
 #include <print>
+
 int main()
 {
     std::println("1500 g: {} UAH", fees::delivery(1500));
@@ -149,6 +155,7 @@ int main()
 #include "fees.h"
 #include <print>
 #include <stdexcept>
+
 int main()
 {
     int failed = 0;
@@ -215,6 +222,7 @@ the example does not depend on the experimental `import std` automation in CMake
 **`score.ixx`:**
 ```cpp
 export module score;
+
 export int limit_score(int value)
 {
     if (value < 0) return 0;
@@ -227,6 +235,7 @@ export int limit_score(int value)
 ```cpp
 #include <print>
 import score;
+
 int main()
 {
     for (int value : {-5, 70, 120}) {
@@ -238,6 +247,7 @@ int main()
 **`tests.cpp`:**
 ```cpp
 import score;
+
 int main()
 {
     return limit_score(-1) == 0 && limit_score(0) == 0

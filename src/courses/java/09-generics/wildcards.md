@@ -2,7 +2,7 @@
 title: "Wildcards and the PECS principle"
 description: "Topic 9. Generics: Wildcards and the PECS principle"
 outline: [2, 3]
-sourceHash: "8777cca612ff7e6d7bbc270680e107d55e738ca002bdf861e9e067ce2627da7b"
+sourceHash: "c8c25e4e5b6723e54067116b8182d198737ddee77005e681e842bda6dfce9eb4"
 ---
 
 # Wildcards and the PECS principle
@@ -40,6 +40,7 @@ public class Main {
                     || !Double.isFinite(value.doubleValue())) {
                 throw new IllegalArgumentException("finite numbers");
             }
+
             total += value.doubleValue();
         }
         if (!Double.isFinite(total)) {

@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 14. Delegates, lambdas, events: worked examples"
 outline: [2, 3]
-sourceHash: "6d34e2060a093fca5c90ffb54834625229a8c74c079c5934998a2f57af310e73"
+sourceHash: "5d872c1ca014e42741a6c72275590bad8daf66450a69fc58cdfd6b7b9b133096"
 ---
 
 # Practice
@@ -42,6 +42,7 @@ string Evaluate(string expression)
     {
         return "format: number operation number";
     }
+
     if (!operations.TryGetValue(parts[1], out var operation))
     {
         return $"unknown operation “{parts[1]}”";
@@ -81,6 +82,7 @@ Console.OutputEncoding = System.Text.Encoding.UTF8;
 
 // An unstable “connection”: the first two attempts fail.
 int calls = 0;
+
 bool Connect()
 {
     calls++;

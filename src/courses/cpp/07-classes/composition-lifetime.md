@@ -2,7 +2,7 @@
 title: "Composition and object lifetime"
 description: "Topic 7. Classes and Objects: Composition and Object Lifetime"
 outline: [2, 3]
-sourceHash: "a1404c310510e8504e41d7f563b59ff59f8734d0c6afe8d5fed1d01fe9a90fd5"
+sourceHash: "62ad69f6bf8d57fe9de7a75e1d57c7cb750e1748ae8ff142e1c2fbd8ae52bc59"
 ---
 
 # Composition and object lifetime
@@ -66,8 +66,10 @@ File `Order.h`:
 #pragma once
 #include <string>
 #include <vector>
+
 struct Customer { std::string name; };
 struct OrderLine { int cents; int count; };
+
 class Order {
     Customer customer_;
     std::vector<OrderLine> lines_;
@@ -85,6 +87,7 @@ File `Order.cpp`:
 #include "Order.h"
 #include <stdexcept>
 #include <utility>
+
 Order::Order(Customer customer, std::vector<OrderLine> lines)
     : customer_(std::move(customer)), lines_(std::move(lines)) {
     if (customer_.name.empty() || lines_.size() > 100)
@@ -95,6 +98,7 @@ Order::Order(Customer customer, std::vector<OrderLine> lines)
             throw std::invalid_argument("line");
     ++created_;
 }
+
 int Order::total() const {
     int sum = 0;
     for (const auto& line : lines_) sum += line.cents * line.count;
@@ -109,6 +113,7 @@ File `main.cpp`:
 #include <cassert>
 #include <print>
 #include <stdexcept>
+
 int main() {
     const Order a{{"Olena"}, {{2500, 2}, {700, 3}}};
     assert(a.total() == 7100);
@@ -166,22 +171,26 @@ second exception during stack unwinding can terminate the program via
 ```cpp
 #include <memory>
 #include <print>
+
 struct Engine {
     Engine() { std::println("Engine()"); }
     ~Engine() { std::println("~Engine()"); }
 };
+
 class Car {
     Engine engine_;
 public:
     Car() { std::println("Car()"); }
     ~Car() { std::println("~Car()"); }
 };
+
 int main() {
     std::println("Start");
     {
         auto car = std::make_unique<Car>();
         std::println("Inside");
     }
+
     std::println("End");
 }
 ```

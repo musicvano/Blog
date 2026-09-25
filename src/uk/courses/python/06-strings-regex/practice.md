@@ -13,6 +13,7 @@ outline: [2, 3]
 ```py
 ALPHABET = "абвгґдеєжзиіїйклмнопрстуфхцчшщьюя"
 
+
 def caesar(text: str, shift: int) -> str:
     shift %= len(ALPHABET)
     rotated = ALPHABET[shift:] + ALPHABET[:shift]
@@ -20,12 +21,14 @@ def caesar(text: str, shift: int) -> str:
     target = rotated + rotated.upper()
     return text.translate(str.maketrans(source, target))
 
+
 def main() -> None:
     text = "АБВ, Ґанок!"
     encoded = caesar(text, 1)
     print(encoded)
     print(caesar(encoded, -1))
     print(caesar(text, 33) == text)
+
 
 if __name__ == "__main__":
     main()
@@ -54,6 +57,7 @@ POLICY = re.compile(
     + ALLOWED
 )
 
+
 def violations(text: str) -> list[str]:
     errors = []
     if not 8 <= len(text) <= 32:
@@ -69,6 +73,7 @@ def violations(text: str) -> list[str]:
             errors.append(message)
     return errors
 
+
 def main() -> None:
     samples = ["Abcdef1!", "abcdef12", "Abcdef1!\n"]
     for number, text in enumerate(samples, start=1):
@@ -76,6 +81,7 @@ def main() -> None:
         assert (POLICY.fullmatch(text) is not None) == (not errors)
         result = "; ".join(errors) if errors else "правила виконані"
         print(f"Тест {number}: {result}")
+
 
 if __name__ == "__main__":
     main()
@@ -104,12 +110,14 @@ from datetime import date
 DATES = re.compile(r"\b([0-9]{2})\.([0-9]{2})\.([0-9]{4})\b")
 MONEY = re.compile(r"(?<![\d.,-])([0-9]+),([0-9]{2}) грн\b")
 
+
 def iso_date(match: re.Match[str]) -> str:
     day, month, year = map(int, match.groups())
     try:
         return date(year, month, day).isoformat()
     except ValueError:
         return match.group()
+
 
 def main() -> None:
     text = "Чек 17.09.2026: 12,50 грн; 7,25 грн. 31.02.2026"
@@ -118,6 +126,7 @@ def main() -> None:
     total = sum(int(uah) * 100 + int(kop) for uah, kop in amounts)
     print(f"Позицій: {len(amounts)}")
     print(f"Разом: {total // 100},{total % 100:02d} грн")
+
 
 if __name__ == "__main__":
     main()

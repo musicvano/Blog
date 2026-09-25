@@ -2,7 +2,7 @@
 title: "Checks and debugging"
 description: "Topic 4. Exceptions and debugging: checks and debugging"
 outline: [2, 3]
-sourceHash: "6c8bd0fc3288afabe3c4830abb800bb7fe83a5f13ffbcd91ee379cacde638d18"
+sourceHash: "984b3dd90e88251d49277ab757bdffb908281e8a393f230dd9ff1279deb5124b"
 ---
 
 # Checks and debugging
@@ -30,9 +30,7 @@ java -ea AssertionDemo
 
 Do not put an important side effect in an `assert` expression: without `-ea`, it will not run. For a public method requirement, use an explicit `if` and an appropriate exception. Topic 13 will use JUnit for a repeatable set of checks.
 
-::: info Screenshot
-Run configuration VM options -ea, separate from Program arguments.
-:::
+![JVM option for assert checks](./images/01-enable-assertions.png)
 
 Figure 4.5. JVM option for assert checks {.caption}
 
@@ -40,9 +38,7 @@ Figure 4.5. JVM option for assert checks {.caption}
 
 The first line of a stack trace contains the type and message. Call frames follow, usually from the error location to the caller. `Caused by` shows the original cause, and `Suppressed` shows an additional failure, such as closing. Start with the first frame of your own code, but do not ignore the nested cause.
 
-::: info Screenshot
-Temporarily let PaymentException escape from main; show actual Caused by NumberFormatException and own lines.
-:::
+![Your own frame and the original exception cause](./images/02-stack-trace.png)
 
 Figure 4.6. Your own frame and the original exception cause {.caption}
 
@@ -84,33 +80,25 @@ public class PositiveAverage {
 
 The expected output is `15.0`, followed by `null`. Before returning for the first data set, `sum = 30`, `count = 2`, and `values.length = 3`. The wrong denominator gives 10, which looks like an ordinary number. This is why you need a test case that mixes accepted and rejected data.
 
-::: info Screenshot
-Breakpoint before return: sum30,count2,values.length3; show Frames and Variables.
-:::
+![Local variables before calculating the average](./images/03-debug-average.png)
 
 Figure 4.7. Local variables before calculating the average {.caption}
 
 Compare both expressions in *Evaluate Expression*. Do not call a method there that withdraws funds, changes a collection, or writes a file: evaluating an expression may have a side effect and change the state you are investigating. Inspection is not always passive.
 
-::: info Screenshot
-Evaluate (double)sum/count and (double)sum/values.length; actual15.0 and10.0.
-:::
+![Comparing two denominators](./images/04-evaluate.png)
 
 Figure 4.8. Comparing two denominators {.caption}
 
 A conditional breakpoint is useful for a particular index or value. For a long loop, set a condition such as `value < 0` so you do not have to step through every iteration manually. The condition must be safe and must not change program state.
 
-::: info Screenshot
-Breakpoint condition value less than0 in PositiveAverage loop; show actual popup.
-:::
+![Conditional breakpoint](./images/05-conditional.png)
 
 Figure 4.9. Conditional breakpoint {.caption}
 
 An exception breakpoint can trigger for both caught and uncaught exceptions. It is useful when an outer `catch` hides where the error originated. Select the required type; otherwise, a large application will stop at every internal library exception.
 
-::: info Screenshot
-Java Exception Breakpoints dialog, NumberFormatException, caught and uncaught options.
-:::
+![Breaking when NumberFormatException occurs](./images/06-exception-breakpoint.png)
 
 Figure 4.10. Breaking when NumberFormatException occurs {.caption}
 

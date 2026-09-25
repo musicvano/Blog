@@ -2,7 +2,7 @@
 title: "Tasks"
 description: "Topic 14. GUI applications with PySide6: task variants"
 outline: [2, 3]
-sourceHash: "66741a83309f852547651dd07ec1abd1621711d54c23a2c0029fe2139608adb5"
+sourceHash: "1ace3829621419a7d9e5eae4c774254f79b0cb7a2ca2477c74882b2e78d671a9"
 ---
 
 # Tasks
@@ -111,11 +111,11 @@ All tasks are Python 3.14/PySide6 GUI applications. Keep domain calculations in 
 
 ### Variant 13. World clock {#v13}
 
-**1. Initial level.** Create a PySide6 GUI application with a QComboBox of the time zones UTC, Europe/Kyiv, and Europe/London and a QLabel with the time refreshed by a QTimer. Use layouts and clear unit labels.
+**1. Initial level.** Create a PySide6 GUI application with a QComboBox of the time zones UTC, Europe/Paris, and Europe/London and a QLabel with the time refreshed by a QTimer. Use layouts and clear unit labels.
 
-**2. Basic level.** Create the PySide6 GUI application “World clock” with a QComboBox of the time zones UTC, Europe/Kyiv, and Europe/London and a QLabel with the time refreshed by a QTimer; add a list of several selected time zones with the date for each; use zoneinfo rather than constant offsets. Show errors in the form and check boundary values.
+**2. Basic level.** Create the PySide6 GUI application “World clock” with a QComboBox of the time zones UTC, Europe/Paris, and Europe/London and a QLabel with the time refreshed by a QTimer; add a list of several selected time zones with the date for each; use zoneinfo rather than constant offsets. Show errors in the form and check boundary values.
 
-**3. Advanced level.** Create the PySide6 GUI application “World clock” with a QComboBox of the time zones UTC, Europe/Kyiv, and Europe/London and a QLabel with the time refreshed by a QTimer; implement a list of several selected time zones with the date for each; use zoneinfo rather than constant offsets; also implement editing the list of time zones, JSON saving, and comparing times at a selected UTC moment; if the system time zone database is missing, use the tzdata dependency. Separate typed logic from widgets, and add pytest checks of the calculations and a signal-testing scenario; errors must not terminate the application.
+**3. Advanced level.** Create the PySide6 GUI application “World clock” with a QComboBox of the time zones UTC, Europe/Paris, and Europe/London and a QLabel with the time refreshed by a QTimer; implement a list of several selected time zones with the date for each; use zoneinfo rather than constant offsets; also implement editing the list of time zones, JSON saving, and comparing times at a selected UTC moment; if the system time zone database is missing, use the tzdata dependency. Separate typed logic from widgets, and add pytest checks of the calculations and a signal-testing scenario; errors must not terminate the application.
 
 ### Variant 14. Color mixer {#v14}
 

@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 3. Methods, arrays, and strings: worked examples"
 outline: [2, 3]
-sourceHash: "19d172972cb79647639e87b94bb664bee3c3487f03275841691cab4dfa875242"
+sourceHash: "3a419c30fae2e926172b11aa8d5fcc093ef11ad011ab2c247fb4354e23a62bdb"
 ---
 
 # Practice
@@ -28,10 +28,12 @@ public class Main {
         Arrays.sort(result);
         return result;
     }
+
     static int find(int[] sorted, int target) {
         int index = Arrays.binarySearch(sorted, target);
         return index >= 0 ? index : -1;
     }
+
     public static void main(String[] args) {
         int[] source = {90, 60, 80, 70};
         int[] sorted = sortedCopy(source);
@@ -70,6 +72,7 @@ public class Main {
             default -> false;
         };
     }
+
     static int countVowels(String text) {
         if (text == null) {
             throw new IllegalArgumentException("Missing text");
@@ -80,6 +83,7 @@ public class Main {
         }
         return total;
     }
+
     public static void main(String[] args) {
         System.out.println(countVowels("Україна"));
         System.out.println(countVowels("АЕЄИІЇОУЮЯ"));
@@ -113,16 +117,19 @@ public class Main {
         return input.toLowerCase(Locale.ROOT)
                 .replaceAll("[^a-z0-9]", "");
     }
+
     static boolean palindrome(String text, int left, int right) {
         if (left >= right) { return true; }
         return text.charAt(left) == text.charAt(right)
                 && palindrome(text, left + 1, right - 1);
     }
+
     static boolean byReverse(String text) {
         String reversed = new StringBuilder(text)
                 .reverse().toString();
         return text.equals(reversed);
     }
+
     public static void main(String[] args) {
         String[] samples = {"Never odd or even", "Java", "!!!"};
         for (String sample : samples) {

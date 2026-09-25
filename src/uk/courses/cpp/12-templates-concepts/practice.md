@@ -24,6 +24,7 @@ struct Pair {
     T first, second;
     auto operator<=>(const Pair&) const = default;
 };
+
 template<class T>
 Pair(T, T) -> Pair<T>;
 
@@ -32,6 +33,7 @@ struct Triple {
     T first, second, third;
     auto operator<=>(const Triple&) const = default;
 };
+
 template<class T>
 Triple(T, T, T) -> Triple<T>;
 
@@ -63,9 +65,11 @@ triple: true
 
 struct Metres {};
 struct Seconds {};
+
 template<class Unit, std::floating_point T = double>
 struct Quantity {
     T value;
+
     Quantity operator+(Quantity rhs) const {
         return {value + rhs.value};
     }
@@ -102,14 +106,17 @@ template<class T>
 concept Shape = requires(const T& shape) {
     { shape.area() } -> std::convertible_to<double>;
 };
+
 struct Rectangle {
     double width, height;
     double area() const { return width * height; }
 };
+
 struct Square {
     double side;
     double area() const { return side * side; }
 };
+
 double total(Shape auto a, Shape auto b)
 {
     return a.area() + b.area();

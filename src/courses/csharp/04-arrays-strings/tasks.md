@@ -2,7 +2,7 @@
 title: "Tasks"
 description: "Topic 4. Arrays and strings: task variants"
 outline: [2, 3]
-sourceHash: "39b28866784bbd784d931e97c6d9976ffb4461af9bde7e795ade0ceb855e6c3e"
+sourceHash: "fce9201ad121e8267bed8910d23f2e75095a921be47decd14da84b2afeba8097"
 ---
 
 # Tasks
@@ -53,7 +53,7 @@ Complete the task of the chosen difficulty level for your variant number.
 
 ### Variant 6. Password strength {#v6}
 
-**1. Initial level.** Create a console program that checks the password “Kyiv2026!” (specified in the program) for length (at least 8 characters) and the presence of uppercase and lowercase letters, digits, and special characters using `char.IsUpper`, `char.IsLower`, and `char.IsDigit`, and displays the result of each check.
+**1. Initial level.** Create a console program that checks the password “Rome2026!” (specified in the program) for length (at least 8 characters) and the presence of uppercase and lowercase letters, digits, and special characters using `char.IsUpper`, `char.IsLower`, and `char.IsDigit`, and displays the result of each check.
 
 **2. Basic level.** Create a console program that repeatedly asks for passwords until a blank line, computes a strength score from 0 to 5 for each (length, character types, no three identical consecutive characters, and no sequences `123`, `abc`, `qwerty`), and displays the score, its verbal label using a `switch` expression, and unmet requirements.
 

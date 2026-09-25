@@ -32,6 +32,7 @@ import java.util.Objects;
 
 sealed interface Expr permits Num, Var, Add, Mul { }
 record Num(long value) implements Expr { }
+
 record Var(String name) implements Expr {
     Var {
         if (!"x".equals(name)) {
@@ -39,18 +40,21 @@ record Var(String name) implements Expr {
         }
     }
 }
+
 record Add(Expr left, Expr right) implements Expr {
     Add {
         Objects.requireNonNull(left);
         Objects.requireNonNull(right);
     }
 }
+
 record Mul(Expr left, Expr right) implements Expr {
     Mul {
         Objects.requireNonNull(left);
         Objects.requireNonNull(right);
     }
 }
+
 public class Main {
     static long eval(Expr expr, long x) {
         return switch (Objects.requireNonNull(expr)) {
@@ -62,6 +66,7 @@ public class Main {
                     Math.multiplyExact(eval(a, x), eval(b, x));
         };
     }
+
     static Expr simplify(Expr expr) {
         Expr prepared = switch (Objects.requireNonNull(expr)) {
             case Add(var a, var b) ->
@@ -78,6 +83,7 @@ public class Main {
             default -> prepared;
         };
     }
+
     public static void main(String[] args) {
         Expr expression = new Add(new Num(0),
                 new Mul(new Num(1), new Var("x")));
@@ -123,15 +129,11 @@ flowchart TD
 
 Для окремого preview експерименту потрібні узгоджені параметри компіляції `--enable-preview --release 27` і запуску `--enable-preview`, а також відповідний рівень мови IDE. Такі класи прив’язані до версії preview; їх не слід непомітно включати до звичайних лабораторних прикладів або вимагати для базового рівня.
 
-::: info Знімок екрана
-In IntelliJ IDEA open a final immutable Point class. Show the Convert to record intention and preview of components before applying.
-:::
+![Перетворення носія даних на запис](./images/02-idea-convert-record.png)
 
 Рис. 8.7. Перетворення носія даних на запис {.caption}
 
-::: info Знімок екрана
-Add a permitted Triangle record to Shape. Show the compiler diagnostic on area switch and the Add missing branches intention.
-:::
+![Додавання відсутньої альтернативи switch](./images/06-idea-exhaustive-switch.png)
 
 Рис. 8.8. Додавання відсутньої альтернативи switch {.caption}
 

@@ -2,7 +2,7 @@
 title: "JSON serialization"
 description: "Topic 12. Files, serialization, and tests: JSON serialization"
 outline: [2, 3]
-sourceHash: "72487ff3ab97b6682f3fa4a54362447dbb4013aca36a8c0c18368187efecef5a"
+sourceHash: "015cad3a3aa2553c499737216a5dad483e77d4fe8c4fe4a5ef451f375e09ac59"
 ---
 
 # JSON serialization
@@ -167,9 +167,11 @@ object DateSerializer : KSerializer<LocalDate> {
     override val descriptor = PrimitiveSerialDescriptor(
         "LocalDate", PrimitiveKind.STRING
     )
+
     override fun serialize(encoder: Encoder, value: LocalDate) {
         encoder.encodeString(value.toString())
     }
+
     override fun deserialize(decoder: Decoder): LocalDate =
         LocalDate.parse(decoder.decodeString())
 }

@@ -2,7 +2,7 @@
 title: ".NET collections"
 description: "Topic 13. Generics and collections: .NET collections"
 outline: [2, 3]
-sourceHash: "3d1104be28462d9066fba0cbb639d218b37bf3efedad6383b6a515c6376ce6ef"
+sourceHash: "5d60348640c802dbe3d78e4e5a58928b64b8da47b7641e4d207d6f2b60f79d8a"
 ---
 
 # .NET collections
@@ -62,12 +62,12 @@ Table 13.2. Choosing a collection (<sup>\*</sup> – on average) {.caption}
 `List<T>` is the most commonly used collection: a dynamic array that doubles its internal array when it runs out of space. The `Capacity` property returns the current size of the internal array, and `Count` returns the number of elements.
 
 ```cs
-List<string> cities = ["Kyiv", "Lviv"];     // collection expression
-cities.Add("Odesa");
-cities.Insert(0, "Uzhhorod");               // shifts the rest: O(n)
-cities.Remove("Lviv");                      // the first match
-bool hasKyiv = cities.Contains("Kyiv");     // linear search
-int index = cities.IndexOf("Odesa");        // 2 or -1
+List<string> cities = ["London", "Madrid"]; // collection expression
+cities.Add("Paris");
+cities.Insert(0, "Vienna");                 // shifts the rest: O(n)
+cities.Remove("Madrid");                    // the first match
+bool hasLondon = cities.Contains("London"); // linear search
+int index = cities.IndexOf("Paris");        // 2 or -1
 cities.Sort();                              // IComparable<string>
 cities.Sort(new ByLength());                // a custom IComparer<T>
 List<string> copy = [.. cities];            // a copy

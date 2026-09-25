@@ -2,7 +2,7 @@
 title: "Enums and sealed hierarchies"
 description: "Topic 7. Data classes, enums, sealed: enums and sealed hierarchies"
 outline: [2, 3]
-sourceHash: "3a1d917e1dae0693b0d9291dc5de56425e5f7972e7224fdda80ec39f9b124234"
+sourceHash: "142d593e7e74394f64b5c58f1c252646d9acc4c7bd6c00a0c5f348da1cf4058e"
 ---
 
 # Enums and sealed hierarchies
@@ -110,12 +110,15 @@ Created is a single value without data, so it is a data object. The other states
 sealed interface OrderStatus
 
 data object Created : OrderStatus
+
 data class Paid(val cents: Long) : OrderStatus {
     init { require(cents > 0) }
 }
+
 data class Shipped(val trackNo: String) : OrderStatus {
     init { require(trackNo.isNotBlank()) }
 }
+
 data class Cancelled(val reason: String) : OrderStatus {
     init { require(reason.isNotBlank()) }
 }

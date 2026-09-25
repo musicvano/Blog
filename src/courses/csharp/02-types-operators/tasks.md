@@ -2,7 +2,7 @@
 title: "Tasks"
 description: "Topic 2. Types, variables, and operators: task variants"
 outline: [2, 3]
-sourceHash: "26716b5c3f0b40b6ac9be910f0de3e85eff7833a8948dcbfb7fa2eeae96d3e78"
+sourceHash: "0569ed2e5b5c95c6aa8e9ee2af087ed3f4247992ce8602af78ef7bc5aab97fd4"
 ---
 
 # Tasks
@@ -165,11 +165,11 @@ Complete the task of the chosen difficulty level for your variant number.
 
 ### Variant 20. Time zones {#v20}
 
-**1. Initial level.** Create a console program that, for a meeting at 17:30 Kyiv summer time (UTC+3; values set in the program), converts the time to minutes since midnight and uses `/` and `%` to calculate the meeting time in New York (UTC−4) and Tokyo (UTC+9), marking any day change.
+**1. Initial level.** Create a console program that, for a meeting at 17:30 Madrid summer time (UTC+2; values set in the program), converts the time to minutes since midnight and uses `/` and `%` to calculate the meeting time in New York (UTC−4) and Tokyo (UTC+9), marking any day change.
 
 **2. Basic level.** Create a console program that asks for a time in `hh:mm` format and source and target UTC offsets in hours (possibly fractional, such as 5.5), validates the input, and displays the target time and “previous day,” “same day,” or “next day”; correct a negative remainder with `((x % 1440) + 1440) % 1440`.
 
-**3. Advanced level.** Use the dotnet CLI to create a console application with a `Main` method that accepts `--at hh:mm`, source zone `--from`, and cities with offsets in `city@offset` format (for example, `Kyiv@+3 London@+1 Delhi@+5:30`). Print a “city — offset — local time — day” table and, with `--work 09:00-18:00`, mark cities where the meeting falls within working hours and the nearest time when working hours overlap in all cities. Send input errors to the error stream with exit code 2; `--help` displays help.
+**3. Advanced level.** Use the dotnet CLI to create a console application with a `Main` method that accepts `--at hh:mm`, source zone `--from`, and cities with offsets in `city@offset` format (for example, `Madrid@+2 London@+1 Delhi@+5:30`). Print a “city — offset — local time — day” table and, with `--work 09:00-18:00`, mark cities where the meeting falls within working hours and the nearest time when working hours overlap in all cities. Send input errors to the error stream with exit code 2; `--help` displays help.
 
 ### Variant 21. Paid parking {#v21}
 
@@ -237,7 +237,7 @@ Complete the task of the chosen difficulty level for your variant number.
 
 ### Variant 29. GPS coordinates {#v29}
 
-**1. Initial level.** Create a console program that converts coordinates 47°54′36″ N and 33°23′28″ E (values set in the program) to decimal degrees and calculates the distance to 50.4501° N, 30.5234° E using the haversine formula (Earth radius 6 371 km).
+**1. Initial level.** Create a console program that converts coordinates 50°50′48″ N and 4°21′06″ E (values set in the program) to decimal degrees and calculates the distance to 48.8566° N, 2.3522° E using the haversine formula (Earth radius 6 371 km).
 
 **2. Basic level.** Create a console program that asks for a coordinate in decimal degrees and its type (`lat` or `lon`), validates its range (±90 or ±180), and displays degrees, minutes, and seconds with one decimal place and a hemisphere letter (N/S or E/W), extracting integer parts with explicit `(int)` casts.
 

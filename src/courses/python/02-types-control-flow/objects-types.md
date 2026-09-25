@@ -2,7 +2,7 @@
 title: "Objects, names, and data types"
 description: "Topic 2. Types, operations, and control flow: Objects, names, and data types"
 outline: [2, 3]
-sourceHash: "fc61d3e7df60e8d5a0d90e4a00975705216489f8287a97b6cc1be227c8b5e0b2"
+sourceHash: "1adf3aa312322ad753abd8a9ab8c25e96720e98f9c0f952434a80e2762230319"
 ---
 
 # Objects, names, and data types
@@ -16,7 +16,7 @@ A program processes **objects** (*objects*). Each object has a type, a value, an
 ```py
 a = 42
 b = a
-c = "Kyiv"
+c = "London"
 c = 3.14
 print(type(a).__name__, type(c).__name__)
 print(a == b, a is b)
@@ -33,14 +33,14 @@ flowchart LR
   end
   subgraph OBJECTS["<b>Objects: type and value</b>"]
     INT["int<br>42"]
-    STR["str<br>#quot;Kyiv#quot;"]
+    STR["str<br>#quot;London#quot;"]
     FLT["float<br>3.14"]
   end
   A --> INT
   B --> INT
   C --> FLT
   C -.->|"previously"| STR
-  N["After a = 42; b = a; c = #quot;Kyiv#quot;; c = 3.14<br>Dashed line: the previous binding, which is no longer active."]
+  N["After a = 42; b = a; c = #quot;London#quot;; c = 3.14<br>Dashed line: the previous binding, which is no longer active."]
 ```
 
 Figure 2.1. Names and objects after reassignment {.caption}
@@ -117,7 +117,7 @@ For money, you can store integer kopiykas or use `Decimal`. Create decimal numbe
 
 ## Strings, None, and conversions
 
-`str` is an immutable sequence of Unicode characters. The quotes in `'Kyiv'` and `"Kyiv"` are equivalent. The string `"\n"` contains a newline character, and `"\\"` represents a single backslash. There is no separate character type: `"A"` is also a string. Strings will be covered in detail in Topic 6.
+`str` is an immutable sequence of Unicode characters. The quotes in `'London'` and `"London"` are equivalent. The string `"\n"` contains a newline character, and `"\\"` represents a single backslash. There is no separate character type: `"A"` is also a string. Strings will be covered in detail in Topic 6.
 
 `None` represents the absence of a result. It differs from zero and an empty string. For example, the minimum of a series that has not yet been entered can initially be marked `None`; zero could be an actual result.
 

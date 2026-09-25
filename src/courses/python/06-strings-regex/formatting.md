@@ -2,7 +2,7 @@
 title: "f-strings and template strings"
 description: "Topic 6. Strings and regular expressions: f-strings and template strings"
 outline: [2, 3]
-sourceHash: "9904c6248bddae7df9c0e81f48744811d51d95ff990f8e7ba001b3b25109ba90"
+sourceHash: "f7536d76bf04270a4b2c0bfb7ec411517e9090ad13fd6d142d099c22b28fa980"
 ---
 
 # f-strings and template strings
@@ -134,6 +134,7 @@ Do not build SQL by inserting user values into an f-string. A learning t-string 
 ```py
 from string.templatelib import Template
 
+
 def parameters(template: Template) -> tuple[str, list[object]]:
     values: list[object] = []
     pieces = [template.strings[0]]
@@ -143,6 +144,7 @@ def parameters(template: Template) -> tuple[str, list[object]]:
         pieces.extend(("?", template.strings[index + 1]))
         values.append(field.value)
     return "".join(pieces), values
+
 
 name = "O'Neil"
 query, values = parameters(t"SELECT id FROM users WHERE name={name}")

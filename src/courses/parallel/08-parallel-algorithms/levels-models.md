@@ -2,7 +2,7 @@
 title: "Levels and models of parallelism"
 description: "Topic 8. Parallel algorithms: Levels and models of parallelism"
 outline: [2, 3]
-sourceHash: "fc84e21eb6d132e07dcb40b457783a8d49feb8f65c67f5182720aa601ba20a90"
+sourceHash: "42c396f893ab5d60d566551b1ba96c829b8740e5fec0d8428cd8ddf352fe887f"
 ---
 
 # Levels and models of parallelism
@@ -37,7 +37,13 @@ The lower levels (bits and instructions) are **implicit**: the processor and the
 
 ### Granularity
 
-**Granularity** was defined in Topic 1 as the ratio between the amount of computation in a parallel part and the amount of interaction between parts. It is estimated by the quantity $$G = \frac{T_{\text{comp}}}{T_{\text{interaction}}} ,$$ where $T_{\text{comp}}$ is the computation time of a part, and $T_{\text{interaction}}$ is the time of communication, synchronization, and creating the part. There are:
+**Granularity** was defined in Topic 1 as the ratio between the amount of computation in a parallel part and the amount of interaction between parts. It is estimated by the quantity
+
+$$
+G = \frac{T_{\text{comp}}}{T_{\text{interaction}}} ,
+$$
+
+where $T_{\text{comp}}$ is the computation time of a part, and $T_{\text{interaction}}$ is the time of communication, synchronization, and creating the part. There are:
 
 - **fine-grained** parallelism: parts of a few to hundreds of operations, with interaction after each one (instructions, SIMD, GPU threads); it is effective only when interaction is almost free, that is, done in hardware;
 - **medium-grained** parallelism: parts of thousands to millions of operations (iterations of a parallel loop, TPL tasks, matrix blocks); the typical level for threads in shared memory;
@@ -137,7 +143,13 @@ A more practical model for shared-memory programs with tasks (TPL, OpenMP `task`
 
 For the sum of 16 numbers (Fig. 8.2), $T_{1} = 15$, $T_{\infty} = 4$, and the parallelism is 3.75. For the sum of $n$ numbers, $T_{1} = n - 1$ and $T_{\infty} = \log_{2} n$: for a million numbers, the parallelism is 50,000, so the problem has enough parallelism for any modern processor.
 
-Two **laws** follow from the definitions: $T_{p} \ge T_{1} / p$ (the work law: $p$ processors perform at most $p$ operations per step) and $T_{p} \ge T_{\infty}$ (the span law). **Brent’s theorem** (1974) gives an upper bound: a **greedy scheduler**, which at each step executes as many ready operations as there are free processors, achieves $$T_{p} \le \frac{T_{1}}{p} + T_{\infty} .$$ For the sum of 16 numbers on $p = 4$ processors, the bound is $15 / 4 + 4 = 7 {,} 75$ steps, but actually 5 are needed: the 8 additions of the first level take 2 steps, and each of the remaining three levels takes one step. For a million numbers on 16 cores, $T_{16} \le 62 \, 500 + 20$, which means a speedup of almost 16. Conclusion: if the parallelism $T_{1} / T_{\infty}$ is much larger than $p$ (in practice, at least 10 times), greedy scheduling gives an almost linear speedup, and the time is determined by the work, not the span.
+Two **laws** follow from the definitions: $T_{p} \ge T_{1} / p$ (the work law: $p$ processors perform at most $p$ operations per step) and $T_{p} \ge T_{\infty}$ (the span law). **Brent’s theorem** (1974) gives an upper bound: a **greedy scheduler**, which at each step executes as many ready operations as there are free processors, achieves
+
+$$
+T_{p} \le \frac{T_{1}}{p} + T_{\infty} .
+$$
+
+For the sum of 16 numbers on $p = 4$ processors, the bound is $15 / 4 + 4 = 7 {,} 75$ steps, but actually 5 are needed: the 8 additions of the first level take 2 steps, and each of the remaining three levels takes one step. For a million numbers on 16 cores, $T_{16} \le 62 \, 500 + 20$, which means a speedup of almost 16. Conclusion: if the parallelism $T_{1} / T_{\infty}$ is much larger than $p$ (in practice, at least 10 times), greedy scheduling gives an almost linear speedup, and the time is determined by the work, not the span.
 
 The .NET thread pool with local queues and **work stealing** (Topic 2) approximately implements greedy scheduling: an idle thread immediately takes a ready task from another thread’s queue. Therefore, a recursive divide-and-conquer algorithm with `Parallel.Invoke` achieves a speedup close to Brent’s theorem if the tasks are not too small:
 
@@ -197,7 +209,13 @@ sequenceDiagram
 
 Figure 8.3. Supersteps of the BSP model {.caption}
 
-The cost of a superstep is estimated by the formula $$T = w + g \cdot h + l ,$$ where $w$ is the longest local computation among the processors, $h$ is the largest number of messages (words) that one processor sends or receives (the **h-relation**), $g$ is the time to transfer one word under full network load, and $l$ is the cost of a barrier. The cost of a program is the sum of the costs of its supersteps. The model immediately shows three sources of loss: load imbalance ($w$ includes the slowest processor), the volume of communication, and the number of barriers.
+The cost of a superstep is estimated by the formula
+
+$$
+T = w + g \cdot h + l ,
+$$
+
+where $w$ is the longest local computation among the processors, $h$ is the largest number of messages (words) that one processor sends or receives (the **h-relation**), $g$ is the time to transfer one word under full network load, and $l$ is the cost of a barrier. The cost of a program is the sum of the costs of its supersteps. The model immediately shows three sources of loss: load imbalance ($w$ includes the slowest processor), the volume of communication, and the number of barriers.
 
 Supersteps are convenient to model in shared memory with the `Barrier` class (<https://learn.microsoft.com/dotnet/standard/threading/barrier>). Each of the four “processors” is a separate thread; messages are written to the neighbor’s “mailbox,” and two sets of mailboxes (by superstep parity) guarantee that the recipient reads a message only after the barrier:
 

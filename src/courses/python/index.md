@@ -1,7 +1,7 @@
 ---
 title: "Object-oriented programming in Python"
 description: "This course covers Python 3.14 in JetBrains PyCharm, from basic language constructs, built-in collections, and functional programming to object-oriented programming, file handling, and unit testing. In the final part, students learn to work with relational databases using sqlite3 and SQLAlchemy, perform numerical computing and data analysis with NumPy and pandas, plot with Matplotlib, create PySide6 GUI applications, package applications, and apply static code analysis. Each topic combines a lecture with a laboratory assignment."
-sourceHash: "c0a40ea5a1866a803d68b334c6eff343bebd256d7be70615be669f9df9788c6a"
+sourceHash: "c2117ce2029c3d599bd7c9415a3a9c6d40fbc3b003a64c40ebc431cd03a98774"
 ---
 
 # Object-oriented programming in Python
@@ -40,12 +40,18 @@ This course covers Python 3.14 in JetBrains PyCharm, from basic language constru
 15. [Model/View architecture, dialogs, and database access in PySide6 applications](./15-model-view/)
 16. [Packaging and distributing Python applications, generic types, and static code analysis](./16-packaging-typing/)
 
-## How to study a topic
+## Required software {#software}
 
-1. Read the lecture sections in order and run the examples in PyCharm.
-2. Study the examples on the **Practice** page: first try to solve the problem yourself.
-3. Choose your variant on the **Tasks** page and a difficulty level: initial, basic, or advanced.
-4. Check your understanding with the questions on the **Summary** page.
+| Software | Purpose | Topic |
+| --- | --- | :-: |
+| [Python 3.14](https://www.python.org/downloads/windows/) (via the Python Install Manager) | Interpreter | 1 |
+| [PyCharm](https://www.jetbrains.com/pycharm/download/) | Development environment | 1 |
+| [uv](https://docs.astral.sh/uv/getting-started/installation/) | Virtual environments and dependencies | 1 |
+| [Git](https://git-scm.com/downloads) | Version control | 1 |
+
+Packages are installed into the project’s virtual environment with `pip` or `uv`: pytest (topic 11), SQLAlchemy (topic 12), NumPy, pandas and Matplotlib (topic 13), PySide6 (topic 14), mypy, Ruff and PyInstaller (topic 16). You can use DataGrip to view the SQLite database.
+
+<!--@include: ../_shared/introduction.md-->
 
 ## Course materials
 

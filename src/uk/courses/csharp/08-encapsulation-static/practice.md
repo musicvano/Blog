@@ -65,6 +65,7 @@ class Temperature
         {
             return false;
         }
+
         double c = char.ToUpper(text[^1]) switch
         {
             'C' => value,

@@ -49,6 +49,7 @@ flowchart LR
 #include <cassert>
 #include <print>
 #include <stdexcept>
+
 class Employee {
     int salary_;
 protected:
@@ -58,9 +59,11 @@ public:
         if (n < 0 || n > 1'000'000)
             throw std::invalid_argument("salary");
     }
+
     virtual ~Employee() = default;
     virtual int pay() const { return basePay(); }
 };
+
 class BonusEmployee final : public Employee {
     int bonus_;
 public:
@@ -69,8 +72,10 @@ public:
         if (bonus < 0 || bonus > 100'000)
             throw std::invalid_argument("bonus");
     }
+
     int pay() const override { return Employee::pay() + bonus_; }
 };
+
 int main() {
     BonusEmployee worker{1000, 200};
     const Employee& view = worker;
@@ -136,15 +141,19 @@ flowchart TB
 #include <cassert>
 #include <print>
 #include <stdexcept>
+
 struct AppError : std::runtime_error {
     using std::runtime_error::runtime_error;
 };
+
 struct ValidationError : AppError { using AppError::AppError; };
 struct NotFoundError : AppError { using AppError::AppError; };
+
 void findRecord(int id) {
     if (id <= 0) throw ValidationError("positive id required");
     if (id != 7) throw NotFoundError("record missing");
 }
+
 int main() {
     int validation = 0, missing = 0;
     for (int id : {0, 3, 7}) {

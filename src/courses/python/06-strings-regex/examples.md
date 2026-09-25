@@ -2,7 +2,7 @@
 title: "Program examples and common mistakes"
 description: "Topic 6. Strings and regular expressions: program examples and common mistakes"
 outline: [2, 3]
-sourceHash: "93ba7f4502529b403e5daf13b4e5c9964cdfad92d3623ea77e19793d04dac017"
+sourceHash: "489782f5729e8e5220b9311d6832a8ff72deaf7d31a150ccd4f2213a57acae17"
 ---
 
 # Program examples and common mistakes
@@ -17,6 +17,7 @@ Write a program that combines equivalent Unicode forms, ignores case, counts wor
 import unicodedata
 from collections import Counter
 
+
 def words_of(text: str) -> list[str]:
     normal = unicodedata.normalize("NFC", text.casefold())
     words = []
@@ -26,6 +27,7 @@ def words_of(text: str) -> list[str]:
             words.append(word)
     return words
 
+
 def main() -> None:
     text = "Кіт, кіт і їжак. Їжак!"
     words = words_of(text)
@@ -33,6 +35,7 @@ def main() -> None:
         print(f"{word}: {count}")
     longest = max(words, key=len, default="")
     print(f"Longest: {longest or 'no words'}")
+
 
 if __name__ == "__main__":
     main()
@@ -65,6 +68,7 @@ def main() -> None:
               f"{subtotal / 100:>8.2f} {share:>7.1%}")
     print(f"Total: {total / 100:.2f} UAH")
 
+
 if __name__ == "__main__":
     main()
 ```
@@ -88,6 +92,7 @@ Greet the user in a paragraph without interpreting the entered name as HTML. All
 from html import escape
 from string.templatelib import Template
 
+
 def html_text(template: Template) -> str:
     pieces = [template.strings[0]]
     for index, field in enumerate(template.interpolations):
@@ -97,9 +102,11 @@ def html_text(template: Template) -> str:
         pieces.append(template.strings[index + 1])
     return "".join(pieces)
 
+
 def main() -> None:
     name = "<b>Olia & Ivan</b>"
     print(html_text(t"<p>Welcome, {name}!</p>"))
+
 
 if __name__ == "__main__":
     main()

@@ -71,6 +71,7 @@ public class Calculator {
                 System.out.println("Неприпустимі операнди");
                 continue;
             }
+
             double result = switch (operation) {
                 case "+" -> a + b;
                 case "-" -> a - b;

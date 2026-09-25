@@ -2,7 +2,7 @@
 title: "Ranges and views"
 description: "Topic 14. Iterators, Algorithms, Ranges: Ranges and Views"
 outline: [2, 3]
-sourceHash: "264d4ec2e8c7092928c1b7f4a48aa5013c46e3892ea2054cc6d4daf1ffa5d211"
+sourceHash: "69e66fa9e8f2b4cb602f553f5529e65c5ed55174a4208170a588a357138a6c0b"
 ---
 
 # Ranges and views
@@ -34,6 +34,7 @@ rely on the arbitrary behavior of sort for equal grades.
 #include <vector>
 
 struct Student { std::string name; int grade; };
+
 int main()
 {
     std::vector<Student> students{

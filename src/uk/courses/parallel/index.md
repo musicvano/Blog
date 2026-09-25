@@ -38,12 +38,26 @@ description: "Курс присвячено паралельним та розп
 17. [Контейнеризація та оркестрація розподілених застосунків: Docker, Kubernetes, .NET Aspire](./17-containers/)
 18. [Архітектура мікросервісів: декомпозиція системи, API-шлюз, узгодженість даних (Saga, Outbox) та спостережуваність](./18-microservices/)
 
-## Як працювати з темою
+## Програмне забезпечення {#software}
 
-1. Прочитайте розділи лекції по черзі та виконайте приклади в JetBrains Rider (C#) або CLion (C++).
-2. Розберіть приклади на сторінці **Практика**: спочатку спробуйте розв’язати задачу самостійно.
-3. Оберіть свій варіант на сторінці **Завдання** та рівень складності: початковий, базовий або високий.
-4. Перевірте себе питаннями на сторінці **Підсумки**.
+| Програма | Для чого | Тема |
+| --- | --- | :-: |
+| [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0) | Програми мовою C# 14 | 1 |
+| [JetBrains Rider](https://www.jetbrains.com/rider/) | Середовище розробки C# | 1 |
+| [WSL 2](https://learn.microsoft.com/windows/wsl/install) з Ubuntu 26.04 LTS | Linux для модуля 2 | 1 |
+| GCC 15, CMake, Ninja, GDB і TBB (`sudo apt install build-essential cmake ninja-build gdb libtbb-dev`) | Інструменти C++ в Ubuntu | 9 |
+| [JetBrains CLion](https://www.jetbrains.com/clion/) | Середовище розробки C++ (набір інструментів WSL) | 9 |
+| Драйвер NVIDIA і [CUDA Toolkit 13](https://developer.nvidia.com/cuda-toolkit) у WSL | Програмування GPU; потрібна відеокарта NVIDIA з CC 7.5 або вище | 11 |
+| [Open MPI 5](https://www.open-mpi.org/) (`openmpi-bin libopenmpi-dev`) | Програми MPI | 12 |
+| Hyper-V і [Ubuntu Server 26.04 LTS](https://ubuntu.com/download/server), Slurm, MUNGE | Власний навчальний кластер | 13 |
+| [grpcurl](https://github.com/fullstorydev/grpcurl) | Перевірка сервісів gRPC | 14 |
+| [Docker Desktop](https://docs.docker.com/desktop/) | Контейнери (RabbitMQ, Redis, PostgreSQL) | 15 |
+| [kind](https://kind.sigs.k8s.io/), kubectl і [Helm](https://helm.sh/docs/intro/install/) | Кластер Kubernetes | 17 |
+| [Aspire CLI](https://aspire.dev/get-started/install-cli/) | Оркестрування та панель моніторингу | 17 |
+
+Діагностичні інструменти `dotnet-counters` і `dotnet-dump` (теми 2–3) встановлюються командою `dotnet tool install`, а бібліотеки (BenchmarkDotNet, ILGPU, gRPC, Orleans та інші) додаються до проєктів як пакети NuGet.
+
+<!--@include: ../_shared/introduction.md-->
 
 ## Матеріали курсу
 

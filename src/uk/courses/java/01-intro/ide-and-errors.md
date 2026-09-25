@@ -14,9 +14,7 @@ IntelliJ IDEA має єдиний дистрибутив із безкоштов
 
 У вікні *New Project* задайте ім’я `Hello`, мову *Java*, систему збирання *IntelliJ* і JDK 27. Майстер може запропонувати завантаження JDK; вибір *Project SDK* не змінює автоматично `JAVA_HOME` в усіх зовнішніх терміналах.
 
-::: info Знімок екрана
-IntelliJ New Project: Java, IntelliJ build system, SDK27, Hello.
-:::
+![Створення Java-проєкту з JDK 27](./images/02-new-project.png)
 
 Рис. 1.4. Створення Java-проєкту з JDK 27 {.caption}
 
@@ -38,9 +36,7 @@ flowchart LR
 
 Аргументи задають у *Run → Edit Configurations…* в полі *Program arguments*. Опції JVM мають окреме поле *VM options*. Робочий каталог визначає базу відносних шляхів; він не обов’язково збігається з каталогом конкретного файла `Main.java`.
 
-::: info Знімок екрана
-Application configuration: Main class, Program arguments Olena, JDK27, working directory.
-:::
+![Аргументи та робочий каталог запуску](./images/03-run-arguments.png)
 
 Рис. 1.6. Аргументи та робочий каталог запуску {.caption}
 
@@ -142,9 +138,7 @@ git log --oneline
 
 Після першої працездатної версії додайте другий невеликий крок, наприклад аргумент імені, а третім комітом опишіть запуск у README. Не створюйте три коміти з випадковими пробілами лише заради кількості. Історія має показувати розвиток програми.
 
-::: info Знімок екрана
-IntelliJ Git Log with three meaningful commits and changed source files; no private identity.
-:::
+![Змістовна історія локального проєкту](./images/04-git-log.png)
 
 Рис. 1.8. Змістовна історія локального проєкту {.caption}
 

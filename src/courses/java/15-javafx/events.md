@@ -2,7 +2,7 @@
 title: "Events and the UI thread"
 description: "Topic 15. JavaFX graphical applications: Events and the UI thread"
 outline: [2, 3]
-sourceHash: "9b8022702bc76624378103723415e84bae4ee8c19d3ff66feb73a16aa8eef8b7"
+sourceHash: "fa7a869b3d8c856ffce8cca60d6502d4c4c68678b62436a89053e5503c045742"
 ---
 
 # Events and the UI thread
@@ -81,8 +81,6 @@ Animation should be defined with Timeline, KeyFrame, or Transition. A Timeline u
 
 The LineChart, BarChart, and PieChart charts are meant for data, not arbitrary drawing. CategoryAxis represents categories, and NumberAxis a numeric scale. Label the axes, units, and series; an empty data set should produce an empty chart with an explanation, not a made-up zero measurement. Do not use color as the only way to distinguish series in a printed report.
 
-::: info Screenshot
-Run PaintMain, draw two strokes, show picker and slider.
-:::
+![A canvas with strokes of different widths](./images/03-paint-canvas.png)
 
 Figure 15.7. A canvas with strokes of different widths {.caption}

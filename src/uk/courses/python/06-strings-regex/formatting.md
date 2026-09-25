@@ -133,6 +133,7 @@ print(pattern.substitute(name="Оля"))
 ```py
 from string.templatelib import Template
 
+
 def parameters(template: Template) -> tuple[str, list[object]]:
     values: list[object] = []
     pieces = [template.strings[0]]
@@ -142,6 +143,7 @@ def parameters(template: Template) -> tuple[str, list[object]]:
         pieces.extend(("?", template.strings[index + 1]))
         values.append(field.value)
     return "".join(pieces), values
+
 
 name = "O'Neil"
 query, values = parameters(t"SELECT id FROM users WHERE name={name}")

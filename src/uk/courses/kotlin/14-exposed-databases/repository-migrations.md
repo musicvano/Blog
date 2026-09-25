@@ -26,6 +26,7 @@ object Titles : Table("titles") {
     val name = varchar("name", 120).uniqueIndex()
     override val primaryKey = PrimaryKey(id)
 }
+
 data class Title(val id: Int, val name: String)
 
 class TitleRepository(private val db: Database) {

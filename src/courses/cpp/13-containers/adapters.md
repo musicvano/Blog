@@ -2,7 +2,7 @@
 title: "Adapters and new interfaces"
 description: "Topic 13. Containers: Adapters and New Interfaces"
 outline: [2, 3]
-sourceHash: "321bd38c5301d1eb7173cb525e3aca4ae4056e6a0c33b1795a784e050de4efed"
+sourceHash: "15fc811947d8deecf7830b2d133b13fa1a863b5687d509289fd054eff8eb4f9a"
 ---
 
 # Adapters and new interfaces
@@ -38,6 +38,7 @@ to resolve stably by insertion order.
 #include <vector>
 
 struct Job { std::string name; int priority, arrival; };
+
 struct Later {
     bool operator()(const Job& a, const Job& b) const {
         if (a.priority != b.priority)
@@ -45,6 +46,7 @@ struct Later {
         return a.arrival > b.arrival;
     }
 };
+
 int main()
 {
     std::queue<std::string> fifo;

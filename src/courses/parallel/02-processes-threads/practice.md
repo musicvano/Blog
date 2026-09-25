@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 2. Processes and threads: worked examples"
 outline: [2, 3]
-sourceHash: "5bd175a1aab543d259a4c748dfd03306840137a1ee2474c99846aa0c3d8d866f"
+sourceHash: "f707025e959d880acda75effa5d4cf604e403c23e5669cd5952aaaa5e48ac8ec"
 ---
 
 # Practice
@@ -28,6 +28,7 @@ if (args is ["--worker", var fromText, var toText])
             $"Invalid range: {fromText}..{toText}");
         return 2;
     }
+
     Console.WriteLine(CountPrimes(from, to));
     return 0;
 }

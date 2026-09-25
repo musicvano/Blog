@@ -2,7 +2,7 @@
 title: "Utility classes and code quality"
 description: "Topic 5. Classes and objects: utility classes and code quality"
 outline: [2, 3]
-sourceHash: "008909eb003707249d916dff6728c4750cbc6826c044708187fa2ad241c95373"
+sourceHash: "7b98d4b2f463c0812019f226ac9c98169f5cc9f3bf84b9428481e92a52a8a795"
 ---
 
 # Utility classes and code quality
@@ -71,23 +71,17 @@ A documentation comment begins with `/**`. Param describes the argument's meanin
 
 You can generate documentation with the javadoc command using -encoding UTF-8 and -d docs, or through the corresponding IDE action. In IntelliJ IDEA, look for *Tools → Generate JavaDoc…*; the action's availability depends on the project configuration. <https://docs.oracle.com/en/java/javase/27/docs/specs/man/javadoc.html>.
 
-::: info Screenshot
-Generate Javadoc for Temperatures; open its HTML page and show parameter, return and exception contract.
-:::
+![Documentation for a public method](./images/08-javadoc-html-page.png)
 
 Figure 5.7. Documentation for a public method {.caption}
 
 The *Generate* menu (**Alt+Insert**) helps create a constructor, getter, or toString, but it does not know the invariants. Review generated code, especially setters and fields in toString. *Rename* (**Shift+F6**) updates related uses, while moving a class between packages requires updating package and import. Use refactoring rather than an arbitrary global string replacement.
 
-::: info Screenshot
-Project &gt; src &gt; New &gt; Package, ua.edu.study.model; show model/app directories with compact middle packages disabled.
-:::
+![Organizing the model and entry point](./images/06-idea-new-package.png)
 
 Figure 5.8. Organizing the model and entry point {.caption}
 
-::: info Screenshot
-Alt+Insert in BankAccount; show Constructor, Getter and toString actions, avoiding a public balance setter.
-:::
+![Generating class members](./images/09-idea-generate-menu.png)
 
 Figure 5.9. Generating class members {.caption}
 

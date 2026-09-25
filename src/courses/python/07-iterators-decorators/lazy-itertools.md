@@ -2,7 +2,7 @@
 title: "Lazy evaluation and itertools"
 description: "Topic 7. Generators and decorators: lazy evaluation and itertools"
 outline: [2, 3]
-sourceHash: "d6f440c0db4a6d2120e317fd46a06d73fa9de26cd071c9ec964a8243201765ac"
+sourceHash: "90cb77dfbc619d2e5f315b8758ac092dae5a530796b3f569f08ac0136070f8f3"
 ---
 
 # Lazy evaluation and itertools
@@ -145,7 +145,7 @@ def parse(lines: Iterable[str]) -> Iterator[tuple[str, float]]:
         yield city, value
 
 
-lines = ["Kyiv;50", "Lviv;32", "Kyiv;68", "Lviv;50"]
+lines = ["Madrid;50", "London;32", "Madrid;68", "London;50"]
 valid = ((city, f) for city, f in parse(lines) if -40 <= f <= 140)
 celsius = ((city, (f - 32) * 5 / 9) for city, f in valid)
 ordered = sorted(celsius, key=itemgetter(0))
@@ -156,8 +156,8 @@ for city, group in groupby(ordered, key=itemgetter(0)):
 ```
 
 ```
-Kyiv 15.0 [10.0]
-Lviv 5.0 [10.0]
+London 5.0 [10.0]
+Madrid 15.0 [10.0]
 ```
 
 The input numbers are degrees Fahrenheit, and the result is Celsius. Sorting is stable, so each city's measurement order is preserved. In this example, `sorted` deliberately materializes the entire data set: do not call the whole algorithm a constant-memory streaming algorithm. For a truly large source, you can require prior ordering or maintain a dictionary of accumulations whose memory depends on the number of cities.

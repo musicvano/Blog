@@ -2,7 +2,7 @@
 title: "Forms, controls, and events"
 description: "Topic 3. Windows Forms fundamentals: Forms, controls, and events"
 outline: [2, 3]
-sourceHash: "dc1f2fa7ee2ee24ed4464f48a4db5d9fd6d72655fbe6913c0244d0672f338e51"
+sourceHash: "eb434e5fd6afbc14b102c27048186f1aee086c83c09a39162964599d738b089f"
 ---
 
 # Forms, controls, and events
@@ -196,7 +196,7 @@ Controls with lists (`ComboBox`, `ListBox`) store any objects in the `Items` col
 
 ```cs
 cityComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-cityComboBox.Items.AddRange("Kyiv", "Lviv", "Kryvyi Rih");
+cityComboBox.Items.AddRange("London", "Madrid", "Brussels");
 cityComboBox.SelectedIndex = 0;
 cityComboBox.SelectedIndexChanged += (sender, e) =>
     visitedListBox.Items.Add(cityComboBox.SelectedItem!);

@@ -67,9 +67,7 @@ Parameterized query:
   rows: 0
 ```
 
-::: info Знімок екрана
-Windows Terminal running the Injection demo: input ' OR '1'='1, the concatenated query prints all 3 readers, the parameterized query prints rows: 0
-:::
+![SQL-ін’єкція та параметризований запит](./images/05-terminal-sql-injection.png)
 
 Рис. 7.10. SQL-ін’єкція та параметризований запит {.caption}
 
@@ -160,7 +158,7 @@ public class LoanService(NpgsqlDataSource dataSource)
 
 ## Відокремлений режим і `DataGridView`
 
-Клас **`DataTable`** (простір імен `System.Data`) зберігає таблицю в пам’яті: колекції стовпців `Columns` і рядків `Rows`, стан кожного рядка (`Added`, `Modified`, `Deleted`) (<https://learn.microsoft.com/dotnet/api/system.data.datatable>). Об’єкт **`NpgsqlDataAdapter`** виконує команду `SELECT`, сам відкриває та закриває з’єднання і заповнює таблицю методом `Fill`. Готову таблицю призначають властивості `DataSource` елемента `DataGridView` (тема 3), і таблиця сама створює стовпці за назвами та типами даних. Метод адаптера `Update` разом із `NpgsqlCommandBuilder` може зберегти змінені рядки назад, але в застосунках частіше використовують явні команди `INSERT`/`UPDATE` з параметрами або Entity Framework Core (тема 8). Для простого заповнення таблиці без адаптера є метод `table.Load(reader)`.
+Клас **`DataTable`** (простір імен `System.Data`) зберігає таблицю в пам’яті: колекції стовпців `Columns` і рядків `Rows`, стан кожного рядка (`Added`, `Modified`, `Deleted`) (<https://learn.microsoft.com/dotnet/api/system.data.datatable>). Об’єкт **`NpgsqlDataAdapter`** виконує команду `SELECT`, сам відкриває та закриває з’єднання і заповнює таблицю методом `Fill`. Команда адаптера потребує власного закритого з’єднання (`dataSource.CreateConnection()`): команди `dataSource.CreateCommand` не дають доступу до з’єднання, і `Fill` для них завершується винятком `NotSupportedException`. Готову таблицю призначають властивості `DataSource` елемента `DataGridView` (тема 3), і таблиця сама створює стовпці за назвами та типами даних. Метод адаптера `Update` разом із `NpgsqlCommandBuilder` може зберегти змінені рядки назад, але в застосунках частіше використовують явні команди `INSERT`/`UPDATE` з параметрами або Entity Framework Core (тема 8). Для простого заповнення таблиці без адаптера є метод `table.Load(reader)`.
 
 Застосунок *Windows Forms App* «Book Browser» показує книги в таблиці й шукає їх за частиною назви. У `Program.cs` створюється `NpgsqlDataSource` (рядок з’єднання з секретів користувача, метод `AddUserSecrets(typeof(Program).Assembly)`, бо клас `Program` статичний) і передається в конструктор форми. Форма створює в коді поле `searchBox`, кнопку *Search* (вона ж `AcceptButton`, тому пошук запускає й **Enter**), таблицю `grid` з `Dock = DockStyle.Fill`, `ReadOnly = true`, і рядок стану `StatusStrip` з міткою `status`. Обробники `Load` форми і `Click` кнопки викликають метод `LoadBooks`, який заповнює `DataTable` адаптером і призначає її таблиці.
 
@@ -169,12 +167,15 @@ public class LoanService(NpgsqlDataSource dataSource)
 ```cs
 private void LoadBooks()
 {
-    using NpgsqlCommand cmd = dataSource.CreateCommand("""
+    // Адаптер сам відкриває з’єднання, тому команда має
+    // власне (ще закрите) з’єднання, а не CreateCommand.
+    using NpgsqlConnection conn = dataSource.CreateConnection();
+    using var cmd = new NpgsqlCommand("""
         SELECT id, title, pub_year AS "Year", isbn, copies
         FROM books
         WHERE title ILIKE $1
         ORDER BY title
-        """);
+        """, conn);
     cmd.Parameters.AddWithValue($"%{searchBox.Text.Trim()}%");
     using var adapter = new NpgsqlDataAdapter(cmd);
     var table = new DataTable();
@@ -194,8 +195,6 @@ private void LoadBooks()
 
 Псевдонім `"Year"` у подвійних лапках зберігає велику літеру і стає заголовком стовпця таблиці. Порожнє поле пошуку дає шаблон `%%`, тобто всі книги. Метод `Fill` синхронний і для великих результатів блокує інтерфейс; тоді використовують `ExecuteReaderAsync` і `table.Load(reader)`, як у лабораторному прикладі «Довідник товарів».
 
-::: info Знімок екрана
-Running BookBrowser: search box with "clean", Search button, DataGridView with columns id, title, Year, isbn, copies (2 rows), status bar "Books: 2"
-:::
+![Застосунок «Book Browser» з даними PostgreSQL](./images/06-app-winforms-grid.png)
 
 Рис. 7.11. Застосунок «Book Browser» з даними PostgreSQL {.caption}

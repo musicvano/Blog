@@ -112,6 +112,7 @@ public class Main {
                 || end.getYear() > 2100) {
             throw new IllegalArgumentException("reversed dates");
         }
+
         return Stream.iterate(start, day -> day.plusDays(1))
             .takeWhile(day -> !day.isAfter(end))
             .filter(day -> day.getDayOfWeek() != DayOfWeek.SATURDAY)

@@ -41,6 +41,7 @@ string Evaluate(string expression)
     {
         return "формат: число операція число";
     }
+
     if (!operations.TryGetValue(parts[1], out var operation))
     {
         return $"невідома операція «{parts[1]}»";
@@ -80,6 +81,7 @@ Console.OutputEncoding = System.Text.Encoding.UTF8;
 
 // Нестабільне «з’єднання»: перші дві спроби невдалі.
 int calls = 0;
+
 bool Connect()
 {
     calls++;

@@ -80,8 +80,6 @@ public final class PaintMain extends Application {
 
 Діаграми LineChart, BarChart і PieChart призначені для даних, а не довільного малювання. CategoryAxis представляє категорії, NumberAxis – числову шкалу. Підписуйте осі, одиниці й серії; порожній набір має давати порожню діаграму з поясненням, а не вигаданий нульовий вимір. Не використовуйте колір як єдиний спосіб відрізнити серії у друкованому звіті.
 
-::: info Знімок екрана
-Run PaintMain, draw two strokes, show picker and slider.
-:::
+![Полотно зі штрихами різної товщини](./images/03-paint-canvas.png)
 
 Рис. 15.7. Полотно зі штрихами різної товщини {.caption}

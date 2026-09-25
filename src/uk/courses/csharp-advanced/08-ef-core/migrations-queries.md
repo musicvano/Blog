@@ -33,11 +33,9 @@ flowchart TB
 
 У Visual Studio ті самі дії виконують командами `Add-Migration` і `Update-Database` у вікні *Package Manager Console* (пакет `Microsoft.EntityFrameworkCore.Tools`).
 
-Для моделі блогу `dotnet ef migrations add InitialCreate` виводить `Build started...`, `Build succeeded.` і `Done. To undo this action, use 'ef migrations remove'` та створює три файли: `20260917081327_InitialCreate.cs`, `…Designer.cs` і `BlogContextModelSnapshot.cs`. Команда `dotnet ef database update` застосовує міграцію (рис. 8.6), а в базі даних з’являються таблиці `"Authors"`, `"Posts"` і службова таблиця `"__EFMigrationsHistory"` зі стовпцями `MigrationId` і `ProductVersion`, де записано застосовані міграції (рис. 8.7).
+Для моделі блогу `dotnet ef migrations add InitialCreate` виводить `Build started...`, `Build succeeded.` і `Done. To undo this action, use 'ef migrations remove'` та створює три файли: `20260924165317_InitialCreate.cs`, `…Designer.cs` і `BlogContextModelSnapshot.cs`. Команда `dotnet ef database update` застосовує міграцію (рис. 8.6). Червоний рядок `Failed executing DbCommand` під час першого запуску не є помилкою: EF Core шукає таблицю історії, якої ще немає, і далі сам її створює. Після `Done.` в базі даних з’являються таблиці `"Authors"`, `"Posts"` і службова таблиця `"__EFMigrationsHistory"` зі стовпцями `MigrationId` і `ProductVersion`, де записано застосовані міграції (рис. 8.7).
 
-::: info Знімок екрана
-Windows Terminal in the Blog project: dotnet ef migrations add InitialCreate and dotnet ef database update with "Build succeeded." and "Done."
-:::
+![Створення та застосування міграції](./images/02-terminal-migrations.png)
 
 Рис. 8.6. Створення та застосування міграції {.caption}
 
@@ -77,9 +75,7 @@ protected override void Down(MigrationBuilder migrationBuilder)
 
 Міграцію завжди **переглядають** перед застосуванням: перейменування властивості EF Core бачить як видалення стовпця і створення нового, тобто втрату даних; у такому разі код міграції виправляють на `RenameColumn`. Міграції зберігаються в Git разом із кодом.
 
-::: info Знімок екрана
-DataGrip: database shop\_ef tree with Categories, Products, ProductTag, Tags, the migrations history table; the history table open in the grid with MigrationId and ProductVersion 10.0.12
-:::
+![Таблиці, створені міграцією](./images/03-datagrip-efcore-tables.png)
 
 Рис. 8.7. Таблиці, створені міграцією {.caption}
 
@@ -196,8 +192,6 @@ options.UseNpgsql(ConnectionString)
 
 Для кожної команди в консоль виводиться повідомлення `Executed DbCommand` з часом виконання, параметрами і текстом SQL (рис. 8.8). Метод `EnableSensitiveDataLogging` показує значення параметрів замість `?`; його вмикають лише під час розробки, бо в журнал потрапляють дані користувачів. Простір імен `LogLevel` – `Microsoft.Extensions.Logging`.
 
-::: info Знімок екрана
-Windows Terminal: the Shop example with LogTo(Console.WriteLine, LogLevel.Information); "Executed DbCommand" lines with Parameters and a SELECT … LEFT JOIN for an Include query
-:::
+![SQL-запити, згенеровані EF Core](./images/04-terminal-sql-log.png)
 
 Рис. 8.8. SQL-запити, згенеровані EF Core {.caption}

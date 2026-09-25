@@ -2,7 +2,7 @@
 title: "Copy and move"
 description: "Topic 8. Copy, Move, RAII: Copy and Move"
 outline: [2, 3]
-sourceHash: "e44b50cc9f7f71d06ede6e2927237103fc203b2d48d4256382bc6e13471fc65c"
+sourceHash: "9a4670e44481bf64e9d81e2234f9ade28b4b06e045740731d5bc94cb84441386"
 ---
 
 # Copy and move
@@ -54,6 +54,7 @@ Figure 8.1. An address copy and an independent copy of a buffer {.caption}
 #include <string>
 #include <string_view>
 #include <utility>
+
 class MyString {
     std::size_t size_ = 0;
     char* data_ = nullptr;
@@ -62,6 +63,7 @@ public:
         data_(size_ ? new char[size_] : nullptr) {
         if (size_) std::copy_n(s.data(), size_, data_);
     }
+
     ~MyString() { delete[] data_; }
     MyString(const MyString& x) : MyString(x.text()) {}
     MyString(MyString&& x) noexcept
@@ -71,11 +73,13 @@ public:
         std::swap(size_, x.size_);
         std::swap(data_, x.data_);
     }
+
     MyString& operator=(const MyString& x) {
         MyString temp{x};
         swap(temp);
         return *this;
     }
+
     MyString& operator=(MyString&& x) noexcept {
         if (this != &x) {
             delete[] data_;
@@ -84,10 +88,12 @@ public:
         }
         return *this;
     }
+
     std::string text() const {
         return size_ ? std::string(data_, size_) : std::string{};
     }
 };
+
 int main() {
     MyString a{"alpha"};
     MyString b{a};
@@ -165,18 +171,21 @@ Figure 8.3. Expression categories with a shared xvalue {.caption}
 #include <cassert>
 #include <print>
 #include <vector>
+
 struct Safe {
     inline static int copies = 0, moves = 0;
     Safe() = default;
     Safe(const Safe&) { ++copies; }
     Safe(Safe&&) noexcept { ++moves; }
 };
+
 struct Risky {
     inline static int copies = 0, moves = 0;
     Risky() = default;
     Risky(const Risky&) { ++copies; }
     Risky(Risky&&) noexcept(false) { ++moves; }
 };
+
 int main() {
     std::vector<Safe> a(1);
     a.reserve(a.capacity() + 1);

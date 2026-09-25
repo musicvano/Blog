@@ -2,7 +2,7 @@
 title: "CMake and C++26"
 description: "Topic 16. Modules and C++26: CMake and C++26"
 outline: [2, 3]
-sourceHash: "94d25146127328fdbae3386c494a62a370ce4066f8073a9cf8b992ae8d5dfa23"
+sourceHash: "130b582b3e23855b4c62df491ec19417427c86f1f579c0355fe937bf24cd5194"
 ---
 
 # CMake and C++26
@@ -129,6 +129,7 @@ directive. Do not call it as an ordinary C++ function.
 ```cpp
 #include <print>
 #include <version>
+
 int main()
 {
     std::println("MSVC={}, mode={}", _MSC_VER, _MSVC_LANG);

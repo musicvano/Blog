@@ -179,11 +179,9 @@ cd "C:\Program Files\PostgreSQL\18\bin"
 
 Разом із сервером установлюється **pgAdmin 4** (<https://www.pgadmin.org/docs/>) – вебклієнт для адміністрування: дерево серверів і баз даних, редактор запитів *Query Tool*, резервне копіювання. У курсі основним інструментом є **JetBrains DataGrip** (<https://www.jetbrains.com/datagrip/>) – середовище для роботи з різними СКБД з автодоповненням SQL, перевіркою запитів і побудовою діаграм. З жовтня 2025 року DataGrip безкоштовний для некомерційного використання, зокрема навчання (<https://blog.jetbrains.com/datagrip/2025/10/01/datagrip-is-now-free-for-non-commercial-use/>): ліцензія активується через обліковий запис JetBrains Account, а надсилання анонімної статистики використання за такої ліцензії вимкнути не можна. Студенти можуть також отримати безкоштовний освітній пакет JetBrains Student Pack (<https://www.jetbrains.com/community/education/>).
 
-Підключення до бази даних створюють у вікні *Database Explorer*: *+ → Data Source → PostgreSQL*, у полях *Host*, *Port*, *User*, *Password*, *Database* вводять параметри, під час першого підключення DataGrip пропонує завантажити драйвер, а кнопка *Test Connection* перевіряє з’єднання (рис. 7.4). Запити пишуть у консолі (*New → Query Console*) і виконують комбінацією **Ctrl+Enter** (<https://www.jetbrains.com/help/datagrip/postgresql.html>).
+Підключення до бази даних створюють у вікні *Database Explorer*: *+ → Data Source → PostgreSQL*, у полях *Host*, *Port*, *User*, *Password*, *Database* вводять параметри (замість пароля можна вибрати *Authentication: pgpass* – тоді DataGrip бере пароль із файлу `%APPDATA%\postgresql\pgpass.conf`, як і `psql`), під час першого підключення DataGrip пропонує завантажити драйвер, а кнопка *Test Connection* перевіряє з’єднання (рис. 7.4). Запити пишуть у консолі (*New → Query Console*) і виконують комбінацією **Ctrl+Enter** (<https://www.jetbrains.com/help/datagrip/postgresql.html>).
 
-::: info Знімок екрана
-DataGrip: Database Explorer → + → Data Source → PostgreSQL; Host localhost, Port 5432, User library\_app, Database library, password masked, "Succeeded" after Test Connection
-:::
+![Підключення до PostgreSQL у DataGrip](./images/01-datagrip-new-datasource.png)
 
 Рис. 7.4. Підключення до PostgreSQL у DataGrip {.caption}
 

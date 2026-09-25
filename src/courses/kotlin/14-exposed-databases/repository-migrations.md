@@ -2,7 +2,7 @@
 title: "Repository, migrations, and tests"
 description: "Topic 14. Databases with Exposed: Repository, migrations, and tests"
 outline: [2, 3]
-sourceHash: "7ca9e4ed20b87a28c4780de364c44de242ff6b1bd38722365e17c91bd0ab88b3"
+sourceHash: "ca9c93b67f9259ac085765a1b76668adeaae42f4a7e5f87afd1ac91379d7e3a8"
 ---
 
 # Repository, migrations, and tests
@@ -27,6 +27,7 @@ object Titles : Table("titles") {
     val name = varchar("name", 120).uniqueIndex()
     override val primaryKey = PrimaryKey(id)
 }
+
 data class Title(val id: Int, val name: String)
 
 class TitleRepository(private val db: Database) {

@@ -52,20 +52,25 @@ flowchart TB
 #include <print>
 #include <string>
 #include <utility>
+
 struct Person {
     std::string name;
     explicit Person(std::string value) : name(std::move(value)) {}
 };
+
 struct Student : virtual Person {
     Student() : Person("student") {}
 };
+
 struct Employee : virtual Person {
     Employee() : Person("employee") {}
 };
+
 struct TeachingAssistant final : Student, Employee {
     explicit TeachingAssistant(std::string name)
         : Person(std::move(name)), Student(), Employee() {}
 };
+
 int main() {
     TeachingAssistant assistant{"Олена"};
     Person* viaStudent = static_cast<Student*>(&assistant);
@@ -146,25 +151,30 @@ classDiagram
 #include <print>
 #include <stdexcept>
 #include <utility>
+
 struct DiscountPolicy {
     virtual ~DiscountPolicy() = default;
     virtual long long apply(long long cents) const = 0;
 };
+
 struct NoDiscount final : DiscountPolicy {
     long long apply(long long cents) const override {
         return cents;
     }
 };
+
 class PercentDiscount final : public DiscountPolicy {
     int percent_;
 public:
     explicit PercentDiscount(int n) : percent_(n) {
         if (n < 0 || n > 100) throw std::invalid_argument("rate");
     }
+
     long long apply(long long cents) const override {
         return cents * (100 - percent_) / 100;
     }
 };
+
 class Order {
     std::unique_ptr<DiscountPolicy> policy_;
 public:
@@ -172,12 +182,14 @@ public:
         : policy_(std::move(policy)) {
         if (!policy_) throw std::invalid_argument("policy");
     }
+
     long long total(long long cents) const {
         if (cents < 0 || cents > 1'000'000'000)
             throw std::invalid_argument("sum");
         return policy_->apply(cents);
     }
 };
+
 int main() {
     Order plain{std::make_unique<NoDiscount>()};
     Order sale{std::make_unique<PercentDiscount>(10)};

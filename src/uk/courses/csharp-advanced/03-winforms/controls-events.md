@@ -195,7 +195,7 @@ private void AddButton_Click(object? sender, EventArgs e)
 
 ```cs
 cityComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
-cityComboBox.Items.AddRange("Kyiv", "Lviv", "Kryvyi Rih");
+cityComboBox.Items.AddRange("London", "Madrid", "Brussels");
 cityComboBox.SelectedIndex = 0;
 cityComboBox.SelectedIndexChanged += (sender, e) =>
     visitedListBox.Items.Add(cityComboBox.SelectedItem!);

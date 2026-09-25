@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 6. Debugging and exceptions: worked examples"
 outline: [2, 3]
-sourceHash: "dcb76696d82e3e81833f4aa9040f2d47644fb24cc06d56ff0a2f2365258bcefb"
+sourceHash: "11b6a8f70c8ef3065727310a993fe61f62281c8829ef1eb8ef7c5815298387cd"
 ---
 
 # Practice
@@ -104,6 +104,7 @@ static (long, long) ParseFraction(string text)
     {
         throw new FormatException($"“{text}” is not an a/b fraction.");
     }
+
     if (b == 0)
     {
         throw new DivideByZeroException();

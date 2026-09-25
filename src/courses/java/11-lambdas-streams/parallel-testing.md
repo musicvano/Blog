@@ -2,7 +2,7 @@
 title: "Parallelism and testing a pipeline"
 description: "Topic 11. Lambdas and the Stream API: Parallelism and testing a pipeline"
 outline: [2, 3]
-sourceHash: "ac4afee7bb1bf96e74bc744cd0a1a71fc57f2b9b38be8b397b690f3e202dce5e"
+sourceHash: "3421a71a01cbedff1387f51afa963baf5a0b7d670d85b3c1576b902987b20417"
 ---
 
 # Parallelism and testing a pipeline
@@ -37,14 +37,10 @@ You should not test a required number of calls to peek or to a side-effecting fu
 
 Finally, readability matters more than the number of dots in an expression. If a pipeline needs several try/catch blocks, complex external state, and conditional termination that returns a partial report, an ordinary loop may show the policy better. The Stream API is a tool for expressing transformations, not a mandatory style for every task involving a collection.
 
-::: info Screenshot
-In IntelliJ IDEA, show a custom functional interface, an anonymous implementation, and the available replace action. The code must come from a working training project, not a drawn mockup.
-:::
+![Converting an anonymous class to a lambda](./images/01-idea-anonymous-to-lambda.png)
 
 Figure 11.7. Converting an anonymous class to a lambda {.caption}
 
-::: info Screenshot
-Show debugging of filter–map–limit in IntelliJ IDEA. If your IDE version does not have Stream Trace, use ordinary breakpoints in the lambdas and label this approach explicitly.
-:::
+![Observing the elements of a pipeline: a breakpoint in the filter lambda](./images/08-idea-stream-trace.png)
 
-Figure 11.8. Observing the elements of a pipeline {.caption}
+Figure 11.8. Observing the elements of a pipeline: a breakpoint in the filter lambda {.caption}

@@ -2,7 +2,7 @@
 title: "Testing with JUnit"
 description: "Topic 13. Modules, builds, and testing: Testing with JUnit"
 outline: [2, 3]
-sourceHash: "e68a7e3657a1dd470b0871d5910bb4d4baf773887288eaada8fb79fed1a3af28"
+sourceHash: "286007ae26a9a027e27f0ff6c664af6d31c6e3bd5302e20494732ac5cc45dccc"
 ---
 
 # Testing with JUnit
@@ -41,6 +41,7 @@ package ua.knu.loan;
 
 public final class NameValidator {
     private NameValidator() {}
+
     public static String normalize(String value) {
         if (value == null) {
             throw new IllegalArgumentException("Missing name");
@@ -77,6 +78,7 @@ class NameValidatorTest {
             assertThrows(IllegalArgumentException.class,
                 () -> NameValidator.normalize(null));
         }
+
         @Test
         void rejectsShort() {
             assertThrows(IllegalArgumentException.class,
@@ -92,41 +94,29 @@ class NameValidatorTest {
 
 In IntelliJ IDEA, open the POM or the Gradle project and wait for synchronization. The Maven tool window shows Lifecycle, Plugins, and Dependencies; the Gradle window shows the task tree. After changing a dependency, run Reload. Adding a JAR manually through Project Structure does not make the command-line build reproducible.
 
-::: info Screenshot
-New Project, Maven, JDK 27, groupId and artifactId.
-:::
+![Choosing Maven and the JDK when creating a project](./images/08-idea-new-project-build-system.png)
 
 Figure 13.9. Choosing Maven and the JDK when creating a project {.caption}
 
-::: info Screenshot
-Maven tool window; expand Lifecycle and JUnit dependency.
-:::
+![Maven phases, plugins, and dependencies](./images/09-idea-maven-tool-window.png)
 
 Figure 13.10. Maven phases, plugins, and dependencies {.caption}
 
-::: info Screenshot
-Gradle Tasks verification/test and application/run.
-:::
+![Gradle verification tasks](./images/10-idea-gradle-tool-window.png)
 
 Figure 13.11. Gradle verification tasks {.caption}
 
-::: info Screenshot
-Build file, Add dependency; search junit-jupiter.
-:::
+![Searching for a library in the development environment](./images/11-idea-add-dependency.png)
 
 Figure 13.12. Searching for a library in the development environment {.caption}
 
 Running a test with the green icon next to it is convenient for a single scenario. Before submitting, run the wrapper from the terminal: the IDE may use a different JDK or its own runner. Surefire reports are in `target/surefire-reports`, and Gradle reports are in `build/reports/tests/test`. Zero tests found is not a confirmation that the program is correct.
 
-::: info Screenshot
-Run real tests; temporarily change expected value, show diff.
-:::
+![Test results and mismatch diagnostics](./images/13-idea-test-results.png)
 
 Figure 13.13. Test results and mismatch diagnostics {.caption}
 
-::: info Screenshot
-Run with Coverage; show Loan/NameValidator classes.
-:::
+![Coverage of lines executed by the tests](./images/14-idea-coverage.png)
 
 Figure 13.14. Coverage of lines executed by the tests {.caption}
 

@@ -2,7 +2,7 @@
 title: "JDBC and queries"
 description: "Topic 14. Databases and JDBC: JDBC and queries"
 outline: [2, 3]
-sourceHash: "a6608daf378d4a6d556cf42ab1aa3614c99df56add9678f0468afca06432a504"
+sourceHash: "c28954a907a76cdb2091c3ebc707b3e3d4c05a741a6a73733863d88f589ae48d"
 ---
 
 # JDBC and queries
@@ -33,9 +33,7 @@ Add the pgJDBC dependency to the Maven POM from topic 13. For a program on the m
 
 A modern JDBC driver registers itself automatically through the service mechanism if the JAR is available at runtime. The old `Class.forName("org.postgresql.Driver")` is usually unnecessary. `No suitable driver` should first make you check the runtime classpath and the JDBC URL, rather than add random try/catch blocks.
 
-::: info Screenshot
-pom.xml 42.7.13 and Maven dependency tree.
-:::
+![pgJDBC among the application's Maven dependencies](./images/08-idea-postgresql-dependency.png)
 
 Figure 14.6. pgJDBC among the application's Maven dependencies {.caption}
 
@@ -165,6 +163,7 @@ public final class CatalogMain {
                 }
             }
         }
+
         return List.copyOf(books);
     }
 

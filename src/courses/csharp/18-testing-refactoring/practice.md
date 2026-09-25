@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 18. Testing and refactoring: worked examples"
 outline: [2, 3]
-sourceHash: "c5d3f895120e2c8cc034ecbb698bb393bc690d76464250bc67aff82cb4d4b80a"
+sourceHash: "e27defcfdb082a0634061d1bce4dc0523a7cc2e383716a9de51e7df8fc6e2363"
 ---
 
 # Practice
@@ -53,7 +53,7 @@ namespace Shop.Tests;
 public sealed class PasswordValidatorTests
 {
     [TestMethod]
-    [DataRow("Kyiv#2026")]
+    [DataRow("Rome#2026")]
     [DataRow("Κωδικός_12")]                 // Greek letters are letters too
     [DataRow("Aa1!aaaa")]                   // exactly 8 characters
     public void Validate_StrongPassword_NoErrors(string password)
@@ -65,10 +65,10 @@ public sealed class PasswordValidatorTests
     // Each row violates exactly one rule.
     [TestMethod]
     [DataRow("Aa1!aaa", "fewer than 8 characters")]
-    [DataRow("kyiv#2026", "no uppercase letter")]
-    [DataRow("Kyiv#Lviv", "no digit")]
-    [DataRow("Kyiv2026", "no special character")]
-    [DataRow("Kyiv 2026", "contains a space")]
+    [DataRow("rome#2026", "no uppercase letter")]
+    [DataRow("Rome#Oslo", "no digit")]
+    [DataRow("Rome2026", "no special character")]
+    [DataRow("Rome 2026", "contains a space")]
     public void Validate_OneRuleBroken_OneError(
         string password, string expected)
     {

@@ -2,7 +2,7 @@
 title: "Libraries and modules"
 description: "Topic 16. Modules and C++26: Libraries and Modules"
 outline: [2, 3]
-sourceHash: "6f733dc0b9d39d946e9ba0377d7952a7b0a06d67a9d223af68d6ab5b12811a72"
+sourceHash: "8cff3a6cf52905cdba9176eb34b00938982a297226ffb56050f684c381a71cce"
 ---
 
 # Libraries and modules
@@ -108,6 +108,7 @@ The client will import the primary interface `geometry`.
 **`geometry-shapes.ixx`:**
 ```cpp
 export module geometry:shapes;
+
 export namespace geometry {
     struct Rectangle { double width; double height; };
 }
@@ -117,6 +118,7 @@ export namespace geometry {
 ```cpp
 export module geometry:algorithms;
 import :shapes;
+
 export namespace geometry {
     double area(Rectangle value);
 }
@@ -137,7 +139,9 @@ but by itself it does not re-export them to clients.
 ```cpp
 module;
 #include <stdexcept>
+
 module geometry;
+
 double geometry::area(Rectangle value)
 {
     if (value.width < 0 || value.height < 0) {
@@ -156,6 +160,7 @@ Do not insert large system headers at random after the module declaration.
 ```cpp
 #include <print>
 import geometry;
+
 int main()
 {
     std::println("Area: {:.1f}", geometry::area({3, 4}));
@@ -244,6 +249,7 @@ The following complete program sorts three numbers. Build it in the
 
 ```cpp
 import std;
+
 int main()
 {
     std::vector values{4, 1, 3};

@@ -2,7 +2,7 @@
 title: "Routing and delivery guarantees"
 description: "Topic 15. The RabbitMQ broker: routing and delivery guarantees"
 outline: [2, 3]
-sourceHash: "32be3519da4d5d66938daa64f7a3f1980de85db329d3c24705529d721c4cddba"
+sourceHash: "6a898a95da38c77d9c3473203d14542cec5b0a60fd974fe6bbf3d49369bd1f7b"
 ---
 
 # Routing and delivery guarantees
@@ -13,7 +13,7 @@ The exchange type determines how a message’s routing key is compared with the 
 
 - **direct** routes to the queues whose binding key **exactly matches** the message key (routing by log level: `error`, `warning`, `info`);
 - **fanout** routes to **all** bound queues, and the key is ignored (broadcasting events to several independent services);
-- **topic**: the key consists of words separated by dots (`sensor.kyiv.temp`), and a binding is a pattern where `*` replaces exactly one word and `#` replaces zero or more words (`sensor.*.temp`, `sensor.kyiv.#`);
+- **topic**: the key consists of words separated by dots (`sensor.rome.temp`), and a binding is a pattern where `*` replaces exactly one word and `#` replaces zero or more words (`sensor.*.temp`, `sensor.rome.#`);
 - **headers** routes by headers instead of the key: the binding argument `x-match` with the value `all` (all specified headers match) or `any` (at least one);
 - the **default** exchange `""` (a kind of direct) delivers to the queue whose name equals the key.
 
@@ -34,10 +34,10 @@ flowchart TB
   end
   subgraph T["<b><code>topic</code></b>"]
     direction TB
-    TK["<code>sensor.kyiv.temp</code>"] --> TX("<code>topic</code>")
+    TK["<code>sensor.rome.temp</code>"] --> TX("<code>topic</code>")
     TX -->|"<code>sensor.*.temp</code>"| TQ1["<b><code>temps</code></b>"]
-    TX -->|"<code>sensor.kyiv.#35;</code>"| TQ2["<b><code>kyiv</code></b>"]
-    TX -.->|"<code>*.lviv.*</code>"| TQ3["<code>lviv</code>"]
+    TX -->|"<code>sensor.rome.#35;</code>"| TQ2["<b><code>rome</code></b>"]
+    TX -.->|"<code>*.oslo.*</code>"| TQ3["<code>oslo</code>"]
   end
   D ~~~ F ~~~ T
   T ~~~ N["next to the arrows – binding keys;<br>bold queues (solid arrows)<br>receive the message, regular ones (dashed) do not"]

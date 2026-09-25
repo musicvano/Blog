@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 7. Generators and decorators: worked examples"
 outline: [2, 3]
-sourceHash: "76649a20895a24425c63dacc43a76e96ef43d7ce9f1783a4fab4da4e87fe31a2"
+sourceHash: "3ccea21a5b9e850fa085948cc97b27bbeff8ac22f4886540d94fea0b67db2002"
 ---
 
 # Practice
@@ -98,8 +98,10 @@ logging.basicConfig(level=logging.INFO, stream=sys.stdout,
 
 def logged(level: int
            ) -> Callable[[Callable[P, R]], Callable[P, R]]:
+
     def decorate(func: Callable[P, R]) -> Callable[P, R]:
         calls = 0
+
         @wraps(func)
         def wrapper(*args: P.args, **kwargs: P.kwargs) -> R:
             nonlocal calls

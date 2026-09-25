@@ -2,7 +2,7 @@
 title: "Building with Maven"
 description: "Topic 13. Modules, builds, and testing: Building with Maven"
 outline: [2, 3]
-sourceHash: "a976dd2002ead4275057f62df91cba5f2524b1a6e00df1239bed75dd1be0d61b"
+sourceHash: "79457a6bfd0444b5fcc29ca5b3d0a80872d780447dd17fdd24df47d458c4a8ba"
 ---
 
 # Building with Maven
@@ -182,8 +182,6 @@ java -jar target/loan-1.0.0.jar
 
 The program prints `1000.00`. The tests check the zero rate and the rejection of invalid data. The tolerance in `assertEquals` specifies the error acceptable for the domain; it does not hide any difference whatsoever. For a positive rate, add an independently verified reference example and a check that the payment increases monotonically with the rate.
 
-::: info Screenshot
-Run mvnw.cmd package; show real test count and BUILD SUCCESS.
-:::
+![Maven compiles, tests, and packages the program](./images/06-terminal-mvn-package.png)
 
 Figure 13.6. Maven compiles, tests, and packages the program {.caption}

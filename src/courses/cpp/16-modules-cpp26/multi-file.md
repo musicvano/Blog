@@ -2,7 +2,7 @@
 title: "Multi-file projects and the ODR"
 description: "Topic 16. Modules and C++26: Multi-File Projects and the ODR"
 outline: [2, 3]
-sourceHash: "23f94383a47bcfa1ac6fc0fa877f13285383932ee47c6854c34a7d3171787b54"
+sourceHash: "05d1f1e6755739f471d3f457d23637df169382c806cd52831244acbdf6a88171"
 ---
 
 # Multi-file projects and the ODR
@@ -78,6 +78,7 @@ This lets the compiler detect a mismatch between the declaration and the definit
 ```cpp
 #include "geometry.h"
 #include <stdexcept>
+
 double geometry::rectangle(double width, double height)
 {
     if (width < 0 || height < 0) {
@@ -93,6 +94,7 @@ double geometry::rectangle(double width, double height)
 ```cpp
 #include "geometry.h"
 #include <print>
+
 int main()
 {
     std::println("Area: {:.1f}", geometry::rectangle(3, 4));
@@ -192,6 +194,7 @@ namespace demo {
 **`counter.cpp`:**
 ```cpp
 #include "counter.h"
+
 int demo::counter = 0;
 void demo::increment() { counter += step; }
 ```
@@ -200,6 +203,7 @@ void demo::increment() { counter += step; }
 ```cpp
 #include "counter.h"
 #include <print>
+
 int main()
 {
     demo::increment();

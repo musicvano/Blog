@@ -38,6 +38,7 @@ public final class ReadersMain {
 
     static final class JdbcReaders implements ReaderDao {
         private final Connection connection;
+
         JdbcReaders(Connection connection) {
             this.connection = connection;
         }
@@ -126,8 +127,6 @@ SQLException містить SQLState, код виробника та ланцю�
 
 Для переказу перевірте збереження суми двох балансів, недостатній залишок, штучний збій після списання та два конкурентні запити. Тест на SQLite чи H2 не доводить правильність блокувань PostgreSQL, тому основні транзакційні сценарії курсу виконуються саме на PostgreSQL.
 
-::: info Знімок екрана
-Run isolated CRUD/transaction demos; show rows before and after failure.
-:::
+![Предметний результат і підтвердження відкату](./images/12-idea-run-crud-output.png)
 
 Рис. 14.12. Предметний результат і підтвердження відкату {.caption}

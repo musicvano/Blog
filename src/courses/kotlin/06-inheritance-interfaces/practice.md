@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 6. Inheritance and polymorphism: worked examples"
 outline: [2, 3]
-sourceHash: "375671cc8e0cee4817bd77aa7e79d24a5a510e544570cc7768f20b04bf1ede32"
+sourceHash: "b231d2308833917d4769c0b2c874f513943bdb144c7135d6e53bc48317c874e4"
 ---
 
 # Practice
@@ -17,6 +17,7 @@ abstract class Transport(val name: String) {
         require(km in 0..1000)
         return if (km == 0) 0 else calculate(km)
     }
+
     protected abstract fun calculate(km: Int): Long
 }
 
@@ -93,6 +94,7 @@ class Account(val id: String, val balance: Long) {
     init {
         require(id.isNotBlank() && balance >= 0)
     }
+
     override fun equals(other: Any?): Boolean =
         other is Account && id == other.id
 

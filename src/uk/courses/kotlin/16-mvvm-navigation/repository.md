@@ -48,11 +48,13 @@ import org.jetbrains.exposed.v1.jdbc.*
 import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 
 data class Note(val id: Int, val title: String)
+
 interface NoteRepository {
     suspend fun all(): List<Note>
     suspend fun add(title: String)
     suspend fun delete(id: Int)
 }
+
 object NotesTable : Table("notes") {
     val id = integer("id").autoIncrement()
     val title = varchar("title", 120)
@@ -63,6 +65,7 @@ class SqliteNotes(private val db: Database) : NoteRepository {
     suspend fun initialize() = withContext(Dispatchers.IO) {
         transaction(db) { SchemaUtils.create(NotesTable) }
     }
+
     override suspend fun all(): List<Note> =
         withContext(Dispatchers.IO) {
             transaction(db) {
@@ -108,7 +111,9 @@ class NotesViewModel(private val repository: NoteRepository)
             mutable.update { it.copy(draft = text, error = null) }
         }
     }
+
     fun reload() = perform { repository.all() }
+
     fun add() {
         val text = mutable.value.draft.trim()
         if (text.length !in 1..120) {
@@ -122,10 +127,12 @@ class NotesViewModel(private val repository: NoteRepository)
             repository.all()
         }
     }
+
     fun delete(id: Int) = perform {
         repository.delete(id)
         repository.all()
     }
+
     private fun perform(clearDraft: Boolean = false,
         action: suspend () -> List<Note>) {
         if (mutable.value.busy) return

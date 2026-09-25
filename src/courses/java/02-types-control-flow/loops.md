@@ -2,7 +2,7 @@
 title: "Loops and invariants"
 description: "Topic 2. Types, operations, and control flow: Loops and invariants"
 outline: [2, 3]
-sourceHash: "0b5fb788d0ffb3afb3ee98bb748923555cc30e2b620f0e99de5a89fb58e13d9e"
+sourceHash: "16eba9ae323aee65ef34c86589a86e3a749ab251d35615d336a1c57fd59c8594"
 ---
 
 # Loops and invariants
@@ -107,9 +107,7 @@ An **invariant** is a statement about state that remains true between iterations
 
 Loop termination requires measurable progress: a counter approaches a boundary, a remainder decreases, or each iteration consumes a new token. Checking invalid input without consuming it does not provide such progress. Numerical algorithms need an iteration limit even if they usually converge.
 
-::: info Screenshot
-Debug FunctionTable at x=0; show x,y,total and selected loop line.
-:::
+![Counter and accumulated sum values](./images/02-debug-loop.png)
 
 Figure 2.5. Counter and accumulated sum values {.caption}
 

@@ -120,17 +120,20 @@ class BasicCalculator : Calculator {
         require(a in -1000..1000 && b in -1000..1000)
         return a + b
     }
+
     override fun label(): String = "Study calculator"
 }
 
 class LoggedCalculator(private val inner: Calculator) :
     Calculator by inner {
     private val events = mutableListOf<String>()
+
     override fun add(a: Int, b: Int): Int {
         val result = inner.add(a, b)
         events.add("$a + $b = $result")
         return result
     }
+
     fun history(): List<String> = events.toList()
 }
 

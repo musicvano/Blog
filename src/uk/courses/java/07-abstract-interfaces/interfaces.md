@@ -45,18 +45,22 @@ interface Camera {
     default String describe() { return label("camera"); }
     private String label(String text) { return "[" + text + "]"; }
 }
+
 interface Phone {
     default String describe() { return "[phone]"; }
+
     static boolean validNumber(String value) {
         return value != null && value.matches("[0-9]{10}");
     }
 }
+
 final class Smartphone implements Camera, Phone {
     @Override
     public String describe() {
         return Camera.super.describe() + Phone.super.describe();
     }
 }
+
 public class Main {
     public static void main(String[] args) {
         Camera item = new Smartphone();

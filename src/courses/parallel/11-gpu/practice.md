@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 11. GPU computing: worked examples"
 outline: [2, 3]
-sourceHash: "14cc5172abc85baa3cd5517cf6dc04b0aff7d4ab4ae1b22beee37b27d32d58c4"
+sourceHash: "a93017fbb82f283db8c0170a0794dd16f36b3cb7acff12f0784e81bf5cdf2b0e"
 ---
 
 # Practice
@@ -354,6 +354,7 @@ static void MandelCpu(int[] counts, int w, int h, bool parallel)
             counts[y * w + x] = Iterations(-2.2f + 3.0f * x / w,
                 -1.0f + 2.0f * y / h, MaxIter);
     }
+
     if (parallel) Parallel.For(0, h, RowWork);
     else for (int y = 0; y < h; y++) RowWork(y);
 }

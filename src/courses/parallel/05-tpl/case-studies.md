@@ -2,7 +2,7 @@
 title: "Examples and common mistakes"
 description: "Topic 5. TPL tasks and async/await: examples and common mistakes"
 outline: [2, 3]
-sourceHash: "6a47e50e7b318e932918ddeb8f0392979610bf749f1a81df13585e9e56301a3c"
+sourceHash: "a0b8514f80308b59d3c1e48beb4cc7abb5bc6f3ea0617cb0ca9bde8db7f23ae7"
 ---
 
 # Examples and common mistakes
@@ -209,6 +209,7 @@ static async Task WatchEscapeAsync(CancellationTokenSource cts)
             await cts.CancelAsync();
             return;
         }
+
         await Task.Delay(50);
     }
 }

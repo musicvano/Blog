@@ -195,6 +195,7 @@ block-beta
 
 struct Record { std::uint32_t id; std::int64_t cents; };
 static_assert(std::is_trivially_copyable_v<Record>);
+
 int main()
 {
     Record rows[]{{1, 1000}, {2, 2500}};

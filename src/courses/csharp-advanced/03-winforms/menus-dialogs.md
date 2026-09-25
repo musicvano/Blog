@@ -2,7 +2,7 @@
 title: "Menus, dialogs, and tables"
 description: "Topic 3. Windows Forms fundamentals: Menus, dialogs, and tables"
 outline: [2, 3]
-sourceHash: "d8f9ce4d249820189292bbc12cf355d9786810c392416c6cd37ade70b8310f50"
+sourceHash: "1a85fd1bd693d1bf930f5f11c7aad475637257754bd6b23ea89c0a5d5c1585a1"
 ---
 
 # Menus, dialogs, and tables
@@ -65,6 +65,7 @@ public partial class MainForm : Form
         {
             return;
         }
+
         string path = openFileDialog.FileName;
         editorTextBox.Text = File.ReadAllText(path);
         filePath = path;

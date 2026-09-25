@@ -2,7 +2,7 @@
 title: "Composition and the substitution principle"
 description: "Topic 6. Inheritance and polymorphism: composition and the substitution principle"
 outline: [2, 3]
-sourceHash: "5efcc62e082b5a12a801e5e3def5166a70af8f0790d7dcddfcbc1a12a1a7db0e"
+sourceHash: "9d97abf9b2bc637b233b180a2bd0938d387a9ade3f4d5e7b2a1dfe2f62ae4093"
 ---
 
 # Composition and the substitution principle
@@ -31,24 +31,28 @@ Figure 6.5. A stack provides a narrow contract over a container {.caption}
 final class IntStack {
     private final int[] items;
     private int size;
+
     IntStack(int capacity) {
         if (capacity < 1 || capacity > 1000) {
             throw new IllegalArgumentException("Invalid capacity");
         }
         items = new int[capacity];
     }
+
     public void push(int value) {
         if (size == items.length) {
             throw new IllegalStateException("Full stack");
         }
         items[size++] = value;
     }
+
     public int pop() {
         if (size == 0) {
             throw new IllegalStateException("Empty stack");
         }
         return items[--size];
     }
+
     public int size() { return size; }
 }
 
@@ -90,21 +94,15 @@ The complexity of `push` and `pop` here is constant: neither operation traverses
 
 Icons beside overridden methods in the editor gutter lead to the base declaration or implementations. The hierarchy window helps find indirect subclasses that may depend on a method being changed. Documentation: <https://www.jetbrains.com/help/idea/viewing-structure-and-hierarchy-of-the-source-code.html>.
 
-::: info Screenshot
-Open Employee and HourlyEmployee. Show the gutter override icon beside salary and its navigation popup.
-:::
+![Navigating between base and overridden methods](./images/03-idea-override-gutter.png)
 
 Figure 6.6. Navigating between base and overridden methods {.caption}
 
-::: info Screenshot
-Select HourlyEmployee. Open Navigate &gt; Type Hierarchy. Expand Employee and Object; keep source visible.
-:::
+![The employee type hierarchy](./images/07-idea-type-hierarchy.png)
 
 Figure 6.7. The employee type hierarchy {.caption}
 
-::: info Screenshot
-In Point use Code &gt; Generate &gt; equals() and hashCode(). Show selected x and y fields; review generated source afterwards.
-:::
+![Generating equality methods](./images/08-idea-generate-equals.png)
 
 Figure 6.8. Generating equality methods {.caption}
 

@@ -77,6 +77,7 @@ namespace geometry {
 ```cpp
 #include "geometry.h"
 #include <stdexcept>
+
 double geometry::rectangle(double width, double height)
 {
     if (width < 0 || height < 0) {
@@ -92,6 +93,7 @@ double geometry::rectangle(double width, double height)
 ```cpp
 #include "geometry.h"
 #include <print>
+
 int main()
 {
     std::println("Area: {:.1f}", geometry::rectangle(3, 4));
@@ -191,6 +193,7 @@ namespace demo {
 **`counter.cpp`:**
 ```cpp
 #include "counter.h"
+
 int demo::counter = 0;
 void demo::increment() { counter += step; }
 ```
@@ -199,6 +202,7 @@ void demo::increment() { counter += step; }
 ```cpp
 #include "counter.h"
 #include <print>
+
 int main()
 {
     demo::increment();

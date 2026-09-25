@@ -2,7 +2,7 @@ import type { Course } from "../sidebar.mts";
 
 export default {
   slug: "csharp-advanced",
-  title: "C# і технології .NET",
+  title: "Об’єктно-орієнтоване програмування C# II",
   modules: [
     {
       title: "Інструменти розробника та Windows Forms",

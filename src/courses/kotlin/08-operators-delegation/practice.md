@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 8. Operations and delegation: worked examples"
 outline: [2, 3]
-sourceHash: "fff917a414237f1a775b230a9b64c120834c5339a1e9a6cd7ed1779cee5d9088"
+sourceHash: "bf8bf455da9e0fc0875f24cf09ba0796e241356be8fe74b7c3b323638e6bb6ba"
 ---
 
 # Practice
@@ -121,17 +121,20 @@ class BasicCalculator : Calculator {
         require(a in -1000..1000 && b in -1000..1000)
         return a + b
     }
+
     override fun label(): String = "Study calculator"
 }
 
 class LoggedCalculator(private val inner: Calculator) :
     Calculator by inner {
     private val events = mutableListOf<String>()
+
     override fun add(a: Int, b: Int): Int {
         val result = inner.add(a, b)
         events.add("$a + $b = $result")
         return result
     }
+
     fun history(): List<String> = events.toList()
 }
 

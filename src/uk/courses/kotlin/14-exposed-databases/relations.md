@@ -50,6 +50,7 @@ object Authors : Table("authors") {
     val name = varchar("name", 100)
     override val primaryKey = PrimaryKey(id)
 }
+
 object Books : Table("books") {
     val id = integer("id").autoIncrement()
     val title = varchar("title", 120)

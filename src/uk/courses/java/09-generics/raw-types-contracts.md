@@ -10,9 +10,7 @@ outline: [2, 3]
 
 Сирий тип `List` замість `List<String>` залишений для сумісності зі старим кодом. Він вимикає частину перевірок і створює unchecked-попередження. Використання raw-посилання для запису числа в список рядків може дати помилку значно пізніше, коли інший код прочитає елемент як String.
 
-::: info Знімок екрана
-IntelliJ IDEA: isolated raw List example, raw/unchecked inspection and suggested parameterized type. Do not leave raw code in production examples.
-:::
+![Попередження про сирий тип вказує на втрату контракту.](./images/06-idea-raw-type-warning.png)
 
 Рис. 9.6. Попередження про сирий тип вказує на втрату контракту. {.caption}
 

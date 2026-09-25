@@ -2,7 +2,7 @@
 title: "Nested classes and standard contracts"
 description: "Topic 7. Abstract classes, interfaces: nested classes and standard contracts"
 outline: [2, 3]
-sourceHash: "515466c611dde6620a34ee55c72d64aa4c862aecc06e304b286aaccac1d9f683"
+sourceHash: "4db800aa467809b6557986735c5706b5482871844bc7d046fc85c06cd416a53c"
 ---
 
 # Nested classes and standard contracts
@@ -38,25 +38,30 @@ final class Order {
     private final String customer;
     private final int quantity;
     private final String note;
+
     private Order(Builder builder) {
         customer = builder.customer;
         quantity = builder.quantity;
         note = builder.note;
     }
+
     @Override
     public String toString() {
         return customer + ": " + quantity + " [" + note + "]";
     }
+
     public static final class Builder {
         private final String customer;
         private int quantity = 1;
         private String note = "";
+
         public Builder(String customer) {
             if (customer == null || customer.isBlank()) {
                 throw new IllegalArgumentException("Empty customer");
             }
             this.customer = customer.strip();
         }
+
         public Builder quantity(int quantity) {
             if (quantity < 1 || quantity > 100) {
                 throw new IllegalArgumentException(
@@ -65,6 +70,7 @@ final class Order {
             this.quantity = quantity;
             return this;
         }
+
         public Builder note(String note) {
             if (note == null || note.length() > 100) {
                 throw new IllegalArgumentException("Invalid note");
@@ -72,9 +78,11 @@ final class Order {
             this.note = note.strip();
             return this;
         }
+
         public Order build() { return new Order(this); }
     }
 }
+
 public class Main {
     public static void main(String[] args) {
         Order.Builder builder = new Order.Builder("Olena");
@@ -117,15 +125,11 @@ A strategy's contract must describe allowed values, units, and side effects. For
 
 The *Code → Implement Methods* command or **Ctrl+I** shows the required methods. Check the generated visibility and types; an automatic body returning zero is a stub, rather than a finished implementation. Navigating to implementations with **Ctrl+Alt+B** helps find all classes fulfilling the role.
 
-::: info Screenshot
-In IntelliJ IDEA declare Product implements Comparable. Use Ctrl+I and show the compareTo method selection dialog.
-:::
+![Selecting methods to implement](./images/03-idea-implement-methods.png)
 
 Figure 7.6. Selecting methods to implement {.caption}
 
-::: info Screenshot
-Select a service class. Open Refactor &gt; Extract &gt; Interface. Show the new interface name and selected public operations.
-:::
+![Extracting a focused interface](./images/07-idea-extract-interface.png)
 
 Figure 7.7. Extracting a focused interface {.caption}
 

@@ -2,7 +2,7 @@
 title: "Lambda expressions and functors"
 description: "Topic 14. Iterators, Algorithms, Ranges: Lambda Expressions and Functors"
 outline: [2, 3]
-sourceHash: "6637e8a9979a2f3488117a23ccdd1ecc02ad277c471097462a9c39bf4619e5ff"
+sourceHash: "9c25257724e2347f81a2f45a655a249699d6fbc8c3b53ff6f712e33b0d495c3d"
 ---
 
 # Lambda expressions and functors
@@ -66,6 +66,7 @@ auto makeCounter(int start)
 {
     return [value = start]() mutable { return value++; };
 }
+
 int main()
 {
     auto count = makeCounter(10);

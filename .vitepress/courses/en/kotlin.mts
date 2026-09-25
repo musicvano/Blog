@@ -4,7 +4,7 @@ import type { Course } from "../sidebar.mts";
 
 export default {
   slug: "kotlin",
-  title: "Kotlin OOP",
+  title: "Object-oriented programming in Kotlin",
   modules: [
     {
       title: "Kotlin language fundamentals",

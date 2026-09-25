@@ -79,10 +79,13 @@ class Triangle(a: Double, b: Double, c: Double) : Shape() {
     private val a = positive(a)
     private val b = positive(b)
     private val c = positive(c)
+
     init {
         require(a + b > c && a + c > b && b + c > a)
     }
+
     override fun perimeter(): Double = a + b + c
+
     override fun area(): Double {
         val s = perimeter() / 2
         return sqrt(s * (s - a) * (s - b) * (s - c))

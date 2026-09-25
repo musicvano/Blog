@@ -1,7 +1,7 @@
 ---
 title: "Parallel and distributed computing"
 description: "This course covers parallel and distributed computing — from multithreaded programming for shared-memory systems in C# on .NET 10 (synchronization, TPL, PLINQ, SIMD vectorization) and the design of parallel numerical algorithms to high-performance computing in C++ using OpenMP, CUDA, and MPI on a Linux computing cluster managed by Slurm. In the final stage, you build distributed applications using gRPC, RabbitMQ, and Microsoft Orleans and deploy them in Docker containers and Kubernetes clusters, concluding with microservice architecture design. Each course topic combines a lecture with a lab assignment."
-sourceHash: "d96414e9780ff5210340fd622ca30e6f5e53d17cdd90b59105920717c3a46e2b"
+sourceHash: "c89048fac1b838e953687c7989fe5361208eb568698337e378993602fe1a45ae"
 ---
 
 # Parallel and distributed computing
@@ -39,12 +39,26 @@ This course covers parallel and distributed computing — from multithreaded pro
 17. [Containerizing and orchestrating distributed applications: Docker, Kubernetes, .NET Aspire](./17-containers/)
 18. [Microservice architecture: system decomposition, an API gateway, data consistency (Saga, Outbox), and observability](./18-microservices/)
 
-## How to work through a topic
+## Required software {#software}
 
-1. Read the lecture chapters in order and run the examples in JetBrains Rider (C#) or CLion (C++).
-2. Study the examples on the **Practice** page: try solving each problem yourself first.
-3. Choose your variant on the **Tasks** page and a difficulty level: initial, basic, or advanced.
-4. Test yourself with the questions on the **Summary** page.
+| Software | Purpose | Topic |
+| --- | --- | :-: |
+| [.NET 10 SDK](https://dotnet.microsoft.com/download/dotnet/10.0) | C# 14 programs | 1 |
+| [JetBrains Rider](https://www.jetbrains.com/rider/) | C# development environment | 1 |
+| [WSL 2](https://learn.microsoft.com/windows/wsl/install) with Ubuntu 26.04 LTS | Linux for module 2 | 1 |
+| GCC 15, CMake, Ninja, GDB and TBB (`sudo apt install build-essential cmake ninja-build gdb libtbb-dev`) | C++ tools in Ubuntu | 9 |
+| [JetBrains CLion](https://www.jetbrains.com/clion/) | C++ development environment (WSL toolchain) | 9 |
+| The NVIDIA driver and the [CUDA Toolkit 13](https://developer.nvidia.com/cuda-toolkit) in WSL | GPU programming; needs an NVIDIA graphics card with CC 7.5 or higher | 11 |
+| [Open MPI 5](https://www.open-mpi.org/) (`openmpi-bin libopenmpi-dev`) | MPI programs | 12 |
+| Hyper-V and [Ubuntu Server 26.04 LTS](https://ubuntu.com/download/server), Slurm, MUNGE | Your own training cluster | 13 |
+| [grpcurl](https://github.com/fullstorydev/grpcurl) | Testing gRPC services | 14 |
+| [Docker Desktop](https://docs.docker.com/desktop/) | Containers (RabbitMQ, Redis, PostgreSQL) | 15 |
+| [kind](https://kind.sigs.k8s.io/), kubectl and [Helm](https://helm.sh/docs/intro/install/) | Kubernetes cluster | 17 |
+| [Aspire CLI](https://aspire.dev/get-started/install-cli/) | Orchestration and the monitoring dashboard | 17 |
+
+The `dotnet-counters` and `dotnet-dump` diagnostic tools (topics 2–3) are installed with `dotnet tool install`, and libraries (BenchmarkDotNet, ILGPU, gRPC, Orleans and others) are added to projects as NuGet packages.
+
+<!--@include: ../_shared/introduction.md-->
 
 ## Course materials
 

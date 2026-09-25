@@ -2,7 +2,7 @@
 title: "Examples and common mistakes"
 description: "Topic 4. Arrays and strings: Examples and common mistakes"
 outline: [2, 3]
-sourceHash: "77c7fe452b27756e09579dd8624f0a3cb7e95aacfa90edaf1729614d0d725c02"
+sourceHash: "f93b3612bb3fa326e91b850a2239ceea6a6f8d030f4a67c0493bf27af57015a9"
 ---
 
 # Examples and common mistakes
@@ -69,7 +69,7 @@ The program stores four months of sales for three stores in a rectangular `doubl
 ```cs
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-string[] shops = ["Center", "Livoberezhnyi", "Inhuletskyi"];
+string[] shops = ["Center", "London", "Brussels"];
 string[] months = ["Jan", "Feb", "Mar", "Apr"];
 
 // Rows are stores, columns are months (thousands of UAH).
@@ -119,8 +119,8 @@ The row (store) total accumulates in `shopTotal`, which resets to zero for each 
 ```
 Store              Jan     Feb     Mar     Apr    Total
 Center           120,5    98,0   134,2   141,7    494,4
-Livoberezhnyi     87,3    91,6   102,4    99,8    381,1
-Inhuletskyi       64,0    70,5    68,9    81,2    284,6
+London            87,3    91,6   102,4    99,8    381,1
+Brussels          64,0    70,5    68,9    81,2    284,6
 Total            271,8   260,1   305,5   322,7   1160,1
 ```
 
@@ -272,6 +272,6 @@ Table 4.3. Common mistakes when working with arrays and strings {.caption}
 | the string is unchanged after `s.Replace(…)` | string methods return a new string; `s = s.Replace(…)` |
 | `System.Int32[]` is displayed | `Console.WriteLine(a)` does not display elements; use `string.Join(", ", a)` |
 | empty elements after `Split` | consecutive separators; use `RemoveEmptyEntries` |
-| `"Kyiv" == "kyiv"` gives `False` | comparison is case-sensitive; use `StringComparison.OrdinalIgnoreCase` |
+| `"London" == "london"` gives `False` | comparison is case-sensitive; use `StringComparison.OrdinalIgnoreCase` |
 | building a large string is slow | `+=` in a loop copies the entire string each time; use `StringBuilder` |
 | `BinarySearch` gives the wrong result | the array is not sorted; call `Array.Sort` first |

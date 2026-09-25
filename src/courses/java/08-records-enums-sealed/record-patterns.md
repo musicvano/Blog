@@ -2,7 +2,7 @@
 title: "Record patterns and deconstruction"
 description: "Topic 8. Records, enum, and sealed classes: record patterns and deconstruction"
 outline: [2, 3]
-sourceHash: "8b35fd36182fbdc62ad255d5225bb78ce0bafe61714fe74287abf0083719bf90"
+sourceHash: "29f0a996748db0a5a10972b07429f64efddcbea3d638a07335b1fb4051995a76"
 ---
 
 # Record patterns and deconstruction
@@ -33,6 +33,7 @@ import java.util.Objects;
 
 sealed interface Expr permits Num, Var, Add, Mul { }
 record Num(long value) implements Expr { }
+
 record Var(String name) implements Expr {
     Var {
         if (!"x".equals(name)) {
@@ -40,18 +41,21 @@ record Var(String name) implements Expr {
         }
     }
 }
+
 record Add(Expr left, Expr right) implements Expr {
     Add {
         Objects.requireNonNull(left);
         Objects.requireNonNull(right);
     }
 }
+
 record Mul(Expr left, Expr right) implements Expr {
     Mul {
         Objects.requireNonNull(left);
         Objects.requireNonNull(right);
     }
 }
+
 public class Main {
     static long eval(Expr expr, long x) {
         return switch (Objects.requireNonNull(expr)) {
@@ -63,6 +67,7 @@ public class Main {
                     Math.multiplyExact(eval(a, x), eval(b, x));
         };
     }
+
     static Expr simplify(Expr expr) {
         Expr prepared = switch (Objects.requireNonNull(expr)) {
             case Add(var a, var b) ->
@@ -79,6 +84,7 @@ public class Main {
             default -> prepared;
         };
     }
+
     public static void main(String[] args) {
         Expr expression = new Add(new Num(0),
                 new Mul(new Num(1), new Var("x")));
@@ -124,15 +130,11 @@ In JDK 27, primitive type patterns in broader contexts remain a preview feature 
 
 A separate preview experiment requires matching compilation flags, `--enable-preview --release 27`, and the runtime flag `--enable-preview`, along with the corresponding IDE language level. Such classes are tied to the preview version; do not silently include them in regular lab examples or require them at the basic level.
 
-::: info Screenshot
-In IntelliJ IDEA open a final immutable Point class. Show the Convert to record intention and preview of components before applying.
-:::
+![Converting a data carrier to a record](./images/02-idea-convert-record.png)
 
 Figure 8.7. Converting a data carrier to a record {.caption}
 
-::: info Screenshot
-Add a permitted Triangle record to Shape. Show the compiler diagnostic on area switch and the Add missing branches intention.
-:::
+![Adding a missing switch alternative](./images/06-idea-exhaustive-switch.png)
 
 Figure 8.8. Adding a missing switch alternative {.caption}
 

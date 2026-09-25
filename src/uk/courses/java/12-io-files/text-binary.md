@@ -43,6 +43,7 @@ public class Main {
                             || !fields[0].matches("[A-Za-z]+")) {
                         throw new IllegalArgumentException();
                     }
+
                     int count = Integer.parseInt(fields[1]);
                     if (count < 0) {
                         throw new IllegalArgumentException();

@@ -112,8 +112,6 @@ java -jar library.jar
 
 JAR пакує class-файли та ресурси. Main-Class у маніфесті визначає точку входу для java -jar. Сам JAR не містить автоматично встановлену JVM; спосіб розповсюдження застосунку докладніше розглядатиметься пізніше. Порожній classpath або неправильне повне ім’я не означають помилку конструктора.
 
-::: info Знімок екрана
-Run the shown javac, java -cp, jar and java -jar commands in a disposable project; both runs print the same library.
-:::
+![Компіляція пакетів і запуск JAR](./images/07-terminal-javac-classpath-jar.png)
 
 Рис. 5.6. Компіляція пакетів і запуск JAR {.caption}

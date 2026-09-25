@@ -2,7 +2,7 @@ import type { Course } from "../sidebar.mts";
 
 export default {
   slug: "kotlin",
-  title: "ООП мовою Kotlin",
+  title: "Об’єктно-орієнтоване програмування Kotlin",
   modules: [
     {
       title: "Основи мови Kotlin",

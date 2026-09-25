@@ -2,7 +2,7 @@
 title: "Class templates"
 description: "Topic 12. Templates and Concepts: Class Templates"
 outline: [2, 3]
-sourceHash: "4d21c13bd9f27fcf51edeafd81a2dbe9be2b82dcc5fd912f555fc8070dc7dc67"
+sourceHash: "5180938d1a1277039b252c8b16d09c5cfd335f025df01baa1b66675e7413da4b"
 ---
 
 # Class templates
@@ -31,11 +31,13 @@ public:
     FixedStack() = default;
     explicit FixedStack(const std::array<T, N>& source)
         : data(source), used(N) {}
+
     void push(const T& value) {
         if (used == N) throw std::length_error("full");
         data[used] = value;
         ++used;
     }
+
     T pop() {
         if (used == 0) throw std::out_of_range("empty");
         T result = data[used - 1];
@@ -103,12 +105,14 @@ struct Serializer {
         return std::format("{}", value);
     }
 };
+
 template<>
 struct Serializer<bool> {
     static std::string text(bool value) {
         return value ? "yes" : "no";
     }
 };
+
 template<>
 struct Serializer<std::string> {
     static std::string text(const std::string& value) {

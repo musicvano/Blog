@@ -2,7 +2,7 @@
 title: "Paths, streams, and encoding"
 description: "Topic 12. Files, NIO.2, and serialization: Paths, streams, and encoding"
 outline: [2, 3]
-sourceHash: "e9cc08e5ab157ec1ebf325482541bc8e1242cd12a7bd94d4b5691da6a4d58ca1"
+sourceHash: "4c250a62a54329fe8ec56be07b31988f02aacf14e81d45d9557dcd4ca3f07b9c"
 ---
 
 # Paths, streams, and encoding
@@ -26,9 +26,7 @@ A relative path is resolved against the process's current working directory, not
 
 A path received from a user should not be arbitrarily combined with a directory root and written to immediately. For a restricted working directory, check the normalized result and the symbolic link policy. The check and the subsequent use can be separated by a change to the file system made by another program.
 
-::: info Screenshot
-In IntelliJ IDEA, open the Main Run Configuration and show the Working directory. Next to it, in the terminal, print the absolute path of the relative input.txt; hide private paths.
-:::
+![The working directory of a run configuration](./images/01-idea-working-directory.png)
 
 Figure 12.2. The working directory of a run configuration {.caption}
 
@@ -72,8 +70,6 @@ In a modern JDK, the default charset is UTF-8, but it is better to specify an ex
 
 `PrintWriter` has convenient print and printf methods, but it stores some write errors in an internal flag. After an important write, check checkError or choose a Writer that propagates IOException. Scanner is useful for tokens but has its own locale and delimiter rules; it should not be treated as a universal CSV parser.
 
-::: info Screenshot
-Show a real UTF-8 file with Ukrainian letters, the IDEA encoding indicator, and its correct output by the program. Do not present a conversion without a backup copy as a safe action.
-:::
+![Checking the encoding of a text file](./images/04-idea-file-encoding.png)
 
 Figure 12.5. Checking the encoding of a text file {.caption}

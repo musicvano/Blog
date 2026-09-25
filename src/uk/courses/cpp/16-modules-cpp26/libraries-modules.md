@@ -107,6 +107,7 @@ flowchart BT
 **`geometry-shapes.ixx`:**
 ```cpp
 export module geometry:shapes;
+
 export namespace geometry {
     struct Rectangle { double width; double height; };
 }
@@ -116,6 +117,7 @@ export namespace geometry {
 ```cpp
 export module geometry:algorithms;
 import :shapes;
+
 export namespace geometry {
     double area(Rectangle value);
 }
@@ -136,7 +138,9 @@ export import :algorithms;
 ```cpp
 module;
 #include <stdexcept>
+
 module geometry;
+
 double geometry::area(Rectangle value)
 {
     if (value.width < 0 || value.height < 0) {
@@ -155,6 +159,7 @@ double geometry::area(Rectangle value)
 ```cpp
 #include <print>
 import geometry;
+
 int main()
 {
     std::println("Area: {:.1f}", geometry::area({3, 4}));
@@ -243,6 +248,7 @@ cl @opts main.cpp geometry.obj geometry-impl.obj `
 
 ```cpp
 import std;
+
 int main()
 {
     std::vector values{4, 1, 3};

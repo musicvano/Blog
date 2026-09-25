@@ -2,7 +2,7 @@
 title: "Class, invariant, and constructors"
 description: "Topic 7. Classes and Objects: Class, Invariant, and Constructors"
 outline: [2, 3]
-sourceHash: "3d9c68bda75fddc9f3e3896ef875f310a7b9f89531a7224a2891099125e3064e"
+sourceHash: "a93b93fe403a435251f3f83fb7ac050f7eea34e39bfc729c67eeff77ee52a529"
 ---
 
 # Class, invariant, and constructors
@@ -52,26 +52,32 @@ Figure 7.1. A class and the independent states of its instances {.caption}
 #include <cassert>
 #include <print>
 #include <stdexcept>
+
 class BankAccount {
     int balance_;
 public:
     static constexpr int limit = 1'000'000;
+
     explicit BankAccount(int value) : balance_(value) {
         if (value < 0 || value > limit)
             throw std::invalid_argument("balance");
     }
+
     int balance() const { return balance_; }
+
     void deposit(int value) {
         if (value <= 0 || value > limit - balance_)
             throw std::invalid_argument("deposit");
         balance_ += value;
     }
+
     void withdraw(int value) {
         if (value <= 0 || value > balance_)
             throw std::invalid_argument("withdraw");
         balance_ -= value;
     }
 };
+
 int main() {
     BankAccount account{100};
     account.deposit(50);
@@ -149,21 +155,26 @@ Figure 7.3. The order of construction and destruction in a composition {.caption
 #include <cassert>
 #include <print>
 #include <stdexcept>
+
 class ClockTime {
     int minutes_;
 public:
     ClockTime() : ClockTime(0) {}
+
     explicit ClockTime(int total) : minutes_(total % 1440) {
         if (total < 0) throw std::invalid_argument("time");
     }
+
     ClockTime(int hour, int minute) : ClockTime(0) {
         if (hour < 0 || hour > 23 || minute < 0 || minute > 59)
             throw std::invalid_argument("clock fields");
         minutes_ = hour * 60 + minute;
     }
+
     int hour() const { return minutes_ / 60; }
     int minute() const { return minutes_ % 60; }
 };
+
 int main() {
     const ClockTime t{1501};
     std::println("{:02}:{:02}", t.hour(), t.minute());

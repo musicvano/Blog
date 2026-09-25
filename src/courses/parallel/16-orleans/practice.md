@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 16. Actors and Microsoft Orleans: worked examples"
 outline: [2, 3]
-sourceHash: "cb8af86f4316fc9213add38dea721cb36bc49576fbaf0e48c4a85ff6cdc48bdd"
+sourceHash: "859b86d370c6b5e7eecf0540cd8a6a5f27620a5439840a3f1b6b6cb4ccb8f7ca"
 ---
 
 # Practice
@@ -464,7 +464,7 @@ IGrainFactory grains =
 ResiliencePipeline weather = host.Services
     .GetRequiredService<ResiliencePipelineProvider<string>>()
     .GetPipeline("weather");
-IWeatherGrain kyiv = grains.GetGrain<IWeatherGrain>("Kyiv");
+IWeatherGrain london = grains.GetGrain<IWeatherGrain>("London");
 clock.Start();
 
 // Script: normal → "hanging" → errors → recovery.
@@ -478,13 +478,13 @@ while (clock.Elapsed.TotalSeconds < 10)
     if (step < script.Length
         && clock.Elapsed.TotalSeconds >= script[step].At)
     {
-        await kyiv.SetMode(script[step].Mode);
+        await london.SetMode(script[step].Mode);
         Log($"weather service: {script[step++].Mode}");
     }
     try
     {
         double t = await weather.ExecuteAsync(async token =>
-            await kyiv.GetTemperature().WaitAsync(token));
+            await london.GetTemperature().WaitAsync(token));
         Log($"OK {t:F1} °C");
     }
     catch (Exception ex)

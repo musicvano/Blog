@@ -2,7 +2,7 @@
 title: "Tasks"
 description: "Topic 7. SIMD vectorization: task variants"
 outline: [2, 3]
-sourceHash: "ceb51375d679834e87be384fbed27aa43ce7e59af8c1d3266d3ada572e655741"
+sourceHash: "4027cf654196b06aff647b57662c6c69b54d1c9bedd34d56ed0f838f7d62f8aa"
 ---
 
 # Tasks
@@ -205,9 +205,9 @@ Complete the task of the chosen difficulty level for your variant number.
 
 ### Variant 25. GPS coordinates {#v25}
 
-**1. Initial level.** Create a console program that generates 5,000,000 GPS points in Ukraine and computes the distance from each to Kryvyi Rih (47.91° N, 33.39° E) by the haversine formula in scalar and vector code (`Vector256<double>`, `Vector256.Sin`, `Vector256.Cos`), printing the average distance and the time.
+**1. Initial level.** Create a console program that generates 5,000,000 GPS points in Europe and computes the distance from each to Brussels (50.85° N, 4.35° E) by the haversine formula in scalar and vector code (`Vector256<double>`, `Vector256.Sin`, `Vector256.Cos`), printing the average distance and the time.
 
-**2. Basic level.** Create a console program that generates 5,000,000 GPS points in Ukraine, prompts for the center coordinates and a radius, validates the input, and counts the points within the radius by the haversine formula in vector code in `float` and in `double`, printing the number of points, the maximum difference between the `float` and `double` distances in meters, and the time of both variants.
+**2. Basic level.** Create a console program that generates 5,000,000 GPS points in Europe, prompts for the center coordinates and a radius, validates the input, and counts the points within the radius by the haversine formula in vector code in `float` and in `double`, printing the number of points, the maximum difference between the `float` and `double` distances in meters, and the time of both variants.
 
 **3. Advanced level.** Create a `geo` console application that reads a GPS track from a CSV file (time, latitude, longitude) and accepts the options `--precision float|double`, `--output`, `--stop-speed`, and `--help`. The program computes, in vector code, the distances between neighboring points, the total length of the track, the speeds, and the stops, and prints a report and a comparison of `float`/`double` errors; invalid coordinates produce a message with the line number in the error stream and exit code 2.
 

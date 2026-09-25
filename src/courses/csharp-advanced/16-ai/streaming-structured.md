@@ -2,7 +2,7 @@
 title: "Streaming and structured responses"
 description: "Topic 16. AI in .NET: Streaming and structured responses"
 outline: [2, 3]
-sourceHash: "58b4e8d5a5dbb62e1f9ea2d6a4435e957411f22d5efddc383a03efe06b1e09f6"
+sourceHash: "2293a9df27889e1bd3d53206f4a06e90f806ae09227f7a075860a34c375b6c97"
 ---
 
 # Streaming and structured responses
@@ -137,9 +137,9 @@ IChatClient client = new OllamaApiClient(
 string[] ads =
 [
     "Selling a Trek Marlin 5 bike, size M frame, good condition. " +
-        "4,500 UAH, negotiable. Kyiv, Obolon.",
-    "Renting out a one-bedroom apartment near Kholodna Hora metro, " +
-        "Kharkiv. 9000 per month + utilities.",
+        "4,500 UAH, negotiable. London, Camden.",
+    "Renting out a one-bedroom apartment near Retiro metro, " +
+        "Madrid. 9000 per month + utilities.",
     "Urgent!!! Call now!!!"
 ];
 
@@ -202,7 +202,7 @@ The `Category` enumeration ends up in the schema as a set of allowed strings, so
 
 ```
 Category  Title                         Price  City
-Sale      Trek Marlin 5 bicycle         4,500  Kyiv
-Rent      One-bedroom apartment         9,000  Kharkiv
+Sale      Trek Marlin 5 bicycle         4,500  London
+Rent      One-bedroom apartment         9,000  Madrid
 Skipped "Urgent!!! Call now!!!": no title
 ```

@@ -2,7 +2,7 @@
 title: Practice
 description: "Topic 7. Classes and Objects: worked examples"
 outline: [2, 3]
-sourceHash: "cf6911b5a43b61e621fc6d4d901a571065123b047f06dbbaf1019d17d0a7e087"
+sourceHash: "84671cc71067dd08d51399bd12c8bf2822025b19c4ac457442b5575c1a84316d"
 ---
 
 # Practice
@@ -20,6 +20,7 @@ user input. Invalid arguments are handled with explicit exceptions.
 #include <chrono>
 #include <print>
 #include <stdexcept>
+
 class Stopwatch {
     using Clock = std::chrono::steady_clock;
     Clock::time_point start_{};
@@ -30,6 +31,7 @@ public:
         start_ = Clock::now();
         running_ = true;
     }
+
     double stop() {
         if (!running_) throw std::logic_error("not running");
         const auto end = Clock::now();
@@ -37,6 +39,7 @@ public:
         return std::chrono::duration<double>(end - start_).count();
     }
 };
+
 int main() {
     Stopwatch timer;
     try { timer.stop(); assert(false); }
@@ -68,6 +71,7 @@ Non-negative duration: true
 #include <limits>
 #include <print>
 #include <stdexcept>
+
 class Thermostat {
 public:
     enum class Mode { off, heat };
@@ -80,13 +84,16 @@ public:
             throw std::invalid_argument("temperature");
         target_ = value;
     }
+
     void mode(Mode value) { mode_ = value; }
+
     bool heating(double room) const {
         if (!std::isfinite(room))
             throw std::invalid_argument("room");
         return mode_ == Mode::heat && room < target_;
     }
 };
+
 int main() {
     Thermostat t;
     assert(!t.heating(10));
@@ -122,15 +129,19 @@ Heating at 4: true
 #include <stdexcept>
 #include <string>
 #include <vector>
+
 struct Car { std::string plate; };
+
 class Parking {
     std::vector<Car> cars_;
     std::size_t capacity_;
 public:
     explicit Parking(std::size_t cap) : capacity_(cap) {}
+
     static bool valid(const std::string& plate) {
         return !plate.empty() && plate.size() <= 12;
     }
+
     void enter(const std::string& plate) {
         if (!valid(plate)) throw std::invalid_argument("plate");
         for (const auto& car : cars_)
@@ -139,13 +150,16 @@ public:
             throw std::logic_error("full");
         cars_.push_back(Car{plate});
     }
+
     void leave(const std::string& plate) {
         for (auto it = cars_.begin(); it != cars_.end(); ++it)
             if (it->plate == plate) { cars_.erase(it); return; }
         throw std::logic_error("missing");
     }
+
     std::size_t size() const { return cars_.size(); }
 };
+
 int main() {
     Parking p{1};
     p.enter("TEST01");

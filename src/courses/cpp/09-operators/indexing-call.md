@@ -2,7 +2,7 @@
 title: "Indexing, calls and increment"
 description: "Topic 9. Operator Overloading: Indexing, Calls and Increment"
 outline: [2, 3]
-sourceHash: "acd3ee416723ce7f98464274506147075adaa474a7a905b54f626fc2f7bb4693"
+sourceHash: "502490c5c068b3d16823b8ae4c470ccf3fb72b3d6fcd2492056a817918d67245"
 ---
 
 # Indexing, calls and increment
@@ -50,22 +50,27 @@ Figure 9.5. Explicit access permission for a friend function {.caption}
 #include <cassert>
 #include <print>
 #include <stdexcept>
+
 class Vec3 {
     std::array<double, 3> data_;
 public:
     Vec3(double x, double y, double z) : data_{x, y, z} {}
     double& operator[](std::size_t i) { return data_.at(i); }
+
     const double& operator[](std::size_t i) const {
         return data_.at(i);
     }
+
     Vec3 operator-() const {
         return {-data_[0], -data_[1], -data_[2]};
     }
+
     double dot(const Vec3& x) const {
         return data_[0] * x[0] + data_[1] * x[1] +
             data_[2] * x[2];
     }
 };
+
 int main() {
     Vec3 a{1, 2, 3};
     const Vec3 b{-1, 0, 2};
@@ -118,21 +123,26 @@ constructed objects of the class are already required to be valid.
 #include <limits>
 #include <print>
 #include <stdexcept>
+
 class Counter {
     int value_;
 public:
     explicit Counter(int n) : value_(n) {}
     int value() const { return value_; }
+
     Counter& operator++() {
         if (value_ == std::numeric_limits<int>::max())
             throw std::overflow_error("counter");
         ++value_; return *this;
     }
+
     Counter operator++(int) {
         Counter old = *this; ++*this; return old;
     }
+
     int operator()() { return (*this)++.value(); }
 };
+
 int main() {
     Counter c{10};
     assert(c() == 10);

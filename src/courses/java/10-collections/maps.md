@@ -2,7 +2,7 @@
 title: "Maps and hashing"
 description: "Topic 10. Collections: Maps and hashing"
 outline: [2, 3]
-sourceHash: "81a9414df8521ef8de87802e35fd72dbee49acac3ef5e0ecc74d7b1805f224f3"
+sourceHash: "b93ec7e5b4324e493b3aba05f8fd934c6af8fe5576628bcb1e39e272a5808a17"
 ---
 
 # Maps and hashing
@@ -48,6 +48,7 @@ public class Main {
                 counts.merge(word, 1, Integer::sum);
             }
         }
+
         Map<String, Integer> ordered = new TreeMap<>(counts);
         int total = 0;
         for (Map.Entry<String, Integer> entry : ordered.entrySet()) {

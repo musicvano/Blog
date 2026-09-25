@@ -56,6 +56,7 @@ long Fib(int n)
     #pragma omp taskwait                   // чекати на обидві задачі
     return a + b;
 }
+
 // Виклик:
 #pragma omp parallel
 #pragma omp single

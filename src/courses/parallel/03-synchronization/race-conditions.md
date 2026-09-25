@@ -2,7 +2,7 @@
 title: "Race conditions and mutual exclusion"
 description: "Topic 3. Thread synchronization: Race conditions and mutual exclusion"
 outline: [2, 3]
-sourceHash: "4cb6c44bb6ded8bcd74698bc0d115aa7bb0a57e0cf3da0706aa22b89bafb3a08"
+sourceHash: "cb865aa54345cb4f6d68e2212f287b0d152badc31ecf5f6d3a5cd98853086f7a"
 ---
 
 # Race conditions and mutual exclusion
@@ -93,7 +93,11 @@ flowchart TB
 
 Figure 3.2. A critical section and mutual exclusion {.caption}
 
-Whether synchronization is needed at all can be checked using **Bernstein’s conditions**. Suppose fragment $P_{1}$ reads a set of variables $R_{1}$ and writes a set $W_{1}$, while fragment $P_{2}$ reads $R_{2}$ and writes $W_{2}$. The fragments can execute in parallel without synchronization if $$W_{1} \cap W_{2} = \varnothing , \quad R_{1} \cap W_{2} = \varnothing , \quad W_{1} \cap R_{2} = \varnothing .$$
+Whether synchronization is needed at all can be checked using **Bernstein’s conditions**. Suppose fragment $P_{1}$ reads a set of variables $R_{1}$ and writes a set $W_{1}$, while fragment $P_{2}$ reads $R_{2}$ and writes $W_{2}$. The fragments can execute in parallel without synchronization if
+
+$$
+W_{1} \cap W_{2} = \varnothing , \quad R_{1} \cap W_{2} = \varnothing , \quad W_{1} \cap R_{2} = \varnothing .
+$$
 
 For example, `a[i] = b[i] * 2` for different values of `i` satisfies the conditions: each iteration writes to its own element. The fragments `sum += a[i]` violate the first condition (both write to `sum`), so they require synchronization or restructuring: each thread calculates a local sum, and the results are added at the end.
 

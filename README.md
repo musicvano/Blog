@@ -64,7 +64,7 @@ Source files for the logo and avatar are kept in `art/`, outside the published s
 
 ## Languages
 
-The site has two [locales](https://vitepress.dev/guide/i18n): English at `/` and Ukrainian at `/uk/` (settings and UI strings in `.vitepress/locales/uk.mts`). The language switcher (the `i18nRouting` function in `.vitepress/config.mts`) opens the same page in the other language for the home page, About, the course catalogue and courses that exist in both languages, and the other locale's home page otherwise.
+The site has two [locales](https://vitepress.dev/guide/i18n): English at `/` and Ukrainian at `/uk/` (settings and UI strings in `.vitepress/locales/uk.mts`). The language switcher (the `i18nRouting` function in `.vitepress/config.mts`) opens the same page in the other language for the home page, About, the course catalogue, the blog and courses that exist in both languages, and the other locale's home page otherwise.
 
 ## Courses
 
@@ -72,7 +72,7 @@ Courses are in Ukrainian, under `src/uk/courses/<course>/`. Each course is organ
 
 ```
 src/uk/courses/cpp/
-├── index.md              course overview and program
+├── index.md              course introduction: overview, program, and ../_shared/introduction.md (included)
 ├── questions.md          review questions («Контрольні питання»)
 ├── exam.md               review tasks («Контрольні завдання»)
 ├── literature.md         recommended reading (one alphabetical list)

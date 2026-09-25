@@ -2,7 +2,7 @@
 title: Practice
 description: "Topic 9. Operator Overloading: worked examples"
 outline: [2, 3]
-sourceHash: "5c6cbeced4716e40845555572c5397e3abe4311d120b1588b04bb46c659b4af0"
+sourceHash: "baf951cfc6576ff5337b58e3fcf64fd5c58e74eb6f5fbde3813c1b7351c460da"
 ---
 
 # Practice
@@ -21,27 +21,34 @@ of user input. Invalid arguments are handled with explicit exceptions.
 #include <iostream>
 #include <sstream>
 #include <stdexcept>
+
 class Complex {
     double re_, im_;
 public:
     Complex(double re = 0, double im = 0) : re_(re), im_(im) {}
+
     friend Complex operator+(Complex a, Complex b) {
         return {a.re_ + b.re_, a.im_ + b.im_};
     }
+
     friend Complex operator*(Complex a, Complex b) {
         return {a.re_ * b.re_ - a.im_ * b.im_,
                 a.re_ * b.im_ + a.im_ * b.re_};
     }
+
     friend Complex operator-(Complex a, Complex b) {
         return {a.re_ - b.re_, a.im_ - b.im_};
     }
+
     friend Complex operator/(Complex a, Complex b) {
         const double norm = b.re_ * b.re_ + b.im_ * b.im_;
         if (norm == 0) throw std::invalid_argument("zero divisor");
         return {(a.re_ * b.re_ + a.im_ * b.im_) / norm,
                 (a.im_ * b.re_ - a.re_ * b.im_) / norm};
     }
+
     bool operator==(const Complex&) const = default;
+
     friend std::istream& operator>>(std::istream& in, Complex& x) {
         double re = 0, im = 0;
         if (in >> re >> im) {
@@ -51,10 +58,12 @@ public:
         }
         return in;
     }
+
     friend std::ostream& operator<<(std::ostream& out, Complex x) {
         return out << '(' << x.re_ << ", " << x.im_ << ')';
     }
 };
+
 int main() {
     Complex a{1, 2}, b{3, -1};
     assert((a + b == Complex{4, 1}));
@@ -88,6 +97,7 @@ Output:
 #include <compare>
 #include <print>
 #include <stdexcept>
+
 class Version {
     int major_, minor_, patch_;
 public:
@@ -95,8 +105,10 @@ public:
         if (a < 0 || b < 0 || c < 0)
             throw std::invalid_argument("version");
     }
+
     auto operator<=>(const Version&) const = default;
 };
+
 int main() {
     const Version a{1, 9, 8}, b{2, 0, 0};
     assert(a < b && b > a);
@@ -125,8 +137,10 @@ Output:
 #include <cassert>
 #include <print>
 #include <stdexcept>
+
 class Matrix3 {
     std::array<double, 9> data_{};
+
     static std::size_t index(std::size_t r, std::size_t c) {
         if (r >= 3 || c >= 3) throw std::out_of_range("matrix");
         return r * 3 + c;
@@ -135,13 +149,16 @@ public:
     double& operator[](std::size_t r, std::size_t c) {
         return data_[index(r, c)];
     }
+
     double operator[](std::size_t r, std::size_t c) const {
         return data_[index(r, c)];
     }
+
     explicit operator bool() const {
         for (double x : data_) if (x != 0) return true;
         return false;
     }
+
     friend Matrix3 operator*(const Matrix3& a, const Matrix3& b) {
         Matrix3 result;
         for (std::size_t r = 0; r < 3; ++r)
@@ -151,6 +168,7 @@ public:
         return result;
     }
 };
+
 int main() {
     Matrix3 a, identity;
     assert(!a);

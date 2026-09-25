@@ -4,7 +4,7 @@ import type { Course } from "../sidebar.mts";
 
 export default {
   slug: "java",
-  title: "Java OOP",
+  title: "Object-oriented programming in Java",
   modules: [
     {
       title: "Java language fundamentals",

@@ -60,23 +60,28 @@ Shape має лише Circle і Rectangle. Кожний запис переві�
 
 ```java
 sealed interface Shape permits Circle, Rectangle { }
+
 record Circle(double radius) implements Shape {
     Circle { Dimensions.check(radius); }
 }
+
 record Rectangle(double width, double height) implements Shape {
     Rectangle {
         Dimensions.check(width);
         Dimensions.check(height);
     }
 }
+
 final class Dimensions {
     private Dimensions() { }
+
     static void check(double value) {
         if (!Double.isFinite(value) || value <= 0 || value > 10_000) {
             throw new IllegalArgumentException("Invalid dimension");
         }
     }
 }
+
 public class Main {
     static double area(Shape shape) {
         return switch (shape) {
@@ -86,6 +91,7 @@ public class Main {
             case Rectangle(double w, double h) -> w * h;
         };
     }
+
     static String kind(Shape shape) {
         return switch (shape) {
             case null -> "absent";
@@ -94,6 +100,7 @@ public class Main {
             case Rectangle _ -> "rectangle";
         };
     }
+
     public static void main(String[] args) {
         Shape[] shapes = {new Circle(0.5), new Rectangle(3, 4)};
         for (Shape shape : shapes) {

@@ -2,7 +2,7 @@
 title: "Logging"
 description: "Topic 6. DI, configuration, logging: Logging"
 outline: [2, 3]
-sourceHash: "f9e12ede4ed80c968c759bcb7cc19793fdfbca8b54b117d706debef4fdf096e8"
+sourceHash: "fe1342632048ccfca07d2f28e5300d8a16eaa7bf010cde0df13f3fd3fd473be3"
 ---
 
 # Logging
@@ -247,7 +247,7 @@ public partial class WeatherWorker(
 }
 ```
 
-The `appsettings.json` file contains a `Weather` section with the options (the city "Kryvyi Rih", an interval of 2 s, a threshold of 30 °C) and the `Logging` section shown in "Filters in configuration".
+The `appsettings.json` file contains a `Weather` section with the options (the city "Madrid", an interval of 2 s, a threshold of 30 °C) and the `Logging` section shown in "Filters in configuration".
 
 When the user presses **Ctrl+C**, `Task.Delay` receives the canceled token and ends the loop with an `OperationCanceledException`, which the host expects. Then the host calls `StopAsync`. The result (long lines of the `Microsoft.Hosting.Lifetime` category are wrapped, the path is shortened; see also Fig. 6.9):
 
@@ -256,14 +256,14 @@ info: Microsoft.Hosting.Lifetime[0]
       Application started. Press Ctrl+C to shut down.
 info: Microsoft.Hosting.Lifetime[0] Hosting environment: Production
 info: Microsoft.Hosting.Lifetime[0] Content root path: D:\Courses\OOP C#\Code\Lec06\…
-info: WeatherWorker[1] Monitoring Kryvyi Rih every 2 s
-info: WeatherWorker[2] Kryvyi Rih: 25.6 °C
-info: WeatherWorker[2] Kryvyi Rih: 26.8 °C
-warn: WeatherWorker[3] Kryvyi Rih: heat 33.2 °C (threshold 30 °C)
-warn: WeatherWorker[3] Kryvyi Rih: heat 33.9 °C (threshold 30 °C)
-fail: WeatherWorker[4] Kryvyi Rih: sensor error – no response
-warn: WeatherWorker[3] Kryvyi Rih: heat 33.2 °C (threshold 30 °C)
-info: WeatherWorker[2] Kryvyi Rih: 24.8 °C
+info: WeatherWorker[1] Monitoring Madrid every 2 s
+info: WeatherWorker[2] Madrid: 25.6 °C
+info: WeatherWorker[2] Madrid: 26.8 °C
+warn: WeatherWorker[3] Madrid: heat 33.2 °C (threshold 30 °C)
+warn: WeatherWorker[3] Madrid: heat 33.9 °C (threshold 30 °C)
+fail: WeatherWorker[4] Madrid: sensor error – no response
+warn: WeatherWorker[3] Madrid: heat 33.2 °C (threshold 30 °C)
+info: WeatherWorker[2] Madrid: 24.8 °C
 info: Microsoft.Hosting.Lifetime[0] Application is shutting down...
 info: WeatherWorker[5] Monitoring stopped, readings: 6
 ```

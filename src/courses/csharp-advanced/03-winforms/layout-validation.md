@@ -2,7 +2,7 @@
 title: "Layout and input validation"
 description: "Topic 3. Windows Forms fundamentals: Layout and input validation"
 outline: [2, 3]
-sourceHash: "36f9e14eccb9a7d51e8493e53234740287a146f74646db31f486ace5c58385ec"
+sourceHash: "b2bf4812cab2395b66866079cd9f0d433ff834406bba5214a5681faffa06eaff"
 ---
 
 # Layout and input validation
@@ -68,6 +68,7 @@ public LayoutForm()
             AutoSize = true,
             Anchor = AnchorStyles.Left   // vertically centered in the row
         });
+
         table.Controls.Add(control);
     }
 }

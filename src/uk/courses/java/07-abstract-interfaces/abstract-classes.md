@@ -45,19 +45,24 @@ import java.util.Arrays;
 
 abstract class Report {
     private final String title;
+
     Report(String title) {
         if (title == null || title.isBlank()) {
             throw new IllegalArgumentException("Empty title");
         }
         this.title = title.strip();
     }
+
     protected abstract String body();
+
     public final String render() {
         return "[" + title + "]\n" + body() + "\nEND";
     }
 }
+
 final class ScoreReport extends Report {
     private final int[] scores;
+
     ScoreReport(String title, int[] scores) {
         super(title);
         if (scores == null || scores.length == 0
@@ -71,6 +76,7 @@ final class ScoreReport extends Report {
             }
         }
     }
+
     @Override
     protected String body() {
         int total = 0;
@@ -78,6 +84,7 @@ final class ScoreReport extends Report {
         return Arrays.toString(scores) + "\nTotal: " + total;
     }
 }
+
 public class Main {
     public static void main(String[] args) {
         int[] source = {80, 90, 100};

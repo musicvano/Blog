@@ -2,7 +2,7 @@
 title: "DAO, DataSource, and testing"
 description: "Topic 14. Databases and JDBC: DAO, DataSource, and testing"
 outline: [2, 3]
-sourceHash: "1d76fcc7d3a140054b09b51c4c1d557407c96b8d551e5f9ea99e4d241607d540"
+sourceHash: "5318d00c97c3c2d4edef7fb33e5c1e9eb564c95926a2eb17dcb8a1c49dbcaf68"
 ---
 
 # DAO, DataSource, and testing
@@ -39,6 +39,7 @@ public final class ReadersMain {
 
     static final class JdbcReaders implements ReaderDao {
         private final Connection connection;
+
         JdbcReaders(Connection connection) {
             this.connection = connection;
         }
@@ -127,8 +128,6 @@ Run integration tests in your own training database or in a unique schema. Test 
 
 For a transfer, test that the sum of the two balances is preserved, an insufficient balance, an artificial failure after the debit, and two concurrent requests. A test on SQLite or H2 does not prove the correctness of PostgreSQL locking, so the course's main transactional scenarios are run on PostgreSQL itself.
 
-::: info Screenshot
-Run isolated CRUD/transaction demos; show rows before and after failure.
-:::
+![The domain result and confirmation of the rollback](./images/12-idea-run-crud-output.png)
 
 Figure 14.12. The domain result and confirmation of the rollback {.caption}

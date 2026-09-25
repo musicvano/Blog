@@ -1,10 +1,10 @@
 ---
-title: "C# and .NET programming technologies"
+title: "Object-oriented programming in C# II"
 description: "This course is the second part of Object-Oriented Programming and covers application development in C# on the .NET platform: Windows Forms and Windows Presentation Foundation desktop applications, database applications (ADO.NET, Entity Framework Core), network applications, ASP.NET Core and SignalR web services, cross-platform .NET MAUI applications, and applications that integrate artificial intelligence models. Students also learn Git version control, regular expressions, asynchronous programming, and dependency injection."
-sourceHash: "593cca649ef0dccfa2575e45c3c2b4d115a6deff62a7bec4847fdc9f7f7f181a"
+sourceHash: "78d03ba6bf4fa70d39b798c4f8f3a4710b34fefb10ea15d95b2425d72033c26c"
 ---
 
-# C# and .NET programming technologies
+# Object-oriented programming in C# II
 
 You will gain the .NET development skills used in real projects: from desktop and mobile applications to web services and databases. Each topic ends with a working application of your own, so by the end of the course you will have a project portfolio and experience combining a user interface, data, networking, and artificial intelligence in one solution.
 
@@ -37,12 +37,23 @@ This course is the second part of Object-Oriented Programming and covers applica
 15. [Cross-platform application development with .NET MAUI: XAML, navigation, data binding, and device services](./15-maui/)
 16. [Integrating artificial intelligence models into .NET applications (Microsoft.Extensions.AI)](./16-ai/)
 
-## How to work through a topic
+## Required software {#software}
 
-1. Read the lecture sections in order and run the examples in Visual Studio 2026.
-2. Study the examples on the **Practice** page: first try to solve each problem yourself.
-3. Select your variant on the **Tasks** page and a difficulty level: initial, basic, or advanced.
-4. Test yourself with the questions on the **Summary** page.
+| Software | Purpose | Topic |
+| --- | --- | :-: |
+| The environment of the “Object-oriented programming in C# I” course: Visual Studio 2026 with *.NET desktop development* and the .NET 10 SDK | Development environment | 1 |
+| [Git for Windows](https://git-scm.com/install/windows) | Version control | 1 |
+| xUnit v3 templates (`dotnet new install xunit.v3.templates`) | Unit tests | 2 |
+| [PostgreSQL 18](https://www.postgresql.org/download/windows/) (server, psql, pgAdmin 4) | Database management system | 7 |
+| [JetBrains DataGrip](https://www.jetbrains.com/datagrip/) | Working with the database and SQL queries | 7 |
+| The `dotnet-ef` tool (`dotnet tool install --global dotnet-ef`) | Entity Framework Core migrations | 8 |
+| The Visual Studio *ASP.NET and web development* workload | ASP.NET Core web services | 10 |
+| The Visual Studio *.NET Multi-platform App UI development* workload (Android SDK and emulator) | .NET MAUI apps; needs hardware virtualization or an Android phone | 15 |
+| [Ollama](https://ollama.com/download/windows) with local models | Local AI models | 16 |
+
+NuGet libraries (Npgsql, Entity Framework Core, SignalR, CommunityToolkit and others) are added to projects in the corresponding topics.
+
+<!--@include: ../_shared/introduction.md-->
 
 ## Course materials
 

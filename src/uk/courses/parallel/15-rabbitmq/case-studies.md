@@ -381,6 +381,7 @@ static long Rejections(IReadOnlyBasicProperties props, string queue)
             return (long)death["count"]!;
         }
     }
+
     return 0;
 }
 

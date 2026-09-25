@@ -23,9 +23,7 @@ flowchart TD
 
 Bridge-методи підтримують поліморфне перевизначення після стирання. Наприклад, клас із `Comparable<Student>` реалізує `compareTo(Student)`, а компілятор може додати міст `compareTo(Object)`, який виконує приведення й викликає типізований метод. Це деталь згенерованого коду, яку не потрібно вручну дублювати у звичайному класі.
 
-::: info Знімок екрана
-Terminal: javac -encoding UTF-8 Main.java; javap -c -p Main and generic nested class; show checkcast and erased Object signatures.
-:::
+![Javap показує стерті сигнатури та вставлені приведення.](./images/05-terminal-javap-erasure.png)
 
 Рис. 9.5. Javap показує стерті сигнатури та вставлені приведення. {.caption}
 

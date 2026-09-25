@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 13. NumPy, pandas, Matplotlib: worked examples"
 outline: [2, 3]
-sourceHash: "d3fb869764052649b85072fa0f576117e8484f62b6fa8db62c1d9e7fdb43f290"
+sourceHash: "22ff3afd83983fbc66c1e6e39c0ef2cc66fdf84818dfc404c3a2e7861f2fe774"
 ---
 
 # Practice
@@ -14,6 +14,7 @@ Readings at three reference temperatures are given for three sensors. Find each 
 ```py
 import numpy as np
 from numpy.typing import NDArray
+
 
 def errors(data: NDArray[np.float64],
            reference: NDArray[np.float64]) -> NDArray[np.float64]:
@@ -27,12 +28,14 @@ def errors(data: NDArray[np.float64],
         raise ValueError("Invalid reference value")
     return data - reference[:, None]
 
+
 def main() -> None:
     data = np.array([[1., -1., 0.], [11., 9., 10.],
                      [21., 19., 20.]])
     delta = errors(data, np.array([0., 10., 20.]))
     print("Mean errors:", delta.mean(axis=0).tolist())
     print(f"Largest deviation: {np.abs(delta).max():.1f}")
+
 
 if __name__ == "__main__":
     main()
@@ -55,6 +58,7 @@ Each CSV row describes one day for a group: `group,present,total`. The group is 
 from io import StringIO
 import pandas as pd
 
+
 def attendance(source: str) -> pd.DataFrame:
     frame = pd.read_csv(StringIO(source), dtype="string")
     required = {"group", "present", "total"}
@@ -75,10 +79,12 @@ def attendance(source: str) -> pd.DataFrame:
     report["share"] = report["present"] / report["total"]
     return report
 
+
 def main() -> None:
     source = "group,present,total\nA,18,20\nA,8,10\nB,9,10\n"
     for row in attendance(source).itertuples(index=False):
         print(f"{row.group}: {row.share:.1%}")
+
 
 if __name__ == "__main__":
     main()
@@ -101,6 +107,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from numpy.typing import NDArray
 
+
 def read_values(path: Path) -> NDArray[np.float64]:
     frame = pd.read_csv(path)
     if "value" not in frame or not 1 <= len(frame) <= 10000:
@@ -110,6 +117,7 @@ def read_values(path: Path) -> NDArray[np.float64]:
     if not np.isfinite(data).all() or (np.abs(data) > 1e6).any():
         raise ValueError("Invalid values")
     return data
+
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="Experiment report")
@@ -136,6 +144,7 @@ def main() -> int:
     print(f"Plot: {args.plot.name}")
     return 0
 
+
 if __name__ == "__main__":
     raise SystemExit(main())
 ```
@@ -150,10 +159,12 @@ import pytest
 from pathlib import Path
 from experiment import read_values
 
+
 def test_three_values(tmp_path: Path) -> None:
     source = tmp_path / "values.csv"
     source.write_text("value\n1\n2\n3\n", encoding="utf-8")
     np.testing.assert_allclose(read_values(source), [1, 2, 3])
+
 
 @pytest.mark.parametrize("text", ["value\n", "value\ninf\n",
                                  "other\n1\n", "value\nbad\n"])

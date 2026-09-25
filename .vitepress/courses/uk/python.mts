@@ -2,7 +2,7 @@ import type { Course } from "../sidebar.mts";
 
 export default {
   slug: "python",
-  title: "ООП мовою Python",
+  title: "Об’єктно-орієнтоване програмування Python",
   modules: [
     {
       title: "Основи мови Python",

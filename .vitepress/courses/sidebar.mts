@@ -17,7 +17,7 @@ export interface Module {
 
 export interface Course {
   slug: string; // e.g. "cpp"
-  title: string; // e.g. "ООП мовою C++"
+  title: string; // e.g. "Об’єктно-орієнтоване програмування C++"
   modules: Module[];
 }
 
@@ -32,7 +32,7 @@ export const coursesBase = coursesBases.uk;
 
 const labels = {
   uk: {
-    about: "Про курс",
+    about: "Вступ",
     practice: "Практика",
     tasks: "Завдання",
     summary: "Підсумки",
@@ -43,7 +43,7 @@ const labels = {
     links: "Корисні посилання",
   },
   en: {
-    about: "About the course",
+    about: "Introduction",
     practice: "Practice",
     tasks: "Tasks",
     summary: "Summary",

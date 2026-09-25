@@ -50,6 +50,7 @@ class Shape {
 
 final class Circle extends Shape {
     private final double radius;
+
     Circle(double radius) {
         if (!Double.isFinite(radius) || radius <= 0
                 || radius > 10_000) {
@@ -57,6 +58,7 @@ final class Circle extends Shape {
         }
         this.radius = radius;
     }
+
     public double radius() { return radius; }
     @Override
     public double area() { return Math.PI * radius * radius; }
@@ -67,6 +69,7 @@ final class Circle extends Shape {
 final class Rectangle extends Shape {
     private final double width;
     private final double height;
+
     Rectangle(double width, double height) {
         if (!Double.isFinite(width) || !Double.isFinite(height)
                 || width <= 0 || height <= 0
@@ -76,6 +79,7 @@ final class Rectangle extends Shape {
         this.width = width;
         this.height = height;
     }
+
     @Override
     public double area() { return width * height; }
 }

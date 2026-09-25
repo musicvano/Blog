@@ -8,21 +8,23 @@ next: false
 
 Courses in object-oriented programming with C++, C#, Java, Kotlin and Python, and in parallel and distributed computing. Every topic consists of a lecture divided into chapters, worked examples, task variants at three levels of difficulty, and review questions.
 
+Choose the course for your subject. The OOP courses start from the basics of the language and need no prior experience with it. “Object-oriented programming in C# II” continues the “Object-oriented programming in C# I” course, and “Parallel and distributed computing” is meant for those who have already completed an object-oriented programming course.
+
 ## Object-Oriented Programming in C++
 
 From the first program in Visual Studio 2026 to classes, templates, containers, ranges and C++26 modules. 16 topics in three modules.
 
 [Go to the course →](/courses/cpp/)
 
-## Object-Oriented Programming in C#
+## Object-Oriented Programming in C# I
 
 From the .NET platform and your first program to classes, interfaces, generics, LINQ, working with files, the SOLID principles and unit testing. 18 topics in three modules.
 
 [Go to the course →](/courses/csharp/)
 
-## C# and .NET Technologies
+## Object-Oriented Programming in C# II
 
-A continuation of the C# course: Git, regular expressions, Windows Forms, async/await, ADO.NET and Entity Framework Core, network applications, REST and SignalR, WPF, .NET MAUI and integrating AI models. 16 topics in three modules.
+A continuation of the C# I course: Git, regular expressions, Windows Forms, async/await, ADO.NET and Entity Framework Core, network applications, REST and SignalR, WPF, .NET MAUI and integrating AI models. 16 topics in three modules.
 
 [Go to the course →](/courses/csharp-advanced/)
 

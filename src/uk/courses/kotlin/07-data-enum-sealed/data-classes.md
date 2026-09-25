@@ -36,6 +36,7 @@ flowchart TD
 ```kotlin
 data class Book(val title: String, val year: Int) {
     var viewed: Boolean = false
+
     init {
         require(title.isNotBlank())
         require(year in 1450..2100)
@@ -87,25 +88,25 @@ class Address(var city: String)
 data class Customer(val name: String, val address: Address)
 
 fun main() {
-    val original = Customer("Olena", Address("Kyiv"))
+    val original = Customer("Olena", Address("London"))
     val shared = original.copy(name = "Taras")
-    shared.address.city = "Lviv"
+    shared.address.city = "Madrid"
     println(original.address.city)
     println(original.address === shared.address)
     val independent = original.copy(
         address = Address(original.address.city)
     )
-    independent.address.city = "Odesa"
+    independent.address.city = "Paris"
     println(original.address.city)
     println(independent.address.city)
 }
 ```
 
 ```text
-Lviv
+Madrid
 true
-Lviv
-Odesa
+Madrid
+Paris
 ```
 
 Повна глибока копія потребує правил для всього графа об’єктів: що робити зі спільними посиланнями, циклами та ресурсами. Часто простіше зробити вкладені значення незмінними й замінювати їх новими значеннями. Copy тоді зручно виражає зміну стану без неочікуваного впливу на стару версію.

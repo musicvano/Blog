@@ -2,7 +2,7 @@
 title: "Images, sound, and video"
 description: "Topic 14. WPF animation and multimedia: Images, sound, and video"
 outline: [2, 3]
-sourceHash: "7e6e8da95067ce7b85092091f4792759ff892c8202ea7e97e52b1b4dbf30ca53"
+sourceHash: "ec6293e548c8f3a30f187cfd842e144de0aae5bd9d7c129e68efd564a40efd35"
 ---
 
 # Images, sound, and video
@@ -241,8 +241,6 @@ The position slider works in seconds: its maximum is the file duration, and its 
 
 In the `mm\:ss` format string the colon is escaped, because in a custom `TimeSpan` format it is not a separator by default. During testing, two Windows system sounds were added to the list: after `MediaOpened` the slider got a maximum of 1.09 (the duration of the first file), after `MediaEnded` the player moved to the second file by itself (5.57 s), seeking `Position` to 1 s showed "00:01 / 00:05", and *Stop* showed "00:00 / 00:05".
 
-::: info Screenshot
-Running Player with an own recorded video: video frame, playlist on the right with 3 files, position slider, "01:23 / 04:10", volume slider, Pause button
-:::
+![The "Media player" application](./images/04-app-media-player.png)
 
 Fig. 14.9. The "Media player" application {.caption}

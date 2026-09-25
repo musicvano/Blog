@@ -2,7 +2,7 @@
 title: "Copies, wrappers, and choosing a collection"
 description: "Topic 10. Collections: Copies, wrappers, and choosing a collection"
 outline: [2, 3]
-sourceHash: "267e9d8274653bbf244afd7f79753981119d41801a17e65e7eb06b09f4914681"
+sourceHash: "078f645b2d5a972b2e434be4e75a005ca20f04937d0f6d7980a650f9a4d87f3b"
 ---
 
 # Copies, wrappers, and choosing a collection
@@ -37,8 +37,6 @@ Separate tests must distinguish an equal key from an equal value. Two books can 
 | Changing the source | Confusion between a copy and a live view |
 | Operation after removal | An invalid iterator or queue state |
 
-::: info Screenshot
-Pause the frequency example after counts has been filled. Show the keys and values in Variables, the JDK version, and the breakpoint line. Mark the internal fields of HashMap as implementation details.
-:::
+![Inspecting a map in the IntelliJ IDEA debugger](./images/06-idea-debugger-hashmap.png)
 
 Figure 10.7. Inspecting a map in the IntelliJ IDEA debugger {.caption}

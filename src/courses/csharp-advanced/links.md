@@ -1,7 +1,7 @@
 ---
 title: "Useful links"
-description: "C# and .NET programming technologies: documentation, learning resources, and tools"
-sourceHash: "b89f20e9029c9f34456612c56921a18a4d6bcb3459cac0d3a53a35c8b571db6f"
+description: "Object-oriented programming in C# II: documentation, learning resources, and tools"
+sourceHash: "cc129766e672f03a4f6597ea95a484125dec0db11d8bc358fe29aec1a44cbec0"
 ---
 
 # Useful links

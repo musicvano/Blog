@@ -29,9 +29,7 @@ java -ea AssertionDemo
 
 Не ставте важливий побічний ефект у вираз `assert`: без `-ea` він не виконається. Для вимоги до публічного методу використовуйте явний `if` і відповідний виняток. Для повторюваного набору перевірок у темі 13 застосовуватиметься JUnit.
 
-::: info Знімок екрана
-Run configuration VM options -ea, separate from Program arguments.
-:::
+![Опція JVM для перевірок assert](./images/01-enable-assertions.png)
 
 Рис. 4.5. Опція JVM для перевірок assert {.caption}
 
@@ -39,9 +37,7 @@ Run configuration VM options -ea, separate from Program arguments.
 
 Перший рядок трасування містить тип і повідомлення. Далі йдуть кадри викликів, зазвичай від місця помилки до викликача. `Caused by` показує початкову причину, а `Suppressed` – додатковий збій, наприклад закриття. Почніть із першого кадру власного коду, але не ігноруйте вкладену причину.
 
-::: info Знімок екрана
-Temporarily let PaymentException escape from main; show actual Caused by NumberFormatException and own lines.
-:::
+![Власний кадр і початкова причина винятку](./images/02-stack-trace.png)
 
 Рис. 4.6. Власний кадр і початкова причина винятку {.caption}
 
@@ -83,33 +79,25 @@ public class PositiveAverage {
 
 Очікується `15.0`, потім `null`. Перед поверненням для першого набору `sum = 30`, `count = 2`, `values.length = 3`. Неправильний знаменник дає 10, що виглядає звичайним числом. Саме тому потрібен контрольний набір із сумішшю прийнятих і відхилених даних.
 
-::: info Знімок екрана
-Breakpoint before return: sum30,count2,values.length3; show Frames and Variables.
-:::
+![Локальні змінні перед обчисленням середнього](./images/03-debug-average.png)
 
 Рис. 4.7. Локальні змінні перед обчисленням середнього {.caption}
 
 У *Evaluate Expression* порівняйте обидва вирази. Не викликайте там метод, який списує кошти, змінює колекцію чи записує файл: обчислення виразу може мати побічний ефект і змінити досліджуваний стан. Перегляд не завжди є пасивною дією.
 
-::: info Знімок екрана
-Evaluate (double)sum/count and (double)sum/values.length; actual15.0 and10.0.
-:::
+![Порівняння двох знаменників](./images/04-evaluate.png)
 
 Рис. 4.8. Порівняння двох знаменників {.caption}
 
 Умовна точка зупинки корисна для конкретного індексу або значення. Для довгого циклу задайте умову на кшталт `value < 0`, щоб не проходити всі ітерації вручну. Умова повинна бути безпечною і не змінювати стан програми.
 
-::: info Знімок екрана
-Breakpoint condition value less than0 in PositiveAverage loop; show actual popup.
-:::
+![Умовна точка зупинки](./images/05-conditional.png)
 
 Рис. 4.9. Умовна точка зупинки {.caption}
 
 Точка зупинки на винятку може спрацьовувати для перехопленого й неперехопленого винятку. Вона корисна, коли верхній `catch` приховує місце походження помилки. Оберіть потрібний тип, інакше великий застосунок зупинятиметься на кожному внутрішньому винятку бібліотеки.
 
-::: info Знімок екрана
-Java Exception Breakpoints dialog, NumberFormatException, caught and uncaught options.
-:::
+![Зупинка на виникненні NumberFormatException](./images/06-exception-breakpoint.png)
 
 Рис. 4.10. Зупинка на виникненні NumberFormatException {.caption}
 

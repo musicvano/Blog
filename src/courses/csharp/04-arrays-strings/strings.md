@@ -2,7 +2,7 @@
 title: "Strings and formatting"
 description: "Topic 4. Arrays and strings: Strings and formatting"
 outline: [2, 3]
-sourceHash: "2d414334290f0b351f6c63dfe8b67198b52e122657a2924537512f993f4f6f60"
+sourceHash: "10689438775bc51e53f98385a48a8938ccae56252874dd97e1d8fb5c68fb828e"
 ---
 
 # Strings and formatting
@@ -18,15 +18,15 @@ The `string` type (`System.String`) stores text as a sequence of `char` values e
 
 ```mermaid
 flowchart TB
-  subgraph BEFORE ["<code>string s = #quot;Kyi#quot;;</code>"]
+  subgraph BEFORE ["<code>string s = #quot;Pra#quot;;</code>"]
     direction LR
-    S1["<code>s</code>  ●"] --> K1["<code>#quot;Kyi#quot;</code>"]
+    S1["<code>s</code>  ●"] --> K1["<code>#quot;Pra#quot;</code>"]
     N1["the string object<br>does not change"]
   end
-  subgraph AFTER ["<code>s += #quot;v#quot;;</code>"]
+  subgraph AFTER ["<code>s += #quot;gue#quot;;</code>"]
     direction LR
-    S2["<code>s</code>  ●"] --> K2["<code>#quot;Kyiv#quot;</code>"]
-    OLD["<code>#quot;Kyi#quot;</code><br>the old object<br>becomes garbage"]
+    S2["<code>s</code>  ●"] --> K2["<code>#quot;Prague#quot;</code>"]
+    OLD["<code>#quot;Pra#quot;</code><br>the old object<br>becomes garbage"]
   end
   BEFORE ~~~ AFTER
 ```
@@ -61,11 +61,11 @@ The `==` operator and `Equals` method compare strings **character by character, 
 - `CurrentCulture`, `CurrentCultureIgnoreCase` — by the user’s language rules; for sorting and displaying human-readable text.
 
 ```cs
-string city = "Kyiv";
-Console.WriteLine(city == "kyiv");                  // False
-Console.WriteLine(string.Equals(city, "KYIV",
+string city = "London";
+Console.WriteLine(city == "london");                // False
+Console.WriteLine(string.Equals(city, "LONDON",
     StringComparison.OrdinalIgnoreCase));           // True
-Console.WriteLine(city.StartsWith("ky",
+Console.WriteLine(city.StartsWith("lo",
     StringComparison.CurrentCultureIgnoreCase));    // True
 Console.WriteLine(string.Compare("ґанок", "гора",
     StringComparison.CurrentCulture));              // 1
@@ -81,8 +81,8 @@ Table 4.2. Main string methods {.caption}
 
 | **Method** | **Example and result** |
 | --- | --- |
-| `Length` | `"Kyiv".Length` — 4 |
-| `ToUpper`, `ToLower` | `"Kyiv".ToUpper()` — `"KYIV"` |
+| `Length` | `"London".Length` — 6 |
+| `ToUpper`, `ToLower` | `"London".ToUpper()` — `"LONDON"` |
 | `Trim`, `TrimStart`, `TrimEnd` | `" a b ".Trim()` — `"a b"` |
 | `Contains` | `"program".Contains("gram")` — `true` |
 | `StartsWith`, `EndsWith` | `"report.pdf".EndsWith(".pdf")` — `true` |

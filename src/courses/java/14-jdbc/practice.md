@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 14. Databases and JDBC: worked examples"
 outline: [2, 3]
-sourceHash: "7c0442a794c00c28d7d9c264a8e2f84360e08c001eb3c613883796869a4c1a7a"
+sourceHash: "6ee3ab49b92232f8a127226c41be8ec01eb3556106c945f70620ec1bfd24bd01"
 ---
 
 # Practice
@@ -38,6 +38,7 @@ public final class ContactsMain {
                     insert.executeUpdate();
                 }
             }
+
             try (PreparedStatement update =
                     connection.prepareStatement(
                     "UPDATE j14_contacts SET name=? WHERE id=?")) {

@@ -2,7 +2,7 @@
 title: Practice
 description: "Topic 11. Abstract Classes, Interfaces: worked examples"
 outline: [2, 3]
-sourceHash: "60c4a11b5e45863dda5f41a8e706e38bc1b922eb4b9d103f8fcf6064e9cdd8e8"
+sourceHash: "0e655f19b1ae6ddde41858dffb34bd70f3d1274bdc4a888c7688681c2865ca80"
 ---
 
 # Practice
@@ -17,35 +17,43 @@ Each example is a separate program. The `assert` checks run in a build without `
 #include <cassert>
 #include <print>
 #include <stdexcept>
+
 struct Switchable {
     virtual ~Switchable() = default;
     virtual void setOn(bool value) = 0;
 };
+
 struct Dimmable {
     virtual ~Dimmable() = default;
     virtual void brightness(int value) = 0;
 };
+
 struct Schedulable {
     virtual ~Schedulable() = default;
     virtual void schedule(int hour) = 0;
 };
+
 class SmartLamp final : public Switchable, public Dimmable,
                         public Schedulable {
     bool on_ = false;
     int brightness_ = 50, hour_ = 0;
 public:
     void setOn(bool value) override { on_ = value; }
+
     void brightness(int n) override {
         if (n < 0 || n > 100) throw std::invalid_argument("light");
         brightness_ = n;
     }
+
     void schedule(int h) override {
         if (h < 0 || h > 23) throw std::invalid_argument("hour");
         hour_ = h;
     }
+
     int effective() const { return on_ ? brightness_ : 0; }
     int hour() const { return hour_; }
 };
+
 int main() {
     SmartLamp lamp;
     Switchable& power = lamp; power.setOn(true);
@@ -79,15 +87,18 @@ Schedule: 18; light: 0
 #include <print>
 #include <stdexcept>
 #include <vector>
+
 struct Listener {
     virtual ~Listener() = default;
     virtual void update(double value) = 0;
 };
+
 struct Display final : Listener {
     int calls = 0;
     double last = 0;
     void update(double value) override { ++calls; last = value; }
 };
+
 class Station {
     std::vector<Listener*> listeners_;
 public:
@@ -95,15 +106,18 @@ public:
         for (auto* item : listeners_) if (item == &listener) return;
         listeners_.push_back(&listener);
     }
+
     void unsubscribe(Listener& listener) {
         std::erase(listeners_, &listener);
     }
+
     void publish(double value) {
         if (!std::isfinite(value))
             throw std::invalid_argument("measurement");
         for (auto* listener : listeners_) listener->update(value);
     }
 };
+
 int main() {
     Display display;
     Station station;
@@ -138,11 +152,13 @@ Events: 1; last: 21.5
 #include <string>
 #include <utility>
 #include <vector>
+
 struct Command {
     virtual ~Command() = default;
     virtual void execute() = 0;
     virtual void undo() = 0;
 };
+
 class Append final : public Command {
     std::string& text_;
     std::string suffix_;
@@ -150,10 +166,12 @@ public:
     Append(std::string& text, std::string suffix)
         : text_(text), suffix_(std::move(suffix)) {}
     void execute() override { text_ += suffix_; }
+
     void undo() override {
         text_.resize(text_.size() - suffix_.size());
     }
 };
+
 class History {
     std::vector<std::unique_ptr<Command>> done_, undone_;
 public:
@@ -163,6 +181,7 @@ public:
         command->execute();
         undone_.clear(); done_.push_back(std::move(command));
     }
+
     bool undo() {
         if (done_.empty()) return false;
         undone_.reserve(undone_.size() + 1);
@@ -170,6 +189,7 @@ public:
         undone_.push_back(std::move(done_.back())); done_.pop_back();
         return true;
     }
+
     bool redo() {
         if (undone_.empty()) return false;
         done_.reserve(done_.size() + 1);
@@ -179,6 +199,7 @@ public:
         return true;
     }
 };
+
 int main() {
     std::string text;
     History history;

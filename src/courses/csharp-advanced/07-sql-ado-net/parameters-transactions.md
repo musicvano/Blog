@@ -2,7 +2,7 @@
 title: "Parameters, transactions, and DataGridView"
 description: "Topic 7. SQL and ADO.NET: Parameters, transactions, and DataGridView"
 outline: [2, 3]
-sourceHash: "0bb33629671c1a25b63a6f7f68daea10d5dd8a183af23f2f366054d2efc24d60"
+sourceHash: "3b411b55aa8993de1188b8a9ac526fa81fe40b9577fdb40842b6c911dcc651bd"
 ---
 
 # Parameters, transactions, and DataGridView
@@ -68,9 +68,7 @@ Parameterized query:
   rows: 0
 ```
 
-::: info Screenshot
-Windows Terminal running the Injection demo: input ' OR '1'='1, the concatenated query prints all 3 readers, the parameterized query prints rows: 0
-:::
+![SQL injection and a parameterized query](./images/05-terminal-sql-injection.png)
 
 Figure 7.10. SQL injection and a parameterized query {.caption}
 
@@ -161,7 +159,7 @@ If there is no reader with the number `readerId`, the `INSERT` command violates 
 
 ## Disconnected mode and `DataGridView`
 
-The **`DataTable`** class (the `System.Data` namespace) stores a table in memory: the `Columns` and `Rows` collections and the state of each row (`Added`, `Modified`, `Deleted`) (<https://learn.microsoft.com/dotnet/api/system.data.datatable>). An **`NpgsqlDataAdapter`** object executes a `SELECT` command, opens and closes the connection itself, and fills the table with the `Fill` method. The finished table is assigned to the `DataSource` property of a `DataGridView` control (Topic 3), and the grid creates columns from the data names and types itself. The adapter's `Update` method together with `NpgsqlCommandBuilder` can save changed rows back, but applications more often use explicit `INSERT`/`UPDATE` commands with parameters or Entity Framework Core (Topic 8). To simply fill a table without an adapter, there is the `table.Load(reader)` method.
+The **`DataTable`** class (the `System.Data` namespace) stores a table in memory: the `Columns` and `Rows` collections and the state of each row (`Added`, `Modified`, `Deleted`) (<https://learn.microsoft.com/dotnet/api/system.data.datatable>). An **`NpgsqlDataAdapter`** object executes a `SELECT` command, opens and closes the connection itself, and fills the table with the `Fill` method. The adapter's command needs its own closed connection (`dataSource.CreateConnection()`): commands from `dataSource.CreateCommand` give no access to their connection, and `Fill` fails for them with a `NotSupportedException`. The finished table is assigned to the `DataSource` property of a `DataGridView` control (Topic 3), and the grid creates columns from the data names and types itself. The adapter's `Update` method together with `NpgsqlCommandBuilder` can save changed rows back, but applications more often use explicit `INSERT`/`UPDATE` commands with parameters or Entity Framework Core (Topic 8). To simply fill a table without an adapter, there is the `table.Load(reader)` method.
 
 The *Windows Forms App* "Book Browser" application shows books in a grid and searches for them by part of the title. `Program.cs` creates an `NpgsqlDataSource` (the connection string from user secrets, using the `AddUserSecrets(typeof(Program).Assembly)` method because the `Program` class is static) and passes it to the form's constructor. The form creates in code the `searchBox` field, the *Search* button (which is also the `AcceptButton`, so **Enter** starts the search too), the `grid` table with `Dock = DockStyle.Fill` and `ReadOnly = true`, and a `StatusStrip` status bar with the `status` label. The form's `Load` handler and the button's `Click` handler call the `LoadBooks` method, which fills a `DataTable` with the adapter and assigns it to the grid.
 
@@ -170,12 +168,15 @@ The application is shown in Fig. 7.11.
 ```cs
 private void LoadBooks()
 {
-    using NpgsqlCommand cmd = dataSource.CreateCommand("""
+    // The adapter opens the connection itself, so the command
+    // needs its own (still closed) connection, not CreateCommand.
+    using NpgsqlConnection conn = dataSource.CreateConnection();
+    using var cmd = new NpgsqlCommand("""
         SELECT id, title, pub_year AS "Year", isbn, copies
         FROM books
         WHERE title ILIKE $1
         ORDER BY title
-        """);
+        """, conn);
     cmd.Parameters.AddWithValue($"%{searchBox.Text.Trim()}%");
     using var adapter = new NpgsqlDataAdapter(cmd);
     var table = new DataTable();
@@ -195,8 +196,6 @@ private void LoadBooks()
 
 The alias `"Year"` in double quotes keeps the uppercase letter and becomes the column header of the grid. An empty search field gives the pattern `%%`, that is, all books. The `Fill` method is synchronous and blocks the interface for large results; in that case, `ExecuteReaderAsync` and `table.Load(reader)` are used, as in the "Product catalog" lab example.
 
-::: info Screenshot
-Running BookBrowser: search box with "clean", Search button, DataGridView with columns id, title, Year, isbn, copies (2 rows), status bar "Books: 2"
-:::
+![The "Book Browser" application with PostgreSQL data](./images/06-app-winforms-grid.png)
 
 Figure 7.11. The "Book Browser" application with PostgreSQL data {.caption}

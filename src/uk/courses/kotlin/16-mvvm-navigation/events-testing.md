@@ -27,10 +27,12 @@ class FakeNotes : NoteRepository {
     val rows = mutableListOf<Note>()
     var fail = false
     override suspend fun all(): List<Note> = rows.toList()
+
     override suspend fun add(title: String) {
         check(!fail) { "storage unavailable" }
         rows.add(Note(rows.size + 1, title))
     }
+
     override suspend fun delete(id: Int) {
         rows.removeAll { it.id == id }
     }

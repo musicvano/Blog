@@ -32,9 +32,7 @@ flowchart TD
 
 Сучасний JDBC-драйвер реєструється автоматично через механізм сервісів, якщо JAR доступний під час виконання. Старий `Class.forName("org.postgresql.Driver")` зазвичай не потрібний. `No suitable driver` спочатку змушує перевірити runtime classpath і JDBC URL, а не додавати випадкові try/catch.
 
-::: info Знімок екрана
-pom.xml 42.7.13 and Maven dependency tree.
-:::
+![pgJDBC у Maven-залежностях застосунку](./images/08-idea-postgresql-dependency.png)
 
 Рис. 14.6. pgJDBC у Maven-залежностях застосунку {.caption}
 
@@ -164,6 +162,7 @@ public final class CatalogMain {
                 }
             }
         }
+
         return List.copyOf(books);
     }
 

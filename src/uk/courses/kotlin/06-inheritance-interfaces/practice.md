@@ -16,6 +16,7 @@ abstract class Transport(val name: String) {
         require(km in 0..1000)
         return if (km == 0) 0 else calculate(km)
     }
+
     protected abstract fun calculate(km: Int): Long
 }
 
@@ -92,6 +93,7 @@ class Account(val id: String, val balance: Long) {
     init {
         require(id.isNotBlank() && balance >= 0)
     }
+
     override fun equals(other: Any?): Boolean =
         other is Account && id == other.id
 

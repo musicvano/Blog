@@ -237,11 +237,13 @@ using Microsoft.AspNetCore.Http.HttpResults;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddProblemDetails();
 var app = builder.Build();
+
 app.UseExceptionHandler(new ExceptionHandlerOptions
 {
     StatusCodeSelector = ex => ex is BadHttpRequestException bad
         ? bad.StatusCode : StatusCodes.Status500InternalServerError
 });
+
 app.UseStatusCodePages();
 
 // Умовні курси: скільки гривень коштує одиниця валюти.

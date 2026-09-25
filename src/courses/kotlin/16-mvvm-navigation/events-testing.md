@@ -2,7 +2,7 @@
 title: "Events, tests, and packaging"
 description: "Topic 16. MVVM and navigation: Events, tests, and packaging"
 outline: [2, 3]
-sourceHash: "8b4df4d33ff89325b0d38fa470e4bbcf1115de543fbfbf71bdb590c0b7cf11f7"
+sourceHash: "96b7e057239b5eb4349210c660222f26aa91c044b3e691d5e31042dd371be3be"
 ---
 
 # Events, tests, and packaging
@@ -28,10 +28,12 @@ class FakeNotes : NoteRepository {
     val rows = mutableListOf<Note>()
     var fail = false
     override suspend fun all(): List<Note> = rows.toList()
+
     override suspend fun add(title: String) {
         check(!fail) { "storage unavailable" }
         rows.add(Note(rows.size + 1, title))
     }
+
     override suspend fun delete(id: Int) {
         rows.removeAll { it.id == id }
     }

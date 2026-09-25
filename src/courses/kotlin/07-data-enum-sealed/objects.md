@@ -2,7 +2,7 @@
 title: "Singleton objects and companions"
 description: "Topic 7. Data classes, enums, sealed: singleton objects and companions"
 outline: [2, 3]
-sourceHash: "04817a1e1a970bb42f8f10f6fa87bd46eec946b5ba826c27301f5d217d3dddb1"
+sourceHash: "1b1b250aa9f1e87320bd88a97108827d60cf9e372f22c4dc756a80780d483017"
 ---
 
 # Singleton objects and companions
@@ -47,6 +47,7 @@ class User private constructor(
 ) {
     companion object {
         const val MAX_NAME = 40
+
         fun create(id: UserId, rawName: String): User {
             val name = rawName.trim()
             require(name.isNotEmpty() && name.length <= MAX_NAME)

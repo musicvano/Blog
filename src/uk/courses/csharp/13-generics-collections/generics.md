@@ -107,5 +107,6 @@ static T Sum<T>(T[] items) where T : INumber<T>
     }
     return total;
 }
+
 // Sum([1, 2, 3]) == 6;  Sum([1.5m, 2.25m]) == 3.75m
 ```

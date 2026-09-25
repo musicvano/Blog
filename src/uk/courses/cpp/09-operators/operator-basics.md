@@ -52,6 +52,7 @@ flowchart TB
 #include <iostream>
 #include <numeric>
 #include <stdexcept>
+
 class Fraction {
     long long n_, d_;
 public:
@@ -63,19 +64,23 @@ public:
         const auto g = std::gcd(n_, d_);
         n_ /= g; d_ /= g;
     }
+
     friend Fraction operator+(const Fraction& a,
                               const Fraction& b) {
         return {a.n_ * b.d_ + b.n_ * a.d_, a.d_ * b.d_};
     }
     bool operator==(const Fraction&) const = default;
+
     std::strong_ordering operator<=>(const Fraction& x) const {
         return n_ * x.d_ <=> x.n_ * d_;
     }
+
     friend std::ostream& operator<<(std::ostream& out,
                                     const Fraction& x) {
         return out << x.n_ << '/' << x.d_;
     }
 };
+
 int main() {
     Fraction a{1, 2}, b{1, 3};
     assert((a + b == Fraction{5, 6}));
@@ -140,6 +145,7 @@ flowchart TB
 #include <cassert>
 #include <iostream>
 #include <stdexcept>
+
 class Money {
     long long cents_;
     static constexpr long long limit = 1'000'000'000;
@@ -148,23 +154,29 @@ public:
         if (n < 0 || n > limit)
             throw std::invalid_argument("money");
     }
+
     Money& operator+=(Money b) {
         if (b.cents_ > limit - cents_)
             throw std::overflow_error("sum");
         cents_ += b.cents_; return *this;
     }
+
     friend Money operator+(Money a, Money b) { return a += b; }
+
     friend Money operator*(Money a, int n) {
         if (n < 0 || (n > 0 && a.cents_ > limit / n))
             throw std::invalid_argument("count");
         return Money{a.cents_ * n};
     }
+
     friend Money operator*(int n, Money a) { return a * n; }
     bool operator==(const Money&) const = default;
+
     friend std::ostream& operator<<(std::ostream& out, Money a) {
         return out << a.cents_ << " коп.";
     }
 };
+
 int main() {
     Money a{1250};
     assert(a * 3 == 3 * a);

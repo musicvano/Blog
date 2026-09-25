@@ -2,7 +2,7 @@
 title: "Comprehensions and tuples"
 description: "Topic 5. Built-in collections: comprehensions and tuples"
 outline: [2, 3]
-sourceHash: "3e013f83083d92d0e86ae2c75bd33fb038bba3ca99572e46b4d2df13f4b38d8c"
+sourceHash: "d45a4553c357535c685b09b978e81e40ca8d522803333809cb11915568975aa8"
 ---
 
 # Comprehensions and tuples
@@ -93,6 +93,7 @@ def bounds(values: list[int]) -> tuple[int, int]:
         raise ValueError("Empty list")
     return min(values), max(values)
 
+
 first, *middle, last = (2, 4, 6, 8)
 low, high = bounds([7, 2, 9])
 low, high = high, low
@@ -114,9 +115,11 @@ from typing import NamedTuple
 
 Point = namedtuple("Point", "x y")
 
+
 class Product(NamedTuple):
     name: str
     price: int
+
 
 point = Point(3, 4)
 product = Product("pen", 20)

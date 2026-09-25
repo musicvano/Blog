@@ -2,7 +2,7 @@
 title: "provideDelegate and class delegation"
 description: "Topic 8. Operations and delegation: provideDelegate and class delegation"
 outline: [2, 3]
-sourceHash: "005ba4e62a659d4fdef193941fbfbf7265e4289016051d47d6c52e7614e3e745"
+sourceHash: "0d08d018bd3f165b70a992c58e4d936e4494dabce55f8515fd6b83bda5c6965c"
 ---
 
 # provideDelegate and class delegation
@@ -84,6 +84,7 @@ List is used here as a simple buffer: mutableListOf creates an empty mutable lis
 interface Repository {
     fun save(text: String)
     fun all(): List<String>
+
     fun saveTwice(text: String) {
         save(text)
         save(text)
@@ -92,10 +93,12 @@ interface Repository {
 
 class MemoryRepository : Repository {
     private val rows = mutableListOf<String>()
+
     override fun save(text: String) {
         require(text.isNotBlank())
         rows.add(text)
     }
+
     override fun all(): List<String> = rows.toList()
 }
 

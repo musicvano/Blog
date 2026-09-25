@@ -128,6 +128,7 @@ vcpkg може керувати сторонніми залежностями, �
 ```cpp
 #include <print>
 #include <version>
+
 int main()
 {
     std::println("MSVC={}, mode={}", _MSC_VER, _MSVC_LANG);

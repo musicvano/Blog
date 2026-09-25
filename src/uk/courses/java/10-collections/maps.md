@@ -47,6 +47,7 @@ public class Main {
                 counts.merge(word, 1, Integer::sum);
             }
         }
+
         Map<String, Integer> ordered = new TreeMap<>(counts);
         int total = 0;
         for (Map.Entry<String, Integer> entry : ordered.entrySet()) {

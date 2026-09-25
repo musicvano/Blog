@@ -2,7 +2,7 @@
 title: "String and Unicode"
 description: "Topic 3. Methods, arrays, and strings: String and Unicode"
 outline: [2, 3]
-sourceHash: "25f17cd4408ebaf14dae444f6dad01090024ac1d4de83cacb9983b2ac69b4c51"
+sourceHash: "ef857f1ff6fe7ef13e6f67eefa2472473b5fac220e46533dee574260d9e5d1d1"
 ---
 
 # String and Unicode
@@ -63,6 +63,7 @@ public class Main {
         }
         return String.join(" ", words);
     }
+
     public static void main(String[] args) {
         System.out.println(normalize("  oLENA\tpETRENKO  "));
         System.out.println("[" + normalize(" \n\t ") + "]");

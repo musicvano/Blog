@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 6. Strings and regular expressions: worked examples"
 outline: [2, 3]
-sourceHash: "9be6ba2cce520480fe9745f8a5b2e8e56d3203ea6fd5d53e1769b29d80175628"
+sourceHash: "37f88e50dcb0ff0e492e1e3336332e61b23a380323a1ac52ac201cee6bf921d1"
 ---
 
 # Practice
@@ -14,6 +14,7 @@ Write a program that shifts Ukrainian letters by a given number of positions in 
 ```py
 ALPHABET = "абвгґдеєжзиіїйклмнопрстуфхцчшщьюя"
 
+
 def caesar(text: str, shift: int) -> str:
     shift %= len(ALPHABET)
     rotated = ALPHABET[shift:] + ALPHABET[:shift]
@@ -21,12 +22,14 @@ def caesar(text: str, shift: int) -> str:
     target = rotated + rotated.upper()
     return text.translate(str.maketrans(source, target))
 
+
 def main() -> None:
     text = "АБВ, Ґанок!"
     encoded = caesar(text, 1)
     print(encoded)
     print(caesar(encoded, -1))
     print(caesar(text, 33) == text)
+
 
 if __name__ == "__main__":
     main()
@@ -55,6 +58,7 @@ POLICY = re.compile(
     + ALLOWED
 )
 
+
 def violations(text: str) -> list[str]:
     errors = []
     if not 8 <= len(text) <= 32:
@@ -70,6 +74,7 @@ def violations(text: str) -> list[str]:
             errors.append(message)
     return errors
 
+
 def main() -> None:
     samples = ["Abcdef1!", "abcdef12", "Abcdef1!\n"]
     for number, text in enumerate(samples, start=1):
@@ -77,6 +82,7 @@ def main() -> None:
         assert (POLICY.fullmatch(text) is not None) == (not errors)
         result = "; ".join(errors) if errors else "rules satisfied"
         print(f"Test {number}: {result}")
+
 
 if __name__ == "__main__":
     main()
@@ -105,12 +111,14 @@ from datetime import date
 DATES = re.compile(r"\b([0-9]{2})\.([0-9]{2})\.([0-9]{4})\b")
 MONEY = re.compile(r"(?<![\d.,-])([0-9]+),([0-9]{2}) UAH\b")
 
+
 def iso_date(match: re.Match[str]) -> str:
     day, month, year = map(int, match.groups())
     try:
         return date(year, month, day).isoformat()
     except ValueError:
         return match.group()
+
 
 def main() -> None:
     text = "Receipt 17.09.2026: 12,50 UAH; 7,25 UAH. 31.02.2026"
@@ -119,6 +127,7 @@ def main() -> None:
     total = sum(int(uah) * 100 + int(kop) for uah, kop in amounts)
     print(f"Items: {len(amounts)}")
     print(f"Total: {total // 100},{total % 100:02d} UAH")
+
 
 if __name__ == "__main__":
     main()

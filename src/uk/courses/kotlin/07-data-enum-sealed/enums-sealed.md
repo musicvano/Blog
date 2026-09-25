@@ -109,12 +109,15 @@ Created є єдиним значенням без даних, тому це data
 sealed interface OrderStatus
 
 data object Created : OrderStatus
+
 data class Paid(val cents: Long) : OrderStatus {
     init { require(cents > 0) }
 }
+
 data class Shipped(val trackNo: String) : OrderStatus {
     init { require(trackNo.isNotBlank()) }
 }
+
 data class Cancelled(val reason: String) : OrderStatus {
     init { require(reason.isNotBlank()) }
 }

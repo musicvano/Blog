@@ -96,6 +96,7 @@ value class TicketId(val value: Long)
 
 object IdSource {
     private var last = 0L
+
     fun next(): TicketId {
         check(last < Long.MAX_VALUE)
         last++
@@ -114,6 +115,7 @@ class Ticket private constructor(
             return Ticket(IdSource.next(), title)
         }
     }
+
     override fun toString(): String = "${id.value}: $title"
 }
 

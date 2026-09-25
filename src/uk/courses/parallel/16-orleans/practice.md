@@ -463,7 +463,7 @@ IGrainFactory grains =
 ResiliencePipeline weather = host.Services
     .GetRequiredService<ResiliencePipelineProvider<string>>()
     .GetPipeline("weather");
-IWeatherGrain kyiv = grains.GetGrain<IWeatherGrain>("Київ");
+IWeatherGrain london = grains.GetGrain<IWeatherGrain>("Лондон");
 clock.Start();
 
 // Сценарій: норма → «зависання» → помилки → відновлення.
@@ -477,13 +477,13 @@ while (clock.Elapsed.TotalSeconds < 10)
     if (step < script.Length
         && clock.Elapsed.TotalSeconds >= script[step].At)
     {
-        await kyiv.SetMode(script[step].Mode);
+        await london.SetMode(script[step].Mode);
         Log($"сервіс погоди: {script[step++].Mode}");
     }
     try
     {
         double t = await weather.ExecuteAsync(async token =>
-            await kyiv.GetTemperature().WaitAsync(token));
+            await london.GetTemperature().WaitAsync(token));
         Log($"OK {t:F1} °C");
     }
     catch (Exception ex)

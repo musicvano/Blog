@@ -49,6 +49,7 @@ double parallel_sum(const std::vector<double>& v, unsigned p) {
             });
         }
     }   // тут деструктори jthread чекають завершення потоків
+
     return std::accumulate(parts.begin(), parts.end(), 0.0);
 }
 
@@ -235,6 +236,7 @@ public:
             std::lock_guard lock(mutex_);
             stopping_ = true;
         }
+
         ready_.notify_all();      // розбудити всіх для завершення
     }                             // далі деструктори jthread: join()
 
@@ -264,6 +266,7 @@ private:
                 task = std::move(tasks_.front());
                 tasks_.pop();
             }
+
             task();               // виконується без блокування
         }
     }

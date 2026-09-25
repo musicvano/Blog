@@ -2,7 +2,7 @@
 title: Practice
 description: "Topic 8. Copy, Move, RAII: worked examples"
 outline: [2, 3]
-sourceHash: "dc649e7b8511e57280cecface0f6dc9f7f2d46f279ba5be7bfa705552f53d0d8"
+sourceHash: "4520e6c76073d8f3c83f6c9362a647c66a279a9c69c80bc36db1d6bc983d79cf"
 ---
 
 # Practice
@@ -21,6 +21,7 @@ user input. Invalid arguments are handled with explicit exceptions.
 #include <print>
 #include <stdexcept>
 #include <utility>
+
 class Matrix {
     std::size_t rows_ = 0, cols_ = 0;
     double* data_ = nullptr;
@@ -30,10 +31,13 @@ public:
             throw std::invalid_argument("size");
         if (r && c) data_ = new double[r * c]{};
     }
+
     ~Matrix() { delete[] data_; }
+
     Matrix(const Matrix& x) : Matrix(x.rows_, x.cols_) {
         if (data_) std::copy_n(x.data_, rows_ * cols_, data_);
     }
+
     Matrix(Matrix&& x) noexcept
         : rows_(std::exchange(x.rows_, 0)),
           cols_(std::exchange(x.cols_, 0)),
@@ -43,18 +47,22 @@ public:
         std::swap(cols_, x.cols_);
         std::swap(data_, x.data_);
     }
+
     Matrix& operator=(const Matrix& x) {
         Matrix temp{x}; swap(temp); return *this;
     }
+
     Matrix& operator=(Matrix&& x) noexcept {
         if (this != &x) { Matrix temp{std::move(x)}; swap(temp); }
         return *this;
     }
+
     double& at(std::size_t r, std::size_t c) {
         if (r >= rows_ || c >= cols_) throw std::out_of_range("at");
         return data_[r * cols_ + c];
     }
 };
+
 int main() {
     Matrix a{2, 2}; a.at(0, 0) = 7;
     Matrix b{a}; b.at(0, 0) = 9;
@@ -92,6 +100,7 @@ Copy: 7.0
 #include <print>
 #include <sstream>
 #include <stdexcept>
+
 class FormatGuard {
     std::ostream& out_;
     std::ios::fmtflags flags_;
@@ -103,12 +112,14 @@ public:
           precision_(out.precision()), fill_(out.fill()) {}
     FormatGuard(const FormatGuard&) = delete;
     FormatGuard& operator=(const FormatGuard&) = delete;
+
     ~FormatGuard() {
         out_.flags(flags_);
         out_.precision(precision_);
         out_.fill(fill_);
     }
 };
+
 int main() {
     std::ostringstream out;
     const auto old = out.flags();
@@ -140,6 +151,7 @@ Output:
 #include <cassert>
 #include <print>
 #include <stdexcept>
+
 class Transaction {
     int& target_;
     int before_;
@@ -150,10 +162,12 @@ public:
     Transaction(const Transaction&) = delete;
     Transaction& operator=(const Transaction&) = delete;
     void commit() noexcept { committed_ = true; }
+
     ~Transaction() noexcept {
         if (!committed_) target_ = before_;
     }
 };
+
 int main() {
     int balance = 100;
     try {
@@ -161,6 +175,7 @@ int main() {
         balance -= 30;
         throw std::runtime_error("cancel");
     } catch (const std::runtime_error&) {}
+
     assert(balance == 100);
     {
         Transaction tx{balance};
@@ -168,6 +183,7 @@ int main() {
         tx.commit();
         tx.commit();
     }
+
     assert(balance == 80);
     std::println("After commit: {}", balance);
 }

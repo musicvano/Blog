@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 16. MVVM and navigation: worked examples"
 outline: [2, 3]
-sourceHash: "3d5f97597e29180935b27de47f918ee595f51e206a5da89bed5e96dee1dc33fb"
+sourceHash: "918adc7d6b7dbd30427bf28ce0c84cd4916085d473604863a3092a86340a9f52"
 ---
 
 # Practice
@@ -28,6 +28,7 @@ data class CurrencyState(val input: String = "",
 class CurrencyViewModel : ViewModel() {
     private val mutable = MutableStateFlow(CurrencyState())
     val state = mutable.asStateFlow()
+
     fun edit(text: String) {
         val number = text.replace(',', '.').toDoubleOrNull()
         val valid = number != null && number.isFinite() &&
@@ -77,11 +78,13 @@ import androidx.navigation.toRoute
 import kotlinx.serialization.Serializable
 
 data class Contact(val id: Int, val name: String, val phone: String)
+
 class Contacts {
     val all = listOf(Contact(1, "Olena", "+380000000001"),
         Contact(2, "Taras", "+380000000002"))
     fun find(id: Int): Contact? = all.find { it.id == id }
 }
+
 @Serializable object ContactList
 @Serializable data class ContactDetail(val id: Int)
 
@@ -152,11 +155,13 @@ import org.jetbrains.exposed.v1.jdbc.*
 import org.jetbrains.exposed.v1.jdbc.transactions.transaction
 
 data class Book(val id: Int, val title: String)
+
 object BookTable : Table("books") {
     val id = integer("id").autoIncrement()
     val title = varchar("title", 120)
     override val primaryKey = PrimaryKey(id)
 }
+
 class BookRepository(private val db: Database) {
     suspend fun execute(id: Int?, title: String?,
         delete: Boolean = false): List<Book> =
@@ -191,6 +196,7 @@ class BookRepository(private val db: Database) {
             }
         }
 }
+
 data class BookState(val id: String = "", val title: String = "",
     val rows: List<Book> = emptyList(), val busy: Boolean = false,
     val message: String? = null)
@@ -200,10 +206,13 @@ class BookViewModel(private val repository: BookRepository)
     private val mutable = MutableStateFlow(BookState())
     val state = mutable.asStateFlow()
     fun editId(text: String) { mutable.update { it.copy(id = text) } }
+
     fun editTitle(text: String) {
         mutable.update { it.copy(title = text) }
     }
+
     fun acknowledged() { mutable.update { it.copy(message = null) } }
+
     fun apply(load: Boolean = false, delete: Boolean = false) {
         val before = mutable.value
         if (before.busy) return

@@ -82,6 +82,7 @@ fun parseGrades(text: String): List<Grade> {
         }
         result.add(Grade(name, score))
     }
+
     return result
 }
 

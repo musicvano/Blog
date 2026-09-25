@@ -2,7 +2,7 @@
 title: "Git and submitting your work"
 description: "Topic 1. Java and your first program: Git and submitting your work"
 outline: [2, 3]
-sourceHash: "5168d864d2b42ffc20b7fa4f3fc0afd190e9fd66eb51873b2e71903a7b5d4602"
+sourceHash: "7ddac9c67459f6efd8f86c1e8d92e0966c25ffa101be2500159aea4d416251c4"
 ---
 
 # Git and submitting your work
@@ -11,9 +11,7 @@ sourceHash: "5168d864d2b42ffc20b7fa4f3fc0afd190e9fd66eb51873b2e71903a7b5d4602"
 
 Compilation errors occur before execution. For example, `system.out.println` refers to an undeclared name. Read the compiler's first message and the line number; subsequent messages may result from the first unclosed brace or missing semicolon.
 
-::: info Screenshot
-Disposable example with lowercase system; show editor and real javac diagnostic.
-:::
+![Compilation error message](./images/05-compile-error.png)
 
 Figure 1.9. Compilation error message {.caption}
 

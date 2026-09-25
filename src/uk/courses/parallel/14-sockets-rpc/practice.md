@@ -143,6 +143,7 @@ static void CreateFile(string path, int sizeMb)
     {
         return;
     }
+
     byte[] block = new byte[1 << 20];
     Random random = new(13);
     using FileStream file = File.Create(path);

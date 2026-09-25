@@ -2,7 +2,7 @@
 title: "Interfaces and their methods"
 description: "Topic 7. Abstract classes, interfaces: interfaces and their methods"
 outline: [2, 3]
-sourceHash: "65a8f2bb8d43780bba88440d806fcd37e2e57f044b60224dceefc57972eb57df"
+sourceHash: "c028d31c31d73008ef30a4393ab812b04de6875b72f3cbe819b15b22a09b07c3"
 ---
 
 # Interfaces and their methods
@@ -46,18 +46,22 @@ interface Camera {
     default String describe() { return label("camera"); }
     private String label(String text) { return "[" + text + "]"; }
 }
+
 interface Phone {
     default String describe() { return "[phone]"; }
+
     static boolean validNumber(String value) {
         return value != null && value.matches("[0-9]{10}");
     }
 }
+
 final class Smartphone implements Camera, Phone {
     @Override
     public String describe() {
         return Camera.super.describe() + Phone.super.describe();
     }
 }
+
 public class Main {
     public static void main(String[] args) {
         Camera item = new Smartphone();

@@ -39,6 +39,7 @@ public class Main {
                     || !Double.isFinite(value.doubleValue())) {
                 throw new IllegalArgumentException("finite numbers");
             }
+
             total += value.doubleValue();
         }
         if (!Double.isFinite(total)) {

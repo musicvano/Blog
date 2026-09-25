@@ -17,15 +17,15 @@ outline: [2, 3]
 
 ```mermaid
 flowchart TB
-  subgraph BEFORE ["<code>string s = #quot;Кий#quot;;</code>"]
+  subgraph BEFORE ["<code>string s = #quot;Пра#quot;;</code>"]
     direction LR
-    S1["<code>s</code>  ●"] --> K1["<code>#quot;Кий#quot;</code>"]
+    S1["<code>s</code>  ●"] --> K1["<code>#quot;Пра#quot;</code>"]
     N1["об’єкт рядка<br>не змінюється"]
   end
-  subgraph AFTER ["<code>s += #quot;ів#quot;;</code>"]
+  subgraph AFTER ["<code>s += #quot;га#quot;;</code>"]
     direction LR
-    S2["<code>s</code>  ●"] --> K2["<code>#quot;Київ#quot;</code>"]
-    OLD["<code>#quot;Кий#quot;</code><br>старий об’єкт<br>стане сміттям"]
+    S2["<code>s</code>  ●"] --> K2["<code>#quot;Прага#quot;</code>"]
+    OLD["<code>#quot;Пра#quot;</code><br>старий об’єкт<br>стане сміттям"]
   end
   BEFORE ~~~ AFTER
 ```
@@ -60,11 +60,11 @@ Console.WriteLine($"{code[0]} {code[^1]} {code[3..5]}");  // A ї 12
 - `CurrentCulture`, `CurrentCultureIgnoreCase` – за правилами мови користувача; для сортування й виведення тексту людям.
 
 ```cs
-string city = "Київ";
-Console.WriteLine(city == "київ");                  // False
-Console.WriteLine(string.Equals(city, "КИЇВ",
+string city = "Лондон";
+Console.WriteLine(city == "лондон");                // False
+Console.WriteLine(string.Equals(city, "ЛОНДОН",
     StringComparison.OrdinalIgnoreCase));           // True
-Console.WriteLine(city.StartsWith("ки",
+Console.WriteLine(city.StartsWith("ло",
     StringComparison.CurrentCultureIgnoreCase));    // True
 Console.WriteLine(string.Compare("ґанок", "гора",
     StringComparison.CurrentCulture));              // 1
@@ -80,8 +80,8 @@ Console.WriteLine(string.Compare("ґанок", "гора",
 
 | **Метод** | **Приклад і результат** |
 | --- | --- |
-| `Length` | `"Київ".Length` – 4 |
-| `ToUpper`, `ToLower` | `"Київ".ToUpper()` – `"КИЇВ"` |
+| `Length` | `"Лондон".Length` – 6 |
+| `ToUpper`, `ToLower` | `"Лондон".ToUpper()` – `"ЛОНДОН"` |
 | `Trim`, `TrimStart`, `TrimEnd` | `" а б ".Trim()` – `"а б"` |
 | `Contains` | `"програма".Contains("грам")` – `true` |
 | `StartsWith`, `EndsWith` | `"report.pdf".EndsWith(".pdf")` – `true` |

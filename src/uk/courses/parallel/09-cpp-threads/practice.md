@@ -142,6 +142,7 @@ public:
             ++count_;
             max_count_ = std::max(max_count_, count_);
         }
+
         used_.release();                   // з’явився елемент
     }
 

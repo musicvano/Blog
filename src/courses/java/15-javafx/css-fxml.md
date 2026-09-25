@@ -2,7 +2,7 @@
 title: "CSS, FXML, and distribution"
 description: "Topic 15. JavaFX graphical applications: CSS, FXML, and distribution"
 outline: [2, 3]
-sourceHash: "50355ba415fbf167afa74c0f9887e428dfc2db7d73aeb876d2e873aa31b8b53b"
+sourceHash: "39ef68df06fc2ea179a0ac88b6ee9b853d06670a2df4d67318275582da5fa0f5"
 ---
 
 # CSS, FXML, and distribution
@@ -124,15 +124,11 @@ The expected result after entering ` Olena ` is `Welcome, Olena!`. An empty name
 
 Scene Builder edits FXML visually. You choose controls in the Library, Hierarchy shows the tree, and the Inspector shows Layout, Properties, and Code. In Code, set the fx:id and the handler name without the leading hash sign; in the saved FXML, onAction has the `#`. The Scene Builder version must support the controls used. The editor does not generate the controller code or the project dependencies.
 
-::: info Screenshot
-Open greeting.fxml; show Hierarchy and Code fx:id.
-:::
+![The FXML tree and properties in Scene Builder](./images/04-scene-builder.png)
 
 Figure 15.9. The FXML tree and properties in Scene Builder {.caption}
 
-::: info Screenshot
-Run GreetingMain, enter Olena and activate greeting.
-:::
+![The FXML form after CSS is applied](./images/05-greeting-css.png)
 
 Figure 15.10. The FXML form after CSS is applied {.caption}
 

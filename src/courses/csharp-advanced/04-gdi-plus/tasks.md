@@ -2,7 +2,7 @@
 title: "Tasks"
 description: "Topic 4. GDI+ graphics: task variants"
 outline: [2, 3]
-sourceHash: "b3b4052f45c75b50684f20d874669cda860bfbac922efc7382139fbe54d6850d"
+sourceHash: "4d3305af4e46cfc78b3ccbb8765d792872e9992e08f9b2582a3b759f28af7e9c"
 ---
 
 # Tasks
@@ -181,7 +181,7 @@ Complete the task of the chosen difficulty level for your variant number.
 
 ### Variant 22. Time zone clocks {#v22}
 
-**1. Initial level.** Create a Windows Forms application that draws three analog clocks with the current time in Kyiv, London, and Tokyo and city labels.
+**1. Initial level.** Create a Windows Forms application that draws three analog clocks with the current time in Madrid, London, and Tokyo and city labels.
 
 **2. Basic level.** Create a Windows Forms application that draws analog clocks with the current time in selected cities; the clocks are updated by a `Timer` without flicker, the cities (1–6) are selected from the `TimeZoneInfo` list, and nighttime is indicated by a dark dial.
 

@@ -2,7 +2,7 @@
 title: "Two-dimensional arrays and arguments"
 description: "Topic 3. Methods, arrays, and strings: Two-dimensional arrays and arguments"
 outline: [2, 3]
-sourceHash: "0ee69825d206d9d860b5ee34aa56ceb5b2c539d0c4287d3378df9120178af2c7"
+sourceHash: "2b8e52139e934f232da2699218f5d8923beb0606ced50624f0490bb3d2388f68"
 ---
 
 # Two-dimensional arrays and arguments
@@ -50,6 +50,7 @@ public class Main {
         }
         return result;
     }
+
     public static void main(String[] args) {
         int[][] source = {{1, 2, 3}, {4, 5, 6}};
         int[][] rotated = rotate(source);

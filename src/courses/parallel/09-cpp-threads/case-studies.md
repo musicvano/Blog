@@ -2,7 +2,7 @@
 title: "Examples and common mistakes"
 description: "Topic 9. Multithreading in C++: Examples and common mistakes"
 outline: [2, 3]
-sourceHash: "d4e6b90af95e853874678fd151627b5eca81a09bcd8eb1fbd3c435c06958e080"
+sourceHash: "7f8b0bd6e7f7f93976c01f16380da46caafbaba567409ba0785758615bdbf960"
 ---
 
 # Examples and common mistakes
@@ -50,6 +50,7 @@ double parallel_sum(const std::vector<double>& v, unsigned p) {
             });
         }
     }   // here the jthread destructors wait for the threads to finish
+
     return std::accumulate(parts.begin(), parts.end(), 0.0);
 }
 
@@ -236,6 +237,7 @@ public:
             std::lock_guard lock(mutex_);
             stopping_ = true;
         }
+
         ready_.notify_all();      // wake everyone up to finish
     }                             // then the jthread destructors: join()
 
@@ -265,6 +267,7 @@ private:
                 task = std::move(tasks_.front());
                 tasks_.pop();
             }
+
             task();               // runs without holding the lock
         }
     }

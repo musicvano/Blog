@@ -68,6 +68,7 @@ object Goods : Table("goods") {
     val name = varchar("name", 80)
     override val primaryKey = PrimaryKey(id)
 }
+
 object Sales : Table("sales") {
     val id = integer("id").autoIncrement()
     val good = integer("good_id").references(Goods.id)

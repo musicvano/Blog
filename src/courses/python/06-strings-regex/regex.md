@@ -2,7 +2,7 @@
 title: "Regular expressions"
 description: "Topic 6. Strings and regular expressions: regular expressions"
 outline: [2, 3]
-sourceHash: "793d8ad7992db73cdb8b1ec8b8e50712b64a683e1ef63cb2fecd8db3ee1c9f4c"
+sourceHash: "fbe4f5c7e4c497d6ea09bd7bd6c062ffc8a44441a287417e45c797811e9621a8"
 ---
 
 # Regular expressions
@@ -108,8 +108,10 @@ If parentheses are needed only for an alternative, use `(?:...)` to avoid changi
 ```py
 import re
 
+
 def double(match: re.Match[str]) -> str:
     return str(int(match.group()) * 2)
+
 
 print(re.sub(r"[0-9]+", double, "Cabinet 12, desk 3"))
 print(re.sub(r"([A-Z])([0-9]+)", r"\g<2>-\g<1>", "A12"))

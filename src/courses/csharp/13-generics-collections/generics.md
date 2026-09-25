@@ -2,7 +2,7 @@
 title: "Generic methods and classes"
 description: "Topic 13. Generics and collections: Generic methods and classes"
 outline: [2, 3]
-sourceHash: "da1ab53c4abbf826b8e93bed8a0f4967c6054b49196cff4bff0ea5c477503267"
+sourceHash: "02e740013d0631b49abd2abba503ba31eb575cd1528743e448585fd6857ea087"
 ---
 
 # Generic methods and classes
@@ -108,5 +108,6 @@ static T Sum<T>(T[] items) where T : INumber<T>
     }
     return total;
 }
+
 // Sum([1, 2, 3]) == 6;  Sum([1.5m, 2.25m]) == 3.75m
 ```

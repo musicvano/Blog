@@ -63,8 +63,10 @@ classDiagram
 #pragma once
 #include <string>
 #include <vector>
+
 struct Customer { std::string name; };
 struct OrderLine { int cents; int count; };
+
 class Order {
     Customer customer_;
     std::vector<OrderLine> lines_;
@@ -82,6 +84,7 @@ public:
 #include "Order.h"
 #include <stdexcept>
 #include <utility>
+
 Order::Order(Customer customer, std::vector<OrderLine> lines)
     : customer_(std::move(customer)), lines_(std::move(lines)) {
     if (customer_.name.empty() || lines_.size() > 100)
@@ -92,6 +95,7 @@ Order::Order(Customer customer, std::vector<OrderLine> lines)
             throw std::invalid_argument("line");
     ++created_;
 }
+
 int Order::total() const {
     int sum = 0;
     for (const auto& line : lines_) sum += line.cents * line.count;
@@ -106,6 +110,7 @@ int Order::total() const {
 #include <cassert>
 #include <print>
 #include <stdexcept>
+
 int main() {
     const Order a{{"Олена"}, {{2500, 2}, {700, 3}}};
     assert(a.total() == 7100);
@@ -162,22 +167,26 @@ int main() {
 ```cpp
 #include <memory>
 #include <print>
+
 struct Engine {
     Engine() { std::println("Engine()"); }
     ~Engine() { std::println("~Engine()"); }
 };
+
 class Car {
     Engine engine_;
 public:
     Car() { std::println("Car()"); }
     ~Car() { std::println("~Car()"); }
 };
+
 int main() {
     std::println("Початок");
     {
         auto car = std::make_unique<Car>();
         std::println("Усередині");
     }
+
     std::println("Кінець");
 }
 ```

@@ -31,6 +31,7 @@ public class Main {
         if (n <= 1) { return 1; }
         return n * factorial(n - 1);
     }
+
     static int sum(int... values) {
         int result = 0;
         for (int value : values) {
@@ -38,6 +39,7 @@ public class Main {
         }
         return result;
     }
+
     public static void main(String[] args) {
         System.out.println(factorial(0));
         System.out.println(factorial(3));

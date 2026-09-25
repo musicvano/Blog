@@ -33,6 +33,7 @@ struct Counter {
     alignas(std::hardware_destructive_interference_size)
     std::atomic<long> value = 0;          // sizeof(Counter) == 64
 };
+
 Counter counters[16];                     // кожен – у своїй кеш-лінії
 ```
 

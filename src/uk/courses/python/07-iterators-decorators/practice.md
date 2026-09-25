@@ -97,8 +97,10 @@ logging.basicConfig(level=logging.INFO, stream=sys.stdout,
 
 def logged(level: int
            ) -> Callable[[Callable[P, R]], Callable[P, R]]:
+
     def decorate(func: Callable[P, R]) -> Callable[P, R]:
         calls = 0
+
         @wraps(func)
         def wrapper(*args: P.args, **kwargs: P.kwargs) -> R:
             nonlocal calls

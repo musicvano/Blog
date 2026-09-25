@@ -2,7 +2,7 @@
 title: "Practice"
 description: "Topic 17. SOLID and design patterns: worked examples"
 outline: [2, 3]
-sourceHash: "4f8af788108be925489fe6b7573f880d0df2247979ead98af829c35b9cae0ac5"
+sourceHash: "9945a36ab2515e65c36e9aa3d9f08ebacf9a8447a9349575a23c55249d561d60"
 ---
 
 # Practice
@@ -150,6 +150,7 @@ class LegacyRatesService
         {
             return -1;
         }
+
         return value * from / to;
     }
 }

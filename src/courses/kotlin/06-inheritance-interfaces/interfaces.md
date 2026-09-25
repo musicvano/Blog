@@ -2,7 +2,7 @@
 title: "Interfaces and implementation conflicts"
 description: "Topic 6. Inheritance and polymorphism: interfaces and implementation conflicts"
 outline: [2, 3]
-sourceHash: "51e091152b681bd3a90dee7bfb4a573bbf623743c69d9196f84bb1616c53e3a2"
+sourceHash: "d436676539b94f1cdefe7a4326c8993b07b1888819e5e60a5e023be06504ffba"
 ---
 
 # Interfaces and implementation conflicts
@@ -53,7 +53,9 @@ class Lamp : Switchable, Chargeable {
         check(charge > 0) { "Empty battery" }
         isOn = true
     }
+
     override fun switchOff() { isOn = false }
+
     override fun recharge(points: Int) {
         require(points in 1..100 - charge)
         charge += points

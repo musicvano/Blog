@@ -246,7 +246,7 @@ public partial class WeatherWorker(
 }
 ```
 
-Файл `appsettings.json` містить розділ `Weather` із параметрами (місто «Кривий Ріг», інтервал 2 с, поріг 30 °C) і розділ `Logging`, показаний у пункті «Фільтри в конфігурації».
+Файл `appsettings.json` містить розділ `Weather` із параметрами (місто «Мадрид», інтервал 2 с, поріг 30 °C) і розділ `Logging`, показаний у пункті «Фільтри в конфігурації».
 
 Коли користувач натискає **Ctrl+C**, `Task.Delay` отримує скасований токен і завершує цикл винятком `OperationCanceledException`, який хост очікує. Потім хост викликає `StopAsync`. Результат (довгі рядки категорії `Microsoft.Hosting.Lifetime` перенесено, шлях скорочено, див. також рис. 6.9):
 
@@ -255,14 +255,14 @@ info: Microsoft.Hosting.Lifetime[0]
       Application started. Press Ctrl+C to shut down.
 info: Microsoft.Hosting.Lifetime[0] Hosting environment: Production
 info: Microsoft.Hosting.Lifetime[0] Content root path: D:\Courses\OOP C#\Code\Lec06\…
-info: WeatherWorker[1] Моніторинг Кривий Ріг кожні 2 с
-info: WeatherWorker[2] Кривий Ріг: 25.6 °C
-info: WeatherWorker[2] Кривий Ріг: 26.8 °C
-warn: WeatherWorker[3] Кривий Ріг: спека 33.2 °C (поріг 30 °C)
-warn: WeatherWorker[3] Кривий Ріг: спека 33.9 °C (поріг 30 °C)
-fail: WeatherWorker[4] Кривий Ріг: помилка датчика – немає відповіді
-warn: WeatherWorker[3] Кривий Ріг: спека 33.2 °C (поріг 30 °C)
-info: WeatherWorker[2] Кривий Ріг: 24.8 °C
+info: WeatherWorker[1] Моніторинг Мадрид кожні 2 с
+info: WeatherWorker[2] Мадрид: 25.6 °C
+info: WeatherWorker[2] Мадрид: 26.8 °C
+warn: WeatherWorker[3] Мадрид: спека 33.2 °C (поріг 30 °C)
+warn: WeatherWorker[3] Мадрид: спека 33.9 °C (поріг 30 °C)
+fail: WeatherWorker[4] Мадрид: помилка датчика – немає відповіді
+warn: WeatherWorker[3] Мадрид: спека 33.2 °C (поріг 30 °C)
+info: WeatherWorker[2] Мадрид: 24.8 °C
 info: Microsoft.Hosting.Lifetime[0] Application is shutting down...
 info: WeatherWorker[5] Моніторинг зупинено, вимірювань: 6
 ```

@@ -20,6 +20,7 @@ def transpose(matrix: list[list[int]]) -> list[list[int]]:
     return [[row[column] for row in matrix]
             for column in range(width)]
 
+
 def main() -> None:
     matrix = [[1, 2, 3], [4, 5, 6]]
     transposed = transpose(matrix)
@@ -28,6 +29,7 @@ def main() -> None:
     print("Транспонована:")
     for row in transposed:
         print(*row)
+
 
 if __name__ == "__main__":
     main()
@@ -53,6 +55,7 @@ if __name__ == "__main__":
 ```py
 import sys
 
+
 def parse_contacts(records: list[str]) -> dict[str, str]:
     contacts: dict[str, str] = {}
     phones: set[str] = set()
@@ -69,6 +72,7 @@ def parse_contacts(records: list[str]) -> dict[str, str]:
         contacts[name] = phone
         phones.add(phone)
     return contacts
+
 
 def main() -> int:
     args = sys.argv[1:]
@@ -91,6 +95,7 @@ def main() -> int:
         first_phone = contacts[sorted(contacts)[0]]
         print("За номером:", reverse[first_phone])
     return 0
+
 
 if __name__ == "__main__":
     raise SystemExit(main())
@@ -117,6 +122,7 @@ if __name__ == "__main__":
 ```py
 from collections import Counter
 
+
 def visit_report(days: list[list[str]]) -> None:
     if len(days) != 2:
         raise ValueError("Потрібно рівно два дні")
@@ -134,6 +140,7 @@ def visit_report(days: list[list[str]]) -> None:
     for name, count in ordered:
         print(f"{name}: {count}")
     print("Візитів:", sum(counts.values()))
+
 
 days = [["Анна", "Олег", "Анна"], ["Олег", "Іра"]]
 visit_report(days)

@@ -2,7 +2,7 @@
 title: "std::filesystem"
 description: "Topic 15. Streams and Files: std::filesystem"
 outline: [2, 3]
-sourceHash: "596b7f8582415a0c9219ab63f55d6155e9c2049e538ed3d992c3cddcffb14222"
+sourceHash: "2baf1183a78048392dc6f743ce488245d12c36590b27322358d0d54b340ce96e"
 ---
 
 # std::filesystem
@@ -107,6 +107,7 @@ and stops on any file error.
 #include <system_error>
 
 namespace fs = std::filesystem;
+
 int main()
 {
     const fs::path root = "directory-demo";
@@ -183,6 +184,7 @@ mechanisms for exclusive creation and a different threat model.
 #include <system_error>
 
 namespace fs = std::filesystem;
+
 int main()
 {
     const fs::path target = "published-demo.txt";

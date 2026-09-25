@@ -4,7 +4,7 @@ import type { Course } from "../sidebar.mts";
 
 export default {
   slug: "csharp",
-  title: "OOP in C#",
+  title: "Object-oriented programming in C# I",
   modules: [
     {
       title: "C# fundamentals",

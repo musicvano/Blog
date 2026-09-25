@@ -67,6 +67,7 @@ public LayoutForm()
             AutoSize = true,
             Anchor = AnchorStyles.Left   // по центру рядка
         });
+
         table.Controls.Add(control);
     }
 }

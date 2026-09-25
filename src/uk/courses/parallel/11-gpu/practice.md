@@ -353,6 +353,7 @@ static void MandelCpu(int[] counts, int w, int h, bool parallel)
             counts[y * w + x] = Iterations(-2.2f + 3.0f * x / w,
                 -1.0f + 2.0f * y / h, MaxIter);
     }
+
     if (parallel) Parallel.For(0, h, RowWork);
     else for (int y = 0; y < h; y++) RowWork(y);
 }

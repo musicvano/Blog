@@ -37,6 +37,7 @@ public final class ContactsMain {
                     insert.executeUpdate();
                 }
             }
+
             try (PreparedStatement update =
                     connection.prepareStatement(
                     "UPDATE j14_contacts SET name=? WHERE id=?")) {

@@ -13,25 +13,30 @@ outline: [2, 3]
 ```java
 class Animal {
     private final String name;
+
     Animal(String name) {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("Empty name");
         }
         this.name = name.strip();
     }
+
     public String sound() { return "..."; }
     public final String describe() { return name + ": " + sound(); }
 }
+
 final class Cat extends Animal {
     Cat(String name) { super(name); }
     @Override
     public String sound() { return "meow"; }
 }
+
 final class Dog extends Animal {
     Dog(String name) { super(name); }
     @Override
     public String sound() { return "woof"; }
 }
+
 public class Main {
     public static void main(String[] args) {
         Animal[] animals = {new Cat("Mira"), new Dog("Rex")};
@@ -62,32 +67,39 @@ Empty name
 ```java
 class Account {
     private long balance;
+
     Account(long balance) {
         if (balance < 0 || balance > 1_000_000) {
             throw new IllegalArgumentException("Invalid balance");
         }
         this.balance = balance;
     }
+
     public final long balance() { return balance; }
+
     protected final void credit(long amount) {
         if (amount < 0 || amount > 1_000_000 - balance) {
             throw new IllegalArgumentException("Invalid credit");
         }
         balance += amount;
     }
+
     public final void withdraw(long amount) {
         if (amount <= 0 || amount > balance) {
             throw new IllegalArgumentException("Invalid withdrawal");
         }
         balance -= amount;
     }
+
     public void closePeriod() { }
 }
+
 final class SavingsAccount extends Account {
     SavingsAccount(long balance) { super(balance); }
     @Override
     public void closePeriod() { credit(balance() / 100); }
 }
+
 public class Main {
     public static void main(String[] args) {
         Account account = new SavingsAccount(10_000);
@@ -124,6 +136,7 @@ import java.util.Objects;
 class Product {
     private final String name;
     private final long price;
+
     Product(String name, long price) {
         if (name == null || name.isBlank()
                 || price < 0 || price > 1_000_000) {
@@ -132,9 +145,11 @@ class Product {
         this.name = name.strip();
         this.price = price;
     }
+
     Product(Product other) {
         this(Objects.requireNonNull(other).name, other.price);
     }
+
     @Override
     public boolean equals(Object other) {
         if (this == other) { return true; }
@@ -144,13 +159,16 @@ class Product {
         Product product = (Product) other;
         return price == product.price && name.equals(product.name);
     }
+
     @Override
     public int hashCode() { return Objects.hash(name, price); }
     @Override
     public String toString() { return name + ": " + price; }
 }
+
 final class DiscountProduct extends Product {
     private final int percent;
+
     DiscountProduct(String name, long price, int percent) {
         if (percent < 0 || percent > 100) {
             throw new IllegalArgumentException("Invalid discount");
@@ -158,18 +176,22 @@ final class DiscountProduct extends Product {
         super(name, price);
         this.percent = percent;
     }
+
     @Override
     public boolean equals(Object other) {
         return super.equals(other)
                 && percent == ((DiscountProduct) other).percent;
     }
+
     @Override
     public int hashCode() { return 31 * super.hashCode() + percent; }
+
     @Override
     public String toString() {
         return super.toString() + "/" + percent;
     }
 }
+
 public class Main {
     public static void main(String[] args) {
         Product a = new Product("Pen", 500);

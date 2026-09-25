@@ -2,7 +2,7 @@
 title: "Numerical methods and performance prediction"
 description: "Topic 8. Parallel algorithms: Numerical methods and performance prediction"
 outline: [2, 3]
-sourceHash: "950e1d90c6495d8580b10baaeeb698087db44b745f188320079414a97a109a7a"
+sourceHash: "9dae8850f11e5750cbbf6e76f4b0260258185019ae84fb193b4ba5176c46588f"
 ---
 
 # Numerical methods and performance prediction
@@ -34,7 +34,21 @@ Determinism is especially important in iterative methods: if the dot products de
 
 ## Systems of ordinary differential equations
 
-The initial value problem for a system $y' = f (t , y)$, $y (t_{0}) = y_{0}$, where $y$ is a vector of $m$ components, is most often solved by the **fourth-order Runge–Kutta method** (*RK4*) with step $h$: $$k_{1} = f (t , y) , \quad k_{2} = f (t + \frac{h}{2} , y + \frac{h}{2} k_{1}) ,$$ $$k_{3} = f (t + \frac{h}{2} , y + \frac{h}{2} k_{2}) , \quad k_{4} = f (t + h , y + h k_{3}) ,$$ $$y (t + h) \approx y + \frac{h}{6} (k_{1} + 2 k_{2} + 2 k_{3} + k_{4}) .$$ The error over the interval is $O (h^{4})$; it is controlled by Runge’s rule (comparing steps $h$ and $h / 2$) or by embedded formulas with automatic step size selection.
+The initial value problem for a system $y' = f (t , y)$, $y (t_{0}) = y_{0}$, where $y$ is a vector of $m$ components, is most often solved by the **fourth-order Runge–Kutta method** (*RK4*) with step $h$:
+
+$$
+k_{1} = f (t , y) , \quad k_{2} = f \left(t + \frac{h}{2} , y + \frac{h}{2} k_{1}\right) ,
+$$
+
+$$
+k_{3} = f \left(t + \frac{h}{2} , y + \frac{h}{2} k_{2}\right) , \quad k_{4} = f (t + h , y + h k_{3}) ,
+$$
+
+$$
+y (t + h) \approx y + \frac{h}{6} (k_{1} + 2 k_{2} + 2 k_{3} + k_{4}) .
+$$
+
+The error over the interval is $O (h^{4})$; it is controlled by Runge’s rule (comparing steps $h$ and $h / 2$) or by embedded formulas with automatic step size selection.
 
 Time steps are sequential: $y (t + h)$ depends on $y (t)$. Therefore, parallelism is sought in other dimensions:
 
@@ -46,9 +60,21 @@ In the lab (Example 3), 3072 trajectories of a damped pendulum for different dam
 
 ## Analytical performance prediction
 
-Amdahl’s and Gustafson’s laws (Topic 1) estimate the speedup from the fraction of sequential code. For a specific algorithm, a more accurate prediction is given by an **execution time model** built from the PCAM stages: $$T_{p} = T_{\text{comp}} (n , p) + T_{\text{comm}} (n , p) + T_{\text{sync}} (p) + T_{\text{idle}} (n , p) ,$$ where $T_{\text{comp}}$ is the computation of the most heavily loaded thread, $T_{\text{comm}}$ is communication (the α–β or LogP model on a cluster; moving data from memory and between caches in shared memory), $T_{\text{sync}}$ is barriers and starting loops and tasks, and $T_{\text{idle}}$ is idle time due to imbalance. The model parameters are obtained with microbenchmarks: the time of one operation on one core, the time of an empty parallel loop or barrier, and memory or network bandwidth. The predicted speedup $S_{p} = T_{1} / T_{p}$ is compared with the measured one: agreement means that the model accounts for the main costs, and a discrepancy indicates what exactly the model missed.
+Amdahl’s and Gustafson’s laws (Topic 1) estimate the speedup from the fraction of sequential code. For a specific algorithm, a more accurate prediction is given by an **execution time model** built from the PCAM stages:
 
-**Example: matrix–vector multiplication.** For horizontal stripes in shared memory, $$T_{p} = \max (\frac{T_{1}}{p} , \frac{8 n^{2}}{B}) + t_{\text{sync}} ,$$ where $8 n^{2}$ is the number of bytes of the `double` matrix, $B \approx 44$ GB/s is the memory bandwidth measured in Topic 7, and $t_{\text{sync}}$ is the time of an empty `Parallel.For` (a few microseconds). For vertical stripes and the checkerboard scheme, a reduction of the partial vectors and one more parallel loop are added. For $n = 8000$, reading the matrix from memory takes at least $512 \cdot 10^{6} / 44 \cdot 10^{9} \approx 11 {,} 6$ ms, and $T_{1} \approx 54$ ms, so the prediction is $S \le 4 {,} 6$ regardless of the number of threads – and the measured speedup of 4.3–4.8 agrees with it. For $n = 1000$, the data are in the L3 cache and the model predicts an almost linear speedup, but at most 3.7 was measured: 0.8 ms of work is little, and waking up the pool threads, which the model does not account for, becomes noticeable.
+$$
+T_{p} = T_{\text{comp}} (n , p) + T_{\text{comm}} (n , p) + T_{\text{sync}} (p) + T_{\text{idle}} (n , p) ,
+$$
+
+where $T_{\text{comp}}$ is the computation of the most heavily loaded thread, $T_{\text{comm}}$ is communication (the α–β or LogP model on a cluster; moving data from memory and between caches in shared memory), $T_{\text{sync}}$ is barriers and starting loops and tasks, and $T_{\text{idle}}$ is idle time due to imbalance. The model parameters are obtained with microbenchmarks: the time of one operation on one core, the time of an empty parallel loop or barrier, and memory or network bandwidth. The predicted speedup $S_{p} = T_{1} / T_{p}$ is compared with the measured one: agreement means that the model accounts for the main costs, and a discrepancy indicates what exactly the model missed.
+
+**Example: matrix–vector multiplication.** For horizontal stripes in shared memory,
+
+$$
+T_{p} = \max \left(\frac{T_{1}}{p} , \frac{8 n^{2}}{B}\right) + t_{\text{sync}} ,
+$$
+
+where $8 n^{2}$ is the number of bytes of the `double` matrix, $B \approx 44$ GB/s is the memory bandwidth measured in Topic 7, and $t_{\text{sync}}$ is the time of an empty `Parallel.For` (a few microseconds). For vertical stripes and the checkerboard scheme, a reduction of the partial vectors and one more parallel loop are added. For $n = 8000$, reading the matrix from memory takes at least $512 \cdot 10^{6} / 44 \cdot 10^{9} \approx 11 {,} 6$ ms, and $T_{1} \approx 54$ ms, so the prediction is $S \le 4 {,} 6$ regardless of the number of threads – and the measured speedup of 4.3–4.8 agrees with it. For $n = 1000$, the data are in the L3 cache and the model predicts an almost linear speedup, but at most 3.7 was measured: 0.8 ms of work is little, and waking up the pool threads, which the model does not account for, becomes noticeable.
 
 **Example: matrix multiplication.** In the lab, the prediction $T_{p} = T_{1} / \min (p , 8)$ accounts only for the 8 physical cores (the 16 SMT logical processors do not double the execution units), and for Cannon’s algorithm it also includes the measured time of copying blocks and of barriers. That contribution turned out to be negligible (a prediction of 7.8 instead of 8.0), while the measured speedup was 4–5.5 (Fig. 8.11). The discrepancy shows costs that the model does not include: one core runs at a higher frequency than eight at once, and 9 blocks on 8 cores give a mapping imbalance.
 
@@ -60,7 +86,19 @@ Figure 8.11. Predicted and measured speedup {.caption}
 
 ### Isoefficiency
 
-Efficiency can be expressed through the **overhead** $T_{o} = p T_{p} - T_{1}$ – the total time of all processors not spent on useful work: $$E = \frac{T_{1}}{p T_{p}} = \frac{1}{1 + T_{o} / T_{1}} .$$ As $p$ increases, the overhead grows (more communication and synchronization), and efficiency falls. But $T_{o}$ usually grows more slowly than the useful work $T_{1} = W$ if the problem size is increased. Efficiency stays constant if $W$ grows so that $$W = K \cdot T_{o} (W , p) , \quad K = \frac{E}{1 - E} .$$ The dependence $W (p)$ that ensures this is called the **isoefficiency function** (Grama, Gupta, Kumar, 1993). The more slowly it grows, the better the algorithm scales (Table 8.6).
+Efficiency can be expressed through the **overhead** $T_{o} = p T_{p} - T_{1}$ – the total time of all processors not spent on useful work:
+
+$$
+E = \frac{T_{1}}{p T_{p}} = \frac{1}{1 + T_{o} / T_{1}} .
+$$
+
+As $p$ increases, the overhead grows (more communication and synchronization), and efficiency falls. But $T_{o}$ usually grows more slowly than the useful work $T_{1} = W$ if the problem size is increased. Efficiency stays constant if $W$ grows so that
+
+$$
+W = K \cdot T_{o} (W , p) , \quad K = \frac{E}{1 - E} .
+$$
+
+The dependence $W (p)$ that ensures this is called the **isoefficiency function** (Grama, Gupta, Kumar, 1993). The more slowly it grows, the better the algorithm scales (Table 8.6).
 
 Table 8.6. Isoefficiency functions of typical algorithms {.caption}
 

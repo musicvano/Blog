@@ -2,7 +2,7 @@
 title: "Tasks"
 description: "Topic 18. Microservice architecture: task variants"
 outline: [2, 3]
-sourceHash: "381b4e7e9e3839262f19a515aa6b2809e8913080bace8de24a6f1c73c33b2996"
+sourceHash: "bdf485dbe688de6d25124c1c3d7d041cba43bbff7ab09ae8a1e1c4e93e9e1478"
 ---
 
 # Tasks
@@ -101,7 +101,7 @@ Complete the task of the chosen difficulty level for your variant number.
 
 ### Variant 12. Train tickets {#v12}
 
-**1. Initial level.** Create a train timetable service behind a YARP gateway in an Aspire solution: `GET /api/trains?from=Kyiv&to=Lviv` returns trains with departure times and free seats.
+**1. Initial level.** Create a train timetable service behind a YARP gateway in an Aspire solution: `GET /api/trains?from=London&to=Paris` returns trains with departure times and free seats.
 
 **2. Basic level.** Create a train timetable service (`GET /api/trains?from=…&to=…`) behind a YARP gateway with global rate limiting in the gateway: a sliding window of 100 requests per second for the `/api/trains/**` route and a separate fixed window for each IP address; exceeding the limit returns code 429 with a `Retry-After` header. The timetable is cached in Redis for 60 s, and a `ScheduleChanged` event from RabbitMQ clears the cache for the relevant route.
 

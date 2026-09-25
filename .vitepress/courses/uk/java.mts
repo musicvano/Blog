@@ -2,7 +2,7 @@ import type { Course } from "../sidebar.mts";
 
 export default {
   slug: "java",
-  title: "ООП мовою Java",
+  title: "Об’єктно-орієнтоване програмування Java",
   modules: [
     {
       title: "Основи мови Java",
